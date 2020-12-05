@@ -1,8 +1,5 @@
 import {Quotient, Smoothness} from "../../../../../src/math"
-import {
-    computeRationalQuotientSmoothness,
-    isRationalQuotientSmooth,
-} from "../../../../../src/math/rational/quotient"
+import {computeRationalQuotientSmoothness, isRationalQuotientSmooth} from "../../../../../src/math/rational/quotient"
 
 describe("isRationalQuotientSmooth", (): void => {
     it("returns true if the quotient is smooth to the requested smoothness", (): void => {

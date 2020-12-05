@@ -1,11 +1,4 @@
-import {
-    computeParameterValues,
-    DynamicParameterScope,
-    Ed,
-    integerDivide,
-    Parameter,
-    Window,
-} from "../../../src"
+import {computeParameterValues, DynamicParameterScope, Ed, integerDivide, Parameter, Window} from "../../../src"
 
 describe("computeParameterValues", (): void => {
     it("given a parameter scope (a center, a window, and a ED), will return a block of points to sample", (): void => {

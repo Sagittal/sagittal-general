@@ -1,10 +1,4 @@
-import {
-    computeRoughRationalMonzo,
-    EMPTY_MONZO,
-    isRationalMonzoRough,
-    Monzo,
-    Roughness,
-} from "../../../../../src/math"
+import {computeRoughRationalMonzo, EMPTY_MONZO, isRationalMonzoRough, Monzo, Roughness} from "../../../../../src/math"
 
 describe("computeRoughRationalMonzo", (): void => {
     it("roughens the monzo to the requested roughness (setting initial elements of the monzo to 0)", (): void => {

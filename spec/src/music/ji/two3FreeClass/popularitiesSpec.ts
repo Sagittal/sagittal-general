@@ -1,11 +1,4 @@
-import {
-    COMMA_POPULARITIES,
-    computeKeyPath,
-    rank,
-    Ranked,
-    RankStrategy,
-    ScalaPopularityStat,
-} from "../../../../../src"
+import {COMMA_POPULARITIES, computeKeyPath, rank, Ranked, RankStrategy, ScalaPopularityStat} from "../../../../../src"
 import {onlyRunInCi} from "../../../../helpers/onlyRunInCi"
 
 describe("COMMA_POPULARITIES", (): void => {

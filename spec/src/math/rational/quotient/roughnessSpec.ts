@@ -1,8 +1,5 @@
 import {FIVE_ROUGHNESS, Quotient, Roughness} from "../../../../../src/math"
-import {
-    computeRoughRationalQuotient,
-    isRationalQuotientRough,
-} from "../../../../../src/math/rational/quotient"
+import {computeRoughRationalQuotient, isRationalQuotientRough} from "../../../../../src/math/rational/quotient"
 
 describe("isRationalQuotientRough", (): void => {
     it("returns true if the quotient is to the requested roughness", (): void => {

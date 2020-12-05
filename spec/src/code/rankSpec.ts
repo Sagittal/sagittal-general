@@ -1,4 +1,4 @@
-import {computeKeyPath, deepClone, DEFAULT_PRECISION, KeyPath, rank, Rank, RankStrategy} from "../../../src"
+import {computeKeyPath, deepClone, DEFAULT_PRECISION, rank, Rank, RankStrategy} from "../../../src"
 
 describe("rank", (): void => {
     const arrayOfObjects: unknown[] = [

@@ -30,3 +30,4 @@ export {
     SEPTIMAL_KLEISMA,
     SYNTONIC_COMMA,
 } from "./ji"
+export {two3FreeClassFixture, computePitchExpectation, PitchExpectation} from "./specHelpers"

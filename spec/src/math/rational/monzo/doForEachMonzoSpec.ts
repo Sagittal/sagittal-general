@@ -1,13 +1,4 @@
-import {
-    Decimal,
-    doForEachRationalMonzo,
-    Exponent,
-    Extrema,
-    Maybe,
-    Monzo,
-    Prime,
-    stringify,
-} from "../../../../../src"
+import {Decimal, doForEachRationalMonzo, Exponent, Extrema, Maybe, Monzo, Prime, stringify} from "../../../../../src"
 
 describe("doForEachRationalMonzo", (): void => {
     const primeExponentExtremas = [

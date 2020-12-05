@@ -297,6 +297,9 @@ export {
     SYNTONIC_COMMA,
     Exclusive,
     computeLowerAndUpperExclusive,
+    two3FreeClassFixture,
+    computePitchExpectation,
+    PitchExpectation,
 } from "./music"
 export {Count, Ed, Extrema, Index, Ms, Name, Step, Window, Of, Offset} from "./types"
 export {

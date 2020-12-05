@@ -1,9 +1,6 @@
 import {Decimal} from "../../../../../src"
 import {computeIntegerDecimalSmoothness, Smoothness} from "../../../../../src/math/rational"
-import {
-    computeRationalDecimalSmoothness,
-    isIntegerDecimalSmooth,
-} from "../../../../../src/math/rational/decimal"
+import {computeRationalDecimalSmoothness, isIntegerDecimalSmooth} from "../../../../../src/math/rational/decimal"
 
 describe("isIntegerDecimalSmooth", (): void => {
     it("returns true when the integer decimal has no prime factors greater than the smoothness", (): void => {

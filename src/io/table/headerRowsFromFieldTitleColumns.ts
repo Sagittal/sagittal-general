@@ -1,9 +1,9 @@
-import { Cell, Column, Row } from "./types"
-import { isEmpty, Maybe } from "../../code"
-import { count, max } from "../../math"
-import { Count } from "../../types"
-import { Formatted } from "../format"
-import { BLANK } from "../constants"
+import {isEmpty, Maybe} from "../../code"
+import {count, max} from "../../math"
+import {Count} from "../../types"
+import {BLANK} from "../constants"
+import {Formatted} from "../format"
+import {Cell, Column, Row} from "./types"
 
 const computeHeaderRowsFromFieldTitleColumns = <T>(
     fieldTitleColumns: Array<Column<{of: T, header: true}>>,
