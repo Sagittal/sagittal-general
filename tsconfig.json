@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "downlevelIteration": true,
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "types": [
+      "node", "jasmine", "./spec"
+    ],
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "pretty": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "target": "es5"
+  },
+  "include": [
+    "src"
+  ]
+}

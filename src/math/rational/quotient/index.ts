@@ -1,0 +1,8 @@
+export {isRationalQuotientRough, computeRoughRationalQuotient} from "./roughness"
+export {isRationalQuotientSmooth, computeRationalQuotientSmoothness} from "./smoothness"
+export {computeRationalQuotientFromRationalDecimal} from "./fromDecimal"
+export {isQuotientRational} from "./typeGuards"
+export {areRationalQuotientsEqual} from "./comparison"
+export {computeRationalQuotientProduct} from "./typedOperations"
+export {computeLowestTermsRationalQuotient, isLowestTerms} from "./lowestTerms"
+export {computeRationalQuotientFromRationalScamon} from "./fromScamon"

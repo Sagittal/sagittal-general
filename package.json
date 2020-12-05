@@ -1,0 +1,35 @@
+{
+  "name": "@sagittal/general",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "description": "general utilities for the Sagittal notation system",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sagittal/sagittal-general.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "publish": "npm publish --access public",
+    "profile": "node --prof -r ts-node/register/transpile-only --max-old-space-size=131072 [[script.ts]] && node --prof-process isolate-*.log > processed.txt && rm isolate-*.log",
+    "lint": "tslint \"src/**/*.ts\" --fix && tslint \"spec/**/*.ts\" --fix",
+    "test": "node -r ts-node/register/transpile-only node_modules/jasmine/bin/jasmine",
+    "test-names": "node -r ts-node/register/transpile-only node_modules/jasmine/bin/jasmine --names=true",
+    "test-ci": "node -r ts-node/register node_modules/jasmine/bin/jasmine --ci=true"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.5.11",
+    "@types/node": "^14.0.20",
+    "colors": "^1.4.0",
+    "commander": "^5.1.0",
+    "jasmine": "^3.5.0",
+    "jasmine-spec-reporter": "^5.0.2",
+    "ts-loader": "^8.0.11",
+    "ts-node": "^8.10.2",
+    "tslint": "^6.1.2",
+    "typescript": "^4.0.2"
+  },
+  "engines": {
+    "node": ">14"
+  }
+}
