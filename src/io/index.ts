@@ -15,6 +15,7 @@ export {
     IDENTIFYING_CENTS_CHARS,
     IDENTIFYING_QUOTIENT_CHARS,
     NUMERIC_CHARS,
+    DEFAULT_IO_SETTINGS,
 } from "./constants"
 export {clearLogFiles, LogTarget, saveLog, setLogTargets} from "./log"
 export {

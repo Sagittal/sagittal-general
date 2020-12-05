@@ -47,6 +47,10 @@ export {
     computeExampleElement,
     computeKeyPath,
     SortBy,
+    cleanObject,
+    setAllPropertiesOfObjectOnAnother,
+    cleanArray,
+    camelCaseToConstantCase,
 } from "./code"
 export {
     sumTexts,
@@ -114,6 +118,7 @@ export {
     Cell,
     MERGED_CELL_INDICATOR,
     formatBound,
+    DEFAULT_IO_SETTINGS,
 } from "./io"
 export {
     abs,
@@ -250,6 +255,10 @@ export {
     computeRationalScamonFromRationalQuotient,
     FIVE_SMOOTHNESS,
     computeRationalMonzoFromRationalScamon,
+    IRRATIONAL_SCAMON_BASE_MONZO,
+    computeIrrationalMonzoFromScamon,
+    computeArithmeticMean,
+    maxScamon,
 } from "./math"
 export {
     Cents,

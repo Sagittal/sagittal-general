@@ -3,7 +3,7 @@ export {computeScamonFromDecimal} from "./fromDecimal"
 export {computeScamonFromQuotient} from "./fromQuotient"
 export {computeScamonFromMonzo} from "./fromMonzo"
 export {isScamonSub, isScamonSuper, isScamonUnison, computeSuperScamon, invertScamon} from "./direction"
-export {halveScamon, addScamons, multiplyScamon, scaleScamon} from "./typedOperations"
+export {halveScamon, addScamons, multiplyScamon, scaleScamon, maxScamon} from "./typedOperations"
 export {
     areScamonsEqual,
     isScamonGreater,

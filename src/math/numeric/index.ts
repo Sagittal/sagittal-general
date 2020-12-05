@@ -8,6 +8,7 @@ export {
     mod,
     reciprocal,
     areDecimalsEqual,
+    computeArithmeticMean,
 } from "./decimal"
 export {
     isQuotientSub,
@@ -61,6 +62,7 @@ export {
     invertScamon,
     multiplyScamon,
     scaleScamon,
+    maxScamon,
 } from "./scamon"
 export {
     Direction,

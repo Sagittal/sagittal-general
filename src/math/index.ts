@@ -1,5 +1,5 @@
-export {computeCombinations} from "./combinations"
-export {BASE_2, ADDITIVE_IDENTITY} from "./constants"
+export { computeCombinations } from "./combinations"
+export { BASE_2, ADDITIVE_IDENTITY } from "./constants"
 export {
     isQuotientSub,
     isQuotientSuper,
@@ -58,11 +58,13 @@ export {
     computeMonzoMapping,
     computePatentVal,
     scaleScamon,
+    computeArithmeticMean,
+    maxScamon,
 } from "./numeric"
-export {computeDistributions} from "./distributions"
-export {dividesEvenly, isEven, isOdd} from "./dividesEvenly"
-export {computeAngle, radiansToDegrees} from "./angle"
-export {computeTriangularNumber} from "./triangularNumber"
+export { computeDistributions } from "./distributions"
+export { dividesEvenly, isEven, isOdd } from "./dividesEvenly"
+export { computeAngle, radiansToDegrees } from "./angle"
+export { computeTriangularNumber } from "./triangularNumber"
 export {
     abs,
     count,
@@ -158,4 +160,9 @@ export {
     computeRationalScamonFromRationalQuotient,
     computeRationalMonzoFromRationalScamon,
 } from "./rational"
-export {HALF_SCALER, computeIrrationalDecimalFromScamon} from "./irrational"
+export {
+    HALF_SCALER,
+    computeIrrationalDecimalFromScamon,
+    IRRATIONAL_SCAMON_BASE_MONZO,
+    computeIrrationalMonzoFromScamon,
+} from "./irrational"
