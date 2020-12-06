@@ -1,5 +1,6 @@
 import {Index} from "../../types"
 import {Decimal} from "../numeric"
+import {Max} from "../types"
 import {Prime, Roughness, Smoothness} from "./types"
 
 const TWO_PRIME_INDEX: Index<Prime> = 0 as Index<Prime>

@@ -9,7 +9,7 @@ export {
     FIVE_SMOOTHNESS,
 } from "./constants"
 export {computePrimeCount, computeRoughnessIndex, computeSmoothnessIndex} from "./primeCount"
-export {PRIMES} from "./primes"
+export {computePrimes} from "./primes"
 export {computeGreatestCommonDivisor} from "./common"
 export {Copfr, Prime, Roughness, Sopfr, Smoothness, Primes} from "./types"
 export {

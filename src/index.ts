@@ -166,7 +166,7 @@ export {
     pow,
     Power,
     Prime,
-    PRIMES,
+    computePrimes,
     round,
     Sopfr,
     sum,

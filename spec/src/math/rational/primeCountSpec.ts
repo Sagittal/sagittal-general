@@ -1,4 +1,4 @@
-import {computePrimeCount, Count, finalElement, log, Prime, PRIMES, round} from "../../../../src"
+import {computePrimeCount, Count, log, Prime, round} from "../../../../src"
 
 describe("computePrimeCount", (): void => {
     it("is the π function, returning the count of primes less than or equal to a number", (): void => {
@@ -17,19 +17,11 @@ describe("computePrimeCount", (): void => {
     })
 
     it("the prime count can be approximated by ~1/ln(n)", (): void => {
-        const number = 991
+        const number = 8368818
 
         const actual = computePrimeCount(number)
 
         const expected = number / log(number)
         expect(round(actual / expected)).toBe(1)
-    })
-
-    it("throws an error if requested for a number greater than the greatest prime", (): void => {
-        const number = finalElement(PRIMES) + 1
-
-        expect((): void => {
-            computePrimeCount(number)
-        }).toThrowError("Cannot compute exact prime count for numbers greater than 997, the largest prime currently recognized.")
     })
 })

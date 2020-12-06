@@ -2,7 +2,7 @@ import {computeTrimmedArray, increment, indexOfFinalElement, isEmpty} from "../.
 import {Decimal, Monzo, NumericProperties} from "../../numeric"
 import {count} from "../../typedOperations"
 import {computeSmoothnessIndex} from "../primeCount"
-import {PRIMES} from "../primes"
+import {computePrimes} from "../primes"
 import {Primes, Smoothness} from "../types"
 
 const isRationalMonzoSmooth = <S extends Primes, T extends NumericProperties>(
@@ -26,7 +26,9 @@ const computeRationalMonzoSmoothness = (rationalMonzo: Monzo<{rational: true}>):
         return 1 as Smoothness
     }
 
-    return PRIMES[indexOfFinalElement(trimmedMonzo)] as Decimal<{integer: true}> as Smoothness
+    const primes = computePrimes()
+
+    return primes[indexOfFinalElement(trimmedMonzo)] as Decimal<{integer: true}> as Smoothness
 }
 
 export {

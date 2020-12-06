@@ -1,6 +1,6 @@
 import {increment} from "../../../code"
 import {Step, Window} from "../../../types"
-import {PRIMES} from "../../rational"
+import {computePrimes} from "../../rational"
 import {abs} from "../../typedOperations"
 import {Exponent} from "../../types"
 import {Decimal} from "../decimal"
@@ -11,11 +11,12 @@ const computePatentVal = <T extends Window>(options: PatentValOptions<T>): Val<T
 
     const stepSize: number = window ** (1 / ed)
 
-    const maxPrimeIndex = PRIMES.indexOf(primeLimit)
+    const primes = computePrimes(primeLimit)
+    const maxPrimeIndex = primes.indexOf(primeLimit)
 
     let patentVal: Val<T & {integer: true}> = []
     for (let primeIndex = 0; primeIndex <= maxPrimeIndex; primeIndex = increment(primeIndex)) {
-        const prime = PRIMES[primeIndex]
+        const prime = primes[primeIndex]
 
         let previousApproximation = undefined
         let currentApproximation = undefined

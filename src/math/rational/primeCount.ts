@@ -2,27 +2,27 @@ import {finalElement} from "../../code"
 import {Count, Index} from "../../types"
 import {Decimal} from "../numeric"
 import {SMOOTH_ROUGH_OFFSET} from "./constants"
-import {PRIMES} from "./primes"
+import {computePrimes, MAX_PRIME_GAP_AT_MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED} from "./primes"
 import {Prime, Roughness, Smoothness} from "./types"
 
 // Prime Counting Function (π)
 // See: https://mathworld.wolfram.com/PrimeCountingFunction.html
 
 const computePrimeCount = (number: number): Count<Prime> => {
-    const count = PRIMES.findIndex((prime: Prime): boolean => prime > number)
+    const primes = computePrimes(number + MAX_PRIME_GAP_AT_MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED)
 
-    if (count === -1) {
-        throw new Error(`Cannot compute exact prime count for numbers greater than ${finalElement(PRIMES)}, the largest prime currently recognized.`)
-    }
+    const count = primes.findIndex((prime: Prime): boolean => prime > number)
 
     return count as Count<Prime>
 }
 
 const computeRoughnessIndex = (roughness: Roughness): Index<Prime> => {
-    const index = PRIMES.findIndex((prime: Prime): boolean => prime >= roughness)
+    const primes = computePrimes()
+
+    const index = primes.findIndex((prime: Prime): boolean => prime >= roughness)
 
     if (index === -1) {
-        throw new Error(`Cannot compute roughness index for numbers greater than ${finalElement(PRIMES)}, the largest prime currently recognized.`)
+        throw new Error(`Cannot compute roughness index for numbers greater than ${finalElement(primes)}, the largest prime currently recognized.`)
     }
 
     return index as Index<Prime>

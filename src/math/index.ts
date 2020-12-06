@@ -107,7 +107,7 @@ export {
     THREE_SMOOTHNESS,
     TWO_PRIME_INDEX,
     computePrimeCount,
-    PRIMES,
+    computePrimes,
     ceil,
     floor,
     integerDivide,

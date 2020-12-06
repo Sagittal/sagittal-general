@@ -28,7 +28,7 @@ describe("computeIntegerMonzoFromIntegerDecimal", (): void => {
 
         expect((): void => {
             computeIntegerMonzoFromIntegerDecimal(integerDecimal)
-        }).toThrowError("This integer 756065159 contains primes which are too big; remainder is 756065159")
+        }).toThrowError("Cannot compute primes greater than 125000000; 756065159 was requested.")
     })
 
     it("errors if given numbers which contain low primes but are too big", (): void => {

@@ -1,3 +1,5 @@
+import {finalElement, isUndefined} from "../../code"
+import {Max} from "../types"
 import {Prime} from "./types"
 
 const PRIMES: Prime[] = [
@@ -171,9 +173,38 @@ const PRIMES: Prime[] = [
     997,
 ] as Prime[]
 
+const computePrimes = (maxPossiblePrime?: number | Max): Prime[] => {
+    if (isUndefined(maxPossiblePrime) || maxPossiblePrime <= finalElement(PRIMES)) return PRIMES
+
+    if (maxPossiblePrime > MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED) {
+        throw new Error(`Cannot compute primes greater than ${MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED}; ${maxPossiblePrime} was requested.`)
+    }
+
+    const sieve = []
+    const primes = [] as Prime[]
+
+    for (let i = 2 as Prime; i <= maxPossiblePrime; i++) {
+        if (!sieve[i]) {
+            primes.push(i)
+            for (let j = i << 1; j <= maxPossiblePrime; j += i) {
+                sieve[j] = true
+            }
+        }
+    }
+
+    return primes
+}
+
 const INDEX_OF_FINAL_PRIME = PRIMES.length - 1
+
+const MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED = 125000000 as Max
+
+const MAX_PRIME_GAP_AT_MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED = 26
 
 export {
     PRIMES,
     INDEX_OF_FINAL_PRIME,
+    MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED,
+    MAX_PRIME_GAP_AT_MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED,
+    computePrimes,
 }
