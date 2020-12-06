@@ -7,8 +7,8 @@ import {clearLogFiles, LogTarget, setLogTargets} from "../log"
 import {Filename} from "../types"
 import {ScriptFlag} from "./types"
 
-const setupScriptAndIo = (logDir: Filename, defaultLogTargets?: LogTarget[]): void => {
-    ioSettings.logDir = logDir
+const setupScriptAndIo = (logDir?: Filename, defaultLogTargets?: LogTarget[]): void => {
+    if (!isUndefined(logDir)) ioSettings.logDir = logDir
 
     program
         .option(`-${ScriptFlag.LOG_TARGETS}, --log-targets [logTargets]`, "log targets")
@@ -20,7 +20,7 @@ const setupScriptAndIo = (logDir: Filename, defaultLogTargets?: LogTarget[]): vo
     program.parse(process.argv)
 
     ioSettings.noWrite = !program.write || !!process.env.TEST_MODE
-    if (!ioSettings.noWrite) {
+    if (!ioSettings.noWrite && !isUndefined(logDir)) {
         clearLogFiles(logDir)
     }
 
