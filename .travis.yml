@@ -3,4 +3,3 @@ node_js:
   - 14
 script:
   - npm run test-ci
-os: windows
