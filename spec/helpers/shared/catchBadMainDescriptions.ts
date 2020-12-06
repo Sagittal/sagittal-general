@@ -10,7 +10,7 @@ const catchBadMainDescriptions = (basePath: Filename): void => {
 
         if (fs.lstatSync(filename).isDirectory()) {
             catchBadMainDescriptions(filename)
-        } else if (!new RegExp("verificationSpecs").test(filename) && !new RegExp("scripts.*scripts").test(filename)) {
+        } else {
             const lines = readLines(filename)
 
             let subjectDescription: Maybe<string> = undefined
