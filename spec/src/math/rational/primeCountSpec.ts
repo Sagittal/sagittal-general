@@ -17,7 +17,7 @@ describe("computePrimeCount", (): void => {
     })
 
     it("the prime count can be approximated by ~1/ln(n)", (): void => {
-        const number = 8368818
+        const number = 991
 
         const actual = computePrimeCount(number)
 
@@ -30,6 +30,6 @@ describe("computePrimeCount", (): void => {
 
         expect((): void => {
             computePrimeCount(number)
-        }).toThrowError("Cannot compute exact prime count for numbers greater than 9999991, the largest prime currently recognized.")
+        }).toThrowError("Cannot compute exact prime count for numbers greater than 997, the largest prime currently recognized.")
     })
 })
