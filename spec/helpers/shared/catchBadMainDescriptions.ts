@@ -1,6 +1,6 @@
 import * as fs from "fs"
 import * as path from "path"
-import {Filename, Io, isUndefined, Maybe, readLines} from "../../src"
+import {Filename, Io, isUndefined, Maybe, readLines} from "../../../src"
 
 const INDEX_OF_CAPTURED_GROUP = 1
 

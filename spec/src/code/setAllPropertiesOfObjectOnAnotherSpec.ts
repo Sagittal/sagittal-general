@@ -1,5 +1,5 @@
 import {Maybe} from "../../../src"
-import {setAllPropertiesOfObjectOnAnother} from "../../../src/code/setAllPropertiesOfObjectOnAnother"
+import {setAllPropertiesOfObjectOnAnother} from "../../../src"
 
 describe("setAllPropertiesOfObjectOnAnother", (): void => {
     it("sets all the properties of one object onto another (handy when you need to make an object so, but you do not have access to reassign it, such as when it lives at the top level in another module, like a globals module", (): void => {

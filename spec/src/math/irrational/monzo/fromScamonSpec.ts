@@ -1,5 +1,5 @@
 import {Monzo, Quotient, Scamon} from "../../../../../src"
-import {computeIrrationalMonzoFromScamon} from "../../../../../src/math/irrational/monzo"
+import {computeIrrationalMonzoFromScamon} from "../../../../../src"
 
 describe("computeIrrationalMonzoFromScamon", (): void => {
     it("works for a irrational scamon", (): void => {

@@ -1,6 +1,4 @@
-import {ioSettings, LogTarget} from "../../src"
-import {setAllPropertiesOfObjectOnAnother} from "../../src/code/setAllPropertiesOfObjectOnAnother"
-import {DEFAULT_IO_SETTINGS} from "../../src/io/constants"
+import {DEFAULT_IO_SETTINGS, ioSettings, LogTarget, setAllPropertiesOfObjectOnAnother} from "../../../src"
 
 beforeEach((): void => {
     setAllPropertiesOfObjectOnAnother({

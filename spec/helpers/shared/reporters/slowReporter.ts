@@ -1,4 +1,4 @@
-import {computeKeyPath, count, LogTarget, Ms, now, round, saveLog, sort, subtract} from "../../../src"
+import {computeKeyPath, count, LogTarget, Ms, now, round, saveLog, sort, subtract} from "../../../../src"
 import {COUNT_SLOW_SPECS_TO_SUMMARIZE, MAX_TEST_DESCRIPTION_LENGTH, WARN_THRESHOLD_MS} from "./constants"
 import {SpecTime} from "./types"
 

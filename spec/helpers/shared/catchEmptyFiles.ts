@@ -1,6 +1,6 @@
 import * as fs from "fs"
 import * as path from "path"
-import {Filename} from "../../src"
+import {Filename} from "../../../src"
 
 const catchEmptyFiles = (basePath: Filename): void => {
     for (const file of fs.readdirSync(basePath)) {

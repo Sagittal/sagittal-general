@@ -1,6 +1,6 @@
 import {Monzo, Quotient, Scamon} from "../../../../../src"
 import {computeIrrationalScamonFromMonzo} from "../../../../../src/math/irrational"
-import {IRRATIONAL_SCAMON_BASE_MONZO} from "../../../../../src/math/irrational/scamon/constants"
+import {IRRATIONAL_SCAMON_BASE_MONZO} from "../../../../../src"
 
 describe("computeIrrationalScamonFromMonzo", (): void => {
     it("when given a monzo, returns a irrational scamon", (): void => {

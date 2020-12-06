@@ -1,4 +1,4 @@
-import {cleanObject} from "../../../src/code/cleanObject"
+import {cleanObject} from "../../../src"
 
 describe("cleanObject", (): void => {
     it("removes all properties from an object", (): void => {

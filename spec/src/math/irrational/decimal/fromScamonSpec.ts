@@ -1,5 +1,5 @@
 import {computeIrrationalDecimalFromScamon, Decimal, Quotient, Scamon} from "../../../../../src"
-import {IRRATIONAL_SCAMON_BASE_MONZO} from "../../../../../src/math/irrational/scamon/constants"
+import {IRRATIONAL_SCAMON_BASE_MONZO} from "../../../../../src"
 
 describe("computeIrrationalDecimalFromScamon", (): void => {
     it("given a irrational scamon, returns an irrational decimal", (): void => {

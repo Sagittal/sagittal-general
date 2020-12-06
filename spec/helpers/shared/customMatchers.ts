@@ -11,7 +11,7 @@ import {
     Scamon,
     SPACE,
     stringify,
-} from "../../src"
+} from "../../../src"
 import CustomEqualityTester = jasmine.CustomEqualityTester
 import CustomMatcher = jasmine.CustomMatcher
 import CustomMatcherFactories = jasmine.CustomMatcherFactories

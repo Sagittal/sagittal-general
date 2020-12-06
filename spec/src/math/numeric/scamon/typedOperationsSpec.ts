@@ -1,5 +1,5 @@
 import {addScamons, halveScamon, Max, Monzo, Quotient, scaleScamon, Scamon} from "../../../../../src"
-import {IRRATIONAL_SCAMON_BASE_MONZO} from "../../../../../src/math/irrational/scamon/constants"
+import {IRRATIONAL_SCAMON_BASE_MONZO} from "../../../../../src"
 import {maxScamon, subtractScamons} from "../../../../../src/math/numeric/scamon/typedOperations"
 
 describe("addScamons", (): void => {

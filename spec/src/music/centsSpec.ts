@@ -8,7 +8,7 @@ import {
     halveScamon,
     Scamon,
 } from "../../../src"
-import {IRRATIONAL_SCAMON_BASE_MONZO} from "../../../src/math/irrational/scamon/constants"
+import {IRRATIONAL_SCAMON_BASE_MONZO} from "../../../src"
 
 describe("dividePitch", (): void => {
     it("returns the proportion the part pitch is of the whole pitch", (): void => {
