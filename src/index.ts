@@ -119,6 +119,7 @@ export {
     MERGED_CELL_INDICATOR,
     formatBound,
     DEFAULT_IO_SETTINGS,
+    program,
 } from "./io"
 export {
     abs,

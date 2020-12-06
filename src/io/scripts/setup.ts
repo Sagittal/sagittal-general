@@ -7,8 +7,8 @@ import {clearLogFiles, LogTarget, setLogTargets} from "../log"
 import {Filename} from "../types"
 import {ScriptFlag} from "./types"
 
-const setupScriptAndIo = (scriptGroup: Filename, defaultLogTargets?: LogTarget[]): void => {
-    ioSettings.scriptGroup = scriptGroup
+const setupScriptAndIo = (logDir: Filename, defaultLogTargets?: LogTarget[]): void => {
+    ioSettings.logDir = logDir
 
     program
         .option(`-${ScriptFlag.LOG_TARGETS}, --log-targets [logTargets]`, "log targets")
@@ -21,7 +21,7 @@ const setupScriptAndIo = (scriptGroup: Filename, defaultLogTargets?: LogTarget[]
 
     ioSettings.noWrite = !program.write || !!process.env.TEST_MODE
     if (!ioSettings.noWrite) {
-        clearLogFiles(scriptGroup)
+        clearLogFiles(logDir)
     }
 
     if (!isUndefined(program.tableFormat)) ioSettings.tableFormat = program.tableFormat

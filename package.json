@@ -1,6 +1,6 @@
 {
   "name": "@sagittal/general",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "general utilities for the Sagittal notation system",
@@ -16,13 +16,11 @@
     "test-names": "node -r ts-node/register/transpile-only node_modules/jasmine/bin/jasmine --names=true",
     "test-ci": "node -r ts-node/register node_modules/jasmine/bin/jasmine --ci=true"
   },
-  "dependencies": {
-    "colors": "^1.4.0",
-    "commander": "^5.1.0"
-  },
   "devDependencies": {
     "@types/jasmine": "^3.6.2",
     "@types/node": "^14.14.10",
+    "colors": "^1.4.0",
+    "commander": "^5.1.0",
     "jasmine": "^3.6.3",
     "jasmine-spec-reporter": "^5.0.2",
     "ts-loader": "^8.0.11",

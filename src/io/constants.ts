@@ -1,7 +1,7 @@
 import {Precision} from "../code"
 import {LogTargets} from "./log"
 import {TableFormat} from "./table"
-import {Char, Io, IoSettings} from "./types"
+import {Char, Filename, Io, IoSettings} from "./types"
 
 const IO_PRECISION = 3 as Precision
 
@@ -22,14 +22,13 @@ const BLANK = "" as Io
 const TAB = "\t" as Io
 const COMMA = "," as Io
 
-// TODO: Perhaps this moves to the script-group module
 const DEFAULT_IO_SETTINGS: IoSettings = {
     noWrite: false,
     tableFormat: TableFormat.TERMINAL,
     logTargets: {} as LogTargets,
     disableColors: false,
-    // @ts-ignore
-    scriptGroup: undefined,
+    time: undefined,
+    logDir: "" as Filename,
 }
 
 export {

@@ -26,7 +26,7 @@ interface IoSettings {
     tableFormat: TableFormat,
     logTargets: LogTargets,
     disableColors: boolean,
-    scriptGroup: Filename,
+    logDir: Filename,
     time: Maybe<Ms>,
 }
 

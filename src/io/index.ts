@@ -53,4 +53,5 @@ export {
     formatBound,
 } from "./format"
 export {time} from "./time"
+export {program} from "./program"
 export {readLines} from "./lines"

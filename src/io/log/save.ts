@@ -14,7 +14,7 @@ const saveLog = (message: Io, target: LogTarget = LogTarget.ALL, options: SaveLo
 
     if (ioSettings.logTargets[LogTarget.ALL] || ioSettings.logTargets[target] || target === LogTarget.ALL) {
         if (!ioSettings.noWrite) {
-            write(message, target, ioSettings.scriptGroup, filenameOverride)
+            write(message, target, ioSettings.logDir, filenameOverride)
         }
 
         if (!writeOnly) {

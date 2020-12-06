@@ -7,11 +7,11 @@ import {Filename, Io} from "../types"
 import {BOM} from "./constants"
 import {LogTarget} from "./types"
 
-const write = (message: Io, target: LogTarget, scriptGroup: Filename, filenameOverride?: Filename): void => {
-    fs.existsSync("dist") || fs.mkdirSync("dist")
-    fs.existsSync(`dist/${scriptGroup}`) || fs.mkdirSync(`dist/${scriptGroup}`)
+const write = (message: Io, target: LogTarget, logDir: Filename, filenameOverride?: Filename): void => {
+    fs.existsSync("log") || fs.mkdirSync("log")
+    fs.existsSync(`log/${logDir}`) || fs.mkdirSync(`log/${logDir}`)
 
-    const file = `dist/${filenameOverride || `${scriptGroup}/${target}.txt`}`
+    const file = `log/${filenameOverride || `${logDir}/${target}.txt`}`
 
     if (!fs.existsSync(file) && ioSettings.tableFormat === TableFormat.SPREADSHEET) {
         // See: http://forum.sagittal.org/viewtopic.php?p=2410#p2410
