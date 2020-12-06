@@ -3,7 +3,7 @@ import {Index} from "../../../types"
 import {dividesEvenly} from "../../dividesEvenly"
 import {Decimal, NumericProperties} from "../../numeric"
 import {computeRoughnessIndex} from "../primeCount"
-import {computePrimes} from "../primes"
+import {computePrimes, MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED} from "../primes"
 import {Prime, Primes, Roughness} from "../types"
 import {integerDivide} from "./typedOperations"
 
@@ -36,7 +36,7 @@ const computeRoughIntegerDecimal = <S extends Primes, T extends NumericPropertie
 ): U & Decimal<T & {integer: true, rough: S}> => {
     const roughnessIndex = computeRoughnessIndex(roughness)
 
-    const primes = computePrimes(integerDecimal)
+    const primes = computePrimes(integerDecimal > MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED ? undefined : integerDecimal)
 
     let roughIntegerDecimal = integerDecimal
     let primeIndex = 0

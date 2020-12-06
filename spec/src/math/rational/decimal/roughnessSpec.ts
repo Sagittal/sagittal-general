@@ -51,7 +51,7 @@ describe("isIntegerDecimalRough", (): void => {
 
 describe("computeRoughIntegerDecimal", (): void => {
     it("roughens the number to the desired roughness", (): void => {
-        const integerDecimal = 1155 as Decimal<{integer: true}>      // 3 * 5 * 7 * 11
+        const integerDecimal = 1155 as Decimal<{integer: true}>             // 3 * 5 * 7 * 11
         const roughness = 7 as 7 & Roughness
 
         const actual = computeRoughIntegerDecimal(integerDecimal, roughness)
@@ -59,5 +59,14 @@ describe("computeRoughIntegerDecimal", (): void => {
         const expected = 77 as Decimal<{integer: true, rough: 7}>
         expect(actual).toBe(expected)
     })
-})
 
+    it("can handle huge numbers", (): void => {
+        const integerDecimal = 564859072962 as Decimal<{integer: true}>     // 2 * 3^25
+        const roughness = 3 as 3 & Roughness
+
+        const actual = computeRoughIntegerDecimal(integerDecimal, roughness)
+
+        const expected = 282429536481 as Decimal<{integer: true, rough: 3}>
+        expect(actual).toBe(expected)
+    })
+})
