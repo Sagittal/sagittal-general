@@ -1,6 +1,6 @@
 {
   "name": "@sagittal/general",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "general utilities for the Sagittal notation system",
@@ -12,7 +12,7 @@
   "scripts": {
     "build": "tsc",
     "profile": "node --prof -r ts-node/register/transpile-only --max-old-space-size=131072 [[script.ts]] && node --prof-process isolate-*.log > processed.txt && rm isolate-*.log",
-    "deploy": "npm version patch && npm run build && npm publish --access public && echo Package published. Please commit.",
+    "deploy": "rm -rf dist && npm version patch && npm run build && npm publish --access public && echo Package published. Please commit.",
     "lint": "tslint \"src/**/*.ts\" --fix && tslint \"spec/**/*.ts\" --fix",
     "test": "node -r ts-node/register/transpile-only node_modules/jasmine/bin/jasmine",
     "test-names": "node -r ts-node/register/transpile-only node_modules/jasmine/bin/jasmine --ci=false --names=true",

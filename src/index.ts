@@ -323,5 +323,3 @@ export {
     customMatchers,
     runScriptAndGetConsoleOutput,
 } from "./spec"
-
-// TODO: I just noticed that it's not cleaning out the dist folder before publishing.
