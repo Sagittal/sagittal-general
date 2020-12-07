@@ -6,9 +6,9 @@ import {
     Decimal,
     dividePitch,
     halveScamon,
+    IRRATIONAL_SCAMON_BASE_MONZO,
     Scamon,
 } from "../../../src"
-import {IRRATIONAL_SCAMON_BASE_MONZO} from "../../../src"
 
 describe("dividePitch", (): void => {
     it("returns the proportion the part pitch is of the whole pitch", (): void => {

@@ -1,5 +1,11 @@
-import {computeSuperScamon, Direction, EMPTY_MONZO, Monzo, Quotient} from "../../../../../src"
-import {IRRATIONAL_SCAMON_BASE_MONZO} from "../../../../../src"
+import {
+    computeSuperScamon,
+    Direction,
+    EMPTY_MONZO,
+    IRRATIONAL_SCAMON_BASE_MONZO,
+    Monzo,
+    Quotient,
+} from "../../../../../src"
 import {isScamonSub, isScamonSuper, isScamonUnison, Scamon} from "../../../../../src/math/numeric/scamon"
 
 describe("isScamonSub", (): void => {

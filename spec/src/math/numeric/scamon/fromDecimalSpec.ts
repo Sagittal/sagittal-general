@@ -2,11 +2,11 @@ import {
     computeScamonFromDecimal,
     computeScamonFromQuotient,
     Decimal,
+    IRRATIONAL_SCAMON_BASE_MONZO,
     Monzo,
     Quotient,
     Scamon,
 } from "../../../../../src"
-import {IRRATIONAL_SCAMON_BASE_MONZO} from "../../../../../src"
 
 describe("computeScamonFromDecimal", (): void => {
     it("when given a rational decimal, returns a rational scamon", (): void => {
