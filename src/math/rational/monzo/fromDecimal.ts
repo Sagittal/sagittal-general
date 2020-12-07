@@ -6,7 +6,7 @@ import {
     NumericPropertyTranslationForMonzosAndQuotientsToTheirTerms,
 } from "../../numeric"
 import {Exponent} from "../../types"
-import {computePrimes, INDEX_OF_FINAL_PRIME} from "../primes"
+import {computePrimes} from "../primes"
 import {computeRationalQuotientFromRationalDecimal} from "../quotient"
 import {Prime} from "../types"
 import {computeRationalMonzoFromRationalQuotient} from "./fromQuotient"

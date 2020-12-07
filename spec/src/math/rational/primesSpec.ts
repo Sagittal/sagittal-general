@@ -1,14 +1,192 @@
-import {increment, Max, Prime} from "../../../../src"
-import {computePrimes, MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED, PRIMES} from "../../../../src/math/rational/primes"
+import {increment, Prime} from "../../../../src"
+import {computePrimes, MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED} from "../../../../src/math/rational/primes"
+import {onlyRunInCi} from "../../../helpers/shared/onlyRunInCi"
 
 describe("computePrimes", (): void => {
+    const PRIMES_UP_TO_1000 = [
+        2,
+        3,
+        5,
+        7,
+        11,
+        13,
+        17,
+        19,
+        23,
+        29,
+        31,
+        37,
+        41,
+        43,
+        47,
+        53,
+        59,
+        61, // Only need to do up to here if you're only top 80 for unpopularity metric
+        67,
+        71,
+        73,
+        79,
+        83,
+        89,
+        97,
+        101,
+        103,
+        107,
+        109,
+        113,
+        127,
+        131,
+        137,
+        139,
+        149,
+        151,
+        157,
+        163,
+        167,
+        173,
+        179,
+        181,
+        191,
+        193,
+        197,
+        199,
+        211,
+        223,
+        227,
+        229,
+        233,
+        239,
+        241,
+        251,
+        257,
+        263,
+        269,
+        271,
+        277,
+        281,
+        283,
+        293,
+        307,
+        311,
+        313,
+        317,
+        331,
+        337,
+        347,
+        349,
+        353,
+        359,
+        367,
+        373,
+        379,
+        383,
+        389,
+        397,
+        401,
+        409,
+        419,
+        421,
+        431,
+        433,
+        439,
+        443,
+        449,
+        457,
+        461,
+        463,
+        467,
+        479,
+        487,
+        491,
+        499,
+        503,
+        509,
+        521,
+        523,
+        541,
+        547,
+        557,
+        563,
+        569,
+        571,
+        577,
+        587,
+        593,
+        599,
+        601,
+        607,
+        613,
+        617,
+        619,
+        631,
+        641,
+        643,
+        647,
+        653,
+        659,
+        661,
+        673,
+        677,
+        683,
+        691,
+        701,
+        709,
+        719,
+        727,
+        733,
+        739,
+        743,
+        751,
+        757,
+        761,
+        769,
+        773,
+        787,
+        797,
+        809,
+        811,
+        821,
+        823,
+        827,
+        829,
+        839,
+        853,
+        857,
+        859,
+        863,
+        877,
+        881,
+        883,
+        887,
+        907,
+        911,
+        919,
+        929,
+        937,
+        941,
+        947,
+        953,
+        967,
+        971,
+        977,
+        983,
+        991,
+        997,
+    ] as Prime[]
+
+    it("returns at least the primes up to 1000 if unspecified", (): void => {
+        const actual = computePrimes()
+
+        expect(actual).toBeCloseSoFar(PRIMES_UP_TO_1000)
+    })
+
     it("returns the primes up to the requested number", (): void => {
-        const maxPossiblePrime = 1100 as Max
+        const maxPossiblePrime = 1100
 
         const actual = computePrimes(maxPossiblePrime)
 
         const expected = [
-            ...PRIMES,
+            ...PRIMES_UP_TO_1000,
             1009,
             1013,
             1019,
@@ -26,16 +204,19 @@ describe("computePrimes", (): void => {
             1093,
             1097,
         ] as Prime[]
-        expect(actual).toEqual(expected)
-    })
-
-    it("returns the primes up to 1000 if unspecified", (): void => {
-        const actual = computePrimes()
-
-        expect(actual).toEqual(PRIMES)
+        expect(actual).toBeCloseSoFar(expected)
     })
 
     it("can return primes up 125000000", (): void => {
+        onlyRunInCi()
+
+        const actual = computePrimes(MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED)
+
+        const expected = [124999933, 124999943, 124999961, 124999969, 124999991] as Prime[]
+        expect(actual.slice(actual.length - 5)).toEqual(expected)
+    })
+
+    it("cannot return primes beyond 125000000", (): void => {
         const maxPossiblePrime = increment(MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED)
 
         expect((): void => {
