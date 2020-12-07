@@ -69,4 +69,17 @@ describe("formatIntegerDecimal", (): void => {
         const expected = "1"
         expect(actual).toBe(expected)
     })
+
+    it("still maxes out at 7 chars if it has a negative large number", (): void => {
+        expect(formatIntegerDecimal(-100 as Decimal<{integer: true}>, {align: true}))
+            .toBe("-100   ")
+        expect(formatIntegerDecimal(-1000 as Decimal<{integer: true}>, {align: true}))
+            .toBe("-1000  ")
+        expect(formatIntegerDecimal(-10000 as Decimal<{integer: true}>, {align: true}))
+            .toBe("-10000 ")
+        expect(formatIntegerDecimal(-100000 as Decimal<{integer: true}>, {align: true}))
+            .toBe("-100000")
+        expect(formatIntegerDecimal(-1000000 as Decimal<{integer: true}>, {align: true}))
+            .toBe("-1000000") // Now it starts increasing the width
+    })
 })

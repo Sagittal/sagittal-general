@@ -4,12 +4,27 @@ import {ioSettings} from "../globals"
 import {TableFormat} from "../table"
 import {Formatted} from "./types"
 
-const alignFormattedDecimal = (formattedDecimal: Formatted<Decimal>): Formatted<Decimal> => {
+const alignFormattedDecimal = (
+    formattedDecimal: Formatted<Decimal>,
+): Formatted<Decimal> => {
     while (formattedDecimal.length < 7) {
         formattedDecimal = " " + formattedDecimal as Formatted<Decimal>
     }
 
     return formattedDecimal
+}
+
+const alignFormattedIntegerDecimal = (
+    formattedIntegerDecimal: Formatted<Decimal<{integer: true}>>
+): Formatted<Decimal<{integer: true}>> => {
+    while (formattedIntegerDecimal.length < 3) {
+        formattedIntegerDecimal = " " + formattedIntegerDecimal as Formatted<Decimal<{integer: true}>>
+    }
+    while (formattedIntegerDecimal.length < 7) {
+        formattedIntegerDecimal = formattedIntegerDecimal + " " as Formatted<Decimal<{integer: true}>>
+    }
+
+    return formattedIntegerDecimal
 }
 
 const formatDecimal = (
@@ -28,14 +43,13 @@ const formatDecimal = (
 const formatIntegerDecimal = (
     integerDecimal: Decimal<{integer: true}>,
     {align}: {align?: boolean} = {},
-): Formatted<Decimal> => {
-    const stringifiedIntegerDecimal = integerDecimal.toString()
+): Formatted<Decimal<{integer: true}>> => {
+    let stringifiedIntegerDecimal = integerDecimal
+        .toString() as Formatted<Decimal<{integer: true}>>
 
     return align && ioSettings.tableFormat !== TableFormat.SPREADSHEET ?
-        alignFormattedDecimal(
-            stringifiedIntegerDecimal + "    " as Formatted<Decimal<{integer: true}>>,
-        ) :
-        stringifiedIntegerDecimal as Formatted<Decimal<{integer: true}>>
+        alignFormattedIntegerDecimal(stringifiedIntegerDecimal) :
+        stringifiedIntegerDecimal
 }
 
 export {
