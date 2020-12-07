@@ -4,6 +4,7 @@ import {
     Decimal,
     IRRATIONAL_SCAMON_BASE_MONZO,
     Monzo,
+    onlyRunInCi,
     Quotient,
     Scamon,
 } from "../../../../../src"
@@ -33,6 +34,8 @@ describe("computeScamonFromDecimal", (): void => {
     })
 
     it("when given a decimal which is not identified as rational or irrational, but can be construed as rational, returns a rational scamon", (): void => {
+        onlyRunInCi()
+
         const decimal = 15.94323 as Decimal
 
         const actual = computeScamonFromDecimal(decimal)
