@@ -7,7 +7,9 @@
       "dom"
     ],
     "types": [
-      "node", "jasmine", "./spec"
+      "node",
+      "jasmine",
+      "./spec"
     ],
     "moduleResolution": "node",
     "noImplicitReturns": true,
