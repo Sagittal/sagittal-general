@@ -13,9 +13,10 @@ describe("computeQuotientFromMonzo", (): void => {
     it("throws an error when it converts a monzo that is too big to be accurately represented in quotient form           ", (): void => {
         const monzo = [0, 0, 6, 4, 2, 2, 0, 1, 1, 1] as Monzo   // 9722180859015624/1
 
-        expect((): void => {
-            computeQuotientFromMonzo(monzo)
-        }).toThrowError("Converted a monzo to a quotient where a fractional part exceeds JavaScript's maximum safe integer value. Accuracy has been compromised: [   0   0   6   4   2   2   0   1   1   1 ⟩ -> 9722180859015624")
+        const actual = computeQuotientFromMonzo(monzo)
+
+        const expected = [Infinity, 1] as Quotient
+        expect(actual).toEqual(expected)
     })
 
     it("works for irrational monzos to irrational quotients", (): void => {

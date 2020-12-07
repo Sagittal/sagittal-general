@@ -2,8 +2,8 @@ import {
     decrement,
     increment,
     indexOfFinalElement,
-    MAX_JS_VALUE_PRESERVING_PRECISION,
-    MIN_JS_VALUE_PRESERVING_PRECISION,
+    MAX_JS_VALUE_PRESERVING_MAX_PRECISION,
+    MIN_JS_VALUE_PRESERVING_MAX_PRECISION,
     shallowClone,
 } from "../../../code"
 import {MULTIPLICATIVE_IDENTITY} from "../../constants"
@@ -15,7 +15,7 @@ import {NumericProperties} from "../types"
 import {Decimal} from "./types"
 
 const isDecimalWithLostPrecision = (decimal: Decimal): boolean =>
-    isNaN(decimal) || decimal > MAX_JS_VALUE_PRESERVING_PRECISION || decimal < MIN_JS_VALUE_PRESERVING_PRECISION
+    isNaN(decimal) || decimal > MAX_JS_VALUE_PRESERVING_MAX_PRECISION || decimal < MIN_JS_VALUE_PRESERVING_MAX_PRECISION
 
 const computeDecimalFromHugeMonzo = <T extends NumericProperties>(monzo: Monzo): Decimal<T> => {
     let decimal = MULTIPLICATIVE_IDENTITY as Decimal<T>

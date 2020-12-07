@@ -13,8 +13,8 @@ export {
     MAX_JS_INTEGER_VALUE,
     NOT_FOUND,
     MAX_JS_PRECISION,
-    MAX_JS_VALUE_PRESERVING_PRECISION,
-    MIN_JS_VALUE_PRESERVING_PRECISION,
+    MAX_JS_VALUE_PRESERVING_MAX_PRECISION,
+    MIN_JS_VALUE_PRESERVING_MAX_PRECISION,
 } from "./constants"
 export {computeDeepDistinct} from "./deepDistinct"
 export {deepEquals} from "./deepEquals"
