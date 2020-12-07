@@ -13,13 +13,17 @@ const computePrimes = (maxPossiblePrime: number | Max = DEFAULT_MAX_POSSIBLE_PRI
         return primes
     }
 
+    let primeToGoUpTo = maxPossiblePrime > MAX_MAX_POSSIBLE_PRIME_BEFORE_JUST_COMPUTE_ALL_ABLE ?
+        MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED :
+        maxPossiblePrime
+
     const sieve = []
     const extendedPrimes = [] as Prime[]
 
-    for (let i = 2 as Prime; i <= maxPossiblePrime; i++) {
+    for (let i = 2 as Prime; i <= primeToGoUpTo; i++) {
         if (!sieve[i]) {
             extendedPrimes.push(i)
-            for (let j = i << 1; j <= maxPossiblePrime; j += i) {
+            for (let j = i << 1; j <= primeToGoUpTo; j += i) {
                 sieve[j] = true
             }
         }
@@ -35,6 +39,8 @@ const DEFAULT_MAX_POSSIBLE_PRIME = 1000
 const MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED = 100000000 as Max
 
 const MAX_PRIME_GAP_AT_MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED = 26
+
+const MAX_MAX_POSSIBLE_PRIME_BEFORE_JUST_COMPUTE_ALL_ABLE = 100000
 
 export {
     MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED,
