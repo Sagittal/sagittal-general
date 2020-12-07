@@ -5,12 +5,12 @@ import {Prime} from "./types"
 let primes = [] as Prime[]
 
 const computePrimes = (maxPossiblePrime: number | Max = DEFAULT_MAX_POSSIBLE_PRIME): Prime[] => {
-    if (maxPossiblePrime > MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED) {
-        throw new Error(`Cannot compute primes greater than ${MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED}; ${maxPossiblePrime} was requested.`)
-    }
-
     if (maxPossiblePrime <= finalElement(primes)) {
         return primes
+    }
+
+    if (maxPossiblePrime > MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED) {
+        throw new Error(`Cannot compute primes greater than ${MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED}; ${maxPossiblePrime} was requested.`)
     }
 
     let primeToGoUpTo = maxPossiblePrime > MAX_MAX_POSSIBLE_PRIME_BEFORE_JUST_COMPUTE_ALL_ABLE ?
