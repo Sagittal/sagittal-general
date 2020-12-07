@@ -15,8 +15,9 @@
     "deploy": "npm version patch && npm run build && npm publish --access public",
     "lint": "tslint \"src/**/*.ts\" --fix && tslint \"spec/**/*.ts\" --fix",
     "test": "node -r ts-node/register/transpile-only node_modules/jasmine/bin/jasmine",
-    "test-names": "node -r ts-node/register/transpile-only node_modules/jasmine/bin/jasmine --names=true",
+    "test-names": "node -r ts-node/register/transpile-only node_modules/jasmine/bin/jasmine --ci=false --names=true",
     "test-ci": "node -r ts-node/register node_modules/jasmine/bin/jasmine --ci=true",
+    "test-ci-names": "node -r ts-node/register node_modules/jasmine/bin/jasmine --ci=true --names=true",
     "tmp": "node -r ts-node/register/transpile-only --max-old-space-size=131072 spec/helpers/shared/tmp/tmp.ts"
   },
   "dependencies": {
