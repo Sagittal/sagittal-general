@@ -1,4 +1,4 @@
-import {computePrimeCount, Count, log, Prime, round} from "../../../../src"
+import {computePrimeCount, Count, log, onlyRunInCi, Prime, round} from "../../../../src"
 
 describe("computePrimeCount", (): void => {
     it("is the π function, returning the count of primes less than or equal to a number", (): void => {
@@ -17,6 +17,8 @@ describe("computePrimeCount", (): void => {
     })
 
     it("the prime count can be approximated by ~1/ln(n)", (): void => {
+        onlyRunInCi()
+
         const number = 8368818
 
         const actual = computePrimeCount(number)
