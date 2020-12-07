@@ -18,7 +18,6 @@
     "pretty": true,
     "esModuleInterop": true,
     "declaration": true,
-    "rootDir": "src",
     "outDir": "dist",
     "target": "es5"
   },
