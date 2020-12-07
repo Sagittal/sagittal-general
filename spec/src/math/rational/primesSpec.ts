@@ -207,20 +207,20 @@ describe("computePrimes", (): void => {
         expect(actual).toBeCloseSoFar(expected)
     })
 
-    it("can return primes up 125000000", (): void => {
+    it("can return primes up to 100000000", (): void => {
         onlyRunInCi()
 
         const actual = computePrimes(MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED)
 
-        const expected = [124999933, 124999943, 124999961, 124999969, 124999991] as Prime[]
+        const expected = [99999931, 99999941, 99999959, 99999971, 99999989] as Prime[]
         expect(actual.slice(actual.length - 5)).toEqual(expected)
     })
 
-    it("cannot return primes beyond 125000000", (): void => {
+    it("cannot return primes beyond 100000000", (): void => {
         const maxPossiblePrime = increment(MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED)
 
         expect((): void => {
             computePrimes(maxPossiblePrime)
-        }).toThrowError("Cannot compute primes greater than 125000000; 125000001 was requested.")
+        }).toThrowError("Cannot compute primes greater than 100000000; 100000001 was requested.")
     })
 })

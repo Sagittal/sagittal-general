@@ -1,4 +1,4 @@
-import {MAX_JS_INTEGER_VALUE} from "../../../code"
+import {indexOfFinalElement, MAX_JS_INTEGER_VALUE} from "../../../code"
 import {
     Decimal,
     Monzo,
@@ -6,7 +6,7 @@ import {
     NumericPropertyTranslationForMonzosAndQuotientsToTheirTerms,
 } from "../../numeric"
 import {Exponent} from "../../types"
-import {computePrimes} from "../primes"
+import {computePrimes, MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED} from "../primes"
 import {computeRationalQuotientFromRationalDecimal} from "../quotient"
 import {Prime} from "../types"
 import {computeRationalMonzoFromRationalQuotient} from "./fromQuotient"
@@ -29,7 +29,7 @@ const computeIntegerMonzoFromIntegerDecimal = <T extends NumericProperties>(
         throw new Error(`This integer ${integerDecimal} is larger than the maximum integer JavaScript can encode (double float precision, 2^53) and therefore will be rounded and be unable to be prime factored properly.`)
     }
 
-    const primes = computePrimes(integerDecimal)
+    const primes = computePrimes(integerDecimal > MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED ? undefined : integerDecimal)
 
     let index = 0
     let divisor = primes[index]
@@ -42,6 +42,10 @@ const computeIntegerMonzoFromIntegerDecimal = <T extends NumericProperties>(
             integerMonzo[index] = integerMonzo[index] + 1 as
                 Decimal<NumericPropertyTranslationForMonzosAndQuotientsToTheirTerms<T>> & Exponent<Prime>
         } else {
+            if (index === indexOfFinalElement(primes)) {
+                throw new Error(`This integer ${integerDecimal} contains primes which are too big; remainder is ${remnant}`)
+            }
+
             index = index + 1
             divisor = primes[index]
             integerMonzo[index] = 0 as
