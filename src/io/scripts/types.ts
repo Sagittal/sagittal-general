@@ -35,7 +35,7 @@ enum ScriptFlag {
     LOG_TARGETS = "t",
     UPPER_BOUND = "u",
     UNABBREVIATED_COMMA_NAME = "v",
-    NO_WRITE = "w",
+    // Free again: "w"
     NO_TIME = "x",
     USE_LATE = "y",
     Z = "z",

@@ -23,7 +23,6 @@ const TAB = "\t" as Io
 const COMMA = "," as Io
 
 const DEFAULT_IO_SETTINGS: IoSettings = {
-    noWrite: false,
     tableFormat: TableFormat.TERMINAL,
     logTargets: {} as LogTargets,
     disableColors: false,

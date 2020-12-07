@@ -22,7 +22,6 @@ type ColorMethod =
     "magenta"
 
 interface IoSettings {
-    noWrite: boolean,
     tableFormat: TableFormat,
     logTargets: LogTargets,
     disableColors: boolean,

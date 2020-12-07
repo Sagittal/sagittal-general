@@ -2,26 +2,19 @@ import {colorize} from "../colorize"
 import {ioSettings} from "../globals"
 import {Io} from "../types"
 import {targetColors} from "./colors"
-import {LogTarget, SaveLogOptions} from "./types"
+import {LogTarget} from "./types"
 import {write} from "./write"
 
-const saveLog = (message: Io, target: LogTarget = LogTarget.ALL, options: SaveLogOptions = {}): void => {
-    const {useTargetColor = true, filenameOverride, writeOnly = false} = options
-
+const saveLog = (message: Io, target: LogTarget = LogTarget.ALL): void => {
     if (ioSettings.logTargets[LogTarget.NONE]) {
         return
     }
 
     if (ioSettings.logTargets[LogTarget.ALL] || ioSettings.logTargets[target] || target === LogTarget.ALL) {
-        if (!ioSettings.noWrite) {
-            write(message, target, ioSettings.logDir, filenameOverride)
-        }
+        write(message, target, ioSettings.logDir)
 
-        if (!writeOnly) {
-            const color = targetColors[target]
-            // tslint:disable-next-line:no-console
-            console.log(useTargetColor ? colorize(message, color) : message)
-        }
+        // tslint:disable-next-line:no-console
+        console.log(colorize(message, targetColors[target]))
     }
 }
 

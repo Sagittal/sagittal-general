@@ -13,16 +13,12 @@ const setupScriptAndIo = (logDir?: Filename, defaultLogTargets?: LogTarget[]): v
     program
         .option(`-${ScriptFlag.LOG_TARGETS}, --log-targets [logTargets]`, "log targets")
         .option(`-${ScriptFlag.NO_COLOR}, --no-color`, "no color")
-        .option(`-${ScriptFlag.NO_WRITE}, --no-write`, "no write")
         .option(`-${ScriptFlag.TABLE_FORMAT}, --table-format <tableFormat>`, "table format")
         .option(`-${ScriptFlag.NO_TIME}, --no-time`, "no time")
 
     program.parse(process.argv)
 
-    ioSettings.noWrite = !program.write || !!process.env.TEST_MODE
-    if (!ioSettings.noWrite && !isUndefined(logDir)) {
-        clearLogFiles(logDir)
-    }
+    if (!isUndefined(logDir)) clearLogFiles(logDir)
 
     if (!isUndefined(program.tableFormat)) ioSettings.tableFormat = program.tableFormat
 
