@@ -1,6 +1,5 @@
 export {ioSettings} from "./globals"
 export {colorize} from "./colorize"
-export {ScriptFlag, setupScriptAndIo} from "./scripts"
 export {
     IDENTIFYING_COMMA_NAME_CHARS,
     IDENTIFYING_MONZO_CHARS,
@@ -17,7 +16,7 @@ export {
     NUMERIC_CHARS,
     DEFAULT_IO_SETTINGS,
 } from "./constants"
-export {clearLogFiles, LogTarget, saveLog, setLogTargets} from "./log"
+export {clearLogFiles, LogTarget, saveLog, setLogTargets, ScriptFlag, setupScriptAndIo} from "./scripts"
 export {
     parse23FreeClass, parseMonzo, parseQuotient, parseCents, parseInteger, parseDecimal, DOT_OPERATOR,
 } from "./parse"

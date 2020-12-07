@@ -1,5 +1,5 @@
 import {Precision} from "../code"
-import {LogTargets} from "./log"
+import {LogTargets} from "./scripts"
 import {TableFormat} from "./table"
 import {Char, Filename, Io, IoSettings} from "./types"
 

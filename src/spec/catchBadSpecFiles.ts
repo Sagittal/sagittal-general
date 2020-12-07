@@ -1,8 +1,11 @@
 import * as fs from "fs"
 import * as path from "path"
-import {Filename} from "../../../src"
+import {Filename} from "../io"
+import {CI_MODE} from "./ciMode"
 
 const catchBadSpecFiles = (basePath: Filename = "" as Filename): void => {
+    if (!CI_MODE) return
+
     for (const file of fs.readdirSync(path.join("spec/src", basePath))) {
         const filename = path.join(basePath, file) as Filename
 
@@ -23,4 +26,6 @@ const catchBadSpecFiles = (basePath: Filename = "" as Filename): void => {
     }
 }
 
-catchBadSpecFiles()
+export {
+    catchBadSpecFiles,
+}

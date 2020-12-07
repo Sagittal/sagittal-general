@@ -312,3 +312,14 @@ export {
     computeParameterValues,
     computePossibilities,
 } from "./lfc"
+export {
+    catchBadMainDescriptions,
+    catchBadSpecFiles,
+    catchEmptyFiles,
+    onlyRunInCi,
+    specReporter,
+    specNameReporter,
+    slowReporter,
+    customMatchers,
+    runScriptAndGetConsoleOutput,
+} from "./spec"

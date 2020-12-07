@@ -1,8 +1,11 @@
 import * as fs from "fs"
 import * as path from "path"
-import {Filename} from "../../../src"
+import {Filename} from "../io"
+import {CI_MODE} from "./ciMode"
 
 const catchEmptyFiles = (basePath: Filename): void => {
+    if (!CI_MODE) return
+
     for (const file of fs.readdirSync(basePath)) {
         const filename = path.join(basePath, file) as Filename
 
@@ -16,5 +19,6 @@ const catchEmptyFiles = (basePath: Filename): void => {
     }
 }
 
-catchEmptyFiles("src" as Filename)
-catchEmptyFiles("spec/src" as Filename)
+export {
+    catchEmptyFiles,
+}

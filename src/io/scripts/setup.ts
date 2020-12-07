@@ -3,9 +3,10 @@ import {program} from "commander"
 import {isUndefined, now} from "../../code"
 import {COMMA} from "../constants"
 import {ioSettings} from "../globals"
-import {clearLogFiles, LogTarget, setLogTargets} from "../log"
 import {Filename} from "../types"
-import {ScriptFlag} from "./types"
+import {clearLogFiles} from "./clear"
+import {setLogTargets} from "./set"
+import {LogTarget, ScriptFlag} from "./types"
 
 const setupScriptAndIo = (logDir?: Filename, defaultLogTargets?: LogTarget[]): void => {
     if (!isUndefined(logDir)) ioSettings.logDir = logDir

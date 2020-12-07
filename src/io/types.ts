@@ -1,6 +1,6 @@
 import {Maybe} from "../code"
 import {Ms} from "../types"
-import {LogTargets} from "./log"
+import {LogTargets} from "./scripts"
 import {TableFormat} from "./table"
 
 type HexColor = string & {_HexColorBrand: boolean}

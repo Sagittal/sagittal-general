@@ -1,5 +1,12 @@
-import {COMMA_POPULARITIES, computeKeyPath, rank, Ranked, RankStrategy, ScalaPopularityStat} from "../../../../../src"
-import {onlyRunInCi} from "../../../../helpers/shared/onlyRunInCi"
+import {
+    COMMA_POPULARITIES,
+    computeKeyPath,
+    onlyRunInCi,
+    rank,
+    Ranked,
+    RankStrategy,
+    ScalaPopularityStat,
+} from "../../../../../src"
 
 describe("COMMA_POPULARITIES", (): void => {
     it("the fractional ranks are correct", (): void => {

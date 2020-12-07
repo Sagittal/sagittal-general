@@ -1,4 +1,4 @@
-import {Ms} from "../../../../src"
+import {Ms} from "../../types"
 
 interface SpecTime {
     description: string,

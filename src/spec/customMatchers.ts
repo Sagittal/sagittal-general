@@ -1,22 +1,13 @@
 // tslint:disable max-line-length
 
-import {
-    areScamonsEqual,
-    deepEquals,
-    DEFAULT_PRECISION,
-    Io,
-    isCloseTo,
-    isUndefined,
-    Precision,
-    Scamon,
-    SPACE,
-    stringify,
-} from "../../../src"
 import CustomEqualityTester = jasmine.CustomEqualityTester
 import CustomMatcher = jasmine.CustomMatcher
 import CustomMatcherFactories = jasmine.CustomMatcherFactories
 import CustomMatcherResult = jasmine.CustomMatcherResult
 import MatchersUtil = jasmine.MatchersUtil
+import {deepEquals, DEFAULT_PRECISION, isCloseTo, isUndefined, Precision} from "../code"
+import {Io, SPACE, stringify} from "../io"
+import {areScamonsEqual, Scamon} from "../math"
 
 const precisionMessage = (precision: Precision): string =>
     isUndefined(precision) ? "" : `, with precision ${precision}`
@@ -260,6 +251,6 @@ const customMatchers: CustomMatcherFactories = {
     }),
 }
 
-beforeAll((): void => {
-    jasmine.addMatchers(customMatchers)
-})
+export {
+    customMatchers,
+}

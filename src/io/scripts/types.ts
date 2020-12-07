@@ -1,5 +1,18 @@
-// Keep this alphabetical so you can ensure no conflicts.
+enum LogTarget {
+    ALL = "all",
+    ERROR = "error",
+    SPEC = "spec",
+    NONE = "none",
+    FINAL = "final",
+    PROGRESS = "progress",
+    DETAILS = "details",
+    SETUP = "setup",
+    RESULT = "result",
+}
 
+type LogTargets = Record<LogTarget, boolean>
+
+// Keep this alphabetical so you can ensure no conflicts.
 enum ScriptFlag {
     MAX_2_3_FREE_SOPFR = "+",
     MAX_2_3_FREE_COPFR = "#",
@@ -42,5 +55,7 @@ enum ScriptFlag {
 }
 
 export {
+    LogTargets,
+    LogTarget,
     ScriptFlag,
 }

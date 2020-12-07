@@ -1,6 +1,5 @@
-import {increment, Prime} from "../../../../src"
+import {increment, onlyRunInCi, Prime} from "../../../../src"
 import {computePrimes, MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED} from "../../../../src/math/rational/primes"
-import {onlyRunInCi} from "../../../helpers/shared/onlyRunInCi"
 
 describe("computePrimes", (): void => {
     const PRIMES_UP_TO_1000 = [
