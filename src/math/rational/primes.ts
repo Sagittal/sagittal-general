@@ -46,4 +46,5 @@ export {
     MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED,
     MAX_PRIME_GAP_AT_MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED,
     computePrimes,
+    primes,
 }

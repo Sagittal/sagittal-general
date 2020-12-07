@@ -7,7 +7,7 @@ import {
     shallowClone,
 } from "../../../code"
 import {MULTIPLICATIVE_IDENTITY} from "../../constants"
-import {computePrimes, Prime} from "../../rational"
+import {Prime, primes} from "../../rational"
 import {pow} from "../../typedOperations"
 import {Exponent} from "../../types"
 import {isMonzoUnison, Monzo} from "../monzo"
@@ -24,7 +24,6 @@ const computeDecimalFromHugeMonzo = <T extends NumericProperties>(monzo: Monzo):
     let negative
     let prime
     let index
-    const primes = computePrimes()
 
     while (!isMonzoUnison(depletingMonzo)) {
         index = depletingMonzo.length
@@ -53,8 +52,6 @@ const computeDecimalFromHugeMonzo = <T extends NumericProperties>(monzo: Monzo):
 }
 
 const computeDecimalFromMonzo = <T extends NumericProperties>(monzo: Monzo<T>): Decimal<T> => {
-    const primes = computePrimes()
-
     const decimal = monzo.reduce(
         (decimal: Decimal<T>, primeExponent: Exponent<Prime>, index: number): Decimal<T> => {
             return decimal * pow(primes[index], primeExponent) as Decimal<T>
