@@ -1,3 +1,5 @@
+process.env.TEST_MODE = "true"
+
 import {program} from "commander"
 import {
     catchBadMainDescriptions,
