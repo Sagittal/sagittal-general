@@ -14,6 +14,8 @@ import {computeRationalMonzoFromRationalQuotient} from "./fromQuotient"
 const computeRationalMonzoFromRationalDecimal = <T extends NumericProperties>(
     rationalDecimal: Decimal<T & {rational: true}>,
 ): Monzo<T & {rational: true}> => {
+    if (rationalDecimal < 0) throw new Error(`Cannot convert ${rationalDecimal} to a monzo because it is negative.`)
+
     const rationalQuotient = computeRationalQuotientFromRationalDecimal(rationalDecimal)
 
     return computeRationalMonzoFromRationalQuotient(rationalQuotient) as Monzo<T & {rational: true}>

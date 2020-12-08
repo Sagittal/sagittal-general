@@ -11,6 +11,14 @@ describe("computeRationalMonzoFromRationalDecimal", (): void => {
         const expected = [0, 0, -1, 1] as Monzo<{rational: true}>     // 7 / 5
         expect(actual).toEqual(expected)
     })
+
+    it("errors when given a negative number", (): void => {
+        const rationalDecimal = -2 as Decimal<{rational: true}>
+
+        expect((): void => {
+            computeRationalMonzoFromRationalDecimal(rationalDecimal)
+        }).toThrowError("Cannot convert -2 to a monzo because it is negative.")
+    })
 })
 
 describe("computeIntegerMonzoFromIntegerDecimal", (): void => {
