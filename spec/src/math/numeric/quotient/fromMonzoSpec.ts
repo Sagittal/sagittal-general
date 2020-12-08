@@ -10,15 +10,6 @@ describe("computeQuotientFromMonzo", (): void => {
         expect(actual).toEqual(expected)
     })
 
-    it("throws an error when it converts a monzo that is too big to be accurately represented in quotient form           ", (): void => {
-        const monzo = [0, 0, 6, 4, 2, 2, 0, 1, 1, 1] as Monzo   // 9722180859015624/1
-
-        const actual = computeQuotientFromMonzo(monzo)
-
-        const expected = [Infinity, 1] as Quotient
-        expect(actual).toEqual(expected)
-    })
-
     it("works for irrational monzos to irrational quotients", (): void => {
         const monzo = [-5.5, 3.5] as Monzo
 

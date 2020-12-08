@@ -1,4 +1,3 @@
-import {MAX_JS_INTEGER_VALUE} from "../../../code"
 import {Prime} from "../../rational"
 import {negative} from "../../typedOperations"
 import {Exponent} from "../../types"
@@ -15,10 +14,8 @@ const computeQuotientFromMonzo = <T extends NumericProperties>(monzo: Monzo<T>):
         return primeExponent < 0 ? negative(primeExponent) : 0 as Exponent<Prime>
     })
 
-    let numerator = computeDecimalFromMonzo(numeratorMonzo)
-    if (numerator > MAX_JS_INTEGER_VALUE) numerator = Infinity
-    let denominator = computeDecimalFromMonzo(denominatorMonzo)
-    if (denominator > MAX_JS_INTEGER_VALUE) denominator = Infinity
+    const numerator = computeDecimalFromMonzo(numeratorMonzo)
+    const denominator = computeDecimalFromMonzo(denominatorMonzo)
 
     return [numerator, denominator] as Quotient<T>
 }
