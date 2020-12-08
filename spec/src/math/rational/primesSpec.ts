@@ -1,5 +1,5 @@
 import {increment, onlyRunInCi, Prime} from "../../../../src"
-import {computePrimes, MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED} from "../../../../src/math/rational/primes"
+import {computePrimes, MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED} from "../../../../src/math/rational/primes"
 
 describe("computePrimes", (): void => {
     const PRIMES_UP_TO_1000 = [
@@ -209,17 +209,17 @@ describe("computePrimes", (): void => {
     it("can return primes up to 100000000", (): void => {
         onlyRunInCi()
 
-        const actual = computePrimes(MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED)
+        const actual = computePrimes(MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED)
 
-        const expected = [99999931, 99999941, 99999959, 99999971, 99999989] as Prime[]
+        const expected = [262111, 262121, 262127, 262133, 262139] as Prime[]
         expect(actual.slice(actual.length - 5)).toEqual(expected)
     })
 
     it("cannot return primes beyond 100000000", (): void => {
-        const maxPossiblePrime = increment(MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED)
+        const maxPossiblePrime = increment(MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED)
 
         expect((): void => {
             computePrimes(maxPossiblePrime)
-        }).toThrowError("Cannot compute primes greater than 100000000; 100000001 was requested.")
+        }).toThrowError("Cannot compute primes greater than 262139; 262140 was requested.")
     })
 })

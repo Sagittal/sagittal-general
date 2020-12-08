@@ -6,7 +6,7 @@ import {
     NumericPropertyTranslationForMonzosAndQuotientsToTheirTerms,
 } from "../../numeric"
 import {Exponent} from "../../types"
-import {computePrimes, MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED} from "../primes"
+import {computePrimes, MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED} from "../primes"
 import {computeRationalQuotientFromRationalDecimal} from "../quotient"
 import {Prime} from "../types"
 import {computeRationalMonzoFromRationalQuotient} from "./fromQuotient"
@@ -29,7 +29,7 @@ const computeIntegerMonzoFromIntegerDecimal = <T extends NumericProperties>(
         throw new Error(`This integer ${integerDecimal} is larger than the maximum integer JavaScript can encode (double float precision, 2^53) and therefore will be rounded and be unable to be prime factored properly.`)
     }
 
-    const primes = computePrimes(integerDecimal > MAX_POSSIBLE_PRIME_ABLE_TO_BE_COMPUTED ? undefined : integerDecimal)
+    const primes = computePrimes(integerDecimal > MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED ? undefined : integerDecimal)
 
     let index = 0
     let divisor = primes[index]

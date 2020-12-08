@@ -19,7 +19,7 @@ describe("computePrimeCount", (): void => {
     it("the prime count can be approximated by ~1/ln(n)", (): void => {
         onlyRunInCi()
 
-        const number = 8368818
+        const number = 262121
 
         const actual = computePrimeCount(number)
 
