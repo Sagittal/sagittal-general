@@ -7,6 +7,10 @@ import {DEFAULT_FORMAT_TABLE_OPTIONS} from "./constants"
 import {maybeColorize} from "./maybeColorize"
 import {Cell, FormatTableOptions, Row, Table} from "./types"
 
+// TODO: Unfortunately, although I thought I solved the problem of tables having titles and still being able to
+//  Be imported into Excel by including that special row up top with the blanks and tabs, it doesn't work
+//  I think you have to strip titles off when formatting for spreadsheet...?
+
 const formatTableForSpreadsheet = <T>(table: Table<T>, options?: Partial<FormatTableOptions<T>>): Io => {
     const {
         colors = DEFAULT_FORMAT_TABLE_OPTIONS.colors,
