@@ -11,7 +11,7 @@ import {
 import {maxScamon, subtractScamons} from "../../../../../src/math/numeric/scamon/typedOperations"
 
 describe("addScamons", (): void => {
-    it("even if the scamons are both rational, this method returns a irrational scamon", (): void => {
+    it("even if the scamons are both rational, this method returns an irrational scamon", (): void => {
         const augendScamon = {monzo: [2, -1, -1, 1]} as Scamon<{rational: true}>
         const addendScamon = {monzo: [-2, 1]} as Scamon<{rational: true}>
 
@@ -26,7 +26,7 @@ describe("addScamons", (): void => {
 })
 
 describe("subtractScamons", (): void => {
-    it("works for two rational scamons, returning a irrational interval", (): void => {
+    it("works for two rational scamons, returning an irrational interval", (): void => {
         const minuendScamon = {monzo: [-2, 0, 0, 1]} as Scamon<{rational: true}>
         const subtrahendScamon = {monzo: [-1, 1]} as Scamon<{rational: true}>
 

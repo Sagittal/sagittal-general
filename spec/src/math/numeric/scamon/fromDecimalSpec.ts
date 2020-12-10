@@ -57,7 +57,7 @@ describe("computeScamonFromQuotient", (): void => {
         expect(actual).toEqual(expected)
     })
 
-    it("when given an irrational quotient, returns a irrational scamon", (): void => {
+    it("when given an irrational quotient, returns an irrational scamon", (): void => {
         const quotient = [4.346, 3.23211] as Quotient<{rational: false}>
 
         const actual = computeScamonFromQuotient(quotient)

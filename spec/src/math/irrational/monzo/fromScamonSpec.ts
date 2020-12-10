@@ -1,7 +1,7 @@
 import {computeIrrationalMonzoFromScamon, Monzo, Quotient, Scamon} from "../../../../../src"
 
 describe("computeIrrationalMonzoFromScamon", (): void => {
-    it("works for a irrational scamon", (): void => {
+    it("works for an irrational scamon", (): void => {
         const irrationalScamon = {
             monzo: [-1, 0, -1, 0, 1],
             scaler: [1, 3] as Quotient,

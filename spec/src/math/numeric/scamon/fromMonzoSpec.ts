@@ -10,7 +10,7 @@ describe("computeScamonFromMonzo", (): void => {
         expect(actual).toEqual(expected)
     })
 
-    it("when given an irrational monzo, returns a irrational scamon", (): void => {
+    it("when given an irrational monzo, returns an irrational scamon", (): void => {
         const monzo = [-5.5, 3.5] as Monzo<{rational: false}>
 
         const actual = computeScamonFromMonzo(monzo)

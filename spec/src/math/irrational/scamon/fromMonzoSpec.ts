@@ -2,7 +2,7 @@ import {IRRATIONAL_SCAMON_BASE_MONZO, Monzo, Quotient, Scamon} from "../../../..
 import {computeIrrationalScamonFromMonzo} from "../../../../../src/math/irrational"
 
 describe("computeIrrationalScamonFromMonzo", (): void => {
-    it("when given a monzo, returns a irrational scamon", (): void => {
+    it("when given a monzo, returns an irrational scamon", (): void => {
         const monzo = [-5.5, 3.5] as Monzo
 
         const actual = computeIrrationalScamonFromMonzo(monzo)
@@ -14,7 +14,7 @@ describe("computeIrrationalScamonFromMonzo", (): void => {
         expect(actual).toBeCloseToObject(expected)
     })
 
-    it("when given a rational monzo, still returns a irrational scamon", (): void => {
+    it("when given a rational monzo, still returns an irrational scamon", (): void => {
         const monzo = [-11, 7] as Monzo<{rational: true}>
 
         const actual = computeIrrationalScamonFromMonzo(monzo)

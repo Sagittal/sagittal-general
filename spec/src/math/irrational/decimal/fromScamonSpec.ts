@@ -7,7 +7,7 @@ import {
 } from "../../../../../src"
 
 describe("computeIrrationalDecimalFromScamon", (): void => {
-    it("given a irrational scamon, returns an irrational decimal", (): void => {
+    it("given an irrational scamon, returns an irrational decimal", (): void => {
         const irrationalScamon = {
             monzo: IRRATIONAL_SCAMON_BASE_MONZO,
             scaler: [6.400178, 1] as Quotient,

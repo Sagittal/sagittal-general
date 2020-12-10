@@ -86,7 +86,7 @@ describe("areScamonsEqual", (): void => {
         })
     })
 
-    describe("for a combination of a rational scamon and a irrational scamon", (): void => {
+    describe("for a combination of a rational scamon and an irrational scamon", (): void => {
         it("returns true if they are equivalent", (): void => {
             const scamonA = {
                 monzo: [0, 0, 1, -1] as Monzo<{rational: true}>,
@@ -145,7 +145,7 @@ describe("isScamonGreater", (): void => {
         expect(actual).toBeFalsy()
     })
 
-    it("example of a rational scamon and a irrational scamon which are quite close", (): void => {
+    it("example of a rational scamon and an irrational scamon which are quite close", (): void => {
         const scamon = {monzo: [-7, -1, 1, 1, 1]} as Scamon<{rational: true}>
         const otherScamon = {monzo: [317, -200], scaler: [1, 2]} as Scamon<{rational: false}>
 
@@ -182,7 +182,6 @@ describe("isScamonLesser", (): void => {
 
         expect(actual).toBeTruthy()
     })
-
 })
 
 describe("isScamonGreaterOrEqual", (): void => {

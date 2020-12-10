@@ -211,7 +211,7 @@ describe("computeSuperScamon", (): void => {
         expect(actual).toEqual(expected)
     })
 
-    it("if the scamon is sub, flips the monzo, even for a irrational scamon, in which case it would be equivalent to negate the scaler - but we don't do that so we can preserve the relationship between the scamon and its monzo in terms of its numeric properties", (): void => {
+    it("if the scamon is sub, flips the monzo, even for an irrational scamon, in which case it would be equivalent to negate the scaler - but we don't do that so we can preserve the relationship between the scamon and its monzo in terms of its numeric properties", (): void => {
         const scamon = {
             monzo: [-40, 22, 1, 1] as Monzo<{rational: true}>,
             scaler: [1, 2] as Quotient,
