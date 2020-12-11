@@ -55,9 +55,7 @@ describe("parseQuotient", (): void => {
         expect(actual).toEqual(expected)
     })
 
-    // TODO: COMMA NAMES: multi-digit exponents
-    // tslint:disable-next-line:ban
-    xit("can parse multi-digit superscript numbers", (): void => {
+    it("can parse multi-digit superscript numbers", (): void => {
         const quotientIo = "2¹⁰/1" as Io
 
         const actual = parseQuotient(quotientIo)
@@ -66,14 +64,12 @@ describe("parseQuotient", (): void => {
         expect(actual).toEqual(expected)
     })
 
-    // TODO: COMMA NAMES: denominator parenthetical quotients
-    // tslint:disable-next-line:ban
-    xit("can parse quotients with parentheses in their denominator, such as which appear in comma name ratios              ", (): void => {
+    it("can parse quotients with parentheses in their denominator, such as which appear in comma name ratios              ", (): void => {
         const quotientIo = "11/(5²⋅7)C" as Io
 
         const actual = parseQuotient(quotientIo)
 
-        const expected = [1024, 1] as Quotient<{rational: true}>
+        const expected = [11, 175] as Quotient<{rational: true}>
         expect(actual).toEqual(expected)
     })
 })
