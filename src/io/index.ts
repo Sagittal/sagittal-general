@@ -50,6 +50,7 @@ export {
     formatCents,
     TimePrecision,
     formatBound,
+    formatDecimalAsSuperscript,
 } from "./format"
 export {time} from "./time"
 export {program} from "./program"

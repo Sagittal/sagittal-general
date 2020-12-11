@@ -120,6 +120,7 @@ export {
     formatBound,
     DEFAULT_IO_SETTINGS,
     program,
+    formatDecimalAsSuperscript,
 } from "./io"
 export {
     abs,
