@@ -1,6 +1,3 @@
-// This is so this library can be used in the browser
-global.process = global.process || {env: {}, argv: []}
-
 export {
     DEFAULT_PRECISION,
     computeDeepDistinct,
