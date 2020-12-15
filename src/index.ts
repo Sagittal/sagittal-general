@@ -124,6 +124,7 @@ export {
     DEFAULT_IO_SETTINGS,
     program,
     formatDecimalAsSuperscript,
+    vectorizeBravuraTextSvg,
 } from "./io"
 export {
     abs,

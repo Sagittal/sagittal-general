@@ -22,7 +22,8 @@
   },
   "dependencies": {
     "colors": "^1.4.0",
-    "commander": "^5.1.0"
+    "commander": "^5.1.0",
+    "vectorize-text": "^3.2.1"
   },
   "devDependencies": {
     "@types/jasmine": "^3.6.2",

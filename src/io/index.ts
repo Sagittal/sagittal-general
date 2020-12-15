@@ -36,7 +36,7 @@ export {
 } from "./table"
 export {sumTexts, join, split} from "./typedOperations"
 export {ColorMethod, Filename, HexColor, Io, Char} from "./types"
-export {Basis, computePx, Px, Scale} from "./image"
+export {Basis, computePx, Px, Scale, vectorizeBravuraTextSvg} from "./image"
 export {
     alignFormattedDecimal,
     formatIntegerDecimal,
