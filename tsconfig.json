@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "umd",
     "downlevelIteration": true,
     "lib": [
       "esnext",
@@ -13,7 +13,6 @@
     ],
     "moduleResolution": "node",
     "noImplicitReturns": true,
-    "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
     "noImplicitAny": true,
