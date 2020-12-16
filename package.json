@@ -1,6 +1,6 @@
 {
   "name": "@sagittal/general",
-  "version": "1.0.41",
+  "version": "1.0.42",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "general utilities for the Sagittal notation system",
@@ -38,5 +38,6 @@
   "engines": {
     "node": ">=14"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "type": "module"
 }
