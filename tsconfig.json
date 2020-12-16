@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "esnext",
+    "module": "commonjs",
     "downlevelIteration": true,
     "lib": [
       "esnext",
@@ -19,7 +19,7 @@
     "pretty": true,
     "esModuleInterop": true,
     "declaration": true,
-    "outDir": "dist",
+    "outDir": "dist/cjs",
     "target": "es5"
   },
   "include": [

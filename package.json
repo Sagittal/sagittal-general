@@ -1,8 +1,9 @@
 {
   "name": "@sagittal/general",
-  "version": "1.0.43",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "1.0.44",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/cjs/index.d.ts",
   "description": "general utilities for the Sagittal notation system",
   "license": "MIT",
   "repository": {
@@ -10,7 +11,7 @@
     "url": "git+https://github.com/Sagittal/sagittal-general.git"
   },
   "scripts": {
-    "build": "rm -r dist/* && tsc",
+    "build": "rm -r dist/* && tsc && tsc --module esnext --outDir dist/esm",
     "profile": "node --prof -r ts-node/register/transpile-only --max-old-space-size=131072 [[script.ts]] && node --prof-process isolate-*.log > processed.txt && rm isolate-*.log",
     "deploy": "npm version patch && npm run build && npm publish --access public && echo Package published. Please commit.",
     "lint": "tslint \"src/**/*.ts\" --fix && tslint \"spec/**/*.ts\" --fix",
@@ -38,6 +39,5 @@
   "engines": {
     "node": ">=14"
   },
-  "sideEffects": false,
-  "type": "module"
+  "sideEffects": false
 }
