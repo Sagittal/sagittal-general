@@ -6,8 +6,6 @@ const MAX_FONT_SIZE_TO_INCREASE_MESH_DETAIL_BEFORE_IT_STARTS_FAILING_TO_RENDER =
 const vectorizeBravuraTextSvg = (text: string, svg: SVGElement, options: {height?: number} = {}): void => {
     const polygons = vectorizeText(text, {
         polygons: true,
-        // TODO: FEATURE IMPROVE, READY TO GO: SVG WIDTH
-        //  Do whatever it takes to make the SVGs width match its contents
         textBaseline: "top",
         font: "Bravura Text BB",
         size: MAX_FONT_SIZE_TO_INCREASE_MESH_DETAIL_BEFORE_IT_STARTS_FAILING_TO_RENDER,
