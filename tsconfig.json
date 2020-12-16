@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "umd",
+    "module": "esnext",
     "downlevelIteration": true,
     "lib": [
       "esnext",
