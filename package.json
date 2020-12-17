@@ -1,6 +1,6 @@
 {
   "name": "@sagittal/general",
-  "version": "1.0.51",
+  "version": "1.0.53",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/esmIndex.js",
   "types": "dist/cjs/index.d.ts",
@@ -11,9 +11,11 @@
     "url": "git+https://github.com/Sagittal/sagittal-general.git"
   },
   "scripts": {
-    "build": "rm -r dist/* && tsc && tsc --module esnext --outDir dist/esm",
+    "build": "npm run build-cjs && npm run build-esm",
+    "build-cjs": "rm -r dist/cjs/* && tsc --module commonjs --outDir dist/cjs",
+    "build-esm": "rm -r dist/esm/* && tsc --module esnext --outDir dist/esm",
+    "deploy": "sh bin/deploy.sh",
     "profile": "node --prof -r ts-node/register/transpile-only --max-old-space-size=131072 [[script.ts]] && node --prof-process isolate-*.log > processed.txt && rm isolate-*.log",
-    "deploy": "npm version patch && npm run build && npm publish --access public && echo Package published. Please commit.",
     "lint": "tslint \"src/**/*.ts\" --fix && tslint \"spec/**/*.ts\" --fix",
     "test": "node -r ts-node/register/transpile-only node_modules/jasmine/bin/jasmine",
     "test-names": "node -r ts-node/register/transpile-only node_modules/jasmine/bin/jasmine --ci=false --names=true",
