@@ -2,25 +2,43 @@ import {Precision} from "../code"
 import {TableFormat} from "./table"
 import {Char, Io, IoSettings} from "./types"
 
-export const IO_PRECISION = 3 as Precision
+const IO_PRECISION = 3 as Precision
 
-export const IDENTIFYING_MONZO_CHARS = /[\[\]⟩|>]/
-export const IDENTIFYING_COMMA_NAME_CHARS = /[unskCSMLA]/
-export const IDENTIFYING_CENTS_CHARS = /[c¢]/
-export const IDENTIFYING_QUOTIENT_CHARS = /[\/:]/
-export const IDENTIFYING_ACCIDENTAL_CHARS = /[()~|!\\`,.'#<>b+\-]/
-export const NUMERIC_CHARS = /[0123456789]/
+const IDENTIFYING_MONZO_CHARS = /[\[\]⟩|>]/
+const IDENTIFYING_COMMA_NAME_CHARS = /[unskCSMLA]/
+const IDENTIFYING_CENTS_CHARS = /[c¢]/
+const IDENTIFYING_QUOTIENT_CHARS = /[\/:]/
+const IDENTIFYING_ACCIDENTAL_CHARS = /[()~|!\\`,.'#<>b+\-]/
+const NUMERIC_CHARS = /[0123456789]/
 
-export const SUPERSCRIPT_NUMBERS: Char[] = ["⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"] as Char[]
-export const SUBSCRIPT_NUMBERS: Char[] = ["₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉"] as Char[]
+const SUPERSCRIPT_NUMBERS: Char[] = ["⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"] as Char[]
+const SUBSCRIPT_NUMBERS: Char[] = ["₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉"] as Char[]
 
-export const NEWLINE = "\n" as Io
-export const WINDOWS_CARRIAGE_RETURN = "\r" as Io
-export const SPACE = " " as Io
-export const BLANK = "" as Io
-export const TAB = "\t" as Io
-export const COMMA = "," as Io
+const NEWLINE = "\n" as Io
+const WINDOWS_CARRIAGE_RETURN = "\r" as Io
+const SPACE = " " as Io
+const BLANK = "" as Io
+const TAB = "\t" as Io
+const COMMA = "," as Io
 
-export const DEFAULT_IO_SETTINGS: IoSettings = {
+const DEFAULT_IO_SETTINGS: IoSettings = {
     tableFormat: TableFormat.TERMINAL,
+}
+
+export {
+    IO_PRECISION,
+    IDENTIFYING_MONZO_CHARS,
+    SUPERSCRIPT_NUMBERS,
+    NEWLINE,
+    SPACE,
+    BLANK,
+    TAB,
+    COMMA,
+    IDENTIFYING_COMMA_NAME_CHARS,
+    IDENTIFYING_CENTS_CHARS,
+    IDENTIFYING_QUOTIENT_CHARS,
+    IDENTIFYING_ACCIDENTAL_CHARS,
+    DEFAULT_IO_SETTINGS,
+    NUMERIC_CHARS,
+    WINDOWS_CARRIAGE_RETURN,
 }
