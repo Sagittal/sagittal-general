@@ -1,7 +1,7 @@
 import {Maybe} from "../../code"
 import {Count} from "../../types"
 import {Formatted} from "../format"
-import {Char, ColorMethod} from "../types"
+import {Char} from "../types"
 
 enum Alignment {
     LEFT = "left",
@@ -35,24 +35,18 @@ interface AlignedCellOptions {
     columnWidth: Count<Char>,
 }
 
-type FormatTableOptions<T> = {
-    tableAlignment: TableAlignment,
-    colors: Maybe<Array<Maybe<ColorMethod>>>,
-    headerRowCount: Count<Row<{of: T, header: true}>>,
-}
-
 enum TableFormat {
     FORUM = "forum",
     FORUM_WITH_SPLIT_QUOTIENTS = "forumWithSplitQuotients",
     TERMINAL = "terminal",
     SPREADSHEET = "spreadsheet",
+    HTML = "html"
 }
 
 export {
     Alignment,
     TableAlignment,
     AlignedCellOptions,
-    FormatTableOptions,
     Cell,
     Row,
     Column,

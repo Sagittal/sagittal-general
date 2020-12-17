@@ -1,8 +1,8 @@
 {
   "name": "@sagittal/general",
-  "version": "1.0.47",
+  "version": "1.0.48",
   "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "module": "dist/esm/esmIndex.js",
   "types": "dist/cjs/index.d.ts",
   "description": "general utilities for the Sagittal notation system",
   "license": "MIT",

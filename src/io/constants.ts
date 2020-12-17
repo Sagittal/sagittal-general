@@ -1,7 +1,6 @@
 import {Precision} from "../code"
-import {LogTargets} from "./scripts"
 import {TableFormat} from "./table"
-import {Char, Filename, Io, IoSettings} from "./types"
+import {Char, Io, IoSettings} from "./types"
 
 const IO_PRECISION = 3 as Precision
 
@@ -24,10 +23,6 @@ const COMMA = "," as Io
 
 const DEFAULT_IO_SETTINGS: IoSettings = {
     tableFormat: TableFormat.TERMINAL,
-    logTargets: {} as LogTargets,
-    disableColors: false,
-    time: undefined,
-    logDir: "" as Filename,
 }
 
 export {

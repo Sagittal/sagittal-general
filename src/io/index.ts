@@ -1,5 +1,4 @@
 export {ioSettings} from "./globals"
-export {colorize} from "./colorize"
 export {
     IDENTIFYING_COMMA_NAME_CHARS,
     IDENTIFYING_MONZO_CHARS,
@@ -16,15 +15,12 @@ export {
     NUMERIC_CHARS,
     DEFAULT_IO_SETTINGS,
 } from "./constants"
-export {clearLogFiles, LogTarget, saveLog, setLogTargets, ScriptFlag, setupScriptAndIo} from "./scripts"
 export {
     parse23FreeClass, parseMonzo, parseQuotient, parseCents, parseInteger, parseDecimal, DOT_OPERATOR,
 } from "./parse"
-export {removeColor} from "./removeColor"
 export {stringify} from "./stringify"
 export {
     Column,
-    formatTable,
     Row,
     Table,
     splitFieldTitlesIntoRowsBySpaces,
@@ -33,9 +29,14 @@ export {
     TableAlignment,
     Cell,
     MERGED_CELL_INDICATOR,
+    computeColumnAlignments,
+    computeColumnRange,
+    computeColumnSpans,
+    alignCellIo,
+    computeColumnWidths,
 } from "./table"
 export {sumTexts, join, split} from "./typedOperations"
-export {ColorMethod, Filename, HexColor, Io, Char} from "./types"
+export {HexColor, Io, Char} from "./types"
 export {Basis, computePx, Px, Scale, vectorizeBravuraTextSvg} from "./image"
 export {
     alignFormattedDecimal,
@@ -52,6 +53,3 @@ export {
     formatBound,
     formatDecimalAsSuperscript,
 } from "./format"
-export {time} from "./time"
-export {program} from "./program"
-export {readLines} from "./lines"

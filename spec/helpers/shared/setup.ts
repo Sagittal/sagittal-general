@@ -7,9 +7,11 @@ import {
     catchEmptyFiles,
     customMatchers,
     DEFAULT_IO_SETTINGS,
+    DEFAULT_SCRIPT_SETTINGS,
     Filename,
     ioSettings,
     LogTarget,
+    scriptSettings,
     setAllPropertiesOfObjectOnAnother,
     slowReporter,
     specNameReporter,
@@ -51,10 +53,11 @@ beforeAll((): void => {
 })
 
 beforeEach((): void => {
+    setAllPropertiesOfObjectOnAnother({objectToChange: ioSettings, objectWithProperties:DEFAULT_IO_SETTINGS})
     setAllPropertiesOfObjectOnAnother({
-        objectToChange: ioSettings,
+        objectToChange: scriptSettings,
         objectWithProperties: {
-            ...DEFAULT_IO_SETTINGS,
+            ...DEFAULT_SCRIPT_SETTINGS,
             logTargets: {[LogTarget.SPEC]: true},
         },
     })
