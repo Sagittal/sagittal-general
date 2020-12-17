@@ -23,7 +23,8 @@ export {
     ColorMethod,
     Filename,
     colorize,
-    formatTable,
+    formatTableFromScript,
     scriptSettings,
     DEFAULT_SCRIPT_SETTINGS,
+    now,
 } from "./node"

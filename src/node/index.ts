@@ -21,8 +21,9 @@ export {
     scriptSettings,
     time,
     ColorMethod,
-    formatTable,
+    formatTableFromScript,
     DEFAULT_SCRIPT_SETTINGS,
+    now,
 } from "./scripts"
 export {removeColor} from "./removeColor"
 export {readLines} from "./lines"

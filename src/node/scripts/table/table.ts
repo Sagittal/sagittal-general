@@ -7,8 +7,7 @@ import {formatTableForSpreadsheet} from "./tableForSpreadsheet"
 import {formatTableForTerminal} from "./tableForTerminal"
 import {FormatTableOptions} from "./types"
 
-// TODO: formatConsoleTable or formatScriptTable or something
-const formatTable = <T>(table: Table<T>, options?: Partial<FormatTableOptions<T>>): Io => {
+const formatTableFromScript = <T>(table: Table<T>, options?: Partial<FormatTableOptions<T>>): Io => {
     const rowLengths = table.map((row: Row<{of: T}>): Count<Maybe<Formatted<T>>> => {
         return count(row)
     })
@@ -31,5 +30,5 @@ const formatTable = <T>(table: Table<T>, options?: Partial<FormatTableOptions<T>
 }
 
 export {
-    formatTable,
+    formatTableFromScript,
 }

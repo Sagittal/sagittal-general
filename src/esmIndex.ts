@@ -16,7 +16,6 @@ export {
     isUndefined,
     Maybe,
     merge,
-    now,
     KeyPath,
     Range,
     rank,

@@ -1,4 +1,4 @@
-import {formatTable, Table} from "../../../../../src"
+import {formatTableFromScript, Table} from "../../../../../src"
 
 describe("table", (): void => {
     it("throws an error if the rows do not all have the same length", (): void => {
@@ -8,7 +8,7 @@ describe("table", (): void => {
         ] as Table
 
         expect((): void => {
-            formatTable(table)
+            formatTableFromScript(table)
         }).toThrowError("Table does not have rows with all the same lengths. Row lengths are 2,3.")
     })
 })

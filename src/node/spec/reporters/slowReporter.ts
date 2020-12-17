@@ -1,7 +1,7 @@
-import {computeKeyPath, now, sort} from "../../../code"
+import {computeKeyPath, sort} from "../../../code"
 import {count, round, subtract} from "../../../math"
 import {Ms} from "../../../types"
-import {LogTarget, saveLog} from "../../scripts"
+import {LogTarget, now, saveLog} from "../../scripts"
 import {COUNT_SLOW_SPECS_TO_SUMMARIZE, MAX_TEST_DESCRIPTION_LENGTH, WARN_THRESHOLD_MS} from "./constants"
 import {SpecTime} from "./types"
 

@@ -1,11 +1,12 @@
 import "colors"
 import {program} from "commander"
-import {isUndefined, now} from "../../code"
+import {isUndefined} from "../../code"
 import {COMMA, ioSettings} from "../../io"
 import {Filename} from "../types"
 import {clearLogFiles} from "./clear"
 import {scriptSettings} from "./globals"
 import {setLogTargets} from "./set"
+import {now} from "./time"
 import {LogTarget, ScriptFlag} from "./types"
 
 const setupScriptAndIo = (logDir?: Filename, defaultLogTargets?: LogTarget[]): void => {
