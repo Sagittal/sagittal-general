@@ -17,7 +17,7 @@ const setupScriptAndIo = (logDir?: Filename, defaultLogTargets?: LogTarget[]): v
         .option(`-${ScriptFlag.TABLE_FORMAT}, --table-format <tableFormat>`, "table format")
         .option(`-${ScriptFlag.NO_TIME}, --no-time`, "no time")
 
-    program.parse(process.argv)
+    program.parse(process?.argv)
 
     if (!isUndefined(logDir)) clearLogFiles(logDir)
 
@@ -25,7 +25,7 @@ const setupScriptAndIo = (logDir?: Filename, defaultLogTargets?: LogTarget[]): v
 
     setLogTargets(program.logTargets || defaultLogTargets && defaultLogTargets.join(COMMA))
 
-    const testMode = process.env && process.env.TEST_MODE
+    const testMode = process?.env?.TEST_MODE
     ioSettings.disableColors = !program.color || !!testMode
 
     if (program.time && !testMode) {
