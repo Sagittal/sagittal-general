@@ -327,4 +327,5 @@ export {
     slowReporter,
     customMatchers,
     runScriptAndGetConsoleOutput,
+    adjustAsyncTimeoutForSpec,
 } from "./spec"
