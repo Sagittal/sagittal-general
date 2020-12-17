@@ -26,10 +26,12 @@ const setupScriptAndIo = (logDir?: Filename, defaultLogTargets?: LogTarget[]): v
 
     setLogTargets(program.logTargets || defaultLogTargets && defaultLogTargets.join(COMMA))
 
-    scriptSettings.disableColors = !program.color
-
     const testMode = process?.env?.TEST_MODE
-    if (program.time && !testMode) scriptSettings.time = now()
+    scriptSettings.disableColors = !program.color || !!testMode
+
+    if (program.time && !testMode) {
+        scriptSettings.time = now()
+    }
 }
 
 export {
