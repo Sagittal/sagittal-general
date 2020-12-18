@@ -52,6 +52,10 @@ export {
     camelCaseToConstantCase,
 } from "./code"
 export {
+    Html,
+    FontName,
+} from "./browser"
+export {
     sumTexts,
     alignFormattedDecimal,
     IDENTIFYING_COMMA_NAME_CHARS,
@@ -106,7 +110,7 @@ export {
     formatBound,
     DEFAULT_IO_SETTINGS,
     formatDecimalAsSuperscript,
-    vectorizeBravuraTextSvg,
+    vectorizeText,
 } from "./io"
 export {
     abs,
