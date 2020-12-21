@@ -16,6 +16,10 @@ enum LogTarget {
 
 type LogTargets = Record<LogTarget, boolean>
 
+// TODO: Can't I maybe break this thing up so each script group gets its own flags?
+//  Well you'd have to make sure you didn't override the four flags that are like for basic logging stuff...
+//  Also wait a second... this is enforcing that you have no conflicts for the single character flags,
+//  But it's not really protecting from overlapping word phrases...
 // Keep this alphabetical so you can ensure no conflicts.
 enum ScriptFlag {
     MAX_2_3_FREE_SOPFR = "+",
@@ -52,7 +56,7 @@ enum ScriptFlag {
     LOG_TARGETS = "t",
     UPPER_BOUND = "u",
     UNABBREVIATED_COMMA_NAME = "v",
-    // Free again: "w"
+    FORCE_DEPLOY = "w",
     NO_TIME = "x",
     USE_LATE = "y",
     Z = "z",
