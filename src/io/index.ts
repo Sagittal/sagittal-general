@@ -19,6 +19,7 @@ export {
     parse23FreeClass, parseMonzo, parseQuotient, parseCents, parseInteger, parseDecimal, DOT_OPERATOR,
 } from "./parse"
 export {stringify} from "./stringify"
+export {finalChar} from "./finalChar"
 export {computeLineCount} from "./lineCount"
 export {
     Column,

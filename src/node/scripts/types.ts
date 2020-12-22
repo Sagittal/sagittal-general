@@ -18,7 +18,7 @@ type LogTargets = Record<LogTarget, boolean>
 
 // TODO: Can't I maybe break this thing up so each script group gets its own flags?
 //  Well you'd have to make sure you didn't override the four flags that are like for basic logging stuff...
-//  Also wait a second... this is enforcing that you have no conflicts for the single character flags,
+//  Also wait a second... this is enforcing that you have no conflicts for the single char flags,
 //  But it's not really protecting from overlapping word phrases...
 // Keep this alphabetical so you can ensure no conflicts.
 enum ScriptFlag {

@@ -112,6 +112,7 @@ export {
     vectorizeText,
     computeLineCount,
     FontName,
+    finalChar,
 } from "./io"
 export {
     abs,
