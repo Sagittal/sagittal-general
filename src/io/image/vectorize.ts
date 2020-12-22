@@ -8,10 +8,7 @@ import {VectorizeTextOptions} from "./types"
 const MAX_FONT_SIZE_TO_INCREASE_MESH_DETAIL_BEFORE_IT_STARTS_FAILING_TO_RENDER = 256
 const OFFSET_Y = 1
 
-const vectorizeText = (
-    text: string,
-    options: VectorizeTextOptions = {},
-): Html => {
+const vectorizeText = (text: string, options: VectorizeTextOptions = {}): Html => {
     const {canvas: canvasArgument, lineSpacing = 1} = options
 
     const canvas = canvasArgument || document.createElement("canvas")
@@ -28,6 +25,7 @@ const vectorizeText = (
             polygons: true,
             textBaseline: "top",
             size: MAX_FONT_SIZE_TO_INCREASE_MESH_DETAIL_BEFORE_IT_STARTS_FAILING_TO_RENDER,
+            styletags: {breaklines: true},
             ...options,
         },
     )
