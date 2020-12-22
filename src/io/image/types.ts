@@ -1,3 +1,5 @@
+import {FontName} from "../types"
+
 type Px = number & {_PxBrand: "Px"}
 
 type Scale<T extends number | void = void> =
@@ -9,8 +11,17 @@ type Basis<T extends number | void = void> =
     & {_BasisBrand: boolean}
     & (T extends void ? {} : {_BasisOfBrand: T})
 
+interface VectorizeTextOptions {
+    height?: Px,
+    font?: FontName,
+    canvas?: HTMLCanvasElement,
+    context?: CanvasRenderingContext2D,
+    lineSpacing?: number,
+}
+
 export {
     Px,
     Scale,
     Basis,
+    VectorizeTextOptions,
 }

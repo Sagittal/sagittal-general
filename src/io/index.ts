@@ -19,6 +19,7 @@ export {
     parse23FreeClass, parseMonzo, parseQuotient, parseCents, parseInteger, parseDecimal, DOT_OPERATOR,
 } from "./parse"
 export {stringify} from "./stringify"
+export {computeLineCount} from "./lineCount"
 export {
     Column,
     Row,
@@ -36,7 +37,7 @@ export {
     computeColumnWidths,
 } from "./table"
 export {sumTexts, join, split} from "./typedOperations"
-export {HexColor, Io, Char} from "./types"
+export {HexColor, Io, Char, FontName} from "./types"
 export {Basis, computePx, Px, Scale, vectorizeText} from "./image"
 export {
     alignFormattedDecimal,

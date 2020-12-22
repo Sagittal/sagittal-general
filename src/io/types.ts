@@ -6,6 +6,8 @@ type Char = string & {_CharBrand: boolean}
 
 type Io = string & {_IOBrand?: boolean}
 
+type FontName = string & {_FontNameBrand: boolean}
+
 interface IoSettings {
     tableFormat: TableFormat,
 }
@@ -15,4 +17,5 @@ export {
     Io,
     Char,
     IoSettings,
+    FontName,
 }

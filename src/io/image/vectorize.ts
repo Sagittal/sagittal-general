@@ -1,21 +1,36 @@
 // @ts-ignore
 import {default as vectorizeTextDefault} from "vectorize-text"
-import {FontName, Html} from "../../browser"
+import {Html} from "../../browser"
 import {BLANK, SPACE} from "../constants"
-import {Px} from "./types"
+import {computeLineCount} from "../lineCount"
+import {VectorizeTextOptions} from "./types"
 
 const MAX_FONT_SIZE_TO_INCREASE_MESH_DETAIL_BEFORE_IT_STARTS_FAILING_TO_RENDER = 256
+const OFFSET_Y = 1
 
 const vectorizeText = (
     text: string,
-    options: {height?: Px, font?: FontName, canvas?: HTMLCanvasElement, context?: CanvasRenderingContext2D} = {},
+    options: VectorizeTextOptions = {},
 ): Html => {
-    const polygons = vectorizeTextDefault(text, {
-        polygons: true,
-        textBaseline: "top",
-        size: MAX_FONT_SIZE_TO_INCREASE_MESH_DETAIL_BEFORE_IT_STARTS_FAILING_TO_RENDER,
-        ...options,
-    })
+    const {canvas: canvasArgument, lineSpacing = 1} = options
+
+    const canvas = canvasArgument || document.createElement("canvas")
+    const lineCount = computeLineCount(text)
+    canvas.height = (lineCount + OFFSET_Y)
+        * (lineSpacing * MAX_FONT_SIZE_TO_INCREASE_MESH_DETAIL_BEFORE_IT_STARTS_FAILING_TO_RENDER)
+
+    const textReformattedForVectorizeTextToHandleNewlines = text.replace(/\n/g, "<br>")
+
+    const polygons = vectorizeTextDefault(
+        textReformattedForVectorizeTextToHandleNewlines,
+        {
+            canvas,
+            polygons: true,
+            textBaseline: "top",
+            size: MAX_FONT_SIZE_TO_INCREASE_MESH_DETAIL_BEFORE_IT_STARTS_FAILING_TO_RENDER,
+            ...options,
+        },
+    )
 
     const paths = [""]
     polygons.forEach((loops: string[][][]): void => {

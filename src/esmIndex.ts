@@ -53,7 +53,6 @@ export {
 } from "./code"
 export {
     Html,
-    FontName,
 } from "./browser"
 export {
     sumTexts,
@@ -111,6 +110,8 @@ export {
     DEFAULT_IO_SETTINGS,
     formatDecimalAsSuperscript,
     vectorizeText,
+    computeLineCount,
+    FontName,
 } from "./io"
 export {
     abs,

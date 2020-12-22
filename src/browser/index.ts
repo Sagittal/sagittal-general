@@ -1,1 +1,1 @@
-export {Html, FontName} from "./types"
+export {Html} from "./types"
