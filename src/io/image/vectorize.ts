@@ -21,12 +21,12 @@ const vectorizeText = (text: string, options: VectorizeTextOptions = {}): Html =
     const polygons = vectorizeTextDefault(
         textReformattedForVectorizeTextToHandleNewlines,
         {
+            ...options,
             canvas,
             polygons: true,
             textBaseline: "top",
             size: MAX_FONT_SIZE_TO_INCREASE_MESH_DETAIL_BEFORE_IT_STARTS_FAILING_TO_RENDER,
-            styletags: {breaklines: true},
-            ...options,
+            styletags: {breaklines: lineCount > 1},
         },
     )
 
