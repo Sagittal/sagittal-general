@@ -1,5 +1,5 @@
 import {Cell, Count, MERGED_CELL_INDICATOR, Row, sum} from "../../../../src"
-import {computeColumnSpans} from "../../../../src/io/table/columnSpans"
+import {computeColumnSpans} from "../../../../src/io"
 
 describe("computeColumnSpans", (): void => {
     const row = [

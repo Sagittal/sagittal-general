@@ -37,8 +37,8 @@ export {
     alignCellIo,
     computeColumnWidths,
 } from "./table"
-export {sumTexts, join, split} from "./typedOperations"
-export {HexColor, Io, Char, FontName} from "./types"
+export {sumTexts, join, split, splitSentence, splitWord} from "./typedOperations"
+export {HexColor, Io, Char, FontName, Sentence, Word} from "./types"
 export {Basis, computePx, Px, Scale, vectorizeText} from "./image"
 export {
     alignFormattedDecimal,

@@ -113,6 +113,10 @@ export {
     computeLineCount,
     FontName,
     finalChar,
+    Sentence,
+    Word,
+    splitSentence,
+    splitWord,
 } from "./io"
 export {
     abs,

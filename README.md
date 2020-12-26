@@ -12,4 +12,5 @@ The two packages are exposed as `main` and `module`, respectively.
 
 `sideEffects: false` has been marked in `package.json` to allow the ESM version to be tree-shaken by consumers.
 
-The CJS package uses the default `tsconfig.json` (the same one Jasmine tests use) while the EMS simply passes a couple overriding configuration properties via the CLI.
+The CJS package uses the default `tsconfig.json` (the same one Jasmine tests use) while the EMS simply passes a couple
+overriding configuration properties via the CLI.

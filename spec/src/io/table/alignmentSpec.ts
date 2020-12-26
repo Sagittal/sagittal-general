@@ -1,5 +1,5 @@
 import {Alignment, Char, Count, Io, Range, Table} from "../../../../src"
-import {alignCellIo, computeColumnWidths} from "../../../../src/io/table/alignment"
+import {alignCellIo, computeColumnWidths} from "../../../../src/io"
 
 describe("alignCellIo", (): void => {
     it("adds space to align cells", (): void => {

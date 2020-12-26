@@ -20,7 +20,7 @@
     "noImplicitAny": true,
     "pretty": true,
     "esModuleInterop": true,
-    "declaration": true,
+    "declaration": true
   },
   "include": [
     "src"

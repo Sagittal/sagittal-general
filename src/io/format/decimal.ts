@@ -15,7 +15,7 @@ const alignFormattedDecimal = (
 }
 
 const alignFormattedIntegerDecimal = (
-    formattedIntegerDecimal: Formatted<Decimal<{integer: true}>>
+    formattedIntegerDecimal: Formatted<Decimal<{integer: true}>>,
 ): Formatted<Decimal<{integer: true}>> => {
     while (formattedIntegerDecimal.length < 3) {
         formattedIntegerDecimal = " " + formattedIntegerDecimal as Formatted<Decimal<{integer: true}>>
