@@ -20,10 +20,10 @@ const splitSentence = <T extends Sentence>(sentence: T): Array<Omit<T, "_Sentenc
 const splitWord = <T extends Word>(word: T): Array<Omit<T, "_WordBrand"> & Char> =>
     word.split(BLANK) as Array<Omit<T, "_WordBrand"> & Char>
 
-const joinWords = <T extends Word>(words: T[]): Omit<T, "_WordBrand"> & Sentence =>
+const joinWords = <T extends Word>(...words: T[]): Omit<T, "_WordBrand"> & Sentence =>
     words.join(SPACE) as Omit<T, "_WordBrand"> & Sentence
 
-const joinChars = <T extends Char>(chars: T[]): Omit<T, "_CharBrand"> & Word =>
+const joinChars = <T extends Char>(...chars: T[]): Omit<T, "_CharBrand"> & Word =>
     chars.join(BLANK) as Omit<T, "_CharBrand"> & Word
 
 export {
