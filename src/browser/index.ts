@@ -1,1 +1,1 @@
-export {Html} from "./types"
+export {Html, Em} from "./types"

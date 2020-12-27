@@ -51,9 +51,7 @@ export {
     cleanArray,
     camelCaseToConstantCase,
 } from "./code"
-export {
-    Html,
-} from "./browser"
+export {Em, Html} from "./browser"
 export {
     sumTexts,
     alignFormattedDecimal,
