@@ -37,7 +37,7 @@ export {
     alignCellIo,
     computeColumnWidths,
 } from "./table"
-export {sumTexts, join, split, splitSentence, splitWord} from "./typedOperations"
+export {sumTexts, join, split, splitSentence, splitWord, joinWords, joinChars} from "./typedOperations"
 export {HexColor, Io, Char, FontName, Sentence, Word} from "./types"
 export {Basis, computePx, Px, Scale, vectorizeText} from "./image"
 export {

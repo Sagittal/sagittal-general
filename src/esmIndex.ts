@@ -117,6 +117,8 @@ export {
     Word,
     splitSentence,
     splitWord,
+    joinWords,
+    joinChars,
 } from "./io"
 export {
     abs,
