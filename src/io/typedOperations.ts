@@ -26,11 +26,20 @@ const joinWords = <T extends Word>(...words: T[]): Omit<T, "_WordBrand"> & Sente
 const joinChars = <T extends Char>(...chars: T[]): Omit<T, "_CharBrand"> & Word =>
     chars.join(BLANK) as Omit<T, "_CharBrand"> & Word
 
-const extendSentence = <T extends string>(sentence: T & Sentence, clause: T & Clause): T & Sentence =>
-    sumTexts(sentence, clause as T) as T & Sentence
+const extendSentence = <T extends string>(
+    sentence: Omit<T, "_SentenceBrand"> & Sentence,
+    clause: Omit<T, "_ClauseBrand"> & Clause,
+): T & Sentence =>
+    sumTexts(sentence as string, clause as string) as T & Sentence
 
 const joinClauses = <T extends Clause>(...clauses: T[]): Omit<T, "_WordBrand"> & Sentence =>
     clauses.join(BLANK) as Omit<T, "_WordBrand"> & Sentence
+
+const extendClause = <T extends string>(
+    clause: Omit<T, "_ClauseBrand"> & Clause,
+    word: Omit<T, "_WordBrand"> & Word,
+): T & Clause =>
+    sumTexts(clause as string, word as string) as T & Clause
 
 export {
     sumTexts,
@@ -43,4 +52,5 @@ export {
     joinChars,
     extendSentence,
     joinClauses,
+    extendClause,
 }

@@ -1,6 +1,8 @@
 import {
     Char,
-    Clause, extendSentence,
+    Clause,
+    extendClause,
+    extendSentence,
     Io,
     joinChars,
     joinClauses,
@@ -83,6 +85,18 @@ describe("extendSentence", (): void => {
         const actual = extendSentence(sentence, clause)
 
         const expected = "see spot see spot run" as Io & Sentence
+        expect(actual).toEqual(expected)
+    })
+})
+
+describe("extendClause", (): void => {
+    it("extends a clause with an additional word", (): void => {
+        const clause = "see spot " as Io & Clause
+        const word = "run" as Io & Word
+
+        const actual = extendClause(clause, word)
+
+        const expected = "see spot run" as Io & Clause
         expect(actual).toEqual(expected)
     })
 })

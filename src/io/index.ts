@@ -38,7 +38,7 @@ export {
     computeColumnWidths,
 } from "./table"
 export {
-    sumTexts, join, split, splitSentence, splitWord, joinWords, joinChars, extendSentence, joinClauses,
+    sumTexts, join, split, splitSentence, splitWord, joinWords, joinChars, extendSentence, joinClauses, extendClause,
 } from "./typedOperations"
 export {HexColor, Io, Char, FontName, Sentence, Word, Clause} from "./types"
 export {Basis, computePx, Px, Scale, vectorizeText} from "./image"

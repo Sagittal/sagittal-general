@@ -122,6 +122,7 @@ export {
     Clause,
     extendSentence,
     joinClauses,
+    extendClause,
 } from "./io"
 export {
     abs,
