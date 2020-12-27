@@ -3,6 +3,7 @@ import {TableFormat} from "./table"
 type HexColor = string & {_HexColorBrand: boolean}
 
 type Sentence = string & {_SentenceBrand: boolean}
+type Clause = string & {_ClauseBrand: boolean}
 type Word = string & {_WordBrand: boolean}
 type Char = string & {_CharBrand: boolean}
 
@@ -18,6 +19,7 @@ export {
     HexColor,
     Io,
     Sentence,
+    Clause,
     Word,
     Char,
     IoSettings,

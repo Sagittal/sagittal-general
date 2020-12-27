@@ -1,6 +1,6 @@
 import {Count} from "../types"
 import {BLANK, SPACE} from "./constants"
-import {Char, Sentence, Word} from "./types"
+import {Char, Clause, Sentence, Word} from "./types"
 
 const sumTexts = <T extends string>(...strings: T[]): T =>
     join(strings, BLANK)
@@ -15,7 +15,7 @@ const split = <T extends string>(string: T, separator: string | RegExp): T[] =>
     string.split(separator) as T[]
 
 const splitSentence = <T extends Sentence>(sentence: T): Array<Omit<T, "_SentenceBrand"> & Word> =>
-    sentence.split(new RegExp(/\W+/)) as Array<Omit<T, "_SentenceBrand"> & Word>
+    sentence.split(/\s+/) as Array<Omit<T, "_SentenceBrand"> & Word>
 
 const splitWord = <T extends Word>(word: T): Array<Omit<T, "_WordBrand"> & Char> =>
     word.split(BLANK) as Array<Omit<T, "_WordBrand"> & Char>
@@ -26,6 +26,12 @@ const joinWords = <T extends Word>(...words: T[]): Omit<T, "_WordBrand"> & Sente
 const joinChars = <T extends Char>(...chars: T[]): Omit<T, "_CharBrand"> & Word =>
     chars.join(BLANK) as Omit<T, "_CharBrand"> & Word
 
+const extendSentence = <T extends string>(sentence: T & Sentence, clause: T & Clause): T & Sentence =>
+    sumTexts(sentence, clause as T) as T & Sentence
+
+const joinClauses = <T extends Clause>(...clauses: T[]): Omit<T, "_WordBrand"> & Sentence =>
+    clauses.join(BLANK) as Omit<T, "_WordBrand"> & Sentence
+
 export {
     sumTexts,
     length,
@@ -35,4 +41,6 @@ export {
     splitWord,
     joinWords,
     joinChars,
+    extendSentence,
+    joinClauses,
 }

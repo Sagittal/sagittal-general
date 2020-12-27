@@ -1,4 +1,15 @@
-import {Char, Io, joinChars, joinWords, Sentence, splitSentence, splitWord, Word} from "../../../src"
+import {
+    Char,
+    Clause, extendSentence,
+    Io,
+    joinChars,
+    joinClauses,
+    joinWords,
+    Sentence,
+    splitSentence,
+    splitWord,
+    Word,
+} from "../../../src"
 
 describe("splitSentence", (): void => {
     it("splits a sentence into words by whitespace", (): void => {
@@ -7,6 +18,15 @@ describe("splitSentence", (): void => {
         const actual = splitSentence(sentence)
 
         const expected = ["see", "spot", "see", "spot", "run"] as Array<Io & Word>
+        expect(actual).toEqual(expected)
+    })
+
+    it("can handle this", (): void => {
+        const sentence = "d5 /|\\ d5 nt" as Io & Sentence
+
+        const actual = splitSentence(sentence)
+
+        const expected = ["d5", "/|\\", "d5", "nt"] as Array<Io & Word>
         expect(actual).toEqual(expected)
     })
 })
@@ -34,12 +54,35 @@ describe("joinWords", (): void => {
 })
 
 describe("joinChars", (): void => {
-    it("joins words into a sentence with spaces", (): void => {
+    it("joins chars into a word", (): void => {
         const chars = ["s", "p", "o", "t"] as Array<Io & Char>
 
         const actual = joinChars(...chars)
 
         const expected = "spot" as Io & Word
+        expect(actual).toEqual(expected)
+    })
+})
+
+describe("joinClauses", (): void => {
+    it("joins clauses into a sentence", (): void => {
+        const clauses = ["see spot ", "see spot run"] as Array<Io & Clause>
+
+        const actual = joinClauses(...clauses)
+
+        const expected = "see spot see spot run" as Io & Sentence
+        expect(actual).toEqual(expected)
+    })
+})
+
+describe("extendSentence", (): void => {
+    it("extends a sentence with an additional clause", (): void => {
+        const sentence = "see spot " as Io & Sentence
+        const clause = "see spot run" as Io & Clause
+
+        const actual = extendSentence(sentence, clause)
+
+        const expected = "see spot see spot run" as Io & Sentence
         expect(actual).toEqual(expected)
     })
 })

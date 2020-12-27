@@ -119,6 +119,9 @@ export {
     splitWord,
     joinWords,
     joinChars,
+    Clause,
+    extendSentence,
+    joinClauses,
 } from "./io"
 export {
     abs,
