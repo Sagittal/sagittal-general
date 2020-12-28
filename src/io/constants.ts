@@ -8,7 +8,7 @@ const IDENTIFYING_MONZO_CHARS = /[\[\]⟩|>]/
 const IDENTIFYING_COMMA_NAME_CHARS = /[unskCSMLA]/
 const IDENTIFYING_CENTS_CHARS = /[c¢]/
 const IDENTIFYING_QUOTIENT_CHARS = /[\/:]/
-const IDENTIFYING_ACCIDENTAL_CHARS = /[()~|!\\`,.'#<>b+\-]/
+const IDENTIFYING_ACCIDENTAL_CHARS = /[()~|!\\`,.'#<>b+YX\-]/
 const NUMERIC_CHARS = /[0123456789]/
 
 const SUPERSCRIPT_NUMBERS: Char[] = ["⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"] as Char[]
