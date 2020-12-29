@@ -1,4 +1,4 @@
-import {Denominator, NumericProperties, Quotient, QuotientPart} from "../../math"
+import {computeSuperQuotient, Denominator, NumericProperties, Quotient, QuotientPart} from "../../math"
 import {BLANK, SUPERSCRIPT_NUMBERS} from "../constants"
 import {split} from "../typedOperations"
 import {Char, Io} from "../types"
@@ -48,7 +48,7 @@ const parseQuotient = <T extends NumericProperties>(quotientIo: Io): Quotient<T>
     }
 
     if (quotientIo.includes(":")) {
-        quotient.reverse()
+        return computeSuperQuotient(quotient as Quotient<T>) as Quotient<T>
     }
 
     return quotient as Quotient<T>

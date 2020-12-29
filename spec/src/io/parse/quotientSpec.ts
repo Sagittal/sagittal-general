@@ -10,12 +10,30 @@ describe("parseQuotient", (): void => {
         expect(actual).toEqual(expected)
     })
 
-    it("works for directed quotients", (): void => {
-        const quotientIo = "5:4" as Io
+    it("other directed quotient", (): void => {
+        const quotientIo = "4/5" as Io
 
         const actual = parseQuotient(quotientIo)
 
         const expected = [4, 5] as Quotient<{rational: true}>
+        expect(actual).toEqual(expected)
+    })
+
+    it("works for undirected quotients", (): void => {
+        const quotientIo = "5:4" as Io
+
+        const actual = parseQuotient(quotientIo)
+
+        const expected = [5, 4] as Quotient<{rational: true}>
+        expect(actual).toEqual(expected)
+    })
+
+    it("other undirected quotient", (): void => {
+        const quotientIo = "4:5" as Io
+
+        const actual = parseQuotient(quotientIo)
+
+        const expected = [5, 4] as Quotient<{rational: true}>
         expect(actual).toEqual(expected)
     })
 
