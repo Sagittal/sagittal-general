@@ -20,6 +20,9 @@ type LogTargets = Record<LogTarget, boolean>
 //  Well you'd have to make sure you didn't override the four flags that are like for basic logging stuff...
 //  Also wait a second... this is enforcing that you have no conflicts for the single char flags,
 //  But it's not really protecting from overlapping word phrases...
+//  It's either that, or just don't provide single char flags for scripts unless you have to (you don't)
+//  And/Or rename this to ScriptShortFlag
+//  "h" should be reserved for "help" but I don't want to deal with this right now
 // Keep this alphabetical so you can ensure no conflicts.
 enum ScriptFlag {
     MAX_2_3_FREE_SOPFR = "+",
@@ -41,7 +44,7 @@ enum ScriptFlag {
     NO_MOOT = "e",
     FACTORING_MODE = "f",
     COMMA_NAME = "g",
-    // "h" reserved for help
+    ASCII_COMMA_NAME = "h",
     INTEGER = "i",
     MAX_UNIT = "j",
     USE_KNOWN_POPULAR_2_3_FREE_CLASSES = "k",
