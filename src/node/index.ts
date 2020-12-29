@@ -15,7 +15,6 @@ export {
     LogTarget,
     saveLog,
     setLogTargets,
-    ScriptFlag,
     setupScriptAndIo,
     program,
     scriptSettings,

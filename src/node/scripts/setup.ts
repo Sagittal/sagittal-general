@@ -7,16 +7,16 @@ import {clearLogFiles} from "./clear"
 import {scriptSettings} from "./globals"
 import {setLogTargets} from "./set"
 import {now} from "./time"
-import {LogTarget, ScriptFlag} from "./types"
+import {LogTarget} from "./types"
 
 const setupScriptAndIo = (logDir?: Filename, defaultLogTargets?: LogTarget[]): void => {
     if (!isUndefined(logDir)) scriptSettings.logDir = logDir
 
     program
-        .option(`-${ScriptFlag.LOG_TARGETS}, --log-targets [logTargets]`, "log targets")
-        .option(`-${ScriptFlag.NO_COLOR}, --no-color`, "no color")
-        .option(`-${ScriptFlag.TABLE_FORMAT}, --table-format <tableFormat>`, "table format")
-        .option(`-${ScriptFlag.NO_TIME}, --no-time`, "no time")
+        .option("--log-targets [logTargets]", "log targets")
+        .option("--no-color", "no color")
+        .option("--table-format <tableFormat>", "table format")
+        .option("--no-time", "no time")
 
     program.parse(process?.argv)
 

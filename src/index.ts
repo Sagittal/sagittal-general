@@ -11,7 +11,6 @@ export {
     runScriptAndGetConsoleOutput,
     adjustAsyncTimeoutForSpec,
     LogTarget,
-    ScriptFlag,
     clearLogFiles,
     setupScriptAndIo,
     removeColor,
