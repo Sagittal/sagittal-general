@@ -90,4 +90,13 @@ describe("parseQuotient", (): void => {
         const expected = [11, 175] as Quotient<{rational: true}>
         expect(actual).toEqual(expected)
     })
+
+    it("can parse quotients in ASCII form", (): void => {
+        const quotientIo = "1/(5^2*7)" as Io
+
+        const actual = parseQuotient(quotientIo)
+
+        const expected = [1, 175] as Quotient<{rational: true}>
+        expect(actual).toEqual(expected)
+    })
 })
