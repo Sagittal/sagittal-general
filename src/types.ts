@@ -24,6 +24,7 @@ type Window<T extends NumericProperties & {of?: number} = {}> =                 
 type Degree = [Step<any>, Ed<any>] & Quotient
 
 type Name<T = void> = Io & {_NameBrand: boolean} & (T extends void ? {} : {_NameOfBrand: T})
+type Abbreviation<T = void> = Io & {_AbbreviationBrand: boolean} & (T extends void ? {} : {_AbbreviationOfBrand: T})
 
 type Extrema<T extends {of?: unknown, open?: boolean} = {of: number, open: false}> = T extends {open: true} ?
     [Maybe<Min<T["of"]>>, Maybe<Max<T["of"]>>] :
@@ -40,6 +41,7 @@ export {
     Step,
     Ed,
     Name,
+    Abbreviation,
     Extrema,
     Ms,
     Of,
