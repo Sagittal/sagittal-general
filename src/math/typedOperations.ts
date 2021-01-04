@@ -61,6 +61,9 @@ const negative = <T extends number>(number: T): T =>
 const isNegative = <T extends number>(number: T): boolean =>
     number < 0
 
+const isPositive = <T extends number>(number: T): boolean =>
+    number > 0
+
 const round = <T extends number>(number: T, precision?: Precision): T => {
     if (isUndefined(precision)) {
         return Math.round(number) as T & Decimal<{integer: true}>
@@ -108,4 +111,5 @@ export {
     log,
     count,
     isNegative,
+    isPositive,
 }

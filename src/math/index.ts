@@ -80,6 +80,7 @@ export {
     divide,
     sum,
     isNegative,
+    isPositive,
 } from "./typedOperations"
 export {
     Abs,

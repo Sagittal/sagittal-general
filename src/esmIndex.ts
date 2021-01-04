@@ -262,6 +262,7 @@ export {
     computeArithmeticMean,
     maxScamon,
     isNegative,
+    isPositive,
 } from "./math"
 export {
     Cents,
