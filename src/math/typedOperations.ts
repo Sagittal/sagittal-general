@@ -58,6 +58,9 @@ const divide = <T extends number>(dividend: Dividend<T> | T, divisor: Divisor<T>
 const negative = <T extends number>(number: T): T =>
     number === 0 ? 0 as T : -number as T
 
+const isNegative = <T extends number>(number: T): boolean =>
+    number < 0
+
 const round = <T extends number>(number: T, precision?: Precision): T => {
     if (isUndefined(precision)) {
         return Math.round(number) as T & Decimal<{integer: true}>
@@ -104,4 +107,5 @@ export {
     pow,
     log,
     count,
+    isNegative,
 }

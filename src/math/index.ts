@@ -79,6 +79,7 @@ export {
     add,
     divide,
     sum,
+    isNegative,
 } from "./typedOperations"
 export {
     Abs,

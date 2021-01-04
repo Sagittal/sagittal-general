@@ -261,6 +261,7 @@ export {
     computeIrrationalMonzoFromScamon,
     computeArithmeticMean,
     maxScamon,
+    isNegative,
 } from "./math"
 export {
     Cents,
