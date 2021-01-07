@@ -1,3 +1,5 @@
+import {lowerCaseToUpperCase} from "./code/case"
+
 export {
     DEFAULT_PRECISION,
     computeDeepDistinct,
@@ -50,6 +52,7 @@ export {
     setAllPropertiesOfObjectOnAnother,
     cleanArray,
     camelCaseToConstantCase,
+    lowerCaseToUpperCase,
 } from "./code"
 export {Em, Html} from "./browser"
 export {

@@ -3,6 +3,7 @@ import {
     camelCaseToLowerCase,
     camelCaseToUpperCase,
     constantCaseToUpperCase,
+    lowerCaseToUpperCase,
 } from "../../../src/code/case"
 
 describe("case", (): void => {
@@ -24,5 +25,10 @@ describe("case", (): void => {
     it("camel case to upper case", (): void => {
         expect(camelCaseToUpperCase("whatsUpDoc"))
             .toBe("Whats Up Doc")
+    })
+
+    it("lower case to upper case", (): void => {
+        expect(lowerCaseToUpperCase("whats up doc"))
+            .toBe("Whats up doc")
     })
 })

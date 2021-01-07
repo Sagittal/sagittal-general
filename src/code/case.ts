@@ -17,9 +17,13 @@ const constantCaseToUpperCase = (str: string): string => {
 const camelCaseToUpperCase = (str: string): string =>
     constantCaseToUpperCase(camelCaseToConstantCase(str))
 
+const lowerCaseToUpperCase = (str: string): string =>
+    str.charAt(0).toUpperCase() + str.slice(1)
+
 export {
     camelCaseToConstantCase,
     camelCaseToLowerCase,
     camelCaseToUpperCase,
     constantCaseToUpperCase,
+    lowerCaseToUpperCase,
 }
