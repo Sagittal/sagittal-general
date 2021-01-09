@@ -53,6 +53,7 @@ export {
     cleanArray,
     camelCaseToConstantCase,
     lowerCaseToUpperCase,
+    DeepPartial,
 } from "./code"
 export {Em, Html} from "./browser"
 export {

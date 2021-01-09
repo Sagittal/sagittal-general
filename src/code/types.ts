@@ -55,6 +55,10 @@ type Maybe<T> = T | undefined
 
 type Precision = Decimal<{integer: true}> & {_PrecisionBrand: boolean}
 
+type DeepPartial<T> = {
+    [P in keyof T]?: DeepPartial<T[P]>
+}
+
 export {
     SortOptions,
     Rank,
@@ -73,4 +77,5 @@ export {
     SortResult,
     SortResultOptions,
     SortBy,
+    DeepPartial,
 }
