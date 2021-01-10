@@ -50,5 +50,4 @@ export {
     RecordKey,
     Precision,
     SortBy,
-    DeepPartial,
 } from "./types"
