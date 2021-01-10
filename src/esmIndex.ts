@@ -1,5 +1,3 @@
-import {lowerCaseToUpperCase} from "./code/case"
-
 export {
     DEFAULT_PRECISION,
     computeDeepDistinct,
@@ -55,7 +53,7 @@ export {
     lowerCaseToUpperCase,
     DeepPartial,
 } from "./code"
-export {Em, Html} from "./browser"
+export {Em, Html, css} from "./browser"
 export {
     sumTexts,
     alignFormattedDecimal,
