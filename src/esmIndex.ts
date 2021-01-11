@@ -52,7 +52,7 @@ export {
     camelCaseToConstantCase,
     lowerCaseToUpperCase,
 } from "./code"
-export {Em, Html, css} from "./browser"
+export {Em, Html, css, Link} from "./browser"
 export {
     sumTexts,
     alignFormattedDecimal,
