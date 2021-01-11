@@ -306,7 +306,7 @@ export {
     computePitchExpectation,
     PitchExpectation,
 } from "./music"
-export {Count, Ed, Extrema, Index, Ms, Name, Abbreviation, Step, Window, Of, Offset} from "./types"
+export {Count, Ed, Extrema, Index, Ms, Name, Abbreviation, Step, Window, Of, Offset, Id} from "./types"
 export {
     Grade,
     Parameter,

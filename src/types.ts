@@ -23,6 +23,7 @@ type Window<T extends NumericProperties & {of?: number} = {}> =                 
     & (T extends {of: number} ? {_OfSizeBrand: T["of"]} : {})
 type Degree = [Step<any>, Ed<any>] & Quotient
 
+type Id<T = void> = Io & {_IdBrand: boolean} & (T extends void ? {} : {_IdOfBrand: T})
 type Name<T = void> = Io & {_NameBrand: boolean} & (T extends void ? {} : {_NameOfBrand: T})
 type Abbreviation<T = void> = Io & {_AbbreviationBrand: boolean} & (T extends void ? {} : {_AbbreviationOfBrand: T})
 
@@ -47,4 +48,5 @@ export {
     Of,
     Degree,
     Offset,
+    Id,
 }
