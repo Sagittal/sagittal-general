@@ -3,6 +3,9 @@ import {
     Clause,
     extendClause,
     extendSentence,
+    getChar,
+    getWord,
+    Index,
     Io,
     joinChars,
     joinClauses,
@@ -97,6 +100,28 @@ describe("extendClause", (): void => {
         const actual = extendClause(clause, word)
 
         const expected = "see spot run" as Io & Clause
+        expect(actual).toEqual(expected)
+    })
+})
+
+describe("getChar", (): void => {
+    it("gets a char of a word", (): void => {
+        const word = "spot" as Io & Word
+
+        const actual = getChar(word, 1 as Index<Char>)
+
+        const expected = "p" as Io & Char
+        expect(actual).toEqual(expected)
+    })
+})
+
+describe("getWord", (): void => {
+    it("gets a word of a sentence", (): void => {
+        const sentence = "see spot\nsee spot run" as Io & Sentence
+
+        const actual = getWord(sentence, 2 as Index<Word>)
+
+        const expected = "see" as Io & Word
         expect(actual).toEqual(expected)
     })
 })

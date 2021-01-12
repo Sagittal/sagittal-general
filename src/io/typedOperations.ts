@@ -1,4 +1,4 @@
-import {Count} from "../types"
+import {Count, Index} from "../types"
 import {BLANK, SPACE} from "./constants"
 import {Char, Clause, Sentence, Word} from "./types"
 
@@ -41,6 +41,18 @@ const extendClause = <T extends string>(
 ): T & Clause =>
     sumTexts(clause as string, word as string) as T & Clause
 
+const getChar = <T extends Word>(
+    word: T,
+    index: Index<Omit<T, "_WordBrand"> & Char>
+): Omit<T, "_WordBrand"> & Char =>
+    splitWord(word)[index] as Omit<T, "_WordBrand"> & Char
+
+const getWord = <T extends Sentence>(
+    sentence: T,
+    index: Index<Omit<T, "_SentenceBrand"> & Word>
+): Omit<T, "_SentenceBrand"> & Word =>
+    splitSentence(sentence)[index] as Omit<T, "_SentenceBrand"> & Word
+
 export {
     sumTexts,
     length,
@@ -53,4 +65,6 @@ export {
     extendSentence,
     joinClauses,
     extendClause,
+    getChar,
+    getWord,
 }

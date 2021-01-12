@@ -122,6 +122,8 @@ export {
     extendSentence,
     joinClauses,
     extendClause,
+    getChar,
+    getWord,
 } from "./io"
 export {
     abs,
