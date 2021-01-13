@@ -43,13 +43,13 @@ const extendClause = <T extends string>(
 
 const getChar = <T extends Word>(
     word: T,
-    index: Index<Omit<T, "_WordBrand"> & Char>
+    index: Index<Omit<T, "_WordBrand"> & Char>,
 ): Omit<T, "_WordBrand"> & Char =>
     splitWord(word)[index] as Omit<T, "_WordBrand"> & Char
 
 const getWord = <T extends Sentence>(
     sentence: T,
-    index: Index<Omit<T, "_SentenceBrand"> & Word>
+    index: Index<Omit<T, "_SentenceBrand"> & Word>,
 ): Omit<T, "_SentenceBrand"> & Word =>
     splitSentence(sentence)[index] as Omit<T, "_SentenceBrand"> & Word
 
