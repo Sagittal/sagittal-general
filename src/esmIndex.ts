@@ -53,7 +53,7 @@ export {
     lowerCaseToUpperCase,
     camelCaseToKebabCase,
 } from "./code"
-export {Em, Html, Link} from "./browser"
+export {Em, Html, Link, isBrowserMobile} from "./browser"
 export {
     sumTexts,
     alignFormattedDecimal,
