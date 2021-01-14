@@ -1,5 +1,6 @@
 import {
     camelCaseToConstantCase,
+    camelCaseToKebabCase,
     camelCaseToLowerCase,
     camelCaseToUpperCase,
     constantCaseToUpperCase,
@@ -30,5 +31,10 @@ describe("case", (): void => {
     it("lower case to upper case", (): void => {
         expect(lowerCaseToUpperCase("whats up doc"))
             .toBe("Whats up doc")
+    })
+
+    it("camel case to kebab case", (): void => {
+        expect(camelCaseToKebabCase("whatsUpDoc"))
+            .toBe("whats-up-doc")
     })
 })

@@ -20,10 +20,15 @@ const camelCaseToUpperCase = (str: string): string =>
 const lowerCaseToUpperCase = (str: string): string =>
     str.charAt(0).toUpperCase() + str.slice(1)
 
+const camelCaseToKebabCase = (str: string): string =>
+    str.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, "$1-$2")
+        .toLowerCase()
+
 export {
     camelCaseToConstantCase,
     camelCaseToLowerCase,
     camelCaseToUpperCase,
     constantCaseToUpperCase,
     lowerCaseToUpperCase,
+    camelCaseToKebabCase,
 }

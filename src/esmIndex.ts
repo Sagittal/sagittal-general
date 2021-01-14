@@ -51,6 +51,7 @@ export {
     cleanArray,
     camelCaseToConstantCase,
     lowerCaseToUpperCase,
+    camelCaseToKebabCase,
 } from "./code"
 export {Em, Html, Link} from "./browser"
 export {
