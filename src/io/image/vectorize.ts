@@ -1,6 +1,7 @@
 // @ts-ignore
 import {default as vectorizeTextDefault} from "vectorize-text"
 import {Html} from "../../browser"
+import {max} from "../../math"
 import {BLANK, SPACE} from "../constants"
 import {computeLineCount} from "../lineCount"
 import {VectorizeTextOptions} from "./types"
@@ -13,8 +14,12 @@ const vectorizeText = (text: string, options: VectorizeTextOptions = {}): Html =
 
     const canvas = canvasArgument || document.createElement("canvas")
     const lineCount = computeLineCount(text)
-    canvas.height = (lineCount + OFFSET_Y)
+
+    // TODO: this needs to be revisited in the wake of the changes I made to SVG height in staff-code
+    //  Only adjusting this now because of weirdness picked up on in edoStaves script group
+    const maybeBetterHeight = (lineCount + OFFSET_Y)
         * (lineSpacing * MAX_FONT_SIZE_TO_INCREASE_MESH_DETAIL_BEFORE_IT_STARTS_FAILING_TO_RENDER)
+    canvas.height = max(maybeBetterHeight, canvas.height)
 
     const textReformattedForVectorizeTextToHandleNewlines = text.replace(/\n/g, "<br>")
 
