@@ -55,7 +55,9 @@ const vectorizeText = (text: string, options: VectorizeTextOptions = {}): Html =
     return paths.join(BLANK) as Html
 }
 
-const textToSvg = (text: string, options: TextToSvgOptions = {}): Promise<SVGGraphicsElement> => {
+// TODO: It seems like text-to-svg makes things a bit bolder. cleaner, higher quality looking though. discuss with Dave.
+//  Okay I think it's just take the stroke off. But you still need a lot of options fiddling/investigation.
+const textToSvg = (text: string, options: TextToSvgOptions = {}): Promise<Html> => {
     const {
         font,
         x = 0,
@@ -66,14 +68,9 @@ const textToSvg = (text: string, options: TextToSvgOptions = {}): Promise<SVGGra
         features = {liga: true},
     } = options as any
 
-    return new Promise((resolve: (value: SVGGraphicsElement) => void): void => {
+    return new Promise((resolve: (value: Html) => void): void => {
         TextToSVG.load(font, (err: Error, textToSVG: TextToSVG): void => {
-            const svgString = textToSVG.getSVG(text, {x, y, fontSize, anchor, attributes, features})
-            const svgParser = new DOMParser()
-            const svgDocument = svgParser.parseFromString(svgString, "text/html")
-            const svg = svgDocument.firstChild as SVGGraphicsElement
-
-            resolve(svg)
+            resolve(textToSVG.getSVG(text, {x, y, fontSize, anchor, attributes, features}))
         })
     })
 }
