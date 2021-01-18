@@ -110,6 +110,7 @@ export {
     DEFAULT_IO_SETTINGS,
     formatDecimalAsSuperscript,
     vectorizeText,
+    textToSvg,
     computeLineCount,
     FontName,
     finalChar,

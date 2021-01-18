@@ -19,9 +19,14 @@ interface VectorizeTextOptions {
     lineSpacing?: number,
 }
 
+interface TextToSvgOptions {
+    font?: FontName,
+}
+
 export {
     Px,
     Scale,
     Basis,
     VectorizeTextOptions,
+    TextToSvgOptions,
 }

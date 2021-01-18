@@ -1,6 +1,6 @@
 {
   "name": "@sagittal/general",
-  "version": "1.0.90",
+  "version": "1.0.91",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/esmIndex.js",
   "types": "dist/cjs/index.d.ts",
@@ -30,6 +30,7 @@
     "colors": "^1.4.0",
     "commander": "^5.1.0",
     "jasmine-spec-reporter": "^5.0.2",
+    "staff-code-text-to-svg": "^3.1.5-sc",
     "vectorize-text": "^3.2.1"
   },
   "devDependencies": {

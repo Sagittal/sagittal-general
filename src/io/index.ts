@@ -52,7 +52,7 @@ export {
     getWord,
 } from "./typedOperations"
 export {HexColor, Io, Char, FontName, Sentence, Word, Clause} from "./types"
-export {Basis, computePx, Px, Scale, vectorizeText} from "./image"
+export {Basis, computePx, Px, Scale, vectorizeText, textToSvg} from "./image"
 export {
     alignFormattedDecimal,
     formatIntegerDecimal,

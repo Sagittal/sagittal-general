@@ -1,10 +1,12 @@
 // @ts-ignore
+import TextToSVG from "staff-code-text-to-svg"
+// @ts-ignore
 import {default as vectorizeTextDefault} from "vectorize-text"
 import {Html} from "../../browser"
 import {max} from "../../math"
 import {BLANK, SPACE} from "../constants"
 import {computeLineCount} from "../lineCount"
-import {VectorizeTextOptions} from "./types"
+import {TextToSvgOptions, VectorizeTextOptions} from "./types"
 
 const MAX_FONT_SIZE_TO_INCREASE_MESH_DETAIL_BEFORE_IT_STARTS_FAILING_TO_RENDER = 256
 const OFFSET_Y = 1
@@ -53,6 +55,24 @@ const vectorizeText = (text: string, options: VectorizeTextOptions = {}): Html =
     return paths.join(BLANK) as Html
 }
 
+const textToSvg = (text: string, options: TextToSvgOptions = {}): SVGGraphicsElement => {
+    const {
+        font,
+        x = 0,
+        y = 50,
+        fontSize = 72,
+        anchor = "top" as "top",
+        attributes = {fill: "black", stroke: "black"},
+        features = {liga: true},
+    } = options as any
+
+    const textToSVG = TextToSVG.loadSync(font)
+    const svgString = textToSVG.getSVG(text, options)
+
+    return new DOMParser().parseFromString(svgString, "text/html").firstChild as SVGGraphicsElement
+}
+
 export {
     vectorizeText,
+    textToSvg,
 }
