@@ -55,7 +55,7 @@ const vectorizeText = (text: string, options: VectorizeTextOptions = {}): Html =
     return paths.join(BLANK) as Html
 }
 
-const textToSvg = (text: string, options: TextToSvgOptions = {}): SVGGraphicsElement => {
+const textToSvg = (text: string, options: TextToSvgOptions = {}): Promise<SVGGraphicsElement> => {
     const {
         font,
         x = 0,
@@ -66,10 +66,16 @@ const textToSvg = (text: string, options: TextToSvgOptions = {}): SVGGraphicsEle
         features = {liga: true},
     } = options as any
 
-    const textToSVG = TextToSVG.loadSync(font)
-    const svgString = textToSVG.getSVG(text, options)
+    return new Promise((resolve: (value: SVGGraphicsElement) => void): void => {
+        TextToSVG.load(font, (err: Error, textToSVG: TextToSVG): void => {
+            const svgString = textToSVG.getSVG(text, {x, y, fontSize, anchor, attributes, features})
+            const svgParser = new DOMParser()
+            const svgDocument = svgParser.parseFromString(svgString, "text/html")
+            const svg = svgDocument.firstChild as SVGGraphicsElement
 
-    return new DOMParser().parseFromString(svgString, "text/html").firstChild as SVGGraphicsElement
+            resolve(svg)
+        })
+    })
 }
 
 export {
