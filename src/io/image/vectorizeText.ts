@@ -1,24 +1,32 @@
 // @ts-ignore
-import TextToSVG from "staff-code-text-to-svg"
-// @ts-ignore
 import {default as vectorizeTextDefault} from "vectorize-text"
 import {Html} from "../../browser"
 import {max} from "../../math"
 import {BLANK, SPACE} from "../constants"
 import {computeLineCount} from "../lineCount"
-import {TextToSvgOptions, VectorizeTextOptions} from "./types"
+import {VectorizeTextOptions} from "./types"
 
 const MAX_FONT_SIZE_TO_INCREASE_MESH_DETAIL_BEFORE_IT_STARTS_FAILING_TO_RENDER = 256
 const OFFSET_Y = 1
 
+// TODO: VECTORIZE-TEXT ISSUE, CANVAS TYPE
+//  Update that Canvas type in vectorizeText to be either web Canvas or Node Canvas
 const vectorizeText = (text: string, options: VectorizeTextOptions = {}): Html => {
     const {canvas: canvasArgument, lineSpacing = 1} = options
 
     const canvas = canvasArgument || document.createElement("canvas")
     const lineCount = computeLineCount(text)
 
-    // TODO: this needs to be revisited in the wake of the changes I made to SVG height in staff-code
+    // TODO: VECTORIZE-TEXT ISSUE, HEIGHT CALCULATION
+    //  This needs to be revisited in the wake of the changes I made to SVG height in staff-code
     //  Only adjusting this now because of weirdness picked up on in edoStaves script group
+
+    // TODO: VECTORIZE-TEXT ISSUE, CUTTING OFF THE BOTTOM OF MULTI-LINE DISPLAYS
+
+    // TODO: VECTORIZE-TEXT ISSUE, MANGLING ON REPEAT DOWNLOADS WITH CHANGES
+    //  Going to have to deal with this crazy garbled nonsense you get seemingly
+    //  If you ever try to download the SVG more than once without refreshing the page
+
     const maybeBetterHeight = (lineCount + OFFSET_Y)
         * (lineSpacing * MAX_FONT_SIZE_TO_INCREASE_MESH_DETAIL_BEFORE_IT_STARTS_FAILING_TO_RENDER)
     canvas.height = max(maybeBetterHeight, canvas.height)
@@ -55,27 +63,6 @@ const vectorizeText = (text: string, options: VectorizeTextOptions = {}): Html =
     return paths.join(BLANK) as Html
 }
 
-// TODO: It seems like text-to-svg makes things a bit bolder. cleaner, higher quality looking though. discuss with Dave.
-//  Okay I think it's just take the stroke off. But you still need a lot of options fiddling/investigation.
-const textToSvg = (text: string, options: TextToSvgOptions = {}): Promise<Html> => {
-    const {
-        font,
-        x = 0,
-        y = 50,
-        fontSize = 72,
-        anchor = "top" as "top",
-        attributes = {fill: "black", stroke: "black"},
-        features = {liga: true},
-    } = options as any
-
-    return new Promise((resolve: (value: Html) => void): void => {
-        TextToSVG.load(font, (err: Error, textToSVG: TextToSVG): void => {
-            resolve(textToSVG.getSVG(text, {x, y, fontSize, anchor, attributes, features}))
-        })
-    })
-}
-
 export {
     vectorizeText,
-    textToSvg,
 }

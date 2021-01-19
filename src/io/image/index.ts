@@ -1,3 +1,4 @@
 export {computePx} from "./scale"
-export {vectorizeText, textToSvg} from "./vectorize"
+export {vectorizeText} from "./vectorizeText"
+export {textToSvg} from "./textToSvg"
 export {Basis, Px, Scale} from "./types"

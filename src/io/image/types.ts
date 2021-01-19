@@ -1,3 +1,5 @@
+import {Em} from "../../browser"
+import {Multiplier} from "../../math"
 import {FontName} from "../types"
 
 type Px = number & {_PxBrand: "Px"}
@@ -11,17 +13,19 @@ type Basis<T extends number | void = void> =
     & {_BasisBrand: boolean}
     & (T extends void ? {} : {_BasisOfBrand: T})
 
-interface VectorizeTextOptions {
-    height?: Px,
-    font?: FontName,
-    canvas?: HTMLCanvasElement,
-    context?: CanvasRenderingContext2D,
-    lineSpacing?: number,
-}
+type VectorizeTextOptions = Partial<{
+    height: Px,
+    font: FontName,
+    canvas: HTMLCanvasElement,
+    context: CanvasRenderingContext2D,
+    lineSpacing: number,
+}>
 
-interface TextToSvgOptions {
-    font?: FontName,
-}
+type TextToSvgOptions = Partial<{
+    font: FontName,
+    line: Multiplier<Em | Px>,
+    fontSize: Em,
+}>
 
 export {
     Px,
