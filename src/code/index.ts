@@ -36,6 +36,7 @@ export {computeTrimmedArray} from "./trim"
 export {allElementsEqual} from "./allElementsEqual"
 export {increment, decrement} from "./crement"
 export {setAt} from "./setAt"
+export {noop} from "./noop"
 export {offset} from "./offset"
 export {isNumber, isUndefined, isArray, isString, isObject} from "./typeGuards"
 export {

@@ -52,6 +52,7 @@ export {
     camelCaseToConstantCase,
     lowerCaseToUpperCase,
     camelCaseToKebabCase,
+    noop,
 } from "./code"
 export {Em, Html, Link, isBrowserMobile, Css} from "./browser"
 export {
