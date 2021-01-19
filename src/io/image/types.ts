@@ -1,5 +1,5 @@
 import {Multiplier} from "../../math"
-import {FontName} from "../types"
+import {Filename} from "../../node"
 
 type Px = number & {_PxBrand: "Px"}
 
@@ -13,7 +13,7 @@ type Basis<T extends number | void = void> =
     & (T extends void ? {} : {_BasisOfBrand: T})
 
 type TextToSvgOptions = Partial<{
-    font: FontName,
+    font: Filename,
     line: Multiplier<Px>,
     fontSize: Px,
     padding: Px,
