@@ -1,11 +1,11 @@
-import TextToSVG from "staff-code-text-to-svg"
+import TextToSVG, {Anchor} from "staff-code-text-to-svg"
 import {Html} from "../../browser"
 import {Multiplier} from "../../math"
-import {BLANK} from "../constants"
+import {BLANK, NEWLINE} from "../constants"
 import {formatPx} from "../format"
 import {Px, TextToSvgOptions} from "./types"
 
-const textToSvg = (text: string, options: TextToSvgOptions = {}): Promise<Html> => {
+const textToSvg = async (text: string, options: TextToSvgOptions = {}): Promise<Html> => {
     const {
         font = BLANK,
         fontSize = 16 as Px,
@@ -13,34 +13,35 @@ const textToSvg = (text: string, options: TextToSvgOptions = {}): Promise<Html> 
         padding = 0 as Px,
     } = options
 
-    // TODO: TEXT-TO-SVG ISSUE, MULTILINE SVGS
-    //  Promise.all for each line, and then for each one use `style: "transform: translate(0px, ???px);"` somehow
-    //  That's (x, y), and although you specify px here, it seems to be same units as the unitless stuff in the path.
-    //  Const lines = text.split(NEWLINE)
-    //  The y calculation below will need to be modified at that time
-    //  - Then just double check that both edo staves script group & staff code web app can both use this method well
+    const textLines = text.split(NEWLINE)
+    const lineCount = textLines.length
+    const lineHeight = line * fontSize
 
-    return new Promise((resolve: (value: Html) => void): void => {
-        TextToSVG.load(font, (err: Error | null, textToSVG: TextToSVG | null): void => {
-            if (!textToSVG) {
-                throw err
-            }
+    const pathStrings = await Promise.all(
+        textLines.map(async (textLine: string, index: number): Promise<Html> => {
+            return new Promise((resolve: (value: Html) => void): void => {
+                TextToSVG.load(font, (err: Error | null, textToSVG: TextToSVG | null): void => {
+                    if (!textToSVG) {
+                        throw err
+                    }
 
-            const options = {
-                y: ((line - 1) / 2) * fontSize,
-                fontSize,
-                anchor: "left top" as "left top",
-                features: {liga: true},
-            }
-            const svgString = textToSVG.getSVG(text, options)
+                    const options = {
+                        y: ((line - 1) / 2) * fontSize,
+                        fontSize,
+                        anchor: "left top" as Anchor,
+                        features: {liga: true},
+                    }
 
-            const height = line * fontSize
-            const heightAndMarginAdjustedSvg = svgString
-                .replace(/height="(\d+)"/, `height="${height}" style="padding: ${formatPx(padding)}"`) as Html
+                    const svgString = textToSVG.getPath(textLine, options)
+                    const heightAdjustedAndTranslatedSvgString = svgString
+                        .replace(/<path/, `<path style="transform: translate(0px, ${index * lineHeight}px)"`) as Html
+                    resolve(heightAdjustedAndTranslatedSvgString)
+                })
+            })
+        }),
+    )
 
-            resolve(heightAndMarginAdjustedSvg)
-        })
-    })
+    return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="${lineHeight * lineCount}" style="padding: ${formatPx(padding)}">${pathStrings.join("")}</svg>` as Html
 }
 
 // TODO: TEXT-TO-SVG ISSUE, PACKAGES & @TYPES
