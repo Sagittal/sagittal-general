@@ -1,13 +1,13 @@
-// @ts-ignore
 import TextToSVG from "staff-code-text-to-svg"
 import {Html} from "../../browser"
 import {Multiplier} from "../../math"
+import {BLANK} from "../constants"
 import {formatPx} from "../format"
 import {Px, TextToSvgOptions} from "./types"
 
 const textToSvg = (text: string, options: TextToSvgOptions = {}): Promise<Html> => {
     const {
-        font = undefined,
+        font = BLANK,
         fontSize = 16 as Px,
         line = 2 as Multiplier<Px>,
         padding = 0 as Px,
@@ -21,16 +21,22 @@ const textToSvg = (text: string, options: TextToSvgOptions = {}): Promise<Html> 
     //  - Then just double check that both edo staves script group & staff code web app can both use this method well
 
     return new Promise((resolve: (value: Html) => void): void => {
-        TextToSVG.load(font, (err: Error, textToSVG: TextToSVG): void => {
-            const svgString = textToSVG.getSVG(text, {
+        TextToSVG.load(font, (err: Error | null, textToSVG: TextToSVG | null): void => {
+            if (!textToSVG) {
+                throw err
+            }
+
+            const options = {
                 y: ((line - 1) / 2) * fontSize,
                 fontSize,
                 anchor: "left top" as "left top",
                 features: {liga: true},
-            })
+            }
+            const svgString = textToSVG.getSVG(text, options)
 
             const height = line * fontSize
-            const heightAndMarginAdjustedSvg = svgString.replace(/height="(\d+)"/, `height="${height}" style="padding: ${formatPx(padding)}"`)
+            const heightAndMarginAdjustedSvg = svgString
+                .replace(/height="(\d+)"/, `height="${height}" style="padding: ${formatPx(padding)}"`) as Html
 
             resolve(heightAndMarginAdjustedSvg)
         })
