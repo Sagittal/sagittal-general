@@ -2,6 +2,7 @@
 import TextToSVG from "staff-code-text-to-svg"
 import {Html} from "../../browser"
 import {Multiplier} from "../../math"
+import {formatPx} from "../format"
 import {Px, TextToSvgOptions} from "./types"
 
 const textToSvg = (text: string, options: TextToSvgOptions = {}): Promise<Html> => {
@@ -11,25 +12,8 @@ const textToSvg = (text: string, options: TextToSvgOptions = {}): Promise<Html> 
         // TODO: TEXT-TO-SVG ISSUE, DEFAULTS
         //  This is the same default as in staff code web app. Should this even default here?
         line = 2 as Multiplier<Px>,
+        padding = 0 as Px,
     } = options
-
-    // TODO: TEXT-TO-SVG ISSUE, RETURN VALUE / INTERFACE
-    //  You should not only have it return a string instead of SVG
-    //  (so Node and browser can handle it each in their own way)
-    //  But even further, you should just return the path, so they can deal with packaging it in the right kind of SVG?
-    //  Although mightn't both edoStaves script group and staff-code web app want it just to return the fully formed SVG
-    //  I.e. if it's capable of handling all the height stuff correctly?
-    //  See to-do below about multiline SVGs
-    //  Yeah, I'm now thinking that this should go back to returning the whole SVG... just in string form of course.
-    //  Well... but we were struggling with getting text-to-svg to actually set the height of the actual top-level SVG
-    //  In the SVG string it returns. So that may need to be done once in each consumption, i.e.
-    //  The staff code version can just do it easily after hydrating the svg string into an svg element, fine.
-    //  The edo staves Node version will have to, if it can't use the same DOMParser thingy to hydrate the SVG
-    //  It will have to find some other way to sed or whatever manually into the string and find the right place to add
-    //  The height property. Maybe they could at least share, from here, a helper method that will tell you what height
-    //  To set it? Or maybe if you have to do it in Node at all, it means you should just handle it here always?
-    //  Well, unfortunately I already set staff-code up to consume this text-to-svg version, so I'll have to implement
-    //  The easy way there for now, but you can rip it out later I suppose when we ultimately have to do this (if we do)
 
     // TODO: TEXT-TO-SVG ISSUE, MULTILINE SVGS
     //  Promise.all for each line, and then for each one use `style: "transform: translate(0px, ???px);"` somehow
@@ -49,12 +33,17 @@ const textToSvg = (text: string, options: TextToSvgOptions = {}): Promise<Html> 
 
     return new Promise((resolve: (value: Html) => void): void => {
         TextToSVG.load(font, (err: Error, textToSVG: TextToSVG): void => {
-            resolve(textToSVG.getSVG(text, {
+            const svgString = textToSVG.getSVG(text, {
                 y: ((line - 1) / 2) * fontSize,
                 fontSize,
                 anchor: "left top" as "left top",
                 features: {liga: true},
-            }))
+            })
+
+            const height = line * fontSize
+            const heightAndMarginAdjustedSvg = svgString.replace(/height="(\d+)"/, `height="${height}" style="padding: ${formatPx(padding)}"`)
+
+            resolve(heightAndMarginAdjustedSvg)
         })
     })
 }

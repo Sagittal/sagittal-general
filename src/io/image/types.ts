@@ -16,6 +16,7 @@ type TextToSvgOptions = Partial<{
     font: FontName,
     line: Multiplier<Px>,
     fontSize: Px,
+    padding: Px,
 }>
 
 export {
