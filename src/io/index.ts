@@ -67,4 +67,6 @@ export {
     TimePrecision,
     formatBound,
     formatDecimalAsSuperscript,
+    formatPx,
+    formatEm,
 } from "./format"

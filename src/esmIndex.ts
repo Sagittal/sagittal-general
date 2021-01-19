@@ -53,7 +53,7 @@ export {
     lowerCaseToUpperCase,
     camelCaseToKebabCase,
 } from "./code"
-export {Em, Html, Link, isBrowserMobile} from "./browser"
+export {Em, Html, Link, isBrowserMobile, Css} from "./browser"
 export {
     sumTexts,
     alignFormattedDecimal,
@@ -125,6 +125,8 @@ export {
     extendClause,
     getChar,
     getWord,
+    formatPx,
+    formatEm,
 } from "./io"
 export {
     abs,
