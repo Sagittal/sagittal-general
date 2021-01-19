@@ -9,8 +9,6 @@ const textToSvg = (text: string, options: TextToSvgOptions = {}): Promise<Html> 
     const {
         font = undefined,
         fontSize = 16 as Px,
-        // TODO: TEXT-TO-SVG ISSUE, DEFAULTS
-        //  This is the same default as in staff code web app. Should this even default here?
         line = 2 as Multiplier<Px>,
         padding = 0 as Px,
     } = options
@@ -20,16 +18,7 @@ const textToSvg = (text: string, options: TextToSvgOptions = {}): Promise<Html> 
     //  That's (x, y), and although you specify px here, it seems to be same units as the unitless stuff in the path.
     //  Const lines = text.split(NEWLINE)
     //  The y calculation below will need to be modified at that time
-
-    // TODO: TEXT-TO-SVG ISSUE, ISOMORPHIC CLEANLINESS
-    //  It's not great that this is a @sagittal/general text-to-svg thing for Node which is causing this problem
-    //  ; it should be the one to take care of it, not me
-    //  Unless, now that I'm actually using the correct async interface, maybe we don't load that code?
-    //  I.e. maybe we can delete all this
-    //  I.e. the path-browserify stuff in the staff-code repo
-
-    // TODO: TEXT-TO-SVG ISSUE, BOTH EDO STAVES AND STAFF CODE WORKS
-    //  Ensure that both edo staves script group and the staff code web app can both use this method well
+    //  - Then just double check that both edo staves script group & staff code web app can both use this method well
 
     return new Promise((resolve: (value: Html) => void): void => {
         TextToSVG.load(font, (err: Error, textToSVG: TextToSVG): void => {
