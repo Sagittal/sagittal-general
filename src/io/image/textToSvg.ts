@@ -33,14 +33,15 @@ const textToSvg = async (text: string, options: TextToSvgOptions = {}): Promise<
                         features: {liga: true},
                     }
 
-                    const svgString = textToSVG.getPath(textLine, options)
-                    // TODO: https://github.com/shrhdk/text-to-svg/pull/57 not peformant; maybe just use bbox like b4?
+
                     const {width} = textToSVG.getMetrics(textLine, options)
                     if (width > maxWidth) maxWidth = width
 
+                    const svgString = textToSVG.getPath(textLine, options)
                     const heightAdjustedAndTranslatedSvgString = svgString
                         .replace(/<path/, `\t<g transform="translate(0 ${index * lineHeight})">\n\t\t<path`)
-                        .replace(/\/>/, `\/>\t<\/g>`) as Html
+                        .replace(/\/>/, `\/>\n\t<\/g>`) as Html
+
                     resolve(heightAdjustedAndTranslatedSvgString)
                 })
             })
