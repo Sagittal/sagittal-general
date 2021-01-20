@@ -39,14 +39,15 @@ const textToSvg = async (text: string, options: TextToSvgOptions = {}): Promise<
                     if (width > maxWidth) maxWidth = width
 
                     const heightAdjustedAndTranslatedSvgString = svgString
-                        .replace(/<path/, `<path style="transform: translate(0px, ${index * lineHeight}px)"`) as Html
+                        .replace(/<path/, `<g transform="translate(0 ${index * lineHeight})">\n<path`)
+                        .replace(/\/path>/, `\/path><\/g>`) as Html
                     resolve(heightAdjustedAndTranslatedSvgString)
                 })
             })
         }),
     )
 
-    return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="${lineHeight * lineCount}" width="${maxWidth}" style="padding: ${formatPx(padding)}">${pathStrings.join("")}</svg>` as Html
+    return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="${lineHeight * lineCount}" width="${maxWidth}" style="padding: ${formatPx(padding)}">\n${pathStrings.join(NEWLINE)}\n</svg>` as Html
 }
 
 // TODO: TEXT-TO-SVG ISSUE, PACKAGES & @TYPES
