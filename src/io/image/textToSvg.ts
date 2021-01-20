@@ -39,8 +39,8 @@ const textToSvg = async (text: string, options: TextToSvgOptions = {}): Promise<
                     if (width > maxWidth) maxWidth = width
 
                     const heightAdjustedAndTranslatedSvgString = svgString
-                        .replace(/<path/, `<g transform="translate(0 ${index * lineHeight})">\n<path`)
-                        .replace(/\/path>/, `\/path><\/g>`) as Html
+                        .replace(/<path/, `\t<g transform="translate(0 ${index * lineHeight})">\n\t\t<path`)
+                        .replace(/\/>/, `\/>\t<\/g>`) as Html
                     resolve(heightAdjustedAndTranslatedSvgString)
                 })
             })
