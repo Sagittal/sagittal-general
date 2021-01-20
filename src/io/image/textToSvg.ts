@@ -16,6 +16,7 @@ const textToSvg = async (text: string, options: TextToSvgOptions = {}): Promise<
     const textLines = text.split(NEWLINE)
     const lineCount = textLines.length
     const lineHeight = line * fontSize
+    let maxWidth = 0
 
     const pathStrings = await Promise.all(
         textLines.map(async (textLine: string, index: number): Promise<Html> => {
@@ -33,6 +34,10 @@ const textToSvg = async (text: string, options: TextToSvgOptions = {}): Promise<
                     }
 
                     const svgString = textToSVG.getPath(textLine, options)
+                    // TODO: https://github.com/shrhdk/text-to-svg/pull/57 not peformant; maybe just use bbox like b4?
+                    const {width} = textToSVG.getMetrics(textLine, options)
+                    if (width > maxWidth) maxWidth = width
+
                     const heightAdjustedAndTranslatedSvgString = svgString
                         .replace(/<path/, `<path style="transform: translate(0px, ${index * lineHeight}px)"`) as Html
                     resolve(heightAdjustedAndTranslatedSvgString)
@@ -41,7 +46,7 @@ const textToSvg = async (text: string, options: TextToSvgOptions = {}): Promise<
         }),
     )
 
-    return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="${lineHeight * lineCount}" style="padding: ${formatPx(padding)}">${pathStrings.join("")}</svg>` as Html
+    return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="${lineHeight * lineCount}" width="${maxWidth}" style="padding: ${formatPx(padding)}">${pathStrings.join("")}</svg>` as Html
 }
 
 // TODO: TEXT-TO-SVG ISSUE, PACKAGES & @TYPES
