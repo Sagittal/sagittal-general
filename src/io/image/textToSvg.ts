@@ -62,7 +62,7 @@ const textToSvg = async (text: string, options: TextToSvgOptions = {}): Promise<
 //  (I've just gone ahead and used a custom published npm package of both opentype.js and text-to-svg)
 //  (The former of which is not a direct dependency; it's a dependency of my forked text-to-svg)
 //  Some forum posts that may be helpful: https://forum.sagittal.org/viewtopic.php?p=3559#p3559
-//  They show how it may well be the case that our Bravura Text BB lookup tables really are and have to be type 7
+//  They show how it may well be the case that our Bravura Text SC lookup tables really are and have to be type 7
 //  Not 4. But you may have to read a few posts ahead of that one linked above.
 
 export {
