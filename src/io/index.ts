@@ -50,6 +50,7 @@ export {
     extendClause,
     getChar,
     getWord,
+    extendWord,
 } from "./typedOperations"
 export {HexColor, Io, Char, FontName, Sentence, Word, Clause} from "./types"
 export {Basis, computePx, Px, Scale, textToSvg, TextToSvgOptions} from "./image"

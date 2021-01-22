@@ -18,7 +18,7 @@ const splitSentence = <T extends Sentence>(sentence: T): Array<Omit<T, "_Sentenc
     sentence.split(/\s+/) as Array<Omit<T, "_SentenceBrand"> & Word>
 
 const splitWord = <T extends Word>(word: T): Array<Omit<T, "_WordBrand"> & Char> =>
-    word.split(BLANK) as Array<Omit<T, "_WordBrand"> & Char>
+    Array.from(word) as Array<Omit<T, "_WordBrand"> & Char>
 
 const joinWords = <T extends Word>(...words: T[]): Omit<T, "_WordBrand"> & Sentence =>
     words.join(SPACE) as Omit<T, "_WordBrand"> & Sentence
@@ -53,6 +53,12 @@ const getWord = <T extends Sentence>(
 ): Omit<T, "_SentenceBrand"> & Word =>
     splitSentence(sentence)[index] as Omit<T, "_SentenceBrand"> & Word
 
+const extendWord = <T extends string>(
+    word: Omit<T, "_WordBrand"> & Word,
+    char: Omit<T, "_CharBrand"> & Char,
+): T & Word =>
+    sumTexts(word as string, char as string) as T & Word
+
 export {
     sumTexts,
     length,
@@ -67,4 +73,5 @@ export {
     extendClause,
     getChar,
     getWord,
+    extendWord,
 }

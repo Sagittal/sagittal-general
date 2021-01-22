@@ -3,6 +3,7 @@ import {
     Clause,
     extendClause,
     extendSentence,
+    extendWord,
     getChar,
     getWord,
     Index,
@@ -122,6 +123,18 @@ describe("getWord", (): void => {
         const actual = getWord(sentence, 2 as Index<Word>)
 
         const expected = "see" as Io & Word
+        expect(actual).toEqual(expected)
+    })
+})
+
+describe("extendWord", (): void => {
+    it("extends a word with an additional char", (): void => {
+        const word = "run" as Io & Word
+        const char = "t" as Io & Char
+
+        const actual = extendWord(word, char)
+
+        const expected = "runt" as Io & Word
         expect(actual).toEqual(expected)
     })
 })

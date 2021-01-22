@@ -129,6 +129,7 @@ export {
     formatPx,
     formatEm,
     TextToSvgOptions,
+    extendWord,
 } from "./io"
 export {
     abs,
