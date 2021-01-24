@@ -83,7 +83,7 @@ describe("joinClauses", (): void => {
 
 describe("extendSentence", (): void => {
     it("extends a sentence with an additional clause", (): void => {
-        const sentence = "see spot " as Io & Sentence
+        const sentence = "see spot" as Io & Sentence
         const clause = "see spot run" as Io & Clause
 
         const actual = extendSentence(sentence, clause)
@@ -91,16 +91,36 @@ describe("extendSentence", (): void => {
         const expected = "see spot see spot run" as Io & Sentence
         expect(actual).toEqual(expected)
     })
+
+    it("can extend a sentence with multiple additional clauses", (): void => {
+        const sentence = "see spot" as Io & Sentence
+        const clauses = ["see spot run", "run spot run"] as Array<Io & Clause>
+
+        const actual = extendSentence(sentence, ...clauses)
+
+        const expected = "see spot see spot run run spot run" as Io & Sentence
+        expect(actual).toEqual(expected)
+    })
 })
 
 describe("extendClause", (): void => {
     it("extends a clause with an additional word", (): void => {
-        const clause = "see spot " as Io & Clause
+        const clause = "see spot" as Io & Clause
         const word = "run" as Io & Word
 
         const actual = extendClause(clause, word)
 
         const expected = "see spot run" as Io & Clause
+        expect(actual).toEqual(expected)
+    })
+
+    it("can extend a clause with multiple additional words", (): void => {
+        const clause = "see spot" as Io & Clause
+        const words = ["run", "ashore"] as Array<Io & Word>
+
+        const actual = extendClause(clause, ...words)
+
+        const expected = "see spot run ashore" as Io & Clause
         expect(actual).toEqual(expected)
     })
 })
@@ -135,6 +155,16 @@ describe("extendWord", (): void => {
         const actual = extendWord(word, char)
 
         const expected = "runt" as Io & Word
+        expect(actual).toEqual(expected)
+    })
+
+    it("can extend a word with multiple additional chars", (): void => {
+        const word = "run" as Io & Word
+        const chars = ["t", "s"] as Array<Io & Char>
+
+        const actual = extendWord(word, ...chars)
+
+        const expected = "runts" as Io & Word
         expect(actual).toEqual(expected)
     })
 })
