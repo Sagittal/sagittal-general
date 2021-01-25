@@ -11,6 +11,7 @@ const textToSvg = async (text: string, options: TextToSvgOptions = {}): Promise<
         fontSize = 16 as Px,
         line = 2 as Multiplier<Px>,
         padding = 0 as Px,
+        extraWidth = 0 as Px,
     } = options
 
     const textLines = text.split(NEWLINE)
@@ -48,7 +49,7 @@ const textToSvg = async (text: string, options: TextToSvgOptions = {}): Promise<
         }),
     )
 
-    return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="${lineHeight * lineCount}" width="${maxWidth}" style="padding: ${formatPx(padding)}">\n${pathStrings.join(NEWLINE)}\n</svg>` as Html
+    return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="${lineHeight * lineCount}" width="${maxWidth + extraWidth}" style="padding: ${formatPx(padding)}">\n${pathStrings.join(NEWLINE)}\n</svg>` as Html
 }
 
 // TODO: TEXT-TO-SVG ISSUE, PACKAGES & @TYPES
