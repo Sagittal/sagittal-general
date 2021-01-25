@@ -2,7 +2,6 @@ import TextToSVG, {Anchor} from "staff-code-text-to-svg"
 import {Html} from "../../browser"
 import {Multiplier} from "../../math"
 import {BLANK, NEWLINE} from "../constants"
-import {formatPx} from "../format"
 import {Px, TextToSvgOptions} from "./types"
 
 const textToSvg = async (text: string, options: TextToSvgOptions = {}): Promise<Html> => {
@@ -34,13 +33,16 @@ const textToSvg = async (text: string, options: TextToSvgOptions = {}): Promise<
                         features: {liga: true},
                     }
 
-
                     const {width} = textToSVG.getMetrics(textLine, options)
                     if (width > maxWidth) maxWidth = width
 
                     const svgString = textToSVG.getPath(textLine, options)
+
+                    const xOffset = padding
+                    const yOffset = padding + index * lineHeight
+
                     const heightAdjustedAndTranslatedSvgString = svgString
-                        .replace(/<path/, `\t<g transform="translate(0 ${index * lineHeight})">\n\t\t<path`)
+                        .replace(/<path/, `\t<g transform="translate(${xOffset} ${yOffset})">\n\t\t<path`)
                         .replace(/\/>/, `\/>\n\t<\/g>`) as Html
 
                     resolve(heightAdjustedAndTranslatedSvgString)
@@ -49,7 +51,10 @@ const textToSvg = async (text: string, options: TextToSvgOptions = {}): Promise<
         }),
     )
 
-    return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="${lineHeight * lineCount}" width="${maxWidth + extraWidth}" style="padding: ${formatPx(padding)}">\n${pathStrings.join(NEWLINE)}\n</svg>` as Html
+    const height = lineHeight * lineCount + 2 * padding
+    const width = maxWidth + extraWidth + 2 * padding
+
+    return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="${height}" width="${width}">\n${pathStrings.join(NEWLINE)}\n</svg>` as Html
 }
 
 // TODO: TEXT-TO-SVG ISSUE, PACKAGES & @TYPES
