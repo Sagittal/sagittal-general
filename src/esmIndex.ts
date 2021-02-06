@@ -50,8 +50,9 @@ export {
     setAllPropertiesOfObjectOnAnother,
     cleanArray,
     camelCaseToConstantCase,
-    lowerCaseToUpperCase,
+    lowerCaseToSentenceCase,
     camelCaseToKebabCase,
+    sentenceCaseToKebabCase,
     noop,
 } from "./code"
 export {Em, Html, Link, isBrowserMobile, Css} from "./browser"

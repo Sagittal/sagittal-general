@@ -4,7 +4,7 @@ import {
     camelCaseToLowerCase,
     camelCaseToUpperCase,
     constantCaseToUpperCase,
-    lowerCaseToUpperCase,
+    lowerCaseToSentenceCase, sentenceCaseToKebabCase,
 } from "../../../src/code/case"
 
 describe("case", (): void => {
@@ -28,13 +28,18 @@ describe("case", (): void => {
             .toBe("Whats Up Doc 12 Carrots")
     })
 
-    it("lower case to upper case", (): void => {
-        expect(lowerCaseToUpperCase("whats up doc 12 carrots"))
+    it("lower case to sentence case", (): void => {
+        expect(lowerCaseToSentenceCase("whats up doc 12 carrots"))
             .toBe("Whats up doc 12 carrots")
     })
 
     it("camel case to kebab case", (): void => {
         expect(camelCaseToKebabCase("whatsUpDoc12Carrots"))
+            .toBe("whats-up-doc-12-carrots")
+    })
+
+    it("sentence case to kebab case", (): void => {
+        expect(sentenceCaseToKebabCase("Whats up doc 12 carrots"))
             .toBe("whats-up-doc-12-carrots")
     })
 })

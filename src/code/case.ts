@@ -21,7 +21,7 @@ const constantCaseToUpperCase = (str: string): string => {
 const camelCaseToUpperCase = (str: string): string =>
     constantCaseToUpperCase(camelCaseToConstantCase(str))
 
-const lowerCaseToUpperCase = (str: string): string =>
+const lowerCaseToSentenceCase = (str: string): string =>
     str.charAt(0).toUpperCase() + str.slice(1)
 
 const camelCaseToKebabCase = (str: string): string =>
@@ -30,11 +30,17 @@ const camelCaseToKebabCase = (str: string): string =>
         .replace(/([a-z\xE0-\xFF])([0-9])/g, "$1-$2")
         .toLowerCase()
 
+const sentenceCaseToKebabCase = (str: string): string =>
+    str
+        .replace(/\s/g, "-")
+        .toLowerCase()
+
 export {
     camelCaseToConstantCase,
     camelCaseToLowerCase,
     camelCaseToUpperCase,
     constantCaseToUpperCase,
-    lowerCaseToUpperCase,
+    lowerCaseToSentenceCase,
+    sentenceCaseToKebabCase,
     camelCaseToKebabCase,
 }
