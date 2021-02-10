@@ -23,7 +23,7 @@ describe("isUnicodeLiteral", (): void => {
     })
 })
 
-describe("computeUnicodeLiteral", (): void => {
+describe("computeUnicodeLiteralFromUnicode", (): void => {
     it("can get you the codepoint of a given Unicode char, using lowercase", (): void => {
         const unicode = "" as Unicode & Word
 
