@@ -11,6 +11,11 @@ type Io = string & {_IOBrand?: boolean}
 
 type FontName = string & {_FontNameBrand: boolean}
 
+type CaseDesensitized = string & {_CaseDesensitizedBrand: boolean}
+
+type Unicode = string & {_UniBrand: boolean}
+type UnicodeLiteral = string & {_UnicodeLiteralBrand: boolean}
+
 interface IoSettings {
     tableFormat: TableFormat,
 }
@@ -24,4 +29,7 @@ export {
     Char,
     IoSettings,
     FontName,
+    CaseDesensitized,
+    Unicode,
+    UnicodeLiteral,
 }

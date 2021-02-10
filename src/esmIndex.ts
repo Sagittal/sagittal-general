@@ -131,6 +131,12 @@ export {
     formatEm,
     TextToSvgOptions,
     extendWord,
+    CaseDesensitized,
+    Unicode,
+    UnicodeLiteral,
+    isUnicodeLiteral,
+    computeUnicodeLiteralFromUnicode,
+    computeUnicodeFromUnicodeLiteral,
 } from "./io"
 export {
     abs,

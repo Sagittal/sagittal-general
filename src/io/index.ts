@@ -52,7 +52,7 @@ export {
     getWord,
     extendWord,
 } from "./typedOperations"
-export {HexColor, Io, Char, FontName, Sentence, Word, Clause} from "./types"
+export {HexColor, Io, Char, FontName, Sentence, Word, Clause, CaseDesensitized, Unicode, UnicodeLiteral} from "./types"
 export {Basis, computePx, Px, Scale, textToSvg, TextToSvgOptions} from "./image"
 export {
     alignFormattedDecimal,
@@ -71,3 +71,4 @@ export {
     formatPx,
     formatEm,
 } from "./format"
+export {isUnicodeLiteral, computeUnicodeLiteralFromUnicode, computeUnicodeFromUnicodeLiteral} from "./unicodeLiteral"
