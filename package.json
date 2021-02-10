@@ -1,6 +1,6 @@
 {
   "name": "@sagittal/general",
-  "version": "1.0.113",
+  "version": "1.0.114",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/esmIndex.js",
   "types": "dist/cjs/index.d.ts",

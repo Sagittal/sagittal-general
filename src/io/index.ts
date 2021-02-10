@@ -54,6 +54,7 @@ export {
 } from "./typedOperations"
 export {HexColor, Io, Char, FontName, Sentence, Word, Clause, CaseDesensitized, Unicode, UnicodeLiteral} from "./types"
 export {Basis, computePx, Px, Scale, textToSvg, TextToSvgOptions} from "./image"
+export {caseDesensitize} from "./caseDesensitize"
 export {
     alignFormattedDecimal,
     formatIntegerDecimal,

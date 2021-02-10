@@ -137,6 +137,7 @@ export {
     isUnicodeLiteral,
     computeUnicodeLiteralFromUnicode,
     computeUnicodeFromUnicodeLiteral,
+    caseDesensitize,
 } from "./io"
 export {
     abs,
