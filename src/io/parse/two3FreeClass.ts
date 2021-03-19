@@ -1,6 +1,6 @@
 import {
     computeLowestTermsRationalQuotient,
-    computeRationalMonzoFromRationalQuotient,
+    computeRationalPevFromRationalQuotient,
     isQuotientRational,
     isQuotientSub,
 } from "../../math"
@@ -21,7 +21,7 @@ const parse23FreeClass = (two3FreeClassIo: Io): Two3FreeClass => {
     const reducedTwo3FreeQuotient = computeLowestTermsRationalQuotient(two3FreeQuotient)
 
     return {
-        monzo: computeRationalMonzoFromRationalQuotient(reducedTwo3FreeQuotient),
+        pev: computeRationalPevFromRationalQuotient(reducedTwo3FreeQuotient),
     } as Two3FreeClass
 }
 

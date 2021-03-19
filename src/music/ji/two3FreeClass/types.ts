@@ -1,8 +1,8 @@
 import {Grade} from "../../../lfc"
-import {Decimal, Direction, Scamon} from "../../../math"
+import {Decimal, Direction, Spev} from "../../../math"
 
 type Two3FreeClass =
-    Scamon<{rational: true, rough: 5, direction: Direction.SUPER}
+    Spev<{rational: true, rough: 5, direction: Direction.SUPER}
         | {rational: true, rough: 5, direction: Direction.UNISON}>
     & {_Two3FreeClassBrand: boolean}
 

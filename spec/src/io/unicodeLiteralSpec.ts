@@ -1,9 +1,13 @@
-import {BLANK, Io, Unicode, UnicodeLiteral, Word} from "../../../src"
 import {
+    BLANK,
     computeUnicodeFromUnicodeLiteral,
     computeUnicodeLiteralFromUnicode,
+    Io,
     isUnicodeLiteral,
-} from "../../../src/io/unicodeLiteral"
+    Unicode,
+    UnicodeLiteral,
+    Word,
+} from "../../../src"
 
 describe("isUnicodeLiteral", (): void => {
     it("returns true when the input is a unicode literal", (): void => {

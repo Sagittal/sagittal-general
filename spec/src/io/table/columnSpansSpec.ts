@@ -4,7 +4,7 @@ import {computeColumnSpans} from "../../../../src/io"
 describe("computeColumnSpans", (): void => {
     const row = [
         "quotient",
-        "monzo",
+        "pev",
         MERGED_CELL_INDICATOR,
         MERGED_CELL_INDICATOR,
         MERGED_CELL_INDICATOR,

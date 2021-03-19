@@ -1,18 +1,18 @@
 import {
-    computeIrrationalDecimalFromScamon,
-    computeIrrationalMonzoFromScamon,
+    computeIrrationalDecimalFromSpev,
+    computeIrrationalPevFromSpev,
     NumericProperties,
-    Scamon,
+    Spev,
 } from "../../math"
 import {computeCentsFromPitch} from "../cents"
 import {PitchExpectation} from "./types"
 
-const computePitchExpectation = <T extends NumericProperties>(pitch: Scamon<T>): PitchExpectation<T> =>
+const computePitchExpectation = <T extends NumericProperties>(pitch: Spev<T>): PitchExpectation<T> =>
     ({
         pitch,
-        decimal: computeIrrationalDecimalFromScamon(pitch),
+        decimal: computeIrrationalDecimalFromSpev(pitch),
         cents: computeCentsFromPitch(pitch),
-        monzo: computeIrrationalMonzoFromScamon(pitch),
+        pev: computeIrrationalPevFromSpev(pitch),
     }) as PitchExpectation<T>
 
 export {

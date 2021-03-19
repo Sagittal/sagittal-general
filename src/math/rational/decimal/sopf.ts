@@ -1,6 +1,6 @@
 import {Decimal, NumericProperties} from "../../numeric"
 import {Exponent} from "../../types"
-import {computeRationalMonzoFromRationalDecimal} from "../monzo"
+import {computeRationalPevFromRationalDecimal} from "../pev"
 import {computePrimes} from "../primes"
 import {Prime, Sopf} from "../types"
 
@@ -9,11 +9,11 @@ import {Prime, Sopf} from "../types"
 const computeRationalDecimalSopf = <T extends NumericProperties>(
     rationalDecimal: Decimal<T & {rational: true}>,
 ): Sopf<T> => {
-    const rationalMonzo = computeRationalMonzoFromRationalDecimal(rationalDecimal)
+    const rationalPev = computeRationalPevFromRationalDecimal(rationalDecimal)
 
     const primes = computePrimes(rationalDecimal)
 
-    return rationalMonzo.reduce(
+    return rationalPev.reduce(
         (copf: Sopf<T>, primeExponent: Exponent<Prime> & Decimal<{integer: true}>, index: number): Sopf<T> =>
             primeExponent === 0 ? copf : copf + primes[index] as Sopf<T>,
         0 as Sopf<T>,

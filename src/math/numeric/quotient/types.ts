@@ -2,7 +2,7 @@ import {Decimal} from "../decimal"
 import {
     NumericProperties,
     NumericPropertyEffects,
-    NumericPropertyTranslationForMonzosAndQuotientsToTheirTerms,
+    NumericPropertyTranslationForPevsAndQuotientsToTheirTerms,
 } from "../types"
 
 type NumericPropertyTranslationForQuotientsToTheirQuotientParts<T extends NumericProperties = {}> =
@@ -14,9 +14,9 @@ type Denominator = number & {_DenominatorBrand: boolean}
 
 type Quotient<T extends NumericProperties = {}> = [
         Numerator & Decimal<NumericPropertyTranslationForQuotientsToTheirQuotientParts<T>
-        & NumericPropertyTranslationForMonzosAndQuotientsToTheirTerms<T>>,
+        & NumericPropertyTranslationForPevsAndQuotientsToTheirTerms<T>>,
         Denominator & Decimal<NumericPropertyTranslationForQuotientsToTheirQuotientParts<T>
-        & NumericPropertyTranslationForMonzosAndQuotientsToTheirTerms<T>>
+        & NumericPropertyTranslationForPevsAndQuotientsToTheirTerms<T>>
 ] & NumericPropertyEffects<T>
 
 enum QuotientPartType {

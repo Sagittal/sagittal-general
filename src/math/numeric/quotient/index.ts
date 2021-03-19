@@ -1,6 +1,6 @@
 export {isQuotientSub, isQuotientSuper, isQuotientUnison, computeSubQuotient, invertQuotient} from "./direction"
 export {areQuotientsEqual} from "./comparison"
-export {computeQuotientFromMonzo} from "./fromMonzo"
+export {computeQuotientFromPev} from "./fromPev"
 export {
     QuotientPartType,
     Quotient,

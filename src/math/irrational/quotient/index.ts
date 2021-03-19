@@ -1,1 +1,1 @@
-export {computeIrrationalQuotientFromScamon} from "./fromScamon"
+export {computeIrrationalQuotientFromSpev} from "./fromSpev"

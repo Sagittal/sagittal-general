@@ -5,7 +5,7 @@ describe("splitFieldTitlesIntoRowsBySpaces", (): void => {
         "2,3- free class",
         "N2D3P9 rank",
         "best notating comma cents",
-        "best notating comma monzo",
+        "best notating comma pev",
         "best notating comma sagittal",
     ] as Io[]
 
@@ -16,7 +16,7 @@ describe("splitFieldTitlesIntoRowsBySpaces", (): void => {
             ["", "", "best", "best", "best"],
             ["2,3-", "", "notating", "notating", "notating"],
             ["free", "N2D3P9", "comma", "comma", "comma"],
-            ["class", "rank", "cents", "monzo", "sagittal"],
+            ["class", "rank", "cents", "pev", "sagittal"],
         ] as Array<Row<{header: true}>>
         expect(actual).toEqual(expected)
     })
@@ -28,7 +28,7 @@ describe("splitFieldTitlesIntoRowsBySpaces", (): void => {
             ["", "", "best", "best", "best"],
             ["2,3-", "", "notating", "notating", "notating"],
             ["free", "N2D3P9", "comma", "comma", "comma"],
-            ["class", "rank", "cents", "monzo", "sagittal"],
+            ["class", "rank", "cents", "pev", "sagittal"],
             ["", "", "", "", ""],
         ] as Array<Row<{header: true}>>
         expect(actual).toEqual(expected)

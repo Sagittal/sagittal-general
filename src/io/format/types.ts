@@ -10,7 +10,7 @@ enum TimePrecision {
     MS,
 }
 
-interface FormatMonzoOrValOptions {
+interface FormatPevOrMappingOptions {
     punctuated?: boolean,
     abbreviated?: boolean,
 }
@@ -18,5 +18,5 @@ interface FormatMonzoOrValOptions {
 export {
     Formatted,
     TimePrecision,
-    FormatMonzoOrValOptions,
+    FormatPevOrMappingOptions,
 }

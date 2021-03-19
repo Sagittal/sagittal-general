@@ -1,19 +1,19 @@
-import {isQuotientRational, isScamonRational, Scamon} from "../../math"
+import {isQuotientRational, isSpevRational, Spev} from "../../math"
 import {computeCentsFromPitch} from "../../music"
 import {formatCents} from "./cents"
-import {formatMonzo} from "./monzo"
+import {formatPev} from "./pev"
 import {formatQuotient} from "./quotient"
 import {Formatted} from "./types"
 
-const formatPitch = (pitch: Scamon, options: {align?: boolean, noLaTeXScaler?: boolean} = {}): Formatted<Scamon> => {
-    if (isScamonRational(pitch)) {
-        return formatMonzo(pitch.monzo) as Formatted as Formatted<Scamon>
+const formatPitch = (pitch: Spev, options: {align?: boolean, noLaTeXScaler?: boolean} = {}): Formatted<Spev> => {
+    if (isSpevRational(pitch)) {
+        return formatPev(pitch.pev) as Formatted as Formatted<Spev>
     } else {
-        const {scaler, monzo} = pitch
+        const {scaler, pev} = pitch
         if (isQuotientRational(scaler)) {
-            return `${formatMonzo(monzo)}(${formatQuotient(scaler, options)})` as Formatted<Scamon>
+            return `${formatPev(pev)}(${formatQuotient(scaler, options)})` as Formatted<Spev>
         } else {
-            return formatCents(computeCentsFromPitch(pitch), options) as Formatted as Formatted<Scamon>
+            return formatCents(computeCentsFromPitch(pitch), options) as Formatted as Formatted<Spev>
         }
     }
 }

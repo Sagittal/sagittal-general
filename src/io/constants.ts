@@ -4,7 +4,7 @@ import {Char, Io, IoSettings} from "./types"
 
 const IO_PRECISION = 3 as Precision
 
-const IDENTIFYING_MONZO_CHARS = /[\[\]⟩|>]/
+const IDENTIFYING_PEV_CHARS = /[\[\]⟩|>]/
 const IDENTIFYING_COMMA_NAME_CHARS = /[unskCSMLA]/
 const IDENTIFYING_CENTS_CHARS = /[c¢]/
 const IDENTIFYING_QUOTIENT_CHARS = /[\/:]/
@@ -27,7 +27,7 @@ const DEFAULT_IO_SETTINGS: IoSettings = {
 
 export {
     IO_PRECISION,
-    IDENTIFYING_MONZO_CHARS,
+    IDENTIFYING_PEV_CHARS,
     SUPERSCRIPT_NUMBERS,
     NEWLINE,
     SPACE,

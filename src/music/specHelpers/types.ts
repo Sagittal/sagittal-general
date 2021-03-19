@@ -1,11 +1,11 @@
-import {Decimal, Monzo, NumericProperties, Scamon} from "../../math"
+import {Decimal, Pev, NumericProperties, Spev} from "../../math"
 import {Cents} from "../types"
 
 type PitchExpectation<T extends NumericProperties = {}> = {
-    pitch: Scamon<T>,
+    pitch: Spev<T>,
     cents: Cents,
     decimal: Decimal<T>,
-    monzo: Monzo<T>,
+    pev: Pev<T>,
 }
 
 export {

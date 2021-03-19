@@ -1,6 +1,6 @@
 export {Formatted, TimePrecision} from "./types"
-export {formatMonzo} from "./monzo"
-export {formatVal} from "./val"
+export {formatPev} from "./pev"
+export {formatMapping} from "./mapping"
 export {formatDecimal, formatIntegerDecimal, alignFormattedDecimal} from "./decimal"
 export {formatQuotient} from "./quotient"
 export {formatTime} from "./time"

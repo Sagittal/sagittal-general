@@ -1,7 +1,7 @@
 import {MULTIPLICATIVE_IDENTITY} from "../../constants"
 import {Decimal} from "../../numeric"
 import {SMOOTH_ROUGH_OFFSET} from "../constants"
-import {computeRationalMonzoFromRationalDecimal, computeRationalMonzoSmoothness} from "../monzo"
+import {computeRationalPevFromRationalDecimal, computeRationalPevSmoothness} from "../pev"
 import {computeRationalQuotientFromRationalDecimal, computeRationalQuotientSmoothness} from "../quotient"
 import {Primes, Roughness, Smoothness} from "../types"
 import {computeRoughIntegerDecimal} from "./roughness"
@@ -13,9 +13,9 @@ const isIntegerDecimalSmooth = (integerDecimal: Decimal<{integer: true}>, smooth
     ) === MULTIPLICATIVE_IDENTITY
 
 const computeIntegerDecimalSmoothness = (integerDecimal: Decimal<{integer: true}>): Smoothness => {
-    const integerMonzo = computeRationalMonzoFromRationalDecimal(integerDecimal)
+    const integerPev = computeRationalPevFromRationalDecimal(integerDecimal)
 
-    return computeRationalMonzoSmoothness(integerMonzo)
+    return computeRationalPevSmoothness(integerPev)
 }
 
 const computeRationalDecimalSmoothness = (rationalDecimal: Decimal<{rational: true}>): Smoothness => {

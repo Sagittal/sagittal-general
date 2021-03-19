@@ -1,9 +1,9 @@
 import {isUndefined, Maybe} from "../../code"
-import {Max, Min, Scamon} from "../../math"
+import {Max, Min, Spev} from "../../math"
 import {formatPitch} from "./pitch"
 import {Formatted} from "./types"
 
-const formatBound = (bound: Maybe<Min<Scamon> | Max<Scamon>>, exclusive: Maybe<boolean>): Formatted => {
+const formatBound = (bound: Maybe<Min<Spev> | Max<Spev>>, exclusive: Maybe<boolean>): Formatted => {
     if (isUndefined(bound)) {
         return "(none)" as Formatted
     }

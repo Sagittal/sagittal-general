@@ -1,7 +1,7 @@
 import {computeTrimmedArray} from "../../../src"
 
 describe("computeTrimmedArray", (): void => {
-    it("removes trailing falsy elements from the monzo", (): void => {
+    it("removes trailing falsy elements from the pev", (): void => {
         const array = [4, -5, undefined, undefined, undefined]
 
         const actual = computeTrimmedArray(array)
@@ -19,7 +19,7 @@ describe("computeTrimmedArray", (): void => {
         expect(actual).toEqual(expected)
     })
 
-    it("does not mutate the original monzo", (): void => {
+    it("does not mutate the original pev", (): void => {
         const array = [4, -5, 0, 0, 0]
 
         computeTrimmedArray(array)

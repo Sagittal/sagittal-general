@@ -7,7 +7,7 @@ import CustomMatcherResult = jasmine.CustomMatcherResult
 import MatchersUtil = jasmine.MatchersUtil
 import {deepEquals, DEFAULT_PRECISION, isCloseTo, isUndefined, Precision} from "../../code"
 import {Io, SPACE, stringify} from "../../io"
-import {areScamonsEqual, Scamon} from "../../math"
+import {areSpevsEqual, Spev} from "../../math"
 
 const precisionMessage = (precision: Precision): string =>
     isUndefined(precision) ? "" : `, with precision ${precision}`
@@ -34,9 +34,9 @@ const assert = (condition: boolean, message: Io): void => {
     throw message
 }
 
-const testEqualScamons = <T extends Scamon>(actual: T, expected: T, precision: Precision, negate?: boolean, message?: Io): void => {
+const testEqualSpevs = <T extends Spev>(actual: T, expected: T, precision: Precision, negate?: boolean, message?: Io): void => {
     assert(
-        areScamonsEqual(actual, expected, precision),
+        areSpevsEqual(actual, expected, precision),
         message || `Expected pitch ${stringify(actual)} to equal pitch ${stringify(expected)}.` as Io,
     )
 }
@@ -137,10 +137,10 @@ const eachExpectedElementHasSameContentsAsSomeActualElement = <T>(expectedElemen
 }
 
 const customMatchers: CustomMatcherFactories = {
-    toEqualScamon: (util: MatchersUtil, customEqualityTesters: readonly CustomEqualityTester[]): CustomMatcher => ({
-        compare: <T extends Scamon>(actual: T, expected: T, precision: Precision = DEFAULT_PRECISION, negate?: boolean, message?: Io): CustomMatcherResult =>
+    toEqualSpev: (util: MatchersUtil, customEqualityTesters: readonly CustomEqualityTester[]): CustomMatcher => ({
+        compare: <T extends Spev>(actual: T, expected: T, precision: Precision = DEFAULT_PRECISION, negate?: boolean, message?: Io): CustomMatcherResult =>
             doAssertions((): void => {
-                testEqualScamons(actual, expected, precision, negate, message)
+                testEqualSpevs(actual, expected, precision, negate, message)
             }),
     }),
     toBeCloseToTyped: (util: MatchersUtil, customEqualityTesters: readonly CustomEqualityTester[]): CustomMatcher => ({

@@ -1,5 +1,5 @@
 export {Decimal} from "./types"
-export {computeDecimalFromMonzo} from "./fromMonzo"
+export {computeDecimalFromPev} from "./fromPev"
 export {areDecimalsEqual} from "./comparison"
 export {mod, reciprocal, computeArithmeticMean} from "./typedOperations"
 export {computeDecimalFromQuotient} from "./fromQuotient"

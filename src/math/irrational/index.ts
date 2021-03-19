@@ -1,9 +1,9 @@
-export {computeIrrationalDecimalFromScamon} from "./decimal"
-export {computeIrrationalMonzoFromScamon} from "./monzo"
+export {computeIrrationalDecimalFromSpev} from "./decimal"
+export {computeIrrationalPevFromSpev} from "./pev"
 export {
-    computeIrrationalScamonFromDecimal,
-    computeIrrationalScamonFromMonzo,
-    computeIrrationalScamonFromQuotient,
+    computeIrrationalSpevFromDecimal,
+    computeIrrationalSpevFromPev,
+    computeIrrationalSpevFromQuotient,
     HALF_SCALER,
-    IRRATIONAL_SCAMON_BASE_MONZO,
-} from "./scamon"
+    IRRATIONAL_SPEV_BASE_PEV,
+} from "./spev"

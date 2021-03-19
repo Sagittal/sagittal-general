@@ -1,5 +1,5 @@
 import {Decimal, NumericProperties} from "../../numeric"
-import {computeRationalMonzoCopfr, computeRationalMonzoFromRationalDecimal} from "../monzo"
+import {computeRationalPevCopfr, computeRationalPevFromRationalDecimal} from "../pev"
 import {Copfr} from "../types"
 
 // Count Of Prime Factors with Repetition (big omega, Ω)
@@ -7,9 +7,9 @@ import {Copfr} from "../types"
 const computeRationalDecimalCopfr = <T extends NumericProperties>(
     rationalDecimal: Decimal<T & {rational: true}>,
 ): Copfr<T> => {
-    const rationalMonzo = computeRationalMonzoFromRationalDecimal(rationalDecimal)
+    const rationalPev = computeRationalPevFromRationalDecimal(rationalDecimal)
 
-    return computeRationalMonzoCopfr(rationalMonzo)
+    return computeRationalPevCopfr(rationalPev)
 }
 
 export {
