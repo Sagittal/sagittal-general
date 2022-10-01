@@ -1,5 +1,3 @@
-// tslint:disable max-line-length
-
 import { Ranked } from "../../../code"
 import { ScalaPopularityStat } from "./types"
 

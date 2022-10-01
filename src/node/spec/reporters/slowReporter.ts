@@ -33,7 +33,6 @@ const slowReporter: jasmine.CustomReporter = {
         const slowestSpecCount = count(slowestSpecs)
         if (slowestSpecCount) {
             saveLog(`${slowestSpecCount} slowest specs:`, LogTarget.SPEC)
-            // tslint:disable-next-line no-console
             console.table(slowestSpecs)
         }
     },

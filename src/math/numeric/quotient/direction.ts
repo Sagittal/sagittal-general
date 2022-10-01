@@ -4,7 +4,8 @@ import {Denominator, Numerator, Quotient, QuotientPart} from "./types"
 const isQuotientSuper = <T extends NumericProperties>(
     candidateSuperQuotient: Quotient<Omit<T, "direction">>,
 ): candidateSuperQuotient is Quotient<Omit<T, "direction"> & {direction: Direction.SUPER}> => {
-    const [numerator, denominator] = candidateSuperQuotient
+    const numerator: Numerator = candidateSuperQuotient[0]
+    const denominator: Denominator = candidateSuperQuotient[1]
 
     return numerator > denominator
 }
@@ -12,7 +13,8 @@ const isQuotientSuper = <T extends NumericProperties>(
 const isQuotientSub = <T extends NumericProperties>(
     candidateSubQuotient: Quotient<Omit<T, "direction">>,
 ): candidateSubQuotient is Quotient<Omit<T, "direction"> & {direction: Direction.SUB}> => {
-    const [numerator, denominator] = candidateSubQuotient
+    const numerator: Numerator = candidateSubQuotient[0]
+    const denominator: Denominator = candidateSubQuotient[1]
 
     return numerator < denominator
 }
@@ -20,7 +22,8 @@ const isQuotientSub = <T extends NumericProperties>(
 const isQuotientUnison = <T extends NumericProperties>(
     candidateUnisonQuotient: Quotient<Omit<T, "direction">>,
 ): candidateUnisonQuotient is Quotient<Omit<T, "direction"> & {direction: Direction.UNISON}> => {
-    const [numerator, denominator] = candidateUnisonQuotient
+    const numerator: Numerator = candidateUnisonQuotient[0]
+    const denominator: Denominator = candidateUnisonQuotient[1]
 
     return numerator as QuotientPart === denominator as QuotientPart
 }

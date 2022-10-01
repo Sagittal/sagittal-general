@@ -1,5 +1,3 @@
-// tslint:disable max-line-length
-
 import {Max, Prime, Spev} from "../../math"
 import {Window} from "../../types"
 import {Comma} from "./types"

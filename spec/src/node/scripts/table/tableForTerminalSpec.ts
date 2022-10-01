@@ -1,5 +1,3 @@
-// tslint:disable max-line-length
-
 import {Alignment, ColorMethod, Count, Io, NEWLINE, Row, Table} from "../../../../../src"
 import {formatTableForTerminal} from "../../../../../src/node/scripts/table/tableForTerminal"
 

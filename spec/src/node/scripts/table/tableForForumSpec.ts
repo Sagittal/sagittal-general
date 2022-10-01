@@ -1,5 +1,3 @@
-// tslint:disable max-line-length
-
 import {Alignment, Count, Io, MERGED_CELL_INDICATOR, NEWLINE, Row, Table} from "../../../../../src"
 import {formatTableForForum} from "../../../../../src/node/scripts/table/tableForForum"
 

@@ -13,7 +13,6 @@ const saveLog = (message: Io, target: LogTarget = LogTarget.ALL): void => {
     if (scriptSettings.logTargets[LogTarget.ALL] || scriptSettings.logTargets[target] || target === LogTarget.ALL) {
         write(message, target, scriptSettings.logDir)
 
-        // tslint:disable-next-line:no-console
         console.log(colorize(message, targetColors[target]))
     }
 }

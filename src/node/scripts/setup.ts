@@ -22,13 +22,17 @@ const setupScriptAndIo = (logDir?: Filename, defaultLogTargets?: LogTarget[]): v
 
     if (!isUndefined(logDir)) clearLogFiles(logDir)
 
+    // @ts-ignore
     if (!isUndefined(program.tableFormat)) ioSettings.tableFormat = program.tableFormat
 
+    // @ts-ignore
     setLogTargets(program.logTargets || defaultLogTargets && defaultLogTargets.join(COMMA))
 
     const testMode = process?.env?.TEST_MODE
+    // @ts-ignore
     scriptSettings.disableColors = !program.color || !!testMode
 
+    // @ts-ignore
     if (program.time && !testMode) {
         scriptSettings.time = now()
     }
