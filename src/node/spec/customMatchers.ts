@@ -1,7 +1,6 @@
 import CustomMatcher = jasmine.CustomMatcher
 import CustomMatcherFactories = jasmine.CustomMatcherFactories
 import CustomMatcherResult = jasmine.CustomMatcherResult
-import MatchersUtil = jasmine.MatchersUtil
 import {deepEquals, DEFAULT_PRECISION, isCloseTo, isUndefined, Precision} from "../../code"
 import {Io, SPACE, stringify} from "../../io"
 import {areSpevsEqual, Spev} from "../../math"
@@ -134,19 +133,19 @@ const eachExpectedElementHasSameContentsAsSomeActualElement = <T>(expectedElemen
 }
 
 const customMatchers: CustomMatcherFactories = {
-    toEqualSpev: (util: MatchersUtil): CustomMatcher => ({
+    toEqualSpev: (): CustomMatcher => ({
         compare: <T extends Spev>(actual: T, expected: T, precision: Precision = DEFAULT_PRECISION, negate?: boolean, message?: Io): CustomMatcherResult =>
             doAssertions((): void => {
                 testEqualSpevs(actual, expected, precision, negate, message)
             }),
     }),
-    toBeCloseToTyped: (util: MatchersUtil): CustomMatcher => ({
+    toBeCloseToTyped: (): CustomMatcher => ({
         compare: <T extends number>(actual: T, expected: T, precision: Precision = DEFAULT_PRECISION, negate?: boolean, message?: Io): CustomMatcherResult =>
             doAssertions((): void => {
                 testIsCloseTo(actual, expected, precision, negate, message)
             }),
     }),
-    toEqualLines: (util: MatchersUtil): CustomMatcher => ({
+    toEqualLines: (): CustomMatcher => ({
         compare: <T extends string>(actual: T[], expected: T[], precision: Precision = DEFAULT_PRECISION, negate?: boolean, message?: Io): CustomMatcherResult =>
             doAssertions((): void => {
                 assert(
@@ -157,7 +156,7 @@ const customMatchers: CustomMatcherFactories = {
                 arraysOfStringsAreEqualTrailingWhitespaceAgnostic(expected, actual, precision, negate, message)
             }),
     }),
-    toEqualWhitespaceAgnostic: (util: MatchersUtil): CustomMatcher => ({
+    toEqualWhitespaceAgnostic: (): CustomMatcher => ({
         compare: <T extends string>(actual: T, expected: T, negate?: boolean, message?: Io): CustomMatcherResult =>
             doAssertions((): void => {
                 assert(
@@ -166,7 +165,7 @@ const customMatchers: CustomMatcherFactories = {
                 )
             }),
     }),
-    toBeCloseToArray: (util: MatchersUtil): CustomMatcher => ({
+    toBeCloseToArray: (): CustomMatcher => ({
         compare: <T extends number>(actual: T[], expected: T[], precision: Precision = DEFAULT_PRECISION, negate?: boolean, message?: Io): CustomMatcherResult =>
             doAssertions((): void => {
                 assert(
@@ -177,14 +176,14 @@ const customMatchers: CustomMatcherFactories = {
                 arraysAreCloseUpThroughExpected(expected, actual, precision, negate, message)
             }),
     }),
-    toBeArrayWithDeepCloseContents: (util: MatchersUtil): CustomMatcher => ({
+    toBeArrayWithDeepCloseContents: (): CustomMatcher => ({
         compare: <T>(actual: T[], expected: T[], precision: Precision = DEFAULT_PRECISION, message?: Io): CustomMatcherResult =>
             doAssertions((): void => {
                 assert(actual.length === expected.length, `Arrays did not have the same length (expected: ${expected.length}; actual: ${actual.length}), so there is no way they could have the same members (closely).` as Io)
                 eachExpectedElementIsCloseToSomeActualElement(expected, actual, precision, message)
             }),
     }),
-    toBeCloseToObject: (util: MatchersUtil): CustomMatcher => ({
+    toBeCloseToObject: (): CustomMatcher => ({
         compare: <T extends number>(actual: T[], expected: T[], precision: Precision = DEFAULT_PRECISION, negate?: boolean, message?: Io): CustomMatcherResult =>
             doAssertions((): void => {
                 assert(
@@ -193,14 +192,14 @@ const customMatchers: CustomMatcherFactories = {
                 )
             }),
     }),
-    toBeCloseSoFar: (util: MatchersUtil): CustomMatcher => ({
+    toBeCloseSoFar: (): CustomMatcher => ({
         compare: <T extends number>(actual: T[], expected: T[], precision: Precision = DEFAULT_PRECISION, negate?: boolean, message?: Io): CustomMatcherResult =>
             doAssertions((): void => {
                 arraysAreCloseUpThroughExpected(expected, actual, precision, negate, message)
             }),
     }),
     // Depth 1: any order, thenceforth: enforced order (deep equal)
-    toBeArrayWithDeepEqualContents: (util: MatchersUtil): CustomMatcher => ({
+    toBeArrayWithDeepEqualContents: (): CustomMatcher => ({
         compare: <T>(actual: T[], expected: T[], message?: Io): CustomMatcherResult =>
             doAssertions((): void => {
                 assert(actual.length === expected.length, `Arrays did not have the same length (expected: ${expected.length}; actual: ${actual.length}), so there is no way they could have the same members.` as Io)
@@ -208,7 +207,7 @@ const customMatchers: CustomMatcherFactories = {
             }),
     }),
     // Depth 1: any order, depth 2: any order, thenceforth: enforced order (deep equal)
-    toBeSameCombinationsAs: (util: MatchersUtil): CustomMatcher => ({
+    toBeSameCombinationsAs: (): CustomMatcher => ({
         compare: <T>(actual: T[][], expected: T[][], message?: Io): CustomMatcherResult =>
             doAssertions((): void => {
                 assert(actual.length === expected.length, `Arrays did not have the same length (expected: ${expected.length}; actual: ${actual.length}), so there is no way they could have the same members.` as Io)
@@ -216,7 +215,7 @@ const customMatchers: CustomMatcherFactories = {
             }),
     }),
     // Depth 1: any order, depth 2: enforced order, depth 3: any order, thenceforth: enforced order (deep equal)
-    toBeSameDistributionsAs: (util: MatchersUtil): CustomMatcher => ({
+    toBeSameDistributionsAs: (): CustomMatcher => ({
         compare: <T>(actual: T[][][], expected: T[][][], message?: Io): CustomMatcherResult =>
             doAssertions((): void => {
                 assert(actual.length === expected.length, `Arrays did not have the same length (expected: ${expected.length}; actual: ${actual.length}), so there is no way they could have the same members.` as Io)
@@ -233,14 +232,14 @@ const customMatchers: CustomMatcherFactories = {
             }),
     }),
     // Same as toBeArrayWithDeepEqualContents, but without the length match
-    toBeArrayIncludingDeepEqual: (util: MatchersUtil): CustomMatcher => ({
+    toBeArrayIncludingDeepEqual: (): CustomMatcher => ({
         compare: <T>(actual: T[], expected: T[], message?: Io): CustomMatcherResult =>
             doAssertions((): void => {
                 eachExpectedElementDeepEqualsSomeActualElement(expected, actual, message)
             }),
     }),
     // Same as toBeSameCombinationsAs, but without the length match
-    toBeArrayIncludingCombinations: (util: MatchersUtil): CustomMatcher => ({
+    toBeArrayIncludingCombinations: (): CustomMatcher => ({
         compare: <T>(actual: T[][], expected: T[][], message?: Io): CustomMatcherResult =>
             doAssertions((): void => {
                 eachExpectedElementHasSameContentsAsSomeActualElement(expected, actual, message)

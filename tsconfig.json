@@ -23,6 +23,7 @@
     "declaration": true
   },
   "include": [
-    "src"
+    "src",
+    "spec"
   ]
 }
