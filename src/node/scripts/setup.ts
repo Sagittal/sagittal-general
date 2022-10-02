@@ -19,21 +19,18 @@ const setupScriptAndIo = (logDir?: Filename, defaultLogTargets?: LogTarget[]): v
         .option("--no-time", "no time")
 
     program.parse(process?.argv)
+    const {logTargets, color, tableFormat, time} = program.opts()
 
     if (!isUndefined(logDir)) clearLogFiles(logDir)
 
-    // @ts-ignore
-    if (!isUndefined(program.tableFormat)) ioSettings.tableFormat = program.tableFormat
+    if (!isUndefined(tableFormat)) ioSettings.tableFormat = tableFormat
 
-    // @ts-ignore
-    setLogTargets(program.logTargets || defaultLogTargets && defaultLogTargets.join(COMMA))
+    setLogTargets(logTargets || defaultLogTargets && defaultLogTargets.join(COMMA))
 
     const testMode = process?.env?.TEST_MODE
-    // @ts-ignore
-    scriptSettings.disableColors = !program.color || !!testMode
+    scriptSettings.disableColors = !color || !!testMode
 
-    // @ts-ignore
-    if (program.time && !testMode) {
+    if (time && !testMode) {
         scriptSettings.time = now()
     }
 }
