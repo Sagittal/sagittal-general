@@ -1,7 +1,7 @@
 import {
     COMMA_POPULARITIES,
     computeKeyPath,
-    onlyRunInCi,
+    slowTestOnlyRunInFullSuite,
     rank,
     Ranked,
     RankStrategy,
@@ -10,7 +10,7 @@ import {
 
 describe("COMMA_POPULARITIES", (): void => {
     it("the fractional ranks are correct", (): void => {
-        onlyRunInCi()
+        slowTestOnlyRunInFullSuite()
 
         const unrankedPopularities: ScalaPopularityStat[] = COMMA_POPULARITIES
             .map((popularity: Ranked<ScalaPopularityStat>): ScalaPopularityStat => ({

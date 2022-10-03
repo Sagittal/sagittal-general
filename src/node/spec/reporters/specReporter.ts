@@ -1,7 +1,7 @@
 import {SpecReporter} from "jasmine-spec-reporter"
-import {CI_MODE} from "../ciMode"
+import {FULL_MODE} from "../fullMode"
 
-const specReporter = process?.env?.TEST_MODE ? new SpecReporter({summary: {displayPending: CI_MODE}}) : {}
+const specReporter = process?.env?.TEST_MODE ? new SpecReporter({summary: {displayPending: FULL_MODE}}) : {}
 
 export {
     specReporter,

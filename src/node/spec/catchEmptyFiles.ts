@@ -1,10 +1,10 @@
 import * as fs from "fs"
 import * as path from "path"
 import {Filename} from "../types"
-import {CI_MODE} from "./ciMode"
+import {FULL_MODE} from "./fullMode"
 
 const catchEmptyFiles = (basePath: Filename): void => {
-    if (!CI_MODE) return
+    if (!FULL_MODE) return
 
     for (const file of fs.readdirSync(basePath)) {
         const filename = path.join(basePath, file) as Filename

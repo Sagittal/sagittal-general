@@ -2,7 +2,7 @@ export {
     catchBadMainDescriptions,
     catchBadSpecFiles,
     catchEmptyFiles,
-    onlyRunInCi,
+    slowTestOnlyRunInFullSuite,
     customMatchers,
     specReporter,
     specNameReporter,

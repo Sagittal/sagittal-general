@@ -3,7 +3,7 @@ export {
     catchBadMainDescriptions,
     catchBadSpecFiles,
     catchEmptyFiles,
-    onlyRunInCi,
+    slowTestOnlyRunInFullSuite,
     specReporter,
     specNameReporter,
     slowReporter,

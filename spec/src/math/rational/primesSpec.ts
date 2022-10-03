@@ -1,4 +1,4 @@
-import {increment, onlyRunInCi, Prime} from "../../../../src"
+import {increment, slowTestOnlyRunInFullSuite, Prime} from "../../../../src"
 import {computePrimes, MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED} from "../../../../src/math/rational/primes"
 
 describe("computePrimes", (): void => {
@@ -207,7 +207,7 @@ describe("computePrimes", (): void => {
     })
 
     it("can return primes up to 100000000", (): void => {
-        onlyRunInCi()
+        slowTestOnlyRunInFullSuite()
 
         const actual = computePrimes(MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED)
 

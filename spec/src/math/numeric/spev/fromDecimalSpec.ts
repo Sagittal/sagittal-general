@@ -4,7 +4,7 @@ import {
     Decimal,
     IRRATIONAL_SPEV_BASE_PEV,
     Pev,
-    onlyRunInCi,
+    slowTestOnlyRunInFullSuite,
     Quotient,
     Spev,
 } from "../../../../../src"
@@ -34,7 +34,7 @@ describe("computeSpevFromDecimal", (): void => {
     })
 
     it("when given a decimal which is not identified as rational or irrational, but can be construed as rational, returns a rational spev", (): void => {
-        onlyRunInCi()
+        slowTestOnlyRunInFullSuite()
 
         const decimal = 15.94323 as Decimal
 

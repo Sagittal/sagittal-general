@@ -4,12 +4,12 @@ import {isUndefined, Maybe} from "../../code"
 import {Io} from "../../io"
 import {readLines} from "../lines"
 import {Filename} from "../types"
-import {CI_MODE} from "./ciMode"
+import {FULL_MODE} from "./fullMode"
 
 const INDEX_OF_CAPTURED_GROUP = 1
 
 const catchBadMainDescriptions = (basePath: Filename): void => {
-    if (!CI_MODE) return
+    if (!FULL_MODE) return
 
     for (const file of fs.readdirSync(basePath)) {
         const filename = path.join(basePath, file) as Filename
