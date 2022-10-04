@@ -1,3 +1,5 @@
+![test](https://github.com/Sagittal/sagittal-general/actions/workflows/test.yml/badge.svg)
+
 # sagittal-general
 
 general utilities for the Sagittal notation system
