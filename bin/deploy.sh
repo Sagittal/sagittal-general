@@ -3,6 +3,6 @@
 set -e
 
 npm version patch
-npm run build
+make build
 npm publish --access public
 echo Package published. Please commit.
