@@ -14,6 +14,7 @@
     "url": "git+https://github.com/Sagittal/sagittal-general.git"
   },
   "scripts": {
+    "setup": "npm i",
     "build": "make build-cjs && make build-esm",
     "build-cjs": "rm -r dist/cjs/* && tsc --module commonjs --outDir dist/cjs",
     "build-esm": "rm -r dist/esm/* && tsc --module esnext --outDir dist/esm",
