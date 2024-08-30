@@ -1,6 +1,6 @@
 import {Ed, Window} from "../types"
 
-type Parameter = number & {_ParameterValueBrand: boolean}
+type Parameter = number & {_ParameterBrand: boolean}
 
 type DynamicParameterScope = Partial<{
     center: Parameter,
