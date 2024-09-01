@@ -55,7 +55,7 @@ export {
     sentenceCaseToKebabCase,
     noop,
 } from "./code"
-export {Em, Html, Link, isBrowserMobile, Css} from "./browser"
+export {Em, Html, Hyperlink, isBrowserMobile, Css} from "./browser"
 export {
     sumTexts,
     alignFormattedDecimal,

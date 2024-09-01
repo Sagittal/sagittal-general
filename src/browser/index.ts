@@ -1,2 +1,2 @@
-export {Html, Em, Link, Css} from "./types"
+export {Html, Em, Hyperlink, Css} from "./types"
 export {isBrowserMobile} from "./isMobile"
