@@ -5,7 +5,7 @@ const isString = (candidateString: unknown): candidateString is string =>
     typeof candidateString === "string"
 
 const isUndefined = (candidateUndefined: unknown): candidateUndefined is undefined =>
-    typeof candidateUndefined === "undefined"
+    typeof candidateUndefined === "undefined" || candidateUndefined == undefined
 
 const isObject = (candidateObject: unknown): candidateObject is Object =>
     typeof candidateObject === "object"
