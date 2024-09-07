@@ -1,4 +1,5 @@
 import {isString, isUndefined, Maybe, Range} from "../../code"
+import { mod } from "../../math"
 import {Count} from "../../types"
 import {BLANK} from "../constants"
 import {length} from "../typedOperations"
@@ -35,7 +36,7 @@ const furtherAlignCellIo = (alignedCellIo: Io, columnAlignment: Maybe<Alignment>
         alignedCellIo + " " as Io :
         columnAlignment === Alignment.RIGHT ?
             " " + alignedCellIo as Io :
-            alignedCellIo.length % 2 === 0 ?
+            mod(alignedCellIo.length, 2) === 0 ?
                 " " + alignedCellIo as Io :
                 alignedCellIo + " " as Io
 

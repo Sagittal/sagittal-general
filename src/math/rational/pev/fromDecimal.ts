@@ -4,6 +4,7 @@ import {
     Pev,
     NumericProperties,
     NumericPropertyTranslationForPevsAndQuotientsToTheirTerms,
+    mod,
 } from "../../numeric"
 import {Exponent} from "../../types"
 import {computePrimes, MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED} from "../primes"
@@ -39,7 +40,7 @@ const computeIntegerPevFromIntegerDecimal = <T extends NumericProperties>(
         Decimal<NumericPropertyTranslationForPevsAndQuotientsToTheirTerms<T>> & Exponent<Prime>
 
     while (remnant > 1) {
-        if (remnant % divisor === 0) {
+        if (mod(remnant, divisor) === 0) {
             remnant = remnant / divisor
             integerPev[index] = integerPev[index] + 1 as
                 Decimal<NumericPropertyTranslationForPevsAndQuotientsToTheirTerms<T>> & Exponent<Prime>

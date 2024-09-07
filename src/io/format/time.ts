@@ -1,21 +1,21 @@
-import {floor, round} from "../../math"
-import {Ms} from "../../types"
-import {Formatted, TimePrecision} from "./types"
+import { floor, mod, round } from "../../math"
+import { Ms } from "../../types"
+import { Formatted, TimePrecision } from "./types"
 
 const formatTime = (ms: Ms, timePrecision: TimePrecision = TimePrecision.MS): Formatted<Ms> => {
-    const rawMilliseconds = ms % 1000
+    const rawMilliseconds = mod(ms, 1000)
     const milliseconds = timePrecision > TimePrecision.MS ? floor(rawMilliseconds) : round(rawMilliseconds)
 
-    const rawSeconds = (ms / 1000) % 60
+    const rawSeconds = mod((ms / 1000), 60)
     const seconds = timePrecision > TimePrecision.S ? floor(rawSeconds) : round(rawSeconds)
 
-    const rawMinutes = (ms / (1000 * 60)) % 60
+    const rawMinutes = mod((ms / (1000 * 60)), 60)
     const minutes = timePrecision > TimePrecision.M ? floor(rawMinutes) : round(rawMinutes)
 
-    const rawHours = (ms / (1000 * 60 * 60)) % 24
+    const rawHours = mod((ms / (1000 * 60 * 60)), 24)
     const hours = timePrecision > TimePrecision.H ? floor(rawHours) : round(rawHours)
 
-    const rawDays = (ms / (1000 * 60 * 60 * 24)) % 365.25
+    const rawDays = mod((ms / (1000 * 60 * 60 * 24)), 365.25)
     const days = timePrecision > TimePrecision.D ? floor(rawDays) : round(rawDays)
 
     const parts = []

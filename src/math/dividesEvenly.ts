@@ -1,5 +1,7 @@
+import { mod } from "./numeric"
+
 const dividesEvenly = (number: number, modulus: number): boolean =>
-    number % modulus === 0
+    mod(number, modulus) === 0
 
 const isEven = (number: number): boolean =>
     dividesEvenly(number, 2)

@@ -1,5 +1,5 @@
 import {indexOfFinalElement} from "../../code"
-import {Exponent, NumericProperties, Pev, Prime} from "../../math"
+import {Exponent, mod, NumericProperties, Pev, Prime} from "../../math"
 import {BLANK, COMMA, SPACE} from "../constants"
 import {Io} from "../types"
 import {spacePevOrMappingExponent} from "./spacePevOrMappingExponent"
@@ -32,7 +32,7 @@ const formatPev = <T extends NumericProperties>(
             const newContent = maybeSpacePevOrMappingExponent(primeExponent, {abbreviated})
             contents = contents + newContent
             if (index < indexOfFinalElement(two3FreePev)) {
-                if (index % 3 === 2) {
+                if (mod(index, 3) === 2) {
                     contents = contents + punctuatedSeparator
                 } else {
                     contents = contents + SPACE
