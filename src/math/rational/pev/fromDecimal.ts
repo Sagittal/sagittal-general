@@ -1,4 +1,5 @@
 import {indexOfFinalElement, MAX_JS_INTEGER_VALUE} from "../../../code"
+import { dividesEvenly } from "../../dividesEvenly"
 import {
     Decimal,
     Pev,
@@ -40,7 +41,7 @@ const computeIntegerPevFromIntegerDecimal = <T extends NumericProperties>(
         Decimal<NumericPropertyTranslationForPevsAndQuotientsToTheirTerms<T>> & Exponent<Prime>
 
     while (remnant > 1) {
-        if (mod(remnant, divisor) === 0) {
+        if (dividesEvenly(remnant, divisor)) {
             remnant = remnant / divisor
             integerPev[index] = integerPev[index] + 1 as
                 Decimal<NumericPropertyTranslationForPevsAndQuotientsToTheirTerms<T>> & Exponent<Prime>

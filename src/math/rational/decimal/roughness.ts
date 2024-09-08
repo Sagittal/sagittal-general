@@ -1,7 +1,7 @@
 import {increment} from "../../../code"
 import {Index} from "../../../types"
 import {dividesEvenly} from "../../dividesEvenly"
-import {Decimal, mod, NumericProperties} from "../../numeric"
+import {Decimal, NumericProperties} from "../../numeric"
 import {computeRoughnessIndex} from "../primeCount"
 import {computePrimes, MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED} from "../primes"
 import {Prime, Primes, Roughness} from "../types"
@@ -19,7 +19,7 @@ const isIntegerDecimalRough = (integerDecimal: Decimal<{integer: true}>, roughne
             break
         }
 
-        if (mod(integerDecimal, prime) === 0) {
+        if (dividesEvenly(integerDecimal, prime)) {
             isRough = false
             break
         }
