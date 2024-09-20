@@ -1,10 +1,13 @@
-import TextToSVG, {Anchor} from "staff-code-text-to-svg"
-import {Html} from "../../browser"
-import {Multiplier} from "../../math"
-import {BLANK, NEWLINE} from "../constants"
-import {Px, TextToSvgOptions} from "./types"
+import TextToSVG, { Anchor } from "staff-code-text-to-svg"
+import { Html } from "../../browser"
+import { Multiplier } from "../../math"
+import { BLANK, NEWLINE } from "../constants"
+import { Px, TextToSvgOptions } from "./types"
 
-const textToSvg = async (text: string, options: TextToSvgOptions = {}): Promise<Html> => {
+const textToSvgPathString = async (
+    text: string,
+    options: TextToSvgOptions = {},
+): Promise<Html> => {
     const {
         font = BLANK,
         fontSize = 16 as Px,
@@ -19,42 +22,62 @@ const textToSvg = async (text: string, options: TextToSvgOptions = {}): Promise<
     let maxWidth = 0
 
     const pathStrings = await Promise.all(
-        textLines.map(async (textLine: string, index: number): Promise<Html> => {
-            return new Promise((resolve: (value: Html) => void): void => {
-                TextToSVG.load(font, (err: Error | null, textToSVG: TextToSVG | null): void => {
-                    if (!textToSVG) {
-                        throw err
-                    }
+        textLines.map(
+            async (textLine: string, index: number): Promise<Html> => {
+                return new Promise((resolve: (value: Html) => void): void => {
+                    TextToSVG.load(
+                        font,
+                        (
+                            err: Error | null,
+                            textToSVG: TextToSVG | null,
+                        ): void => {
+                            if (!textToSVG) {
+                                throw err
+                            }
 
-                    const options = {
-                        y: ((line - 1) / 2) * fontSize,
-                        fontSize,
-                        anchor: "left top" as Anchor,
-                        features: {liga: true},
-                    }
+                            const options = {
+                                y: ((line - 1) / 2) * fontSize,
+                                fontSize,
+                                anchor: "left top" as Anchor,
+                                features: { liga: true },
+                            }
 
-                    const {width} = textToSVG.getMetrics(textLine, options)
-                    if (width > maxWidth) maxWidth = width
+                            const { width } = textToSVG.getMetrics(
+                                textLine,
+                                options,
+                            )
+                            if (width > maxWidth) maxWidth = width
 
-                    const svgString = textToSVG.getPath(textLine, options)
+                            const svgString = textToSVG.getPath(
+                                textLine,
+                                options,
+                            )
 
-                    const xOffset = padding
-                    const yOffset = padding + index * lineHeight
+                            const xOffset = padding
+                            const yOffset = padding + index * lineHeight
 
-                    const heightAdjustedAndTranslatedSvgString = svgString
-                        .replace(/<path/, `\t<g transform="translate(${xOffset} ${yOffset})">\n\t\t<path`)
-                        .replace(/\/>/, `\/>\n\t<\/g>`) as Html
+                            const heightAdjustedAndTranslatedSvgString =
+                                svgString
+                                    .replace(
+                                        /<path/,
+                                        `\t<g transform="translate(${xOffset} ${yOffset})">\n\t\t<path`,
+                                    )
+                                    .replace(/\/>/, `\/>\n\t<\/g>`) as Html
 
-                    resolve(heightAdjustedAndTranslatedSvgString)
+                            resolve(heightAdjustedAndTranslatedSvgString)
+                        },
+                    )
                 })
-            })
-        }),
+            },
+        ),
     )
 
     const height = lineHeight * lineCount + 2 * padding
     const width = maxWidth + extraWidth + 2 * padding
 
-    return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="${height}" width="${width}">\n${pathStrings.join(NEWLINE)}\n</svg>` as Html
+    return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="${height}" width="${width}">\n${pathStrings.join(
+        NEWLINE,
+    )}\n</svg>` as Html
 }
 
 // TODO: TEXT-TO-SVG ISSUE, PACKAGES & @TYPES
@@ -71,6 +94,4 @@ const textToSvg = async (text: string, options: TextToSvgOptions = {}): Promise<
 //  They show how it may well be the case that our Bravura Text SC lookup tables really are and have to be type 7
 //  Not 4. But you may have to read a few posts ahead of that one linked above.
 
-export {
-    textToSvg,
-}
+export { textToSvgPathString }

@@ -55,7 +55,7 @@ export {
     sentenceCaseToKebabCase,
     noop,
 } from "./code"
-export {Em, Html, Hyperlink, isBrowserMobile, Css} from "./browser"
+export { Em, Html, Hyperlink, isBrowserMobile, Css } from "./browser"
 export {
     sumTexts,
     alignFormattedDecimal,
@@ -111,7 +111,7 @@ export {
     formatBound,
     DEFAULT_IO_SETTINGS,
     formatDecimalAsSuperscript,
-    textToSvg,
+    textToSvgPathString,
     computeLineCount,
     FontName,
     finalChar,
@@ -322,7 +322,20 @@ export {
     computePitchExpectation,
     PitchExpectation,
 } from "./music"
-export {Count, Ed, Extrema, Index, Ms, Name, Abbreviation, Step, Window, Of, Offset, Id} from "./types"
+export {
+    Count,
+    Ed,
+    Extrema,
+    Index,
+    Ms,
+    Name,
+    Abbreviation,
+    Step,
+    Window,
+    Of,
+    Offset,
+    Id,
+} from "./types"
 export {
     Grade,
     Parameter,

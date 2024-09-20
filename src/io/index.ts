@@ -1,4 +1,4 @@
-export {ioSettings} from "./globals"
+export { ioSettings } from "./globals"
 export {
     IDENTIFYING_COMMA_NAME_CHARS,
     IDENTIFYING_PEV_CHARS,
@@ -16,11 +16,17 @@ export {
     DEFAULT_IO_SETTINGS,
 } from "./constants"
 export {
-    parse23FreeClass, parsePev, parseQuotient, parseCents, parseInteger, parseDecimal, DOT_OPERATOR,
+    parse23FreeClass,
+    parsePev,
+    parseQuotient,
+    parseCents,
+    parseInteger,
+    parseDecimal,
+    DOT_OPERATOR,
 } from "./parse"
-export {stringify} from "./stringify"
-export {finalChar} from "./finalChar"
-export {computeLineCount} from "./lineCount"
+export { stringify } from "./stringify"
+export { finalChar } from "./finalChar"
+export { computeLineCount } from "./lineCount"
 export {
     Column,
     Row,
@@ -52,9 +58,27 @@ export {
     getWord,
     extendWord,
 } from "./typedOperations"
-export {HexColor, Io, Char, FontName, Sentence, Word, Clause, CaseDesensitized, Unicode, UnicodeLiteral} from "./types"
-export {Basis, computePx, Px, Scale, textToSvg, TextToSvgOptions} from "./image"
-export {caseDesensitize} from "./caseDesensitize"
+export {
+    HexColor,
+    Io,
+    Char,
+    FontName,
+    Sentence,
+    Word,
+    Clause,
+    CaseDesensitized,
+    Unicode,
+    UnicodeLiteral,
+} from "./types"
+export {
+    Basis,
+    computePx,
+    Px,
+    Scale,
+    textToSvgPathString,
+    TextToSvgOptions,
+} from "./image"
+export { caseDesensitize } from "./caseDesensitize"
 export {
     alignFormattedDecimal,
     formatIntegerDecimal,
@@ -72,4 +96,8 @@ export {
     formatPx,
     formatEm,
 } from "./format"
-export {isUnicodeLiteral, computeUnicodeLiteralFromUnicode, computeUnicodeFromUnicodeLiteral} from "./unicodeLiteral"
+export {
+    isUnicodeLiteral,
+    computeUnicodeLiteralFromUnicode,
+    computeUnicodeFromUnicodeLiteral,
+} from "./unicodeLiteral"
