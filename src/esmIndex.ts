@@ -280,6 +280,8 @@ export {
     maxSpev,
     isNegative,
     isPositive,
+    PI,
+    PHI,
 } from "./math"
 export {
     Cents,

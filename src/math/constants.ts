@@ -1,4 +1,4 @@
-import {Base} from "./types"
+import { Base } from "./types"
 
 const BASE_2: Base = 2 as Base
 
@@ -7,8 +7,11 @@ const MULTIPLICATIVE_IDENTITY = 1
 
 const VALUE_BELOW_WHICH_ROUNDING_IMPLEMENTATION_BREAKS: number = 1 / 1000000
 
-const RADIANS_TO_DEGREES = 180 / Math.PI
-const DEGREES_TO_RADIANS = Math.PI / 180
+const PI: number = Math.PI
+const PHI: number = (1 + Math.sqrt(5)) / 2
+
+const RADIANS_TO_DEGREES = 180 / PI
+const DEGREES_TO_RADIANS = PI / 180
 
 export {
     ADDITIVE_IDENTITY,
@@ -17,4 +20,6 @@ export {
     BASE_2,
     RADIANS_TO_DEGREES,
     DEGREES_TO_RADIANS,
+    PI,
+    PHI,
 }

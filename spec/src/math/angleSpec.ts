@@ -1,5 +1,6 @@
-import {computeAngle} from "../../../src"
-import {Coordinates, Radians} from "../../../src/math/types"
+import { computeAngle } from "../../../src"
+import { PI } from "../../../src/math/constants"
+import { Coordinates, Radians } from "../../../src/math/types"
 
 describe("computeAngle", (): void => {
     it("works for a horizontal line", (): void => {
@@ -18,7 +19,7 @@ describe("computeAngle", (): void => {
 
         const actual = computeAngle(origin, point)
 
-        const expected = Math.PI / 2 as Radians
+        const expected = (PI / 2) as Radians
         expect(actual).toBe(expected)
     })
 })

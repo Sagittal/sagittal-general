@@ -1,5 +1,5 @@
 export {computeCombinations} from "./combinations"
-export {BASE_2, ADDITIVE_IDENTITY} from "./constants"
+export {BASE_2, ADDITIVE_IDENTITY, PI, PHI} from "./constants"
 export {
     isQuotientSub,
     isQuotientSuper,
