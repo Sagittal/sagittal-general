@@ -282,6 +282,7 @@ export {
     isPositive,
     PI,
     PHI,
+    subtractPevs,
 } from "./math"
 export {
     Cents,
