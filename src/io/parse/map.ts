@@ -13,7 +13,7 @@ const parseMap = (mapIo: Io): Map => {
         fakeTmpPevIo = fakeTmpPevIo.replace("]", "⟩")
     }
 
-    return parsePev(fakeTmpPevIo) as Exponent[] as Map
+    return parsePev(fakeTmpPevIo) as unknown as Map
 }
 
 export { parseMap }
