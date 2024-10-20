@@ -83,7 +83,7 @@ export {
     alignFormattedDecimal,
     formatIntegerDecimal,
     formatPev,
-    formatMapping,
+    formatMap,
     formatDecimal,
     formatQuotient,
     formatTime,

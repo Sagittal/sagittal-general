@@ -1,5 +1,5 @@
-export {computeCombinations} from "./combinations"
-export {BASE_2, ADDITIVE_IDENTITY, PI, PHI} from "./constants"
+export { computeCombinations } from "./combinations"
+export { BASE_2, ADDITIVE_IDENTITY, PI, PHI } from "./constants"
 export {
     isQuotientSub,
     isQuotientSuper,
@@ -54,17 +54,17 @@ export {
     invertSpev,
     multiplySpev,
     invertQuotient,
-    Mapping,
-    computePevMapping,
-    computeStandardMapping,
+    Map,
+    mapPev,
+    computeSimpleMap,
     scaleSpev,
     computeArithmeticMean,
     maxSpev,
 } from "./numeric"
-export {computeDistributions} from "./distributions"
-export {dividesEvenly, isEven, isOdd} from "./dividesEvenly"
-export {computeAngle, radiansToDegrees} from "./angle"
-export {computeTriangularNumber} from "./triangularNumber"
+export { computeDistributions } from "./distributions"
+export { dividesEvenly, isEven, isOdd } from "./dividesEvenly"
+export { computeAngle, radiansToDegrees } from "./angle"
+export { computeTriangularNumber } from "./triangularNumber"
 export {
     abs,
     count,

@@ -39,9 +39,9 @@ export {
     subtractPevs,
     EMPTY_PEV,
     addPevs,
-    Mapping,
-    computePevMapping,
-    computeStandardMapping,
+    Map,
+    mapPev,
+    computeSimpleMap,
 } from "./pev"
 export {
     Spev,

@@ -1,6 +1,6 @@
-import {Io} from "../types"
+import { Io } from "../types"
 
-type Formatted<T = unknown> = Io & {_FormattedBrand: T}
+type Formatted<T = unknown> = Io & { _FormattedBrand: T }
 
 enum TimePrecision {
     D,
@@ -10,13 +10,9 @@ enum TimePrecision {
     MS,
 }
 
-interface FormatPevOrMappingOptions {
-    punctuated?: boolean,
-    abbreviated?: boolean,
+interface FormatPevOrMapOptions {
+    punctuated?: boolean
+    abbreviated?: boolean
 }
 
-export {
-    Formatted,
-    TimePrecision,
-    FormatPevOrMappingOptions,
-}
+export { Formatted, TimePrecision, FormatPevOrMapOptions }
