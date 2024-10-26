@@ -26,12 +26,12 @@ type NumericPropertyEffects<T> =
     & (T extends {rational: false} ? {_IrrationalBrand: boolean} : {})
     & (T extends {integer: true} ? {_RationalBrand: boolean, _IntegerBrand: boolean} : {})
 
-type NumericPropertyTranslationForPevsAndQuotientsToTheirTerms<T extends NumericProperties = {}> =
+type NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms<T extends NumericProperties = {}> =
     & (T extends {rational: true} ? {integer: true} : {})
 
 export {
     NumericProperties,
     Direction,
     NumericPropertyEffects,
-    NumericPropertyTranslationForPevsAndQuotientsToTheirTerms,
+    NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms,
 }

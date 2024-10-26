@@ -1,5 +1,5 @@
 export {Decimal} from "./types"
-export {computeDecimalFromPev} from "./fromPev"
+export {computeDecimalFromVector} from "./fromVector"
 export {areDecimalsEqual} from "./comparison"
 export {mod, reciprocal, computeArithmeticMean} from "./typedOperations"
 export {computeDecimalFromQuotient} from "./fromQuotient"

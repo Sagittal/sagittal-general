@@ -10,9 +10,9 @@ enum TimePrecision {
     MS,
 }
 
-interface FormatPevOrMapOptions {
+interface FormatVectorOrMapOptions {
     punctuated?: boolean
     abbreviated?: boolean
 }
 
-export { Formatted, TimePrecision, FormatPevOrMapOptions }
+export { Formatted, TimePrecision, FormatVectorOrMapOptions }

@@ -1,9 +1,9 @@
-export {computeIrrationalDecimalFromSpev} from "./decimal"
-export {computeIrrationalPevFromSpev} from "./pev"
+export { computeIrrationalDecimalFromScaledVector } from "./decimal"
+export { computeIrrationalVectorFromScaledVector } from "./vector"
 export {
-    computeIrrationalSpevFromDecimal,
-    computeIrrationalSpevFromPev,
-    computeIrrationalSpevFromQuotient,
+    computeIrrationalScaledVectorFromDecimal,
+    computeIrrationalScaledVectorFromVector,
+    computeIrrationalScaledVectorFromQuotient,
     HALF_SCALER,
-    IRRATIONAL_SPEV_BASE_PEV,
-} from "./spev"
+    IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
+} from "./scaledVector"

@@ -5,30 +5,30 @@ import {
     computePitchFromCents,
     Decimal,
     dividePitch,
-    halveSpev,
-    IRRATIONAL_SPEV_BASE_PEV,
-    Spev,
+    halveScaledVector,
+    IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
+    ScaledVector,
 } from "../../../src"
 
 describe("dividePitch", (): void => {
     it("returns the proportion the part pitch is of the whole pitch", (): void => {
-        const actual = dividePitch(halveSpev(APOTOME), APOTOME)
+        const actual = dividePitch(halveScaledVector(APOTOME), APOTOME)
 
-        const expected = 0.5 as Decimal<{rational: false}>
+        const expected = 0.5 as Decimal<{ rational: false }>
         expect(actual).toBeCloseTo(expected)
     })
 })
 
 describe("computePitchFromCents", (): void => {
-    it("when given a cents value that is almost certainly a JI pitch, still doesn't presume to return one                ", (): void => {
+    it("when given a cents value that is almost certainly a JI pitch, still doesn't presume to return one", (): void => {
         const cents = 701.955000865 as Cents
 
         const actual = computePitchFromCents(cents)
 
         const expected = {
-            pev: IRRATIONAL_SPEV_BASE_PEV,
+            vector: IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
             scaler: [0.584963, 1],
-        } as Spev<{rational: false}>
+        } as ScaledVector<{ rational: false }>
         expect(actual).toBeCloseToObject(expected)
     })
 
@@ -38,16 +38,18 @@ describe("computePitchFromCents", (): void => {
         const actual = computePitchFromCents(cents)
 
         const expected = {
-            pev: IRRATIONAL_SPEV_BASE_PEV,
+            vector: IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
             scaler: [0.5, 1],
-        } as Spev<{rational: false}>
+        } as ScaledVector<{ rational: false }>
         expect(actual).toBeCloseToObject(expected)
     })
 })
 
 describe("computeCentsFromPitch", (): void => {
-    it("returns the cents of a pitch with a pev", (): void => {
-        const pitch = {pev: [-1, 2, 0, -2, 1]} as Spev<{rational: true}>
+    it("returns the cents of a pitch with a vector", (): void => {
+        const pitch = { vector: [-1, 2, 0, -2, 1] } as ScaledVector<
+            { rational: true }
+        >
 
         const actual = computeCentsFromPitch(pitch)
 
@@ -55,8 +57,8 @@ describe("computeCentsFromPitch", (): void => {
         expect(actual).toBeCloseToTyped(expected)
     })
 
-    it("works for pitches with pevs with really big 2 exponents", (): void => {
-        const pitch = {pev: [317, -200]} as Spev<{rational: true}>
+    it("works for pitches with vectors with really big counts of prime 2", (): void => {
+        const pitch = { vector: [317, -200] } as ScaledVector<{ rational: true }>
 
         const actual = computeCentsFromPitch(pitch)
 
@@ -64,8 +66,8 @@ describe("computeCentsFromPitch", (): void => {
         expect(actual).toBeCloseToTyped(expected)
     })
 
-    it("works for pitches with pevs that are greater than an octave", (): void => {
-        const pitch = {pev: [0, 1]} as Spev<{rational: true}>
+    it("works for pitches with vectors that are greater than an octave", (): void => {
+        const pitch = { vector: [0, 1] } as ScaledVector<{ rational: true }>
 
         const actual = computeCentsFromPitch(pitch)
 
@@ -74,7 +76,9 @@ describe("computeCentsFromPitch", (): void => {
     })
 
     it("another example, negative", (): void => {
-        const pitch = {pev: [2, 1, 0, 0, 0, -1]} as Spev<{rational: true}>
+        const pitch = { vector: [2, 1, 0, 0, 0, -1] } as ScaledVector<
+            { rational: true }
+        >
 
         const actual = computeCentsFromPitch(pitch)
 
@@ -83,7 +87,7 @@ describe("computeCentsFromPitch", (): void => {
     })
 
     it("works for this huge 3-limit example, upwards", (): void => {
-        const pitch = {pev: [-1726, 1330]} as Spev<{rational: true}>
+        const pitch = { vector: [-1726, 1330] } as ScaledVector<{ rational: true }>
 
         const actual = computeCentsFromPitch(pitch)
 
@@ -92,7 +96,7 @@ describe("computeCentsFromPitch", (): void => {
     })
 
     it("works for this huge 3-limit example, downwards", (): void => {
-        const pitch = {pev: [1726, -1330]} as Spev<{rational: true}>
+        const pitch = { vector: [1726, -1330] } as ScaledVector<{ rational: true }>
 
         const actual = computeCentsFromPitch(pitch)
 

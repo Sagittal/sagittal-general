@@ -2,7 +2,7 @@ import {format23FreeClass, Formatted, ioSettings, TableFormat, Two3FreeClass} fr
 
 describe("format23FreeClass", (): void => {
     it("gives the name of the 2,3-free class when formatting for the terminal", (): void => {
-        const two3FreeClass = {pev: [0, 0, -1, 0, 1]} as Two3FreeClass
+        const two3FreeClass = {vector: [0, 0, -1, 0, 1]} as Two3FreeClass
 
         ioSettings.tableFormat = TableFormat.TERMINAL
         const actual = format23FreeClass(two3FreeClass)
@@ -12,7 +12,7 @@ describe("format23FreeClass", (): void => {
     })
 
     it("same when formatting for spreadsheets", (): void => {
-        const two3FreeClass = {pev: [0, 0, -1, 0, 1]} as Two3FreeClass
+        const two3FreeClass = {vector: [0, 0, -1, 0, 1]} as Two3FreeClass
 
         ioSettings.tableFormat = TableFormat.SPREADSHEET
         const actual = format23FreeClass(two3FreeClass)
@@ -22,7 +22,7 @@ describe("format23FreeClass", (): void => {
     })
 
     it("uses the LaTeX bbCode when formatting for the forum, and needs to cancel the pre tags in order for it to display properly", (): void => {
-        const two3FreeClass = {pev: [0, 0, -1, 0, 1]} as Two3FreeClass
+        const two3FreeClass = {vector: [0, 0, -1, 0, 1]} as Two3FreeClass
 
         ioSettings.tableFormat = TableFormat.FORUM
         const actual = format23FreeClass(two3FreeClass)
@@ -32,7 +32,7 @@ describe("format23FreeClass", (): void => {
     })
 
     it("can drop the denominator of 1 when formatting for the forum", (): void => {
-        const two3FreeClass = {pev: [0, 0, 0, 1, 1]} as Two3FreeClass
+        const two3FreeClass = {vector: [0, 0, 0, 1, 1]} as Two3FreeClass
 
         ioSettings.tableFormat = TableFormat.FORUM
         const actual = format23FreeClass(two3FreeClass)

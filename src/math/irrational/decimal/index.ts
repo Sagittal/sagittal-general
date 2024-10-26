@@ -1,1 +1,1 @@
-export {computeIrrationalDecimalFromSpev} from "./fromSpev"
+export {computeIrrationalDecimalFromScaledVector} from "./fromScaledVector"

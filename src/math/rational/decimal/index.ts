@@ -1,6 +1,6 @@
 export {computeRationalDecimalCopfr} from "./copfr"
 export {computeRationalDecimalCopf} from "./copf"
-export {computeRationalDecimalFromRationalSpev} from "./fromSpev"
+export {computeRationalDecimalFromRationalScaledVector} from "./fromScaledVector"
 export {computeRationalDecimalGpf} from "./gpf"
 export {isDecimalRational, isDecimalInteger} from "./typeGuards"
 export {isIntegerDecimalSmooth, computeRationalDecimalSmoothness, computeIntegerDecimalSmoothness} from "./smoothness"

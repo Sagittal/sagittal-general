@@ -3,7 +3,7 @@ import CustomMatcherFactories = jasmine.CustomMatcherFactories
 import CustomMatcherResult = jasmine.CustomMatcherResult
 import {deepEquals, DEFAULT_PRECISION, isCloseTo, isUndefined, Precision} from "../../code"
 import {Io, SPACE, stringify} from "../../io"
-import {areSpevsEqual, Spev} from "../../math"
+import {areScaledVectorsEqual, ScaledVector} from "../../math"
 
 const precisionMessage = (precision: Precision): string =>
     isUndefined(precision) ? "" : `, with precision ${precision}`
@@ -30,9 +30,9 @@ const assert = (condition: boolean, message: Io): void => {
     throw message
 }
 
-const testEqualSpevs = <T extends Spev>(actual: T, expected: T, precision: Precision, negate?: boolean, message?: Io): void => {
+const testEqualScaledVectors = <T extends ScaledVector>(actual: T, expected: T, precision: Precision, negate?: boolean, message?: Io): void => {
     assert(
-        areSpevsEqual(actual, expected, precision),
+        areScaledVectorsEqual(actual, expected, precision),
         message || `Expected pitch ${stringify(actual)} to equal pitch ${stringify(expected)}.` as Io,
     )
 }
@@ -133,10 +133,10 @@ const eachExpectedElementHasSameContentsAsSomeActualElement = <T>(expectedElemen
 }
 
 const customMatchers: CustomMatcherFactories = {
-    toEqualSpev: (): CustomMatcher => ({
-        compare: <T extends Spev>(actual: T, expected: T, precision: Precision = DEFAULT_PRECISION, negate?: boolean, message?: Io): CustomMatcherResult =>
+    toEqualScaledVector: (): CustomMatcher => ({
+        compare: <T extends ScaledVector>(actual: T, expected: T, precision: Precision = DEFAULT_PRECISION, negate?: boolean, message?: Io): CustomMatcherResult =>
             doAssertions((): void => {
-                testEqualSpevs(actual, expected, precision, negate, message)
+                testEqualScaledVectors(actual, expected, precision, negate, message)
             }),
     }),
     toBeCloseToTyped: (): CustomMatcher => ({

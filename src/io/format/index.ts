@@ -1,11 +1,7 @@
 export { Formatted, TimePrecision } from "./types"
-export { formatPev } from "./pev"
+export { formatVector } from "./vector"
 export { formatMap } from "./map"
-export {
-    formatDecimal,
-    formatIntegerDecimal,
-    alignFormattedDecimal,
-} from "./decimal"
+export { formatDecimal, formatIntegerDecimal, alignFormattedDecimal } from "./decimal"
 export { formatQuotient } from "./quotient"
 export { formatTime } from "./time"
 export { formatPitch } from "./pitch"

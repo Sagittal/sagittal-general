@@ -15,6 +15,7 @@ export {
     SEPTIMAL_COMMA,
     SEPTIMAL_KLEISMA,
     SYNTONIC_COMMA,
+    OCTAVE,
 } from "./constants"
 export {Comma, Apotome} from "./types"
 export {

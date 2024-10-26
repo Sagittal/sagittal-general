@@ -1,18 +1,18 @@
 import {
-    computeIrrationalDecimalFromSpev,
-    computeIrrationalPevFromSpev,
+    computeIrrationalDecimalFromScaledVector,
+    computeIrrationalVectorFromScaledVector,
     NumericProperties,
-    Spev,
+    ScaledVector,
 } from "../../math"
 import {computeCentsFromPitch} from "../cents"
 import {PitchExpectation} from "./types"
 
-const computePitchExpectation = <T extends NumericProperties>(pitch: Spev<T>): PitchExpectation<T> =>
+const computePitchExpectation = <T extends NumericProperties>(pitch: ScaledVector<T>): PitchExpectation<T> =>
     ({
         pitch,
-        decimal: computeIrrationalDecimalFromSpev(pitch),
+        decimal: computeIrrationalDecimalFromScaledVector(pitch),
         cents: computeCentsFromPitch(pitch),
-        pev: computeIrrationalPevFromSpev(pitch),
+        vector: computeIrrationalVectorFromScaledVector(pitch),
     }) as PitchExpectation<T>
 
 export {

@@ -1,30 +1,32 @@
 import {
     BASE_2,
-    computeIrrationalDecimalFromSpev,
-    computeSpevFromDecimal,
+    computeIrrationalDecimalFromScaledVector,
+    computeScaledVectorFromDecimal,
     Decimal,
     log,
-    Spev,
+    ScaledVector,
     subtract,
 } from "../math"
-import {CENTS_PER_OCTAVE} from "./constants"
-import {Cents} from "./types"
+import { CENTS_PER_OCTAVE } from "./constants"
+import { Cents } from "./types"
 
-const computePitchFromCents = (cents: Cents): Spev<{rational: false}> =>
-    computeSpevFromDecimal(2 ** (cents / CENTS_PER_OCTAVE) as Decimal<{rational: false}>)
+const computePitchFromCents = (cents: Cents): ScaledVector<{ rational: false }> =>
+    computeScaledVectorFromDecimal(
+        (2 ** (cents / CENTS_PER_OCTAVE)) as Decimal<{ rational: false }>,
+    )
 
-const computeCentsFromPitch = (pitch: Spev): Cents =>
-    log(computeIrrationalDecimalFromSpev(pitch), BASE_2) * CENTS_PER_OCTAVE as Cents
+const computeCentsFromPitch = (pitch: ScaledVector): Cents =>
+    (log(computeIrrationalDecimalFromScaledVector(pitch), BASE_2) * CENTS_PER_OCTAVE) as Cents
 
-const dividePitch = (dividendPitch: Spev, divisorPitch: Spev): Decimal<{rational: false}> =>
-    computeCentsFromPitch(dividendPitch) / computeCentsFromPitch(divisorPitch) as Decimal<{rational: false}>
+const dividePitch = (
+    dividendPitch: ScaledVector,
+    divisorPitch: ScaledVector,
+): Decimal<{ rational: false }> =>
+    (computeCentsFromPitch(dividendPitch) / computeCentsFromPitch(divisorPitch)) as Decimal<{
+        rational: false
+    }>
 
-const subtractPitch = (minuendPitch: Spev, subtrahendPitch: Spev): Cents =>
+const subtractPitch = (minuendPitch: ScaledVector, subtrahendPitch: ScaledVector): Cents =>
     subtract(computeCentsFromPitch(minuendPitch), computeCentsFromPitch(subtrahendPitch))
 
-export {
-    dividePitch,
-    subtractPitch,
-    computePitchFromCents,
-    computeCentsFromPitch,
-}
+export { dividePitch, subtractPitch, computePitchFromCents, computeCentsFromPitch }

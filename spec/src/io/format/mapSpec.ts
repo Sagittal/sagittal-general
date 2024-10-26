@@ -2,7 +2,7 @@ import { Map } from "../../../../src"
 import { formatMap } from "../../../../src/io"
 
 describe("formatMap", (): void => {
-    it("formats it correctly, with enough space that 2-digit negative exponents will line up", (): void => {
+    it("formats it correctly, with enough space that 2-digit negative counts will line up", (): void => {
         const map = [-8, -6, 3, 5, -1] as Map
 
         const actual = formatMap(map)

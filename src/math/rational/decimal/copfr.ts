@@ -1,5 +1,5 @@
 import {Decimal, NumericProperties} from "../../numeric"
-import {computeRationalPevCopfr, computeRationalPevFromRationalDecimal} from "../pev"
+import {computeRationalVectorCopfr, computeRationalVectorFromRationalDecimal} from "../vector"
 import {Copfr} from "../types"
 
 // Count Of Prime Factors with Repetition (big omega, Ω)
@@ -7,9 +7,9 @@ import {Copfr} from "../types"
 const computeRationalDecimalCopfr = <T extends NumericProperties>(
     rationalDecimal: Decimal<T & {rational: true}>,
 ): Copfr<T> => {
-    const rationalPev = computeRationalPevFromRationalDecimal(rationalDecimal)
+    const rationalVector = computeRationalVectorFromRationalDecimal(rationalDecimal)
 
-    return computeRationalPevCopfr(rationalPev)
+    return computeRationalVectorCopfr(rationalVector)
 }
 
 export {

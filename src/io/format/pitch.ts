@@ -1,23 +1,27 @@
-import {isQuotientRational, isSpevRational, Spev} from "../../math"
-import {computeCentsFromPitch} from "../../music"
-import {formatCents} from "./cents"
-import {formatPev} from "./pev"
-import {formatQuotient} from "./quotient"
-import {Formatted} from "./types"
+import { isQuotientRational, isScaledVectorRational, ScaledVector } from "../../math"
+import { computeCentsFromPitch } from "../../music"
+import { formatCents } from "./cents"
+import { formatVector } from "./vector"
+import { formatQuotient } from "./quotient"
+import { Formatted } from "./types"
 
-const formatPitch = (pitch: Spev, options: {align?: boolean, noLaTeXScaler?: boolean} = {}): Formatted<Spev> => {
-    if (isSpevRational(pitch)) {
-        return formatPev(pitch.pev) as Formatted as Formatted<Spev>
+const formatPitch = (
+    pitch: ScaledVector,
+    options: { align?: boolean; noLaTeXScaler?: boolean } = {},
+): Formatted<ScaledVector> => {
+    if (isScaledVectorRational(pitch)) {
+        return formatVector(pitch.vector) as Formatted as Formatted<ScaledVector>
     } else {
-        const {scaler, pev} = pitch
+        const { scaler, vector } = pitch
         if (isQuotientRational(scaler)) {
-            return `${formatPev(pev)}(${formatQuotient(scaler, options)})` as Formatted<Spev>
+            return `${formatVector(vector)}(${formatQuotient(scaler, options)})` as Formatted<ScaledVector>
         } else {
-            return formatCents(computeCentsFromPitch(pitch), options) as Formatted as Formatted<Spev>
+            return formatCents(
+                computeCentsFromPitch(pitch),
+                options,
+            ) as Formatted as Formatted<ScaledVector>
         }
     }
 }
 
-export {
-    formatPitch,
-}
+export { formatPitch }

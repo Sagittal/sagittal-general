@@ -1,7 +1,7 @@
 export { ioSettings } from "./globals"
 export {
     IDENTIFYING_COMMA_NAME_CHARS,
-    IDENTIFYING_PEV_CHARS,
+    IDENTIFYING_VECTOR_CHARS,
     IDENTIFYING_ACCIDENTAL_CHARS,
     BLANK,
     IO_PRECISION,
@@ -17,7 +17,7 @@ export {
 } from "./constants"
 export {
     parse23FreeClass,
-    parsePev,
+    parseVector,
     parseQuotient,
     parseCents,
     parseInteger,
@@ -70,19 +70,12 @@ export {
     Unicode,
     UnicodeLiteral,
 } from "./types"
-export {
-    Basis,
-    computePx,
-    Px,
-    Scale,
-    textToSvgPathString,
-    TextToSvgOptions,
-} from "./image"
+export { Basis, computePx, Px, Scale, textToSvgPathString, TextToSvgOptions } from "./image"
 export { caseDesensitize } from "./caseDesensitize"
 export {
     alignFormattedDecimal,
     formatIntegerDecimal,
-    formatPev,
+    formatVector,
     formatMap,
     formatDecimal,
     formatQuotient,

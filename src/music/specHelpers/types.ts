@@ -1,11 +1,11 @@
-import {Decimal, Pev, NumericProperties, Spev} from "../../math"
+import {Decimal, Vector, NumericProperties, ScaledVector} from "../../math"
 import {Cents} from "../types"
 
 type PitchExpectation<T extends NumericProperties = {}> = {
-    pitch: Spev<T>,
+    pitch: ScaledVector<T>,
     cents: Cents,
     decimal: Decimal<T>,
-    pev: Pev<T>,
+    vector: Vector<T>,
 }
 
 export {
