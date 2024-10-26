@@ -2,13 +2,7 @@ import { isScaledVectorRational, Vector, Quotient, ScaledVector } from "../../..
 
 describe("isScaledVectorRational", (): void => {
     it("returns true if the scaler is absent", (): void => {
-        const candidateRationalScaledVector = { vector: [5, 4] } as ScaledVector<
-            number,
-            {
-                number
-                rational: true
-            }
-        >
+        const candidateRationalScaledVector = { vector: [5, 4] } as ScaledVector<{ rational: true }>
 
         const actual = isScaledVectorRational(candidateRationalScaledVector)
 
