@@ -60,6 +60,7 @@ export {
     scaleSpev,
     computeArithmeticMean,
     maxSpev,
+    computeSubSpev,
 } from "./numeric"
 export { computeDistributions } from "./distributions"
 export { dividesEvenly, isEven, isOdd } from "./dividesEvenly"

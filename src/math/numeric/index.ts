@@ -63,6 +63,7 @@ export {
     multiplySpev,
     scaleSpev,
     maxSpev,
+    computeSubSpev,
 } from "./spev"
 export {
     Direction,

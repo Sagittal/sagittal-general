@@ -284,6 +284,7 @@ export {
     PHI,
     subtractPevs,
     isQuotientSub,
+    computeSubSpev,
 } from "./math"
 export {
     Cents,
