@@ -8,7 +8,7 @@ import {
 } from "../types"
 
 type Vector<T extends NumericProperties = {}> = Array<
-    Exponent<Prime> & Count<Prime> & NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms<T>
+    Count<Prime> & Exponent<Prime> & NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms<T>
 > &
     NumericPropertyEffects<T>
 

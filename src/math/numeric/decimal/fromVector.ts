@@ -19,9 +19,7 @@ const isDecimalWithLostPrecision = (decimal: Decimal): boolean =>
     decimal > MAX_JS_VALUE_PRESERVING_MAX_PRECISION ||
     decimal < MIN_JS_VALUE_PRESERVING_MAX_PRECISION
 
-const computeDecimalFromHugeVector = <T extends NumericProperties>(
-    vector: Vector<T>,
-): Decimal<T> => {
+const computeDecimalFromHugeVector = <T extends NumericProperties>(vector: Vector<T>): Decimal<T> => {
     let decimal = MULTIPLICATIVE_IDENTITY as Decimal<T>
     let depletingVector = shallowClone(vector)
     let maybeNewDecimal
