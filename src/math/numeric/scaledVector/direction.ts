@@ -26,57 +26,31 @@ const isScaledVectorUnison = <T extends NumericProperties>(
 ): candidateUnisonScaledVector is ScaledVector<T & { direction: Direction.UNISON }> =>
     isDecimalUnison(computeIrrationalDecimalFromScaledVector(candidateUnisonScaledVector))
 
-const computeSuperScaledVector: {
-    <T extends NumericProperties>(
-        scaledVector: ScaledVector<T & { direction: Direction.UNISON }>,
-    ): ScaledVector<Omit<T, "direction"> & { direction: Direction.UNISON }>
-    <T extends NumericProperties>(scaledVector: ScaledVector<T>): ScaledVector<
-        Omit<T, "direction"> & { direction: Direction.SUPER; integer: false }
-    >
-} = <T extends NumericProperties>(
+const computeSuperScaledVector = <T extends NumericProperties>(
     scaledVector: ScaledVector<T>,
-): ScaledVector<Omit<T, "direction"> & { direction: Direction.SUPER & Direction.UNISON }> =>
-    // @ts-ignore
+): ScaledVector<Omit<T, "direction"> & { direction: Direction.SUPER }> =>
     isScaledVectorSuper(scaledVector)
-        ? (scaledVector as ScaledVector<Omit<T, "direction">>)
-        : (invertScaledVector(scaledVector) as ScaledVector<Omit<T, "direction">>)
+        ? (scaledVector as ScaledVector<Omit<T, "direction"> & { direction: Direction.SUPER }>)
+        : (invertScaledVector(scaledVector) as ScaledVector<
+              Omit<T, "direction"> & { direction: Direction.SUPER }
+          >)
 
-const computeSubScaledVector: {
-    <T extends NumericProperties>(
-        scaledVector: ScaledVector<T & { direction: Direction.UNISON }>,
-    ): ScaledVector<Omit<T, "direction"> & { direction: Direction.UNISON }>
-    <T extends NumericProperties>(scaledVector: ScaledVector<T>): ScaledVector<
-        Omit<T, "direction"> & { direction: Direction.SUB; integer: false }
-    >
-} = <T extends NumericProperties>(
+const computeSubScaledVector = <T extends NumericProperties>(
     scaledVector: ScaledVector<T>,
-): ScaledVector<Omit<T, "direction"> & { direction: Direction.SUB & Direction.UNISON }> =>
-    // @ts-ignore
+): ScaledVector<Omit<T, "direction"> & { direction: Direction.SUB }> =>
     isScaledVectorSub(scaledVector)
-        ? (scaledVector as ScaledVector<Omit<T, "direction">>)
-        : (invertScaledVector(scaledVector) as ScaledVector<Omit<T, "direction">>)
+        ? (scaledVector as ScaledVector<Omit<T, "direction"> & { direction: Direction.SUB }>)
+        : (invertScaledVector(scaledVector) as ScaledVector<
+              Omit<T, "direction"> & { direction: Direction.SUB }
+          >)
 
-const invertScaledVector: {
-    <T extends NumericProperties>(
-        scaledVector: ScaledVector<T & { direction: Direction.SUPER }>,
-    ): ScaledVector<Omit<T, "direction"> & { direction: Direction.SUB; integer: false }>
-    <T extends NumericProperties>(scaledVector: ScaledVector<T & { direction: Direction.SUB }>): ScaledVector<
-        Omit<T, "direction"> & { direction: Direction.SUPER; integer: false }
-    >
-    <T extends NumericProperties>(
-        scaledVector: ScaledVector<T & { direction: Direction.UNISON }>,
-    ): ScaledVector<Omit<T, "direction"> & { direction: Direction.UNISON }>
-    <T extends NumericProperties>(scaledVector: ScaledVector<T>): ScaledVector<
-        Omit<T, "direction"> & { integer: false }
-    >
-} = <T extends NumericProperties>(
+const invertScaledVector = <T extends NumericProperties>(
     scaledVector: ScaledVector<T>,
-): ScaledVector<Omit<T, "direction"> & { direction: Direction.SUPER & Direction.SUB & Direction.UNISON }> => {
+): ScaledVector<Omit<T, "direction">> => {
     const invertedScaledVector = deepClone(scaledVector)
 
     invertedScaledVector.vector = invertVector(invertedScaledVector.vector) as Vector<T & { rational: true }>
 
-    // @ts-ignore
     return invertedScaledVector as ScaledVector<Omit<T, "direction">>
 }
 

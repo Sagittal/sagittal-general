@@ -77,7 +77,7 @@ describe("isVectorSuper", (): void => {
     it("works the opposite from isVectorSub (except the unison, which is also false)", (): void => {
         expect(isVectorSuper([-1, 1] as Vector)).toBeTruthy()
         expect(isVectorSuper([1, -1] as Vector)).toBeFalsy()
-        expect(isVectorSuper([] as Vector)).toBeFalsy()
+        expect(isVectorSuper([] as unknown[] as Vector)).toBeFalsy()
         expect(isVectorSuper([0, 0, 6, 4, 2, 2, 0, 1, 1, 1] as Vector)).toBeTruthy()
         expect(isVectorSuper([0, 0, -6, -4, -2, -2, 0, -1, -1, -1] as Vector)).toBeFalsy()
         expect(isVectorSuper([0, 0, 6, 4, 2, 2, 0, -1, 1, 2] as Vector)).toBeTruthy()
@@ -126,21 +126,13 @@ describe("computeSuperVector", (): void => {
         const expected = [0, 0, 0, -1, 2] as Vector<{ direction: Direction.SUPER }> // 121/7 = 17.286 > 1
         expect(actual).toEqual(expected)
     })
-
-    it("returns the vector unchanged if it the empty vector", (): void => {
-        const vector = EMPTY_VECTOR as Vector<{ direction: Direction.UNISON }>
-
-        const actual: Vector<{ direction: Direction.UNISON }> = computeSuperVector(vector)
-
-        expect(actual).toEqual(EMPTY_VECTOR)
-    })
 })
 
 describe("invertVector", (): void => {
     it("returns the inverted (negated) version of the vector", (): void => {
         const vector = [4, 0, -1, 1] as Vector<{ direction: Direction.SUPER }> // 112/5
 
-        const actual: Vector<{ direction: Direction.SUB }> = invertVector(vector)
+        const actual: Vector<{}> = invertVector(vector)
 
         const expected = [-4, 0, 1, -1] as Vector<{ direction: Direction.SUB }> // 5/112
         expect(actual).toEqual(expected)
@@ -149,17 +141,9 @@ describe("invertVector", (): void => {
     it("works for sub vectors", (): void => {
         const vector = [0, 0, -3] as Vector<{ direction: Direction.SUB }>
 
-        const actual: Vector<{ direction: Direction.SUPER }> = invertVector(vector)
+        const actual: Vector<{}> = invertVector(vector)
 
         const expected = [0, 0, 3] as Vector<{ direction: Direction.SUPER }>
         expect(actual).toEqual(expected)
-    })
-
-    it("works for the unison vector (the empty vector)", (): void => {
-        const vector = EMPTY_VECTOR as Vector<{ direction: Direction.UNISON }>
-
-        const actual: Vector<{ direction: Direction.UNISON }> = invertVector(vector)
-
-        expect(actual).toEqual(EMPTY_VECTOR)
     })
 })

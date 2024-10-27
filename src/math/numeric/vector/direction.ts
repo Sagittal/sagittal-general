@@ -32,49 +32,24 @@ const isVectorUnison = <T extends NumericProperties>(
 ): candidateUnisonVector is Vector<Omit<T, "direction"> & { direction: Direction.UNISON }> =>
     candidateUnisonVector.every((primeCount: PrimeCount<Omit<T, "direction">>): boolean => primeCount === 0)
 
-const computeSuperVector: {
-    <T extends NumericProperties>(vector: Vector<T & { direction: Direction.UNISON }>): Vector<
-        Omit<T, "direction"> & { direction: Direction.UNISON }
-    >
-    <T extends NumericProperties>(vector: Vector<T>): Vector<
-        Omit<T, "direction"> & { direction: Direction.SUPER; integer: false }
-    >
-} = <T extends NumericProperties>(
+const computeSuperVector = <T extends NumericProperties>(
     vector: Vector<T>,
-): Vector<Omit<T, "direction"> & { direction: Direction.SUPER & Direction.UNISON }> =>
-    // @ts-ignore
-    isVectorSuper(vector) ? (vector as Vector<Omit<T, "direction">>) : invertVector(vector)
+): Vector<Omit<T, "direction"> & { direction: Direction.SUPER }> =>
+    isVectorSuper(vector)
+        ? (vector as Vector<Omit<T, "direction"> & { direction: Direction.SUPER }>)
+        : (invertVector(vector) as Vector<Omit<T, "direction"> & { direction: Direction.SUPER }>)
 
-const computeSubVector: {
-    <T extends NumericProperties>(vector: Vector<T & { direction: Direction.UNISON }>): Vector<
-        Omit<T, "direction"> & { direction: Direction.UNISON }
-    >
-    <T extends NumericProperties>(vector: Vector<T>): Vector<
-        Omit<T, "direction"> & { direction: Direction.SUB; integer: false }
-    >
-} = <T extends NumericProperties>(
+const computeSubVector = <T extends NumericProperties>(
     vector: Vector<T>,
 ): Vector<Omit<T, "direction"> & { direction: Direction.SUB & Direction.UNISON }> =>
     // @ts-ignore
     isVectorSub(vector) ? (vector as Vector<Omit<T, "direction">>) : invertVector(vector)
 
-const invertVector: {
-    <T extends NumericProperties>(vector: Vector<T & { direction: Direction.SUPER }>): Vector<
-        Omit<T, "direction"> & { direction: Direction.SUB; integer: false }
-    >
-    <T extends NumericProperties>(vector: Vector<T & { direction: Direction.SUB }>): Vector<
-        Omit<T, "direction"> & { direction: Direction.SUPER; integer: false }
-    >
-    <T extends NumericProperties>(vector: Vector<T & { direction: Direction.UNISON }>): Vector<
-        Omit<T, "direction"> & { direction: Direction.UNISON }
-    >
-    <T extends NumericProperties>(vector: Vector<T>): Vector<Omit<T, "direction"> & { integer: false }>
-} = <T extends NumericProperties>(
-    vector: Vector<T>,
-): Vector<Omit<T, "direction"> & { direction: Direction.SUPER & Direction.SUB & Direction.UNISON }> =>
-    // @ts-ignore
-    vector.map((primeCount: PrimeCount<T>): PrimeCount<T> => {
-        return primeCount === 0 ? (0 as PrimeCount<T>) : (-primeCount as PrimeCount<T>)
-    })
+const invertVector = <T extends NumericProperties>(vector: Vector<T>): Vector<Omit<T, "direction">> =>
+    vector.map((primeCount: PrimeCount<T>): PrimeCount<Omit<T, "direction">> => {
+        return primeCount === 0
+            ? (0 as PrimeCount<Omit<T, "direction">>)
+            : (-primeCount as PrimeCount<Omit<T, "direction">>)
+    }) as Vector<Omit<T, "direction">>
 
 export { isVectorSub, isVectorSuper, isVectorUnison, computeSuperVector, computeSubVector, invertVector }

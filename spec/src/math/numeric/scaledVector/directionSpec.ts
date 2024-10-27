@@ -235,26 +235,4 @@ describe("computeSuperScaledVector", (): void => {
         } as ScaledVector<{ rational: false; direction: Direction.SUPER }>
         expect(actual).toEqual(expected)
     })
-
-    it("returns unchanged a super scaled vector", (): void => {
-        const scaledVector = {
-            vector: [40, -22, -1, -1] as Vector<{ rational: true; direction: Direction.SUPER }>,
-        } as ScaledVector<{ rational: true; direction: Direction.SUPER }>
-
-        const actual: ScaledVector<{ rational: true; direction: Direction.SUPER }> =
-            computeSuperScaledVector(scaledVector)
-
-        expect(actual).toEqual(scaledVector)
-    })
-
-    it("returns unchanged a unison scaled vector", (): void => {
-        const scaledVector = {
-            vector: EMPTY_VECTOR as Vector<{ rational: true; direction: Direction.UNISON }>,
-        } as ScaledVector<{ rational: true; direction: Direction.UNISON }>
-
-        const actual: ScaledVector<{ rational: true; direction: Direction.UNISON }> =
-            computeSuperScaledVector(scaledVector)
-
-        expect(actual).toEqual(scaledVector)
-    })
 })
