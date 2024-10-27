@@ -1,9 +1,7 @@
 import { computeTrimmedArray, increment } from "../../../code"
-import { Count } from "../../../types"
-import { Decimal } from "../../index"
-import { Vector, NumericProperties } from "../../numeric"
-import { computeRoughnessIndex } from "../primeCount"
-import { Prime, Primes, Roughness } from "../types"
+import { Vector, NumericProperties, PrimeCount } from "../../numeric"
+import { computeRoughnessIndex } from "../roughness"
+import { Primes, Roughness } from "../types"
 
 const computeRoughRationalVector = <S extends Primes, T extends NumericProperties>(
     rationalVector: Vector<Omit<T, "rough"> & { rational: true }>,
@@ -13,13 +11,8 @@ const computeRoughRationalVector = <S extends Primes, T extends NumericPropertie
 
     return computeTrimmedArray(
         (rationalVector as Vector<T & { rational: true }>).map(
-            (
-                primeCount: Decimal<{ integer: true }> & Count<Prime>,
-                index: number,
-            ): Decimal<{ integer: true }> & Count<Prime> =>
-                index < roughnessIndex
-                    ? (0 as Decimal<{ integer: true }> & Count<Prime>)
-                    : primeCount,
+            (primeCount: PrimeCount<T>, index: number): PrimeCount<T> =>
+                index < roughnessIndex ? (0 as PrimeCount<T>) : primeCount,
         ),
     ) as Vector<T & { rational: true; rough: S }>
 }

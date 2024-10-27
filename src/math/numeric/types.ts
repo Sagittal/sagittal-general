@@ -9,25 +9,27 @@ enum Direction {
 // And: https://github.com/microsoft/TypeScript/issues/12936
 // This could assist in enforcing this object cannot have any members other than real ones
 type NumericProperties = Partial<{
-    integer: boolean,
-    rational: boolean,
-    direction: Direction,
-    rough: number,
-    smooth: number,
+    integer: boolean
+    rational: boolean
+    direction: Direction
+    rough: number
+    smooth: number
 }>
 
-type NumericPropertyEffects<T> =
-    (T extends {direction: Direction.SUB} ? {_DirectionBrand: Direction.SUB} : {})
-    & (T extends {direction: Direction.SUPER} ? {_DirectionBrand: Direction.SUPER} : {})
-    & (T extends {direction: Direction.UNISON} ? {_DirectionBrand: Direction.UNISON} : {})
-    & (T extends {rough: number} ? {_RoughBrand: Pick<T, "rough">} : {})
-    & (T extends {smooth: number} ? {_SmoothBrand: Pick<T, "smooth">} : {})
-    & (T extends {rational: true} ? {_RationalBrand: boolean} : {})
-    & (T extends {rational: false} ? {_IrrationalBrand: boolean} : {})
-    & (T extends {integer: true} ? {_RationalBrand: boolean, _IntegerBrand: boolean} : {})
+// TODO: this should also have positivity, and when a number is abs it should enforce that it's positive
+type NumericPropertyEffects<T> = (T extends { direction: Direction.SUB }
+    ? { _DirectionBrand: Direction.SUB }
+    : {}) &
+    (T extends { direction: Direction.SUPER } ? { _DirectionBrand: Direction.SUPER } : {}) &
+    (T extends { direction: Direction.UNISON } ? { _DirectionBrand: Direction.UNISON } : {}) &
+    (T extends { rough: number } ? { _RoughBrand: Pick<T, "rough"> } : {}) &
+    (T extends { smooth: number } ? { _SmoothBrand: Pick<T, "smooth"> } : {}) &
+    (T extends { rational: true } ? { _RationalBrand: boolean } : {}) &
+    (T extends { rational: false } ? { _IrrationalBrand: boolean } : {}) &
+    (T extends { integer: true } ? { _RationalBrand: boolean; _IntegerBrand: boolean } : {})
 
 type NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms<T extends NumericProperties = {}> =
-    & (T extends {rational: true} ? {integer: true} : {})
+    T extends { rational: true } ? T & { integer: true } : T
 
 export {
     NumericProperties,

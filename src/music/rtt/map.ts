@@ -1,5 +1,5 @@
 import { formatMap, formatVector } from "../../io"
-import { NumericProperties, Vector, Prime } from "../../math"
+import { NumericProperties, Vector, PrimeCount } from "../../math"
 import { Generator, Map, NumericPropertyTranslationForMappedVector } from "./types"
 import { Count } from "../../types"
 
@@ -17,8 +17,8 @@ const mapVector = <VectorT extends NumericProperties = {}, MapT extends NumericP
 
     return vector.reduce(
         (
-            generatorCount: Count<Generator>,
-            primeCount: Count<Prime>,
+            generatorCount: Count<Generator> & NumericPropertyTranslationForMappedVector<VectorT, MapT>,
+            primeCount: PrimeCount<VectorT>,
             index: number,
         ): Count<Generator> & NumericPropertyTranslationForMappedVector<VectorT, MapT> => {
             return (generatorCount + primeCount * map[index]) as Count<Generator> &

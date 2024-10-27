@@ -34,11 +34,7 @@ type NumericPropertyTranslationForMappedVector<VectorT, MapT> = (VectorT extends
         ? { rational: true }
         : {}
     : {}) &
-    (VectorT extends { integer: true }
-        ? MapT extends { integer: true }
-            ? { integer: true }
-            : {}
-        : {})
+    (VectorT extends { integer: true } ? (MapT extends { integer: true } ? { integer: true } : {}) : {})
 
 type Error = Cents & { _ErrorBrand: boolean }
 

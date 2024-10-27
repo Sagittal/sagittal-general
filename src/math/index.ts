@@ -58,6 +58,7 @@ export {
     computeArithmeticMean,
     maxScaledVector,
     computeSubScaledVector,
+    PrimeCount,
 } from "./numeric"
 export { computeDistributions } from "./distributions"
 export { dividesEvenly, isEven, isOdd } from "./dividesEvenly"
@@ -106,7 +107,6 @@ export {
     THREE_ROUGHNESS,
     THREE_SMOOTHNESS,
     TWO_PRIME_INDEX,
-    computePrimeCount,
     computePrimes,
     ceil,
     floor,

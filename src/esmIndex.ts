@@ -151,7 +151,6 @@ export {
     computeDistributions,
     isVectorSub,
     computeRationalVectorFromRationalQuotient,
-    computePrimeCount,
     computeQuotientFromVector,
     computeRoughRationalVector,
     computeSuperVector,
@@ -282,6 +281,7 @@ export {
     subtractVectors,
     isQuotientSub,
     computeSubScaledVector,
+    PrimeCount,
 } from "./math"
 export {
     Cents,
@@ -337,20 +337,7 @@ export {
     MappingRow,
     Mapping,
 } from "./music"
-export {
-    Count,
-    Ed,
-    Extrema,
-    Index,
-    Ms,
-    Name,
-    Abbreviation,
-    Step,
-    Window,
-    Of,
-    Offset,
-    Id,
-} from "./types"
+export { Count, Ed, Extrema, Index, Ms, Name, Abbreviation, Step, Window, Of, Offset, Id } from "./types"
 export {
     Grade,
     Parameter,

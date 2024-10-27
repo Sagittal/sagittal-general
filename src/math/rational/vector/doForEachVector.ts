@@ -1,31 +1,30 @@
 import { computeTrimmedArray, increment, isUndefined, Maybe, shallowClone } from "../../../code"
-import { Count, Extrema } from "../../../types"
-import { Decimal, Vector, NumericProperties } from "../../numeric"
-import { Prime } from "../types"
+import { Extrema } from "../../../types"
+import { Vector, NumericProperties, PrimeCount } from "../../numeric"
 
 const doForEachRationalVector = <T extends NumericProperties, U>(
-    primeCountExtremas: Array<Extrema<{ of: Decimal<{ integer: true }> & Count<Prime> }>>,
+    primeCountExtremas: Array<Extrema<{ of: PrimeCount<T> }>>,
     workFunction: (rationalVector: Vector<T & { rational: true }>, ...args: any) => Maybe<U>,
     ...args: any
 ): U[] => {
     const initialVector = primeCountExtremas.map(
         ([minPrimeCount, _]: Extrema<{
-            of: Decimal<{ integer: true }> & Count<Prime>
-        }>): Decimal<{ integer: true }> & Count<Prime> => minPrimeCount,
-    ) as Vector<{ rational: true }>
+            of: PrimeCount<T>
+        }>): PrimeCount<T> => minPrimeCount,
+    ) as unknown as Vector<T & { rational: true }>
     const finalVector = primeCountExtremas.map(
         ([_, maxPrimeCount]: Extrema<{
-            of: Decimal<{ integer: true }> & Count<Prime>
-        }>): Decimal<{ integer: true }> & Count<Prime> => maxPrimeCount,
-    ) as Vector<{ rational: true }>
+            of: PrimeCount<T>
+        }>): PrimeCount<T> => maxPrimeCount,
+    )
 
-    let currentVector = shallowClone(initialVector) as Vector<{ rational: true }>
+    let currentVector = shallowClone(initialVector)
 
     const results = [] as U[]
     while (true) {
         // Do the work (trimming has the extra win of shallow cloning, disconnecting from this ticking process)
         const vectorForWork = computeTrimmedArray(currentVector)
-        const result = workFunction(vectorForWork as Vector<T & { rational: true }>, ...args)
+        const result = workFunction(vectorForWork, ...args)
         if (!isUndefined(result)) {
             results.push(result)
         }

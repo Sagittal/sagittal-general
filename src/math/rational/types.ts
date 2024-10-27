@@ -1,54 +1,195 @@
-import {Count} from "../../types"
-import {Decimal, NumericProperties, NumericPropertyEffects} from "../numeric"
-import {Sum} from "../types"
+import { Count } from "../../types"
+import { Decimal, NumericProperties, NumericPropertyEffects } from "../numeric"
+import { Sum } from "../types"
 
-type Prime<T extends NumericProperties = {}> = Decimal<T & {integer: true}> & {_PrimeBrand: "Prime"}
-type Roughness = Decimal<{integer: true}> & {_RoughnessBrand: boolean}
-type Smoothness = Decimal<{integer: true}> & {_SmoothnessBrand: boolean}
+type Prime<T extends NumericProperties = {}> = Decimal<T & { integer: true }> & { _PrimeBrand: "Prime" }
+type Roughness = Decimal<{ integer: true }> & { _RoughnessBrand: boolean }
+type Smoothness = Decimal<{ integer: true }> & { _SmoothnessBrand: boolean }
 
-type Sopfr<T extends NumericProperties = {}> =
-    Sum<Prime>
-    & Decimal<{integer: true}>
-    & {_SopfrBrand: boolean}
-    & NumericPropertyEffects<T>
-type Sopf<T extends NumericProperties = {}> =
-    Sum<Prime>
-    & Decimal<{integer: true}>
-    & {_SopfBrand: boolean}
-    & NumericPropertyEffects<T>
-type Copfr<T extends NumericProperties = {}> =
-    Count<Prime>
-    & {_CopfrBrand: boolean}
-    & NumericPropertyEffects<T>
-type Copf<T extends NumericProperties = {}> =
-    Count<Prime>
-    & {_CopfBrand: boolean}
-    & NumericPropertyEffects<T>
+type Sopfr<T extends NumericProperties = {}> = Sum<Prime> &
+    Decimal<{ integer: true }> & { _SopfrBrand: boolean } & NumericPropertyEffects<T>
+type Sopf<T extends NumericProperties = {}> = Sum<Prime> &
+    Decimal<{ integer: true }> & { _SopfBrand: boolean } & NumericPropertyEffects<T>
+type Copfr<T extends NumericProperties = {}> = Count<Prime> & {
+    _CopfrBrand: boolean
+} & NumericPropertyEffects<T>
+type Copf<T extends NumericProperties = {}> = Count<Prime> & {
+    _CopfBrand: boolean
+} & NumericPropertyEffects<T>
 
 type CommonFunction = (
-    decimalIntegerA: Decimal<{integer: true}>,
-    decimalIntegerB: Decimal<{integer: true}>,
-) => Decimal<{integer: true}>
+    decimalIntegerA: Decimal<{ integer: true }>,
+    decimalIntegerB: Decimal<{ integer: true }>,
+) => Decimal<{ integer: true }>
 
 type Primes =
-    2 | 3 | 5 | 7 | 11 | 13 | 17 | 19 | 23 | 29 | 31 | 37 | 41 | 43 | 47 | 53 | 59 | 61 | 67 | 71 | 73 | 79 | 83 | 89
-    | 97 | 101 | 103 | 107 | 109 | 113 | 127 | 131 | 137 | 139 | 149 | 151 | 157 | 163 | 167 | 173 | 179 | 181 | 191
-    | 193 | 197 | 199 | 211 | 223 | 227 | 229 | 233 | 239 | 241 | 251 | 257 | 263 | 269 | 271 | 277 | 281 | 283 | 293
-    | 307 | 311 | 313 | 317 | 331 | 337 | 347 | 349 | 353 | 359 | 367 | 373 | 379 | 383 | 389 | 397 | 401 | 409 | 419
-    | 421 | 431 | 433 | 439 | 443 | 449 | 457 | 461 | 463 | 467 | 479 | 487 | 491 | 499 | 503 | 509 | 521 | 523 | 541
-    | 547 | 557 | 563 | 569 | 571 | 577 | 587 | 593 | 599 | 601 | 607 | 613 | 617 | 619 | 631 | 641 | 643 | 647 | 653
-    | 659 | 661 | 673 | 677 | 683 | 691 | 701 | 709 | 719 | 727 | 733 | 739 | 743 | 751 | 757 | 761 | 769 | 773 | 787
-    | 797 | 809 | 811 | 821 | 823 | 827 | 829 | 839 | 853 | 857 | 859 | 863 | 877 | 881 | 883 | 887 | 907 | 911 | 919
-    | 929 | 937 | 941 | 947 | 953 | 967 | 971 | 977 | 983 | 991 | 997
+    | 2
+    | 3
+    | 5
+    | 7
+    | 11
+    | 13
+    | 17
+    | 19
+    | 23
+    | 29
+    | 31
+    | 37
+    | 41
+    | 43
+    | 47
+    | 53
+    | 59
+    | 61
+    | 67
+    | 71
+    | 73
+    | 79
+    | 83
+    | 89
+    | 97
+    | 101
+    | 103
+    | 107
+    | 109
+    | 113
+    | 127
+    | 131
+    | 137
+    | 139
+    | 149
+    | 151
+    | 157
+    | 163
+    | 167
+    | 173
+    | 179
+    | 181
+    | 191
+    | 193
+    | 197
+    | 199
+    | 211
+    | 223
+    | 227
+    | 229
+    | 233
+    | 239
+    | 241
+    | 251
+    | 257
+    | 263
+    | 269
+    | 271
+    | 277
+    | 281
+    | 283
+    | 293
+    | 307
+    | 311
+    | 313
+    | 317
+    | 331
+    | 337
+    | 347
+    | 349
+    | 353
+    | 359
+    | 367
+    | 373
+    | 379
+    | 383
+    | 389
+    | 397
+    | 401
+    | 409
+    | 419
+    | 421
+    | 431
+    | 433
+    | 439
+    | 443
+    | 449
+    | 457
+    | 461
+    | 463
+    | 467
+    | 479
+    | 487
+    | 491
+    | 499
+    | 503
+    | 509
+    | 521
+    | 523
+    | 541
+    | 547
+    | 557
+    | 563
+    | 569
+    | 571
+    | 577
+    | 587
+    | 593
+    | 599
+    | 601
+    | 607
+    | 613
+    | 617
+    | 619
+    | 631
+    | 641
+    | 643
+    | 647
+    | 653
+    | 659
+    | 661
+    | 673
+    | 677
+    | 683
+    | 691
+    | 701
+    | 709
+    | 719
+    | 727
+    | 733
+    | 739
+    | 743
+    | 751
+    | 757
+    | 761
+    | 769
+    | 773
+    | 787
+    | 797
+    | 809
+    | 811
+    | 821
+    | 823
+    | 827
+    | 829
+    | 839
+    | 853
+    | 857
+    | 859
+    | 863
+    | 877
+    | 881
+    | 883
+    | 887
+    | 907
+    | 911
+    | 919
+    | 929
+    | 937
+    | 941
+    | 947
+    | 953
+    | 967
+    | 971
+    | 977
+    | 983
+    | 991
+    | 997
 
-export {
-    Sopfr,
-    Copfr,
-    Sopf,
-    Copf,
-    Prime,
-    Roughness,
-    Smoothness,
-    Primes,
-    CommonFunction,
-}
+export { Sopfr, Copfr, Sopf, Copf, Prime, Roughness, Smoothness, Primes, CommonFunction }

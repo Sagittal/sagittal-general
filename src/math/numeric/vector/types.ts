@@ -1,4 +1,3 @@
-import { Count } from "../../../types"
 import { Prime } from "../../rational"
 import { Exponent } from "../../types"
 import {
@@ -7,9 +6,11 @@ import {
     NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms,
 } from "../types"
 
-type Vector<T extends NumericProperties = {}> = Array<
-    Count<Prime> & Exponent<Prime> & NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms<T>
-> &
-    NumericPropertyEffects<T>
+type PrimeCount<T extends NumericProperties = { rational: true }> = Exponent<Prime> & NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms<T>
 
-export { Vector }
+type Vector<T extends NumericProperties = { rational: true }> = PrimeCount<T>[] & NumericPropertyEffects<T>
+
+export {
+    PrimeCount,
+    Vector,
+}

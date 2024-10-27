@@ -6,10 +6,10 @@ import {
     Multiplier,
     multiply,
     NumericProperties,
-    Prime,
+    PrimeCount,
     Quotient,
 } from "../../../math"
-import { Count, Degree } from "../../../types"
+import { Degree } from "../../../types"
 import {
     computeIrrationalDecimalFromScaledVector,
     computeIrrationalScaledVectorFromDecimal,
@@ -75,15 +75,12 @@ const maxScaledVector = (...scaledVectors: Array<ScaledVector>): Max<ScaledVecto
 
 const multiplyScaledVector = <T extends NumericProperties>(
     scaledVector: ScaledVector<T>,
-    multiplier: Decimal<{ integer: true }> & Multiplier,
+    multiplier: Multiplier,
 ): ScaledVector<T> => {
     return {
         ...scaledVector,
-        vector: scaledVector.vector.map((primeCount: Count<Prime>): Count<Prime> => {
-            return multiply(
-                primeCount,
-                multiplier as Decimal<{ integer: true }> & Multiplier<Count<Prime>>,
-            )
+        vector: scaledVector.vector.map((primeCount: PrimeCount<T>): PrimeCount<T> => {
+            return multiply(primeCount, multiplier as Multiplier<PrimeCount<T>>)
         }),
     } as ScaledVector<T>
 }

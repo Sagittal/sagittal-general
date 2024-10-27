@@ -33,12 +33,13 @@ export {
     invertVector,
     isVectorSuper,
     sumVectors,
-    Vector,
     isVectorUnison,
     areVectorsEqual,
     subtractVectors,
     EMPTY_VECTOR,
     addVectors,
+    PrimeCount,
+    Vector,
 } from "./vector"
 export {
     ScaledVector,
