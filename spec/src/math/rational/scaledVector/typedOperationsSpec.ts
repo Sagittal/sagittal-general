@@ -16,7 +16,10 @@ describe("subtractRationalScaledVectors", (): void => {
         const minuendScaledVector = { vector: [-2, 0, 0, 1] } as ScaledVector<{ rational: true }>
         const subtrahendScaledVector = { vector: [-1, 1] } as ScaledVector<{ rational: true }>
 
-        const actual = subtractRationalScaledVectors(minuendScaledVector, subtrahendScaledVector)
+        const actual = subtractRationalScaledVectors(
+            minuendScaledVector,
+            subtrahendScaledVector,
+        ) as ScaledVector<{ rational: true }>
 
         const expected = { vector: [-1, -1, 0, 1] } as ScaledVector<{ rational: true }>
         expect(actual).toEqual(expected)
@@ -33,7 +36,7 @@ describe("addRationalScaledVectors", (): void => {
         const actual = addRationalScaledVectors(
             augendRationalScaledVector,
             addendRationalScaledVector,
-        )
+        ) as ScaledVector<{ rational: true }>
 
         const expected = { vector: [0, 0, -1, 1] } as ScaledVector<{ rational: true }>
         expect(actual).toEqual(expected)
@@ -46,11 +49,7 @@ describe("computeRationalScaledVectorGeometricMean", (): void => {
         const scaledVectorB = { vector: [2, 0, 1] } as ScaledVector<{ rational: true }>
         const scaledVectorC = { vector: [0, 4, 1] } as ScaledVector<{ rational: true }>
 
-        const actual = computeRationalScaledVectorGeometricMean(
-            scaledVectorA,
-            scaledVectorB,
-            scaledVectorC,
-        )
+        const actual = computeRationalScaledVectorGeometricMean(scaledVectorA, scaledVectorB, scaledVectorC)
 
         const expected = {
             vector: [2, -1, 3],
@@ -81,7 +80,9 @@ describe("sumRationalScaledVectors", (): void => {
         const scaledVectorB = { vector: [2, 0, 1] } as ScaledVector<{ rational: true }>
         const scaledVectorC = { vector: [0, 4, 1] } as ScaledVector<{ rational: true }>
 
-        const actual = sumRationalScaledVectors(scaledVectorA, scaledVectorB, scaledVectorC)
+        const actual = sumRationalScaledVectors(scaledVectorA, scaledVectorB, scaledVectorC) as ScaledVector<{
+            rational: true
+        }>
 
         const expected = { vector: [2, -1, 3] } as ScaledVector<{ rational: true }>
         expect(actual).toEqual(expected)

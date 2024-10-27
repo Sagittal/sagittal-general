@@ -1,5 +1,5 @@
-import {Base, Exponent, log, Power, round} from "../../../src"
-import {DEFAULT_PRECISION, MAX_JS_INTEGER_VALUE, Precision} from "../../../src/code"
+import { Base, Exponent, log, Power, round } from "../../../src"
+import { DEFAULT_PRECISION, MAX_JS_INTEGER_VALUE, Precision } from "../../../src/code"
 
 describe("log", (): void => {
     it("returns the logarithm with the specified base of the power", (): void => {
@@ -9,7 +9,7 @@ describe("log", (): void => {
         const actual = log(power, base)
 
         const expected = 2 as Exponent
-        expect(actual).toBeCloseToTyped(expected)
+        expect(actual).toBeCloseTo(expected)
     })
 
     it("is accurate", (): void => {
@@ -19,7 +19,7 @@ describe("log", (): void => {
         const actual = log(power, base)
 
         const expected = 2.321928 as Exponent
-        expect(actual).toBeCloseToTyped(expected)
+        expect(actual).toBeCloseTo(expected)
     })
 })
 
@@ -37,13 +37,13 @@ describe("round", (): void => {
     })
 
     it("leaves scientific notated values alone", (): void => {
-        const number = 5.153775207320113e+47
+        const number = 5.153775207320113e47
 
         expect(round(number)).toBe(number)
     })
 
     it("leaves scientific notated values alone, even with an accuracy threshold", (): void => {
-        const number = 5.153775207320113e+47
+        const number = 5.153775207320113e47
 
         expect(round(number, DEFAULT_PRECISION)).toBe(number)
     })
@@ -52,13 +52,13 @@ describe("round", (): void => {
         expect(round(MAX_JS_INTEGER_VALUE, DEFAULT_PRECISION)).toBe(MAX_JS_INTEGER_VALUE)
     })
 
-    it("ignores a given precision and returns the number unchanged if they are larger than the max JavaScript integer value           ", (): void => {
+    it("ignores a given precision and returns the number unchanged if they are larger than the max JavaScript integer value", (): void => {
         const number = MAX_JS_INTEGER_VALUE + 0.74383
 
         expect(round(number, 1 as Precision)).toBe(number)
     })
 
-    it("returns the number unchanged if no precision is given and they are larger than the max JavaScript integer value        ", (): void => {
+    it("returns the number unchanged if no precision is given and they are larger than the max JavaScript integer value", (): void => {
         const number = MAX_JS_INTEGER_VALUE + 0.74383
 
         expect(round(number)).toBe(number)
