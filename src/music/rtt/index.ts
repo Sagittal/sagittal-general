@@ -1,3 +1,3 @@
 export { computeSimpleMap } from "./simpleMap"
-export { Map } from "./types"
+export { Map, EtName } from "./types"
 export { mapVector } from "./map"

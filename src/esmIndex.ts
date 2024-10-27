@@ -326,6 +326,9 @@ export {
     computeSimpleMap,
     Map,
     mapVector,
+    Edo,
+    EdoStep,
+    EtName,
 } from "./music"
 export {
     Count,
