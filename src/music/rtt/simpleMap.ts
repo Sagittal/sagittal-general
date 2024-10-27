@@ -25,12 +25,12 @@ const computeSimpleMap = <T extends NumericProperties = {}>(options: SimpleMapOp
             currentApproximation = stepOctaves ** etStepsPerPrime
 
             if (currentApproximation > prime) {
-                const currentDiff = abs(currentApproximation - prime)
-                const previousDiff = previousApproximation
+                const currentAbsDiff = abs(currentApproximation - prime)
+                const previousAbsDiff = previousApproximation
                     ? abs(previousApproximation - prime)
                     : Infinity
 
-                if (currentDiff < previousDiff) {
+                if (currentAbsDiff < previousAbsDiff) {
                     simpleMap.push(etStepsPerPrime)
                 } else {
                     simpleMap.push((etStepsPerPrime - 1) as Per<Count<EtStep>, Prime, T>)

@@ -30,5 +30,17 @@ export {
     SEPTIMAL_KLEISMA,
     SYNTONIC_COMMA,
 } from "./ji"
-export { computeSimpleMap, Map, mapVector, EtName } from "./rtt"
+export {
+    computeSimpleMap,
+    Map,
+    mapVector,
+    EtName,
+    Error,
+    Temperament,
+    Generator,
+    EtStep,
+    Per,
+    MappingRow,
+    Mapping,
+} from "./rtt"
 export { two3FreeClassFixture, computePitchExpectation, PitchExpectation } from "./specHelpers"

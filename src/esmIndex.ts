@@ -329,6 +329,13 @@ export {
     Edo,
     EdoStep,
     EtName,
+    Error,
+    Temperament,
+    Generator,
+    EtStep,
+    Per,
+    MappingRow,
+    Mapping,
 } from "./music"
 export {
     Count,

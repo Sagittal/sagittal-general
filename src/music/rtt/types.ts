@@ -1,6 +1,6 @@
 import { Max, NumericProperties, Prime } from "../../math"
 import { Count } from "../../types"
-import { Edo, EdoStep } from "../types"
+import { Cents, Edo, EdoStep } from "../types"
 
 type Temperament = { _TemperamentBrand: boolean }
 
@@ -40,6 +40,8 @@ type NumericPropertyTranslationForMappedVector<VectorT, MapT> = (VectorT extends
             : {}
         : {})
 
+type Error = Cents & { _ErrorBrand: boolean }
+
 export {
     Temperament,
     Generator,
@@ -51,4 +53,5 @@ export {
     MappingRow,
     Mapping,
     NumericPropertyTranslationForMappedVector,
+    Error,
 }
