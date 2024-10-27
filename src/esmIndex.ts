@@ -282,6 +282,7 @@ export {
     isQuotientSub,
     computeSubScaledVector,
     PrimeCount,
+    computeLesserPrimeCount,
 } from "./math"
 export {
     Cents,

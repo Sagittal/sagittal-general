@@ -159,6 +159,7 @@ export {
     FIVE_SMOOTHNESS,
     computeRationalScaledVectorFromRationalQuotient,
     computeRationalVectorFromRationalScaledVector,
+    computeLesserPrimeCount,
 } from "./rational"
 export {
     HALF_SCALER,

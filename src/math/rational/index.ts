@@ -11,6 +11,7 @@ export {
 export { computeRoughnessIndex } from "./roughness"
 export { computeSmoothnessIndex } from "./smoothness"
 export { computePrimes, primes } from "./primes"
+export { computeLesserPrimeCount } from "./lesserPrimeCount"
 export { computeGreatestCommonDivisor } from "./common"
 export { Copfr, Prime, Roughness, Sopfr, Smoothness, Primes } from "./types"
 export {
