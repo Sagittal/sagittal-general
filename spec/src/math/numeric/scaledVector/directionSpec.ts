@@ -223,9 +223,11 @@ describe("computeSuperScaledVector", (): void => {
             scaler: [1, 2] as Quotient,
         } as ScaledVector<{ rational: false; direction: Direction.SUB }>
 
-        // TODO: what the matter
         const actual: ScaledVector<{ rational: false; direction: Direction.SUPER }> =
-            computeSuperScaledVector(scaledVector)
+            computeSuperScaledVector(scaledVector) as ScaledVector<{
+                rational: false
+                direction: Direction.SUPER
+            }>
 
         const expected = {
             vector: [40, -22, -1, -1] as Vector<{ rational: true; direction: Direction.SUPER }>,
