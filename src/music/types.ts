@@ -20,7 +20,7 @@ type CommaMean<T extends NumericProperties = {}> = {
 
 type Octaves = number & { _OctavesBrand: boolean }
 
-type EdoStep = Generator & { _EdoStepBrand: boolean }
+type EdoStep = number & { _EdoStepBrand: boolean }
 
 type Edo = Ed<{ of: Window<{ of: 2 }> }> & EdoStep
 
