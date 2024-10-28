@@ -42,6 +42,7 @@ export {
     Per,
     MappingRow,
     Mapping,
+    computeMap,
 } from "./rtt"
 export { two3FreeClassFixture, computePitchExpectation, PitchExpectation } from "./specHelpers"
 export { Edo, EdoStep, computeStepSize } from "./edo"

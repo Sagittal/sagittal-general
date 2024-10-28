@@ -11,3 +11,4 @@ export {
     Mapping,
 } from "./types"
 export { mapVector } from "./mapVector"
+export { computeMap } from "./map"
