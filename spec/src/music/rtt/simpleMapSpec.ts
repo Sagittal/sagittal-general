@@ -1,5 +1,4 @@
-import { computeSimpleMap, Max, Prime, Map } from "../../../../src"
-import { Edo } from "../../../../src/music/types"
+import { computeSimpleMap, Max, Prime, Map, Edo } from "../../../../src"
 
 describe("computeSimpleMap", (): void => {
     it("given an EDO and a prime limit, returns the simple map", (): void => {

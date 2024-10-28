@@ -1,6 +1,5 @@
-import { mapVector, Vector, Map, Count, Max, Prime, computeSimpleMap } from "../../../../src"
+import { mapVector, Vector, Map, Count, Max, Prime, computeSimpleMap, Edo } from "../../../../src"
 import { Generator } from "../../../../src/music/rtt/types"
-import { Edo } from "../../../../src/music/types"
 
 describe("mapVector", (): void => {
     it("given a map, returns the number of steps that would represent the given vector", (): void => {

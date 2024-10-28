@@ -3,8 +3,11 @@ import { Denominator, Numerator, Quotient, QuotientPart } from "./types"
 
 const isQuotientSuper = <T extends NumericProperties>(
     candidateSuperQuotient: Quotient<Omit<T, "direction">>,
+    // @ts-ignore
 ): candidateSuperQuotient is Quotient<Omit<T, "direction"> & { direction: Direction.SUPER }> => {
+    // @ts-ignore
     const numerator: Numerator = candidateSuperQuotient[0]
+    // @ts-ignore
     const denominator: Denominator = candidateSuperQuotient[1]
 
     return numerator > denominator
@@ -12,8 +15,11 @@ const isQuotientSuper = <T extends NumericProperties>(
 
 const isQuotientSub = <T extends NumericProperties>(
     candidateSubQuotient: Quotient<Omit<T, "direction">>,
+    // @ts-ignore
 ): candidateSubQuotient is Quotient<Omit<T, "direction"> & { direction: Direction.SUB }> => {
+    // @ts-ignore
     const numerator: Numerator = candidateSubQuotient[0]
+    // @ts-ignore
     const denominator: Denominator = candidateSubQuotient[1]
 
     return numerator < denominator
@@ -21,8 +27,11 @@ const isQuotientSub = <T extends NumericProperties>(
 
 const isQuotientUnison = <T extends NumericProperties>(
     candidateUnisonQuotient: Quotient<Omit<T, "direction">>,
+    // @ts-ignore
 ): candidateUnisonQuotient is Quotient<Omit<T, "direction"> & { direction: Direction.UNISON }> => {
+    // @ts-ignore
     const numerator: Numerator = candidateUnisonQuotient[0]
+    // @ts-ignore
     const denominator: Denominator = candidateUnisonQuotient[1]
 
     return (numerator as QuotientPart) === (denominator as QuotientPart)
@@ -71,6 +80,7 @@ const invertQuotient: {
 } = <T extends NumericProperties>([numerator, denominator]: Quotient<T>): Quotient<
     Omit<T, "direction"> & { direction: Direction.SUPER & Direction.SUB & Direction.UNISON }
 > =>
+    // @ts-ignore
     [denominator as number as Numerator, numerator as number as Denominator] as Quotient<Omit<T, "direction">>
 
 export {
