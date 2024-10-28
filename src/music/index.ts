@@ -1,7 +1,7 @@
 export { dividePitch, subtractPitch, computeCentsFromPitch, computePitchFromCents } from "./cents"
 export { CENTS_PER_OCTAVE } from "./constants"
 export { computeLowerAndUpperExclusive } from "./zone"
-export { Cents, Zone, CommaMean, Exclusive, Octaves, Edo, EdoStep } from "./types"
+export { Cents, Zone, CommaMean, Exclusive, Octaves } from "./types"
 export {
     compute23FreeClass,
     THREE_PRIME_LIMIT,
@@ -44,3 +44,4 @@ export {
     Mapping,
 } from "./rtt"
 export { two3FreeClassFixture, computePitchExpectation, PitchExpectation } from "./specHelpers"
+export { Edo, EdoStep, computeStepSize } from "./edo"

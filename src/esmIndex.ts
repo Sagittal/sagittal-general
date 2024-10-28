@@ -338,6 +338,7 @@ export {
     Per,
     MappingRow,
     Mapping,
+    computeStepSize,
 } from "./music"
 export { Count, Ed, Extrema, Index, Ms, Name, Abbreviation, Step, Window, Of, Offset, Id } from "./types"
 export {

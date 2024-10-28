@@ -10,4 +10,4 @@ export {
     MappingRow,
     Mapping,
 } from "./types"
-export { mapVector } from "./map"
+export { mapVector } from "./mapVector"

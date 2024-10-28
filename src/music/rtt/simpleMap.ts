@@ -1,4 +1,4 @@
-import { increment } from "../../code"
+import { increment, indexOf } from "../../code"
 import { abs, computePrimes, NumericProperties, Prime } from "../../math"
 import { Count } from "../../types"
 import { OCTAVE_WINDOW } from "../ji"
@@ -11,7 +11,7 @@ const computeSimpleMap = <T extends NumericProperties = {}>(options: SimpleMapOp
     const stepOctaves: Octaves = (OCTAVE_WINDOW ** (1 / edo)) as Octaves
 
     const primes = computePrimes(primeLimit)
-    const maxPrimeIndex = primes.indexOf(primeLimit)
+    const maxPrimeIndex = indexOf(primes, primeLimit)
 
     let simpleMap: Map<T> = []
     for (let primeIndex = 0; primeIndex <= maxPrimeIndex; primeIndex = increment(primeIndex)) {
@@ -26,9 +26,7 @@ const computeSimpleMap = <T extends NumericProperties = {}>(options: SimpleMapOp
 
             if (currentApproximation > prime) {
                 const currentAbsDiff = abs(currentApproximation - prime)
-                const previousAbsDiff = previousApproximation
-                    ? abs(previousApproximation - prime)
-                    : Infinity
+                const previousAbsDiff = previousApproximation ? abs(previousApproximation - prime) : Infinity
 
                 if (currentAbsDiff < previousAbsDiff) {
                     simpleMap.push(etStepsPerPrime)

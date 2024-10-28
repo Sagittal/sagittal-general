@@ -1,6 +1,6 @@
 import {Maybe} from "../code"
 import {NumericProperties, ScaledVector} from "../math"
-import {Ed, Extrema, Name, Window} from "../types"
+import {Extrema, Name} from "../types"
 
 type Cents = number & {_CentsBrand: boolean}
 
@@ -20,17 +20,11 @@ type CommaMean<T extends NumericProperties = {}> = {
 
 type Octaves = number & { _OctavesBrand: boolean }
 
-type EdoStep = number & { _EdoStepBrand: boolean }
-
-type Edo = Ed<{ of: Window<{ of: 2 }> }> & EdoStep
-
 export {
     Cents,
     Zone,
     Exclusive,
     CommaMean,
     Octaves,
-    Edo,
     Extrema,
-    EdoStep,
 }
