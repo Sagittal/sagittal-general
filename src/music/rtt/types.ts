@@ -1,6 +1,7 @@
 import { Max, NumericProperties, Prime } from "../../math"
 import { Count } from "../../types"
-import { Cents, Edo, EdoStep } from "../types"
+import { Edo, EdoStep } from "../edo"
+import { Cents } from "../types"
 
 type Temperament = { _TemperamentBrand: boolean }
 

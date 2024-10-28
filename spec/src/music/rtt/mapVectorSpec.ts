@@ -1,5 +1,5 @@
 import { mapVector, Vector, Map, Count, Max, Prime, computeSimpleMap, Edo } from "../../../../src"
-import { Generator } from "../../../../src/music/rtt/types"
+import { EtStep } from "../../../../src/music/rtt/types"
 
 describe("mapVector", (): void => {
     it("given a map, returns the number of steps that would represent the given vector", (): void => {
@@ -8,7 +8,7 @@ describe("mapVector", (): void => {
 
         const actual = mapVector(vector, map)
 
-        const expected = 6 as Count<Generator>
+        const expected = 6 as Count<EtStep>
         expect(actual).toBe(expected)
     })
 
@@ -34,7 +34,7 @@ describe("mapVector", (): void => {
 
             const actual = mapVector(vector, INSANE_ZETA_PEAK_MAP)
 
-            const expected = 0 as Count<Generator>
+            const expected = 0 as Count<EtStep>
             expect(actual).toBe(expected)
         })
 
@@ -43,7 +43,7 @@ describe("mapVector", (): void => {
 
             const actual = mapVector(vector, INSANE_ZETA_PEAK_MAP)
 
-            const expected = 7 as Count<Generator>
+            const expected = 7 as Count<EtStep>
             expect(actual).toBe(expected)
         })
     })
