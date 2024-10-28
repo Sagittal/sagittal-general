@@ -29,7 +29,8 @@ export {
 } from "./node"
 
 
-// TODO: Document, Window, Generator, Link, Map, Error, Range
+// TODO: NAMESPACED TYPES ?
+// Document, Window, Generator, Link, Map, Error, Range, Sign
 // these would be better to do like Rtt.Map, so import * as and then deconstruct on separate line before functions?
 // but then as long as I'm doing it that way... should I do it that way more consistently? 
 // just for all types ?
