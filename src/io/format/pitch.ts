@@ -7,7 +7,7 @@ import { Formatted } from "./types"
 
 const formatPitch = (
     pitch: ScaledVector,
-    options: { align?: boolean; noLaTeXScaler?: boolean } = {},
+    options: { align?: boolean; noLaTeXMultiplier?: boolean } = {},
 ): Formatted<ScaledVector> => {
     if (isScaledVectorRational(pitch)) {
         return formatVector(pitch.vector) as Formatted as Formatted<ScaledVector>
@@ -16,10 +16,7 @@ const formatPitch = (
         if (isQuotientRational(scaler)) {
             return `${formatVector(vector)}(${formatQuotient(scaler, options)})` as Formatted<ScaledVector>
         } else {
-            return formatCents(
-                computeCentsFromPitch(pitch),
-                options,
-            ) as Formatted as Formatted<ScaledVector>
+            return formatCents(computeCentsFromPitch(pitch), options) as Formatted as Formatted<ScaledVector>
         }
     }
 }

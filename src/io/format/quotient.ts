@@ -1,31 +1,29 @@
-import {computeSuperQuotient, Denominator, Numerator, Quotient} from "../../math"
-import {ioSettings} from "../globals"
-import {TableFormat} from "../table"
-import {Formatted} from "./types"
+import { computeSuperQuotient, Denominator, Numerator, Quotient } from "../../math"
+import { ioSettings } from "../globals"
+import { TableFormat } from "../table"
+import { Formatted } from "./types"
 
 const formatQuotient = <T extends Quotient>(
     inputQuotient: T,
-    {directed = true, noLaTeXScaler = false}: {directed?: boolean, noLaTeXScaler?: boolean} = {},
+    { directed = true, noLaTeXMultiplier = false }: { directed?: boolean; noLaTeXMultiplier?: boolean } = {},
 ): Formatted<T> => {
     let [numerator, denominator] = directed ? inputQuotient : computeSuperQuotient(inputQuotient)
 
     if (numerator === Infinity) numerator = "(too big for JS)" as unknown as Numerator
     if (denominator === Infinity) denominator = "(too big for JS)" as unknown as Denominator
 
-    return directed ?
-        ioSettings.tableFormat === TableFormat.FORUM && !noLaTeXScaler ?
-            denominator === 1 ?
-                `[latex]${numerator}[/latex]` as Formatted<T> :
-                `[latex]\\frac{${numerator}}{${denominator}}[/latex]` as Formatted<T> :
-            denominator === 1 ?
-                `${numerator}` as Formatted<T> :
-                `${numerator}/${denominator}` as Formatted<T> :
-        `${denominator}:${numerator}` as Formatted<T>
+    return directed
+        ? ioSettings.tableFormat === TableFormat.FORUM && !noLaTeXMultiplier
+            ? denominator === 1
+                ? (`[latex]${numerator}[/latex]` as Formatted<T>)
+                : (`[latex]\\frac{${numerator}}{${denominator}}[/latex]` as Formatted<T>)
+            : denominator === 1
+            ? (`${numerator}` as Formatted<T>)
+            : (`${numerator}/${denominator}` as Formatted<T>)
+        : (`${denominator}:${numerator}` as Formatted<T>)
 }
 
-export {
-    formatQuotient,
-}
+export { formatQuotient }
 
 /*
 5/4 valid directed quotient (super)                 4/5 valid directed quotient (sub)

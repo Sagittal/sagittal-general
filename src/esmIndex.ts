@@ -159,6 +159,7 @@ export {
     count,
     subtract,
     Direction,
+    Sign,
     DistributionBin,
     dividesEvenly,
     Exponent,

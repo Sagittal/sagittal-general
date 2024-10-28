@@ -19,6 +19,7 @@ export {
     computeDecimalFromVector,
     areVectorsEqual,
     Direction,
+    Sign,
     NumericProperties,
     Denominator,
     QuotientPart,

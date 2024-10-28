@@ -1,4 +1,4 @@
-import {formatQuotient, Formatted, ioSettings, Quotient, TableFormat, Two3FreeClass} from "../../../../src"
+import { formatQuotient, Formatted, ioSettings, Quotient, TableFormat, Two3FreeClass } from "../../../../src"
 
 describe("formatQuotient", (): void => {
     it("it shows it with a slash", (): void => {
@@ -13,7 +13,7 @@ describe("formatQuotient", (): void => {
     it("it can show it undirected, with a colon, orienting it properly if it is sub", (): void => {
         const quotient = [75, 77] as Quotient
 
-        const actual = formatQuotient(quotient, {directed: false})
+        const actual = formatQuotient(quotient, { directed: false })
 
         const expected = "75:77"
         expect(actual).toBe(expected)
@@ -22,7 +22,7 @@ describe("formatQuotient", (): void => {
     it("it can show it undirected, with a colon, orienting it properly if it is super", (): void => {
         const quotient = [77, 75] as Quotient
 
-        const actual = formatQuotient(quotient, {directed: false})
+        const actual = formatQuotient(quotient, { directed: false })
 
         const expected = "75:77"
         expect(actual).toBe(expected)
@@ -42,7 +42,7 @@ describe("formatQuotient", (): void => {
         const quotient = [77, 75] as Quotient
 
         ioSettings.tableFormat = TableFormat.FORUM
-        const actual = formatQuotient(quotient, {noLaTeXScaler: true})
+        const actual = formatQuotient(quotient, { noLaTeXMultiplier: true })
 
         const expected = "77/75" as Formatted<Two3FreeClass>
         expect(actual).toBe(expected)
@@ -60,7 +60,7 @@ describe("formatQuotient", (): void => {
     it("does not drop a denominator of 1 when undirected", (): void => {
         const quotient = [77, 1] as Quotient
 
-        const actual = formatQuotient(quotient, {directed: false})
+        const actual = formatQuotient(quotient, { directed: false })
 
         const expected = "1:77"
         expect(actual).toBe(expected)

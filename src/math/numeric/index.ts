@@ -68,4 +68,5 @@ export {
     NumericProperties,
     NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms,
     NumericPropertyEffects,
+    Sign,
 } from "./types"

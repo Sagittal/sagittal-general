@@ -1,3 +1,5 @@
+import { Sign } from "./numeric"
+
 type Augend<T extends number | void = void> =
     number
     & {_AugendBrand: boolean}
@@ -51,8 +53,7 @@ type Base<T extends number = number> = number & {_BaseBrand: boolean, _BaseOfBra
 type Power<T extends number = number> = number & {_PowerBrand: boolean, _PowerOfBrand: T}
 
 // Qualities of numerics
-type Abs<T extends number = number> = T & {_AbsBrand: boolean}
-type Approx<T extends number = number> = T & {_ApproxBrand: boolean}
+type Abs<T extends number = number> = T & {_AbsBrand: boolean, _SignBrand: Sign.POSITIVE}
 
 // Experimenting with not necessarily applying to numbers,
 // Though it seems like plenty others of these might be flexible in that way too
