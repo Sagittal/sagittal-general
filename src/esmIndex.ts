@@ -54,6 +54,7 @@ export {
     camelCaseToKebabCase,
     sentenceCaseToKebabCase,
     noop,
+    indexOf,
 } from "./code"
 export { Em, Html, Hyperlink, isBrowserMobile, Css } from "./browser"
 export {
