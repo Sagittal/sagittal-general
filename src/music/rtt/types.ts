@@ -1,6 +1,7 @@
-import { Max, NumericProperties, Prime } from "../../math"
+import { Char } from "../../io"
+import { NumericProperties, Prime } from "../../math"
 import { Count } from "../../types"
-import { Edo, EdoStep } from "../edo"
+import { EdoStep } from "../edo"
 import { Cents } from "../types"
 
 type Temperament = { _TemperamentBrand: boolean }
@@ -8,11 +9,6 @@ type Temperament = { _TemperamentBrand: boolean }
 type Generator = number & { _GeneratorBrand: boolean }
 
 type EtStep = EdoStep & Generator
-
-interface SimpleMapOptions {
-    edo: Edo
-    primeLimit: Max<Max<Prime>>
-}
 
 type EtName = string & { _EtNameMeaningBrand: boolean }
 
@@ -39,11 +35,12 @@ type NumericPropertyTranslationForMappedVector<VectorT, MapT> = (VectorT extends
 
 type Error = Cents & { _ErrorBrand: boolean }
 
+type Wart = Char & { _WartBrand: boolean }
+
 export {
     Temperament,
     Generator,
     EtStep,
-    SimpleMapOptions,
     EtName,
     Per,
     Map,
@@ -51,4 +48,5 @@ export {
     Mapping,
     NumericPropertyTranslationForMappedVector,
     Error,
+    Wart,
 }

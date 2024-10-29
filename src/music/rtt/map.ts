@@ -1,21 +1,38 @@
-// TODO: clean this up w/r/t computeSimpleMap
-// as a special case of making a warted map, or something
-// map from ET name or something
-
-import { indexOf, ZERO_ONE_INDEX_DIFF } from "../../code"
-import { computePrimes, computeScaledVectorFromDecimal, Max, Prime } from "../../math"
+import { indexOf, isUndefined, ZERO_ONE_INDEX_DIFF } from "../../code"
+import { computePrimes, computeScaledVectorFromDecimal, Max, NumericProperties, Prime } from "../../math"
+import { Subtrahend } from "../../math/types"
 import { Count, Index } from "../../types"
 import { computeCentsFromPitch } from "../cents"
 import { computeStepSize, Edo } from "../edo"
 import { Cents } from "../types"
-import { EtName, EtStep, Map, Per } from "./types"
+import { Error, EtName, EtStep, Map, Per, Wart } from "./types"
 
-const WART_ALPHABET: string = "abcdefghijklmno"
+const CHAR_CODE_OFFSET: Subtrahend<Index> = 96 as Subtrahend<Index>
+
+const computeStepOffset = ({
+    wartCount,
+    wideCandidateError,
+    narrowCandidateError,
+}: {
+    wartCount: Count<Wart>
+    wideCandidateError: Error
+    narrowCandidateError: Error
+}) => {
+    //   wide closer:  0, -1,  1, -2,  2, ...
+    // narrow Closer: -1,  0, -2,  1, -3, ...
+
+    let stepOffset = 0
+    for (let i = 0; i < wartCount; i++) {
+        stepOffset = -(stepOffset >= 0 ? stepOffset + 1 : stepOffset)
+    }
+
+    return wideCandidateError > narrowCandidateError ? -(stepOffset + 1) : stepOffset
+}
 
 const computeStepCount = (
     prime: Prime,
     stepSize: Cents,
-    isPrimeWarted: boolean,
+    wartCount: Count<Wart>,
 ): Per<Count<EtStep>, Prime> => {
     const jiPrimeSize = computeCentsFromPitch(computeScaledVectorFromDecimal(prime))
 
@@ -28,33 +45,65 @@ const computeStepCount = (
         currentBestApproximationCandidate = (stepSize * currentStep) as Cents
     }
 
-    const wideCandidateError: Cents = (currentBestApproximationCandidate - jiPrimeSize) as Cents
-    const narrowCandidateError: Cents = (jiPrimeSize - previousBestApproximationCandidate) as Cents
+    const wideCandidateError: Error = (currentBestApproximationCandidate - jiPrimeSize) as Error
+    const narrowCandidateError: Error = (jiPrimeSize - previousBestApproximationCandidate) as Error
 
-    return wideCandidateError < narrowCandidateError
-        ? isPrimeWarted
-            ? ((currentStep - 1) as Per<Count<EtStep>, Prime>)
-            : (currentStep as Per<Count<EtStep>, Prime>)
-        : isPrimeWarted
-        ? (currentStep as Per<Count<EtStep>, Prime>)
-        : ((currentStep - 1) as Per<Count<EtStep>, Prime>)
+    const stepOffset = computeStepOffset({ wideCandidateError, narrowCandidateError, wartCount })
+
+    return (currentStep + stepOffset) as Per<Count<EtStep>, Prime>
 }
 
-const computeMap = (etName: EtName, primeLimit: Max<Prime>): Map => {
-    const edo: Edo = parseInt(etName.match(/\d*/)![0]) as Edo
-    const wartedPrimeIndices: Index<Prime>[] = Array.from(etName.match(/[a-z]/g) || []).map(
-        (wart: string): Index<Prime> => WART_ALPHABET.indexOf(wart) as Index<Prime>,
+const computeWartCountsByPrimeIndex = (warts: Wart[]): Record<Index<Prime>, Count<Wart>> =>
+    warts.reduce(
+        (
+            wartCountsByPrimeIndex: Record<Index<Prime>, Count<Wart>>,
+            wart: Wart,
+        ): Record<Index<Prime>, Count<Wart>> => {
+            const primeIndex: Index<Prime> = (wart.charCodeAt(0) -
+                CHAR_CODE_OFFSET -
+                ZERO_ONE_INDEX_DIFF) as Index<Prime>
+            if (isUndefined(wartCountsByPrimeIndex[primeIndex])) {
+                wartCountsByPrimeIndex[primeIndex] = 1 as Count<Wart>
+            } else {
+                wartCountsByPrimeIndex[primeIndex]++
+            }
+            return wartCountsByPrimeIndex
+        },
+        {} as Record<Index<Prime>, Count<Wart>>,
     )
 
-    const stepSize: Cents = computeStepSize(edo)
-
+const computePrimeLimitPrimes = (primeLimit: Max<Prime>): Prime[] => {
     const allPrimes: Prime[] = computePrimes(primeLimit)
     const maxPrimeIndex: Index<Prime> = indexOf(allPrimes, primeLimit)
-    const primes: Prime[] = allPrimes.slice(0, maxPrimeIndex + ZERO_ONE_INDEX_DIFF)
 
-    return primes.map((prime: Prime, primeIndex: number): Per<Count<EtStep>, Prime> => {
-        return computeStepCount(prime, stepSize, wartedPrimeIndices.includes(primeIndex as Index<Prime>))
-    })
+    return allPrimes.slice(0, maxPrimeIndex + ZERO_ONE_INDEX_DIFF)
+}
+
+const computeEdoAndWarts = (edoOrEtName: Edo | EtName): { edo: Edo; warts: Wart[] } =>
+    typeof edoOrEtName === "number"
+        ? {
+              edo: edoOrEtName,
+              warts: [],
+          }
+        : {
+              edo: parseInt(edoOrEtName.match(/\d*/)![0]) as Edo,
+              warts: Array.from(edoOrEtName.match(/[a-z]/g) || []) as Wart[],
+          }
+
+const computeMap = <T extends NumericProperties>(
+    edoOrEtName: Edo | EtName,
+    primeLimit: Max<Prime>,
+): Map<T> => {
+    const { edo, warts } = computeEdoAndWarts(edoOrEtName)
+
+    const wartCountsByPrimeIndex: Record<Index<Prime>, Count<Wart>> = computeWartCountsByPrimeIndex(warts)
+    const stepSize: Cents = computeStepSize(edo)
+    const primes: Prime[] = computePrimeLimitPrimes(primeLimit)
+
+    return primes.map(
+        (prime: Prime, primeIndex: number): Per<Count<EtStep>, Prime> =>
+            computeStepCount(prime, stepSize, wartCountsByPrimeIndex[primeIndex as Index<Prime>]),
+    ) as Map<T>
 }
 
 export { computeMap }

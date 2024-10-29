@@ -1,46 +1,9 @@
-import { increment, indexOf } from "../../code"
-import { abs, computePrimes, NumericProperties, Prime } from "../../math"
-import { Count } from "../../types"
-import { OCTAVE_WINDOW } from "../ji"
-import { Octaves } from "../types"
-import { EtStep, Map, Per, SimpleMapOptions } from "./types"
+import { Max, NumericProperties, Prime } from "../../math"
+import { Edo } from "../edo"
+import { computeMap } from "./map"
+import { Map } from "./types"
 
-const computeSimpleMap = <T extends NumericProperties = {}>(options: SimpleMapOptions): Map<T> => {
-    const { edo, primeLimit } = options
-
-    const stepOctaves: Octaves = (OCTAVE_WINDOW ** (1 / edo)) as Octaves
-
-    const primes = computePrimes(primeLimit)
-    const maxPrimeIndex = indexOf(primes, primeLimit)
-
-    let simpleMap: Map<T> = []
-    for (let primeIndex = 0; primeIndex <= maxPrimeIndex; primeIndex = increment(primeIndex)) {
-        const prime = primes[primeIndex]
-
-        let previousApproximation = undefined
-        let currentApproximation = undefined
-        let etStepsPerPrime = 0 as Per<Count<EtStep>, Prime, T>
-        while (true) {
-            previousApproximation = currentApproximation
-            currentApproximation = stepOctaves ** etStepsPerPrime
-
-            if (currentApproximation > prime) {
-                const currentAbsDiff = abs(currentApproximation - prime)
-                const previousAbsDiff = previousApproximation ? abs(previousApproximation - prime) : Infinity
-
-                if (currentAbsDiff < previousAbsDiff) {
-                    simpleMap.push(etStepsPerPrime)
-                } else {
-                    simpleMap.push((etStepsPerPrime - 1) as Per<Count<EtStep>, Prime, T>)
-                }
-                break
-            }
-
-            etStepsPerPrime = increment(etStepsPerPrime)
-        }
-    }
-
-    return simpleMap
-}
+const computeSimpleMap = <T extends NumericProperties>(edo: Edo, primeLimit: Max<Prime>): Map<T> =>
+    computeMap(edo, primeLimit)
 
 export { computeSimpleMap }
