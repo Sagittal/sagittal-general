@@ -2,7 +2,6 @@ import { Char } from "../../io"
 import { NumericProperties, Prime } from "../../math"
 import { Count } from "../../types"
 import { EdoStep } from "../edo"
-import { Cents } from "../types"
 
 type Temperament = { _TemperamentBrand: boolean }
 
@@ -33,8 +32,6 @@ type NumericPropertyTranslationForMappedVector<VectorT, MapT> = (VectorT extends
     : {}) &
     (VectorT extends { integer: true } ? (MapT extends { integer: true } ? { integer: true } : {}) : {})
 
-type Error = Cents & { _ErrorBrand: boolean }
-
 type Wart = Char & { _WartBrand: boolean }
 
 export {
@@ -47,6 +44,5 @@ export {
     MappingRow,
     Mapping,
     NumericPropertyTranslationForMappedVector,
-    Error,
     Wart,
 }
