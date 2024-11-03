@@ -1,24 +1,25 @@
 import { computeTrimmedArray, increment, isUndefined, Maybe, shallowClone } from "../../../code"
 import { Extrema } from "../../../types"
 import { Vector, NumericProperties, PrimeCount } from "../../numeric"
+import { Rational } from "../types"
 
 const doForEachRationalVector = <T extends NumericProperties, U>(
     primeCountExtremas: Array<Extrema<{ of: PrimeCount<T> }>>,
-    workFunction: (rationalVector: Vector<T & { rational: true }>, ...args: any) => Maybe<U>,
-    ...args: any
+    workFunction: (rationalVector: Vector<T & Rational>, ...args: unknown[]) => Maybe<U>,
+    ...args: unknown[]
 ): U[] => {
     const initialVector = primeCountExtremas.map(
         ([minPrimeCount, _]: Extrema<{
             of: PrimeCount<T>
         }>): PrimeCount<T> => minPrimeCount,
-    ) as unknown as Vector<T & { rational: true }>
+    ) as unknown as Vector<T & Rational>
     const finalVector = primeCountExtremas.map(
         ([_, maxPrimeCount]: Extrema<{
             of: PrimeCount<T>
         }>): PrimeCount<T> => maxPrimeCount,
     )
 
-    let currentVector = shallowClone(initialVector)
+    const currentVector = shallowClone(initialVector)
 
     const results = [] as U[]
     while (true) {

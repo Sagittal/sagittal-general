@@ -1,4 +1,4 @@
-import {FULL_MODE} from "./fullMode"
+import { FULL_MODE } from "./fullMode"
 
 const slowTestOnlyRunInFullSuite = (): void => {
     if (!FULL_MODE) {
@@ -6,6 +6,4 @@ const slowTestOnlyRunInFullSuite = (): void => {
     }
 }
 
-export {
-    slowTestOnlyRunInFullSuite,
-}
+export { slowTestOnlyRunInFullSuite }

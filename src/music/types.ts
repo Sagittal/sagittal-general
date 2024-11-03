@@ -1,22 +1,22 @@
-import { Maybe } from "../code"
-import { NumericProperties, ScaledVector } from "../math"
+import { Maybe, NoProperties } from "../code"
+import { Decimal, Irrational, NumericProperties, ScaledVector } from "../math"
 import { Extrema, Name } from "../types"
 
-type Cents = number & { _CentsBrand: boolean }
+type Cents = Decimal & { _CentsBrand: boolean }
 
 type Exclusive = boolean | [Maybe<boolean>, Maybe<boolean>]
 
-type Zone<T extends { of?: unknown } & NumericProperties = {}> = {
-    extrema: Extrema<{ of: ScaledVector; open: true }>
+type Zone<T extends { of?: unknown } & NumericProperties = NoProperties> = {
+    extrema: Extrema<{ of: ScaledVector<T>; open: true }>
     exclusive?: Exclusive
-} & (T extends { of: unknown } ? { _ZoneOfBrand: T["of"] } : {})
+} & (T extends { of: unknown } ? { _ZoneOfBrand: T["of"] } : unknown)
 
-type CommaMean<T extends NumericProperties = {}> = {
+type CommaMean<T extends NumericProperties = NoProperties> = {
     name: Name<CommaMean>
-    pitch: ScaledVector<T & { rational: false }>
+    pitch: ScaledVector<T & Irrational>
 }
 
-type Octaves = number & { _OctavesBrand: boolean }
+type Octaves = Decimal & { _OctavesBrand: boolean }
 
 type Error = Cents & { _ErrorBrand: boolean }
 

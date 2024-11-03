@@ -4,10 +4,7 @@ import { Multiplier } from "../../math"
 import { BLANK, NEWLINE } from "../constants"
 import { Px, TextToSvgOptions } from "./types"
 
-const textToSvgPathString = async (
-    text: string,
-    options: TextToSvgOptions = {},
-): Promise<Html> => {
+const textToSvgPathString = async (text: string, options: TextToSvgOptions = {}): Promise<Html> => {
     const {
         font = BLANK,
         fontSize = 16 as Px,
@@ -22,54 +19,40 @@ const textToSvgPathString = async (
     let maxWidth = 0
 
     const pathStrings = await Promise.all(
-        textLines.map(
-            async (textLine: string, index: number): Promise<Html> => {
-                return new Promise((resolve: (value: Html) => void): void => {
-                    TextToSVG.load(
-                        font,
-                        (
-                            err: Error | null,
-                            textToSVG: TextToSVG | null,
-                        ): void => {
-                            if (!textToSVG) {
-                                throw err
-                            }
+        textLines.map(async (textLine: string, index: number): Promise<Html> => {
+            return new Promise((resolve: (value: Html) => void): void => {
+                TextToSVG.load(font, (err: Error | null, textToSVG: TextToSVG | null): void => {
+                    if (!textToSVG) {
+                        if (err !== null) {
+                            throw err
+                        } else {
+                            throw new Error("no text-to-svg")
+                        }
+                    }
 
-                            const options = {
-                                y: ((line - 1) / 2) * fontSize,
-                                fontSize,
-                                anchor: "left top" as Anchor,
-                                features: { liga: true },
-                            }
+                    const options = {
+                        y: ((line - 1) / 2) * fontSize,
+                        fontSize,
+                        anchor: "left top" as Anchor,
+                        features: { liga: true },
+                    }
 
-                            const { width } = textToSVG.getMetrics(
-                                textLine,
-                                options,
-                            )
-                            if (width > maxWidth) maxWidth = width
+                    const { width } = textToSVG.getMetrics(textLine, options)
+                    if (width > maxWidth) maxWidth = width
 
-                            const svgString = textToSVG.getPath(
-                                textLine,
-                                options,
-                            )
+                    const svgString = textToSVG.getPath(textLine, options)
 
-                            const xOffset = padding
-                            const yOffset = padding + index * lineHeight
+                    const xOffset = padding
+                    const yOffset = padding + index * lineHeight
 
-                            const heightAdjustedAndTranslatedSvgString =
-                                svgString
-                                    .replace(
-                                        /<path/,
-                                        `\t<g transform="translate(${xOffset} ${yOffset})">\n\t\t<path`,
-                                    )
-                                    .replace(/\/>/, `\/>\n\t<\/g>`) as Html
+                    const heightAdjustedAndTranslatedSvgString = svgString
+                        .replace(/<path/, `\t<g transform="translate(${xOffset} ${yOffset})">\n\t\t<path`)
+                        .replace(/\/>/, `/>\n\t</g>`) as Html
 
-                            resolve(heightAdjustedAndTranslatedSvgString)
-                        },
-                    )
+                    resolve(heightAdjustedAndTranslatedSvgString)
                 })
-            },
-        ),
+            })
+        }),
     )
 
     const height = lineHeight * lineCount + 2 * padding

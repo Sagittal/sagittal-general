@@ -57,4 +57,6 @@ export {
     RecordKey,
     Precision,
     SortBy,
+    NoProperties,
+    Override,
 } from "./types"

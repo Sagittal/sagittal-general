@@ -1,1 +1,1 @@
-export {formatTableFromScript} from "./table"
+export { formatTableFromScript } from "./table"

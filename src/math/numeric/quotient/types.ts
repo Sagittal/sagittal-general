@@ -1,3 +1,5 @@
+import { NoProperties } from "../../../code"
+import { Rational } from "../../rational"
 import { Decimal } from "../decimal"
 import {
     NumericProperties,
@@ -5,25 +7,27 @@ import {
     NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms,
 } from "../types"
 
-type NumericPropertyTranslationForQuotientsToTheirQuotientParts<T extends NumericProperties = {}> =
-    (T extends { rough: number } ? T & { rough: T["rough"] } : T) &
+type NumericPropertyTranslationForQuotientsToTheirQuotientParts<T extends NumericProperties = NoProperties> =
+    (T extends {
+        rough: number
+    }
+        ? T & { rough: T["rough"] }
+        : T) &
         (T extends { smooth: number } ? T & { smooth: T["smooth"] } : T)
 
-type Numerator = number & { _NumeratorBrand: boolean }
-type Denominator = number & { _DenominatorBrand: boolean }
+type Numerator = Decimal & { _NumeratorBrand: boolean }
+type Denominator = Decimal & { _DenominatorBrand: boolean }
 
-type Quotient<T extends NumericProperties = {}> = [
+type Quotient<T extends NumericProperties = Rational> = [
     Numerator &
         Decimal<
-            NumericPropertyTranslationForQuotientsToTheirQuotientParts<
+            NumericPropertyTranslationForQuotientsToTheirQuotientParts<T> &
                 NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms<T>
-            >
         >,
     Denominator &
         Decimal<
-            NumericPropertyTranslationForQuotientsToTheirQuotientParts<
+            NumericPropertyTranslationForQuotientsToTheirQuotientParts<T> &
                 NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms<T>
-            >
         >,
 ] &
     NumericPropertyEffects<T>

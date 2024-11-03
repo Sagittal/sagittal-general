@@ -1,4 +1,4 @@
-import {areVectorsEqual, Vector} from "../../../../../src"
+import { areVectorsEqual, Vector } from "../../../../../src"
 
 describe("areVectorsEqual", (): void => {
     it("returns true if the vectors are equal", (): void => {

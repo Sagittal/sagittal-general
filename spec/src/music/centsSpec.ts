@@ -6,6 +6,7 @@ import {
     Decimal,
     dividePitch,
     halveScaledVector,
+    Irrational,
     IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
     ScaledVector,
 } from "../../../src"
@@ -14,7 +15,7 @@ describe("dividePitch", (): void => {
     it("returns the proportion the part pitch is of the whole pitch", (): void => {
         const actual = dividePitch(halveScaledVector(APOTOME), APOTOME)
 
-        const expected = 0.5 as Decimal<{ rational: false }>
+        const expected = 0.5 as Decimal<Irrational>
         expect(actual).toBeCloseTo(expected)
     })
 })
@@ -28,7 +29,7 @@ describe("computePitchFromCents", (): void => {
         const expected = {
             vector: IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
             scaler: [0.584963, 1],
-        } as ScaledVector<{ rational: false }>
+        } as ScaledVector<Irrational>
         expect(actual).toBeCloseToObject(expected)
     })
 
@@ -40,16 +41,14 @@ describe("computePitchFromCents", (): void => {
         const expected = {
             vector: IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
             scaler: [0.5, 1],
-        } as ScaledVector<{ rational: false }>
+        } as ScaledVector<Irrational>
         expect(actual).toBeCloseToObject(expected)
     })
 })
 
 describe("computeCentsFromPitch", (): void => {
     it("returns the cents of a pitch with a vector", (): void => {
-        const pitch = { vector: [-1, 2, 0, -2, 1] } as ScaledVector<
-            { rational: true }
-        >
+        const pitch = { vector: [-1, 2, 0, -2, 1] } as ScaledVector
 
         const actual = computeCentsFromPitch(pitch)
 
@@ -58,7 +57,7 @@ describe("computeCentsFromPitch", (): void => {
     })
 
     it("works for pitches with vectors with really big counts of prime 2", (): void => {
-        const pitch = { vector: [317, -200] } as ScaledVector<{ rational: true }>
+        const pitch = { vector: [317, -200] } as ScaledVector
 
         const actual = computeCentsFromPitch(pitch)
 
@@ -67,7 +66,7 @@ describe("computeCentsFromPitch", (): void => {
     })
 
     it("works for pitches with vectors that are greater than an octave", (): void => {
-        const pitch = { vector: [0, 1] } as ScaledVector<{ rational: true }>
+        const pitch = { vector: [0, 1] } as ScaledVector
 
         const actual = computeCentsFromPitch(pitch)
 
@@ -76,9 +75,7 @@ describe("computeCentsFromPitch", (): void => {
     })
 
     it("another example, negative", (): void => {
-        const pitch = { vector: [2, 1, 0, 0, 0, -1] } as ScaledVector<
-            { rational: true }
-        >
+        const pitch = { vector: [2, 1, 0, 0, 0, -1] } as ScaledVector
 
         const actual = computeCentsFromPitch(pitch)
 
@@ -87,7 +84,7 @@ describe("computeCentsFromPitch", (): void => {
     })
 
     it("works for this huge 3-limit example, upwards", (): void => {
-        const pitch = { vector: [-1726, 1330] } as ScaledVector<{ rational: true }>
+        const pitch = { vector: [-1726, 1330] } as ScaledVector
 
         const actual = computeCentsFromPitch(pitch)
 
@@ -96,7 +93,7 @@ describe("computeCentsFromPitch", (): void => {
     })
 
     it("works for this huge 3-limit example, downwards", (): void => {
-        const pitch = { vector: [1726, -1330] } as ScaledVector<{ rational: true }>
+        const pitch = { vector: [1726, -1330] } as ScaledVector
 
         const actual = computeCentsFromPitch(pitch)
 

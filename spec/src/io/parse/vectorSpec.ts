@@ -1,4 +1,4 @@
-import {Io, Vector, parseVector} from "../../../../src"
+import { Io, Vector, parseVector } from "../../../../src"
 
 describe("parseVector", (): void => {
     const expected = [3, 4, -5] as Vector

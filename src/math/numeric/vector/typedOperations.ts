@@ -11,10 +11,10 @@ const sumVectors = <T extends NumericProperties>(...vectors: Array<Vector<T>>): 
             const primeCount: PrimeCount<T> = vector[index] || (0 as PrimeCount<T>)
 
             return add(totalPrimeCount, primeCount)
-        }, 0 as PrimeCount<T>) as PrimeCount<T>
+        }, 0 as PrimeCount<T>)
     }) as Vector<T>
 
-    return computeTrimmedArray(summedVectors) as Vector<T>
+    return computeTrimmedArray(summedVectors)
 }
 
 const addVectors = <T extends NumericProperties>(

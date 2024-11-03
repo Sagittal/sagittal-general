@@ -1,4 +1,4 @@
-import {formatTime, Ms, TimePrecision} from "../../../../src"
+import { formatTime, Ms, TimePrecision } from "../../../../src"
 
 describe("formatTime", (): void => {
     it("formats ms", (): void => {

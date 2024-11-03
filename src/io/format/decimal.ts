@@ -1,4 +1,4 @@
-import { Decimal, round } from "../../math"
+import { Decimal, Integer, round } from "../../math"
 import { IO_PRECISION } from "../constants"
 import { ioSettings } from "../globals"
 import { TableFormat } from "../table"
@@ -13,26 +13,19 @@ const alignFormattedDecimal = (formattedDecimal: Formatted<Decimal>): Formatted<
 }
 
 const alignFormattedIntegerDecimal = (
-    formattedIntegerDecimal: Formatted<Decimal<{ integer: true }>>,
-): Formatted<Decimal<{ integer: true }>> => {
+    formattedIntegerDecimal: Formatted<Decimal<Integer>>,
+): Formatted<Decimal<Integer>> => {
     while (formattedIntegerDecimal.length < 3) {
-        formattedIntegerDecimal = (" " + formattedIntegerDecimal) as Formatted<
-            Decimal<{ integer: true }>
-        >
+        formattedIntegerDecimal = (" " + formattedIntegerDecimal) as Formatted<Decimal<Integer>>
     }
     while (formattedIntegerDecimal.length < 7) {
-        formattedIntegerDecimal = (formattedIntegerDecimal + " ") as Formatted<
-            Decimal<{ integer: true }>
-        >
+        formattedIntegerDecimal = (formattedIntegerDecimal + " ") as Formatted<Decimal<Integer>>
     }
 
     return formattedIntegerDecimal
 }
 
-const formatDecimal = (
-    decimal: Decimal,
-    { align }: { align?: boolean } = {},
-): Formatted<Decimal> => {
+const formatDecimal = (decimal: Decimal, { align }: { align?: boolean } = {}): Formatted<Decimal> => {
     const roundedDecimal = round(decimal, IO_PRECISION)
         .toFixed(3)
         .replace(/\.(\d\d\d)0*$/, ".$1") as Formatted<Decimal>
@@ -43,12 +36,10 @@ const formatDecimal = (
 }
 
 const formatIntegerDecimal = (
-    integerDecimal: Decimal<{ integer: true }>,
+    integerDecimal: Decimal<Integer>,
     { align }: { align?: boolean } = {},
-): Formatted<Decimal<{ integer: true }>> => {
-    let stringifiedIntegerDecimal = integerDecimal.toString() as Formatted<
-        Decimal<{ integer: true }>
-    >
+): Formatted<Decimal<Integer>> => {
+    const stringifiedIntegerDecimal = integerDecimal.toString() as Formatted<Decimal<Integer>>
 
     return align && ioSettings.tableFormat !== TableFormat.SPREADSHEET
         ? alignFormattedIntegerDecimal(stringifiedIntegerDecimal)

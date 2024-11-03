@@ -1,4 +1,4 @@
-import {ColorMethod, LogTarget} from "./types"
+import { ColorMethod, LogTarget } from "./types"
 
 const targetColors: Record<LogTarget, ColorMethod> = {
     [LogTarget.ALL]: "white",
@@ -12,6 +12,4 @@ const targetColors: Record<LogTarget, ColorMethod> = {
     [LogTarget.RESULT]: "green",
 }
 
-export {
-    targetColors,
-}
+export { targetColors }

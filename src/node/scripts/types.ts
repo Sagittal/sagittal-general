@@ -1,6 +1,6 @@
-import {Maybe} from "../../code"
-import {Ms} from "../../types"
-import {Filename} from "../types"
+import { Maybe } from "../../code"
+import { Ms } from "../../types"
+import { Filename } from "../types"
 
 enum LogTarget {
     ALL = "all",
@@ -17,26 +17,12 @@ enum LogTarget {
 type LogTargets = Record<LogTarget, boolean>
 
 interface ScriptSettings {
-    logTargets: LogTargets,
-    logDir: Filename,
-    time: Maybe<Ms>,
-    disableColors: boolean,
+    logTargets: LogTargets
+    logDir: Filename
+    time: Maybe<Ms>
+    disableColors: boolean
 }
 
-type ColorMethod =
-    "white" |
-    "gray" |
-    "black" |
-    "red" |
-    "yellow" |
-    "green" |
-    "cyan" |
-    "blue" |
-    "magenta"
+type ColorMethod = "white" | "gray" | "black" | "red" | "yellow" | "green" | "cyan" | "blue" | "magenta"
 
-export {
-    LogTargets,
-    LogTarget,
-    ScriptSettings,
-    ColorMethod,
-}
+export { LogTargets, LogTarget, ScriptSettings, ColorMethod }

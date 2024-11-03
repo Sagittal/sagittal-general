@@ -1,7 +1,7 @@
 import * as fs from "fs"
 import * as path from "path"
-import {Filename} from "../types"
-import {FULL_MODE} from "./fullMode"
+import { Filename } from "../types"
+import { FULL_MODE } from "./fullMode"
 
 const catchBadSpecFiles = (basePath: Filename = "" as Filename): void => {
     if (!FULL_MODE) return
@@ -12,8 +12,10 @@ const catchBadSpecFiles = (basePath: Filename = "" as Filename): void => {
         if (fs.lstatSync(path.join("spec/src", basePath, file)).isDirectory()) {
             catchBadSpecFiles(filename)
         } else {
-            if (!new RegExp(".*Spec\.ts").test(filename)) {
-                throw new Error(`Spec is not named properly and will not run: ${path.join("spec/src", filename)}`)
+            if (!new RegExp(".*Spec.ts").test(filename)) {
+                throw new Error(
+                    `Spec is not named properly and will not run: ${path.join("spec/src", filename)}`,
+                )
             }
 
             if (
@@ -26,6 +28,4 @@ const catchBadSpecFiles = (basePath: Filename = "" as Filename): void => {
     }
 }
 
-export {
-    catchBadSpecFiles,
-}
+export { catchBadSpecFiles }

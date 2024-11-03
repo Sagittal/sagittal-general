@@ -1,1 +1,1 @@
-export {computeIrrationalVectorFromScaledVector} from "./fromScaledVector"
+export { computeIrrationalVectorFromScaledVector } from "./fromScaledVector"

@@ -1,10 +1,18 @@
-import {Decimal} from "../../../../../src"
-import {computeIntegerDecimalSmoothness, Smoothness} from "../../../../../src/math/rational"
-import {computeRationalDecimalSmoothness, isIntegerDecimalSmooth} from "../../../../../src/math/rational/decimal"
+import { Decimal } from "../../../../../src"
+import {
+    computeIntegerDecimalSmoothness,
+    Integer,
+    Rational,
+    Smoothness,
+} from "../../../../../src/math/rational"
+import {
+    computeRationalDecimalSmoothness,
+    isIntegerDecimalSmooth,
+} from "../../../../../src/math/rational/decimal"
 
 describe("isIntegerDecimalSmooth", (): void => {
     it("returns true when the integer decimal has no prime factors greater than the smoothness", (): void => {
-        const integerDecimal = 35 as Decimal<{integer: true}>
+        const integerDecimal = 35 as Decimal<Integer>
         const smoothness = 7 as 7 & Smoothness
 
         const actual = isIntegerDecimalSmooth(integerDecimal, smoothness)
@@ -13,7 +21,7 @@ describe("isIntegerDecimalSmooth", (): void => {
     })
 
     it("returns false when the integer decimal has prime factors greater than the smoothness", (): void => {
-        const integerDecimal = 35 as Decimal<{integer: true}>
+        const integerDecimal = 35 as Decimal<Integer>
         const smoothness = 5 as 5 & Smoothness
 
         const actual = isIntegerDecimalSmooth(integerDecimal, smoothness)
@@ -24,7 +32,7 @@ describe("isIntegerDecimalSmooth", (): void => {
 
 describe("computeRationalDecimalSmoothness", (): void => {
     it("works for an integer decimal", (): void => {
-        const integerDecimal = 35 as Decimal<{integer: true}>
+        const integerDecimal = 35 as Decimal<Integer>
 
         const actual = computeRationalDecimalSmoothness(integerDecimal)
 
@@ -33,7 +41,7 @@ describe("computeRationalDecimalSmoothness", (): void => {
     })
 
     it("works for a rational decimal", (): void => {
-        const rationalDecimal = 5.5 as Decimal<{rational: true}>  // 11 / 2
+        const rationalDecimal = 5.5 as Decimal<Rational> // 11 / 2
 
         const actual = computeRationalDecimalSmoothness(rationalDecimal)
 
@@ -44,7 +52,7 @@ describe("computeRationalDecimalSmoothness", (): void => {
 
 describe("computeIntegerDecimalSmoothness", (): void => {
     it("returns the smoothness of the integer decimal", (): void => {
-        const integerDecimal = 49 as Decimal<{integer: true}>
+        const integerDecimal = 49 as Decimal<Integer>
 
         const actual = computeIntegerDecimalSmoothness(integerDecimal)
 

@@ -1,4 +1,4 @@
-import {computeLineCount, Count} from "../../../src"
+import { computeLineCount, Count } from "../../../src"
 
 describe("computeLineCount", (): void => {
     it("returns how many lines a text has", (): void => {

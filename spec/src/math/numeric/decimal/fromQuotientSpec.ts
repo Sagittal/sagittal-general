@@ -1,4 +1,4 @@
-import {computeDecimalFromQuotient, Decimal, Quotient} from "../../../../../src"
+import { computeDecimalFromQuotient, Decimal, Quotient } from "../../../../../src"
 
 describe("computeDecimalFromQuotient", (): void => {
     it("returns the decimal representation of the quotient", (): void => {

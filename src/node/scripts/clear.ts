@@ -1,6 +1,6 @@
 import * as fs from "fs"
 import * as path from "path"
-import {Filename} from "../types"
+import { Filename } from "../types"
 
 const clearLogFiles = (logDir: Filename): void => {
     if (!fs.existsSync("log")) return
@@ -16,6 +16,4 @@ const clearLogFiles = (logDir: Filename): void => {
     }
 }
 
-export {
-    clearLogFiles,
-}
+export { clearLogFiles }

@@ -1,5 +1,5 @@
-import {Range} from "../../code"
-import {Table} from "./types"
+import { Range } from "../../code"
+import { Table } from "./types"
 
 const computeColumnRange = <T>(table: Table<T>): Range => {
     const exampleRow = table[0]
@@ -8,6 +8,4 @@ const computeColumnRange = <T>(table: Table<T>): Range => {
     return [...Array(columnCount).keys()] as Range
 }
 
-export {
-    computeColumnRange,
-}
+export { computeColumnRange }

@@ -1,9 +1,9 @@
 import { negative } from "../../typedOperations"
 import { computeDecimalFromVector } from "../decimal"
-import { Vector } from "../vector"
 import { NumericProperties } from "../types"
-import { Quotient } from "./types"
+import { Vector } from "../vector"
 import { PrimeCount } from "../vector/types"
+import { Quotient } from "./types"
 
 const computeQuotientFromVector = <T extends NumericProperties>(vector: Vector<T>): Quotient<T> => {
     const numeratorVector = vector.map((primeCount: PrimeCount<T>): PrimeCount<T> => {

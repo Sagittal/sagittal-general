@@ -1,14 +1,14 @@
-import {computeIrrationalScaledVectorFromQuotient} from "../../irrational"
-import {computeRationalScaledVectorFromRationalQuotient, isQuotientRational} from "../../rational"
-import {Quotient} from "../quotient"
-import {NumericProperties} from "../types"
-import {ScaledVector} from "./types"
+import { computeIrrationalScaledVectorFromQuotient } from "../../irrational"
+import { computeRationalScaledVectorFromRationalQuotient, isQuotientRational } from "../../rational"
+import { Quotient } from "../quotient"
+import { NumericProperties } from "../types"
+import { ScaledVector } from "./types"
 
-const computeScaledVectorFromQuotient = <T extends NumericProperties>(quotient: Quotient<T>): ScaledVector<T> =>
-    isQuotientRational(quotient) ?
-        computeRationalScaledVectorFromRationalQuotient(quotient) :
-        computeIrrationalScaledVectorFromQuotient(quotient)
+const computeScaledVectorFromQuotient = <T extends NumericProperties>(
+    quotient: Quotient<T>,
+): ScaledVector<T> =>
+    isQuotientRational(quotient)
+        ? computeRationalScaledVectorFromRationalQuotient(quotient)
+        : (computeIrrationalScaledVectorFromQuotient(quotient) as ScaledVector<T>)
 
-export {
-    computeScaledVectorFromQuotient,
-}
+export { computeScaledVectorFromQuotient }

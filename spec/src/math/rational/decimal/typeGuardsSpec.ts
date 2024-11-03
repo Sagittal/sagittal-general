@@ -1,4 +1,4 @@
-import {isDecimalRational} from "../../../../../src/math"
+import { isDecimalRational } from "../../../../../src/math"
 
 describe("isDecimalRational", (): void => {
     it("returns true only if it equals itself rounded to the default accuracy (157934/100000; weird, but safe, since largest supported prime is 8368819)", (): void => {

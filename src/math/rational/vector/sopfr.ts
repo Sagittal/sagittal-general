@@ -1,12 +1,12 @@
 import { Vector, NumericProperties, PrimeCount } from "../../numeric"
 import { abs } from "../../typedOperations"
 import { computePrimes } from "../primes"
-import { Sopfr } from "../types"
+import { Rational, Sopfr } from "../types"
 
 // Sum Of Prime Factors with Repetition
 
-const computeRationalVectorSopfr = <T extends NumericProperties>(
-    rationalVector: Vector<T & { rational: true }>,
+const computeRationalVectorSopfr = <T extends NumericProperties & Rational>(
+    rationalVector: Vector<T>,
 ): Sopfr<T> => {
     const primes = computePrimes()
 

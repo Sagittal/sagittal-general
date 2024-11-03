@@ -1,11 +1,11 @@
-import {NumericProperties, ScaledVector} from "../../math"
-import {Cents} from "../types"
+import { NoProperties } from "../../code"
+import { NumericProperties, Rational, ScaledVector } from "../../math"
+import { Cents } from "../types"
 
-type Comma<T extends NumericProperties = {}> = ScaledVector<T & {rational: true}> & {_CommaBrand: boolean}
-
-type Apotome = Cents & {_ApotomeBrand: boolean}
-
-export {
-    Apotome,
-    Comma,
+type Comma<T extends NumericProperties = NoProperties> = ScaledVector<T & Rational> & {
+    _CommaBrand: boolean
 }
+
+type Apotome = Cents & { _ApotomeBrand: boolean }
+
+export { Apotome, Comma }

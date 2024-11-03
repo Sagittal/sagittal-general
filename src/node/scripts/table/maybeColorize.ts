@@ -1,7 +1,7 @@
-import {isUndefined, Maybe} from "../../../code"
-import {Io} from "../../../io"
-import {colorize} from "../../colorize"
-import {ColorMethod} from "../types"
+import { isUndefined, Maybe } from "../../../code"
+import { Io } from "../../../io"
+import { colorize } from "../../colorize"
+import { ColorMethod } from "../types"
 
 const maybeColorize = (rowIo: Io, rowIndex: number, colors: Maybe<Array<Maybe<ColorMethod>>>): Io => {
     if (isUndefined(colors)) {
@@ -13,6 +13,4 @@ const maybeColorize = (rowIo: Io, rowIndex: number, colors: Maybe<Array<Maybe<Co
     return rowColor ? colorize(rowIo, rowColor) : rowIo
 }
 
-export {
-    maybeColorize,
-}
+export { maybeColorize }

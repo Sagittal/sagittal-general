@@ -1,6 +1,6 @@
-import {Index} from "../../types"
-import {Decimal} from "../numeric"
-import {Prime, Roughness, Smoothness} from "./types"
+import { Index } from "../../types"
+import { Decimal } from "../numeric"
+import { Integer, Prime, Roughness, Smoothness } from "./types"
 
 const TWO_PRIME_INDEX: Index<Prime> = 0 as Index<Prime>
 const THREE_PRIME_INDEX: Index<Prime> = 1 as Index<Prime>
@@ -12,7 +12,7 @@ const FIVE_ROUGHNESS = 5 as 5 & Roughness
 const THREE_SMOOTHNESS = 3 as 3 & Smoothness
 const FIVE_SMOOTHNESS = 5 as 5 & Smoothness
 
-const ONE = 1 as Decimal<{integer: true}>
+const ONE = 1 as Decimal<Integer>
 
 const SMOOTH_ROUGH_OFFSET = 1
 

@@ -1,3 +1,7 @@
+import { NoProperties } from "../../code"
+import { Irrational } from "../irrational"
+import { Integer, Rational } from "../rational"
+
 enum Direction {
     SUPER = "super",
     SUB = "sub",
@@ -23,21 +27,35 @@ type NumericProperties = Partial<{
     sign: Sign
 }>
 
-type NumericPropertyEffects<T> =
-    (T extends { direction: Direction.SUB } ? { _DirectionBrand: Direction.SUB } : {}) &
-    (T extends { direction: Direction.SUPER } ? { _DirectionBrand: Direction.SUPER } : {}) &
-    (T extends { direction: Direction.UNISON } ? { _DirectionBrand: Direction.UNISON } : {}) &
-    (T extends { rough: number } ? { _RoughBrand: Pick<T, "rough"> } : {}) &
-    (T extends { smooth: number } ? { _SmoothBrand: Pick<T, "smooth"> } : {}) &
-    (T extends { rational: true } ? { _RationalBrand: boolean } : {}) &
-    (T extends { rational: false } ? { _IrrationalBrand: boolean } : {}) &
-    (T extends { integer: true } ? { _RationalBrand: boolean; _IntegerBrand: boolean } : {}) &
-    (T extends { sign: Sign.POSITIVE } ? { _SignBrand: Sign.POSITIVE } : {}) &
-    (T extends { sign: Sign.NEGATIVE } ? { _SignBrand: Sign.NEGATIVE } : {}) &
-    (T extends { sign: Sign.UNSIGNED } ? { _SignBrand: Sign.UNSIGNED } : {}) 
+type Super = { direction: Direction.SUPER }
+type Sub = { direction: Direction.SUB }
+type Unison = { direction: Direction.UNISON }
 
-type NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms<T extends NumericProperties = {}> =
-    T extends { rational: true } ? T & { integer: true } : T
+type Positive = { sign: Sign.POSITIVE }
+type Negative = { sign: Sign.NEGATIVE }
+type Unsigned = { sign: Sign.UNSIGNED }
+
+type NumericPropertyEffects<T> = (
+    | (T extends Sub ? { _DirectionBrand: Direction.SUB } : unknown)
+    | (T extends Super ? { _DirectionBrand: Direction.SUPER } : unknown)
+    | (T extends Unison ? { _DirectionBrand: Direction.UNISON } : unknown)
+) &
+    (T extends { rough: number } ? { _RoughBrand: Pick<T, "rough"> } : unknown) &
+    (T extends { smooth: number } ? { _SmoothBrand: Pick<T, "smooth"> } : unknown) &
+    (
+        | (T extends Integer ? { _RationalBrand: boolean; _IntegerBrand: boolean } : unknown)
+        | (T extends Rational ? { _RationalBrand: boolean } : unknown)
+        | (T extends Irrational ? { _IrrationalBrand: boolean } : unknown)
+    ) &
+    (
+        | (T extends Positive ? { _SignBrand: Sign.POSITIVE } : unknown)
+        | (T extends Negative ? { _SignBrand: Sign.NEGATIVE } : unknown)
+        | (T extends Unsigned ? { _SignBrand: Sign.UNSIGNED } : unknown)
+    )
+
+type NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms<
+    T extends NumericProperties = NoProperties,
+> = T extends Rational ? T & Integer : T
 
 export {
     NumericProperties,
@@ -45,4 +63,10 @@ export {
     NumericPropertyEffects,
     NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms,
     Sign,
+    Super,
+    Sub,
+    Unison,
+    Unsigned,
+    Positive,
+    Negative,
 }

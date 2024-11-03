@@ -1,4 +1,4 @@
-import {computeTrimmedArray} from "../../../src"
+import { computeTrimmedArray } from "../../../src"
 
 describe("computeTrimmedArray", (): void => {
     it("removes trailing falsy elements from the array", (): void => {

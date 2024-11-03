@@ -1,8 +1,6 @@
-import {DEFAULT_SCRIPT_SETTINGS} from "./constants"
-import {ScriptSettings} from "./types"
+import { DEFAULT_SCRIPT_SETTINGS } from "./constants"
+import { ScriptSettings } from "./types"
 
-const scriptSettings: ScriptSettings = JSON.parse(JSON.stringify(DEFAULT_SCRIPT_SETTINGS))
+const scriptSettings: ScriptSettings = structuredClone(DEFAULT_SCRIPT_SETTINGS)
 
-export {
-    scriptSettings,
-}
+export { scriptSettings }

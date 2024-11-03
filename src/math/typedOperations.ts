@@ -6,6 +6,7 @@ import {
     VALUE_BELOW_WHICH_ROUNDING_IMPLEMENTATION_BREAKS,
 } from "./constants"
 import { Decimal } from "./numeric"
+import { Integer } from "./rational"
 import {
     Abs,
     Addend,
@@ -41,16 +42,12 @@ const product = <T extends number>(...factors: T[]): Product<T> =>
         MULTIPLICATIVE_IDENTITY as Product<T>,
     )
 
-const add = <T extends number>(augend: Augend<T> | T, addend: Addend<T> | T): T =>
-    (augend + addend) as T // Sum
+const add = <T extends number>(augend: Augend<T> | T, addend: Addend<T> | T): T => (augend + addend) as T // Sum
 
 const subtract = <T extends number>(minuend: Minuend<T> | T, subtrahend: Subtrahend<T> | T): T =>
     (minuend - subtrahend) as T // Difference
 
-const multiply = <T extends number>(
-    multiplicand: Multiplicand<T> | T,
-    multiplier: Multiplier<T> | T,
-): T => {
+const multiply = <T extends number>(multiplicand: Multiplicand<T> | T, multiplier: Multiplier<T> | T): T => {
     return (multiplicand * multiplier) as T // Product
 }
 
@@ -66,7 +63,7 @@ const isPositive = <T extends number>(number: T): boolean => number > 0
 
 const round = <T extends number>(number: T, precision?: Precision): T => {
     if (isUndefined(precision)) {
-        return Math.round(number) as T & Decimal<{ integer: true }>
+        return Math.round(number) as T & Decimal<Integer>
     }
 
     if (abs(number) > MAX_JS_INTEGER_VALUE) {
@@ -93,10 +90,8 @@ const min = <T extends number>(...numbers: T[]): Min<T> => Math.min(...numbers) 
 const pow = <T extends number>(base: Base<T> | T, exponent: Exponent<T> | T): Power<T> =>
     Math.pow(base, exponent) as Power<T>
 
-const log = <T extends number>(
-    power: Power<T> | T,
-    base: Base<T> | T = Math.E as Base<T>,
-): Exponent<T> => (Math.log(power) / Math.log(base)) as Exponent<T>
+const log = <T extends number>(power: Power<T> | T, base: Base<T> | T = Math.E as Base<T>): Exponent<T> =>
+    (Math.log(power) / Math.log(base)) as Exponent<T>
 
 export {
     sum,

@@ -1,6 +1,3 @@
-const parseBoolean = (booleanText: string): boolean =>
-    booleanText === "true"
+const parseBoolean = (booleanText: string): boolean => booleanText === "true"
 
-export {
-    parseBoolean,
-}
+export { parseBoolean }

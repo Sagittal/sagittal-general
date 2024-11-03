@@ -55,6 +55,8 @@ export {
     sentenceCaseToKebabCase,
     noop,
     indexOf,
+    NoProperties,
+    Override,
 } from "./code"
 export { Em, Html, Hyperlink, isBrowserMobile, Css } from "./browser"
 export {
@@ -285,6 +287,16 @@ export {
     computeSubScaledVector,
     PrimeCount,
     computeLesserPrimeCount,
+    Integer,
+    Rational,
+    Irrational,
+    Noninteger,
+    Super,
+    Unison,
+    Sub,
+    Unsigned,
+    Positive,
+    Negative,
 } from "./math"
 export {
     Cents,

@@ -1,4 +1,4 @@
-import {doOnNextEventLoop, Ms} from "../../../src"
+import { doOnNextEventLoop, Ms } from "../../../src"
 
 describe("doOnNextEventLoop", (): void => {
     it("resolves on the next event loop", (done: DoneFn): void => {
@@ -7,7 +7,7 @@ describe("doOnNextEventLoop", (): void => {
             work = 1
         }
 
-        doOnNextEventLoop(fn).then((): void => {
+        void doOnNextEventLoop(fn).then((): void => {
             expect(work).toBe(1)
             done()
         })
@@ -26,7 +26,7 @@ describe("doOnNextEventLoop", (): void => {
             })
         }
 
-        doOnNextEventLoop(fn).then((): void => {
+        void doOnNextEventLoop(fn).then((): void => {
             expect(work).toBe(1)
             done()
         })
@@ -40,7 +40,7 @@ describe("doOnNextEventLoop", (): void => {
             work = 1
         }
 
-        doOnNextEventLoop(fn, 30 as Ms).then((): void => {
+        void doOnNextEventLoop(fn, 30 as Ms).then((): void => {
             expect(work).toBe(1)
         })
 

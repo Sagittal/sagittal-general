@@ -1,4 +1,4 @@
-import {Decimal, Io, parseDecimal} from "../../../../src"
+import { Io, parseDecimal } from "../../../../src"
 
 describe("parseDecimal", (): void => {
     it("works when the decimal being parsed has been aligned", (): void => {
@@ -6,7 +6,7 @@ describe("parseDecimal", (): void => {
 
         const actual = parseDecimal(decimalIo)
 
-        const expected = 4.555 as Decimal
+        const expected = 4.555
         expect(actual).toBe(expected)
     })
 })

@@ -17,7 +17,7 @@ export {
     SYNTONIC_COMMA,
     OCTAVE,
 } from "./constants"
-export {Comma, Apotome} from "./types"
+export { Comma, Apotome } from "./types"
 export {
     ScalaPopularityStat,
     compute23FreeClassName,

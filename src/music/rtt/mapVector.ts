@@ -1,9 +1,9 @@
 import { formatMap, formatVector } from "../../io"
 import { NumericProperties, Vector, PrimeCount } from "../../math"
-import { EtStep, Map, NumericPropertyTranslationForMappedVector } from "./types"
 import { Count } from "../../types"
+import { EtStep, Map, NumericPropertyTranslationForMappedVector } from "./types"
 
-const mapVector = <VectorT extends NumericProperties = {}, MapT extends NumericProperties = {}>(
+const mapVector = <VectorT extends NumericProperties, MapT extends NumericProperties>(
     vector: Vector<VectorT>,
     map: Map<MapT>,
 ): Count<EtStep> & NumericPropertyTranslationForMappedVector<VectorT, MapT> => {

@@ -24,7 +24,7 @@ describe("log", (): void => {
 })
 
 describe("round", (): void => {
-    const number: number = 29.59845456
+    const number = 29.59845456 as number
 
     it("rounds to the precision specified", (): void => {
         expect(round(number, 1 as Precision)).toBe(29.6)

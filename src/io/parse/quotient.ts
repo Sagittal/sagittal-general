@@ -20,7 +20,7 @@ const parseSuperscriptNumber = (superscriptNumberText: string): number => {
 }
 
 const parseQuotient = <T extends NumericProperties>(quotientIo: Io): Quotient<T> => {
-    const quotient = split(quotientIo.replace(/[()]/g, BLANK), /[\/:]/).map(
+    const quotient = split(quotientIo.replace(/[()]/g, BLANK), /[/:]/).map(
         (quotientPartIo: Io): QuotientPart => {
             if (quotientPartIo.match(new RegExp(`[${EXPONENT_NUMBERS}${MULTIPLICATION_SYMBOLS}]`))) {
                 const factorPowers = quotientPartIo.split(new RegExp(`[${MULTIPLICATION_SYMBOLS}]`))
@@ -41,8 +41,8 @@ const parseQuotient = <T extends NumericProperties>(quotientIo: Io): Quotient<T>
                         exponentPartOfFactorPower === BLANK
                             ? 1
                             : ascii
-                            ? parseInt(exponentPartOfFactorPower)
-                            : parseSuperscriptNumber(exponentPartOfFactorPower)
+                              ? parseInt(exponentPartOfFactorPower)
+                              : parseSuperscriptNumber(exponentPartOfFactorPower)
 
                     return (product * base ** power) as QuotientPart
                 }, 1 as QuotientPart)

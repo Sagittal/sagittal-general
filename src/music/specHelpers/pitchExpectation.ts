@@ -4,8 +4,8 @@ import {
     NumericProperties,
     ScaledVector,
 } from "../../math"
-import {computeCentsFromPitch} from "../cents"
-import {PitchExpectation} from "./types"
+import { computeCentsFromPitch } from "../cents"
+import { PitchExpectation } from "./types"
 
 const computePitchExpectation = <T extends NumericProperties>(pitch: ScaledVector<T>): PitchExpectation<T> =>
     ({
@@ -15,6 +15,4 @@ const computePitchExpectation = <T extends NumericProperties>(pitch: ScaledVecto
         vector: computeIrrationalVectorFromScaledVector(pitch),
     }) as PitchExpectation<T>
 
-export {
-    computePitchExpectation,
-}
+export { computePitchExpectation }

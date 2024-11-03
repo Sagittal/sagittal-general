@@ -1,6 +1,7 @@
 import {
     computeIrrationalDecimalFromScaledVector,
     Decimal,
+    Irrational,
     IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
     Quotient,
     ScaledVector,
@@ -11,11 +12,11 @@ describe("computeIrrationalDecimalFromScaledVector", (): void => {
         const irrationalScaledVector = {
             vector: IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
             scaler: [6.400178, 1] as Quotient,
-        } as ScaledVector<{ rational: false }>
+        } as ScaledVector<Irrational>
 
         const actual = computeIrrationalDecimalFromScaledVector(irrationalScaledVector)
 
-        const expected = 84.45893 as Decimal<{ rational: false }>
+        const expected = 84.45893 as Decimal<Irrational>
         expect(actual).toBeCloseTo(expected)
     })
 })

@@ -2,10 +2,7 @@ import { deepClone } from "../code"
 import { Count } from "../types"
 import { Distribution, DistributionBin } from "./types"
 
-const computeDistributions = <T>(
-    array: T[],
-    binCount: Count<DistributionBin<T>>,
-): Array<Distribution<T>> => {
+const computeDistributions = <T>(array: T[], binCount: Count<DistributionBin<T>>): Array<Distribution<T>> => {
     const emptyDistribution: Distribution<T> = [...Array(binCount).keys()].map(
         (_: number): T[] => [] as unknown[] as DistributionBin<T>,
     ) as Distribution<T>

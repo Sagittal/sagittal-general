@@ -1,10 +1,8 @@
-import {deepClone} from "../../../src"
+import { deepClone } from "../../../src"
 
 describe("deepClone", (): void => {
     it("returns a clone of the object which when changed will not change the source object", (): void => {
-        const object = [
-            {a: 1},
-        ]
+        const object = [{ a: 1 }]
 
         const actual = deepClone(object)
         actual[0].a = 2

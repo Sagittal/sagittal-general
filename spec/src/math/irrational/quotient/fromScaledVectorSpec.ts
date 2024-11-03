@@ -1,4 +1,4 @@
-import { IRRATIONAL_SCALED_VECTOR_BASE_VECTOR, Quotient, ScaledVector } from "../../../../../src"
+import { Irrational, IRRATIONAL_SCALED_VECTOR_BASE_VECTOR, Quotient, ScaledVector } from "../../../../../src"
 import { computeIrrationalQuotientFromScaledVector } from "../../../../../src/math/irrational/quotient"
 
 describe("computeIrrationalQuotientFromScaledVector", (): void => {
@@ -6,11 +6,11 @@ describe("computeIrrationalQuotientFromScaledVector", (): void => {
         const irrationalScaledVector = {
             vector: IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
             scaler: [6.400178, 1] as Quotient,
-        } as ScaledVector<{ rational: false }>
+        } as ScaledVector<Irrational>
 
         const actual = computeIrrationalQuotientFromScaledVector(irrationalScaledVector)
 
-        const expected = [84.45893, 1] as Quotient<{ rational: false }>
+        const expected = [84.45893, 1] as Quotient<Irrational>
         expect(actual).toBeCloseToObject(expected)
     })
 })

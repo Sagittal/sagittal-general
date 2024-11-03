@@ -26,6 +26,8 @@ export {
     computeQuotientProduct,
     Numerator,
     halveQuotient,
+    NUMERATOR_INDEX,
+    DENOMINATOR_INDEX,
 } from "./quotient"
 export {
     isVectorSub,
@@ -69,4 +71,10 @@ export {
     NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms,
     NumericPropertyEffects,
     Sign,
+    Super,
+    Unison,
+    Sub,
+    Unsigned,
+    Positive,
+    Negative,
 } from "./types"

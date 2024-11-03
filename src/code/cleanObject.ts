@@ -1,4 +1,6 @@
-const cleanObject = <T extends Record<string, unknown>>(object: T): void => {
+import { KeyValObj } from "./types"
+
+const cleanObject = <T extends KeyValObj>(object: T): void => {
     for (const variableKey in object) {
         if (object.hasOwnProperty(variableKey)) {
             delete object[variableKey]
@@ -6,6 +8,4 @@ const cleanObject = <T extends Record<string, unknown>>(object: T): void => {
     }
 }
 
-export {
-    cleanObject,
-}
+export { cleanObject }

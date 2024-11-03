@@ -24,10 +24,7 @@ describe("mapVector", (): void => {
     })
 
     describe("zeta peak simple map", () => {
-        const INSANE_ZETA_PEAK_MAP: Map = computeSimpleMap(
-            8539.00834 as Edo,
-            281 as Max<Max<Prime>>,
-        )
+        const INSANE_ZETA_PEAK_MAP: Map = computeSimpleMap(8539.00834 as Edo, 281 as Max<Max<Prime>>)
 
         it("checkin' 77/185n maps to 0 steps under zeta peak EDO for Insane precision level JI notation", (): void => {
             const vector = [-13, 9, -1, 1, 1, 0, 0, 0, 0, 0, 0, -1] as Vector

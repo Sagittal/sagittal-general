@@ -1,4 +1,4 @@
-import {Io, removeColor} from "../../../src"
+import { Io, removeColor } from "../../../src"
 
 describe("removeColor", (): void => {
     it("removes color from text", (): void => {

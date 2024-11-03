@@ -1,4 +1,4 @@
-import {formatTableFromScript, Table} from "../../../../../src"
+import { formatTableFromScript, Table } from "../../../../../src"
 
 describe("table", (): void => {
     it("throws an error if the rows do not all have the same length", (): void => {

@@ -1,26 +1,23 @@
-import {deepEquals} from "../../../code"
-import {Decimal, NumericProperties, Quotient} from "../../numeric"
-import {divide} from "../../typedOperations"
-import {computeGreatestCommonDivisor} from "../common"
+import { deepEquals } from "../../../code"
+import { Decimal, NumericProperties, Quotient } from "../../numeric"
+import { divide } from "../../typedOperations"
+import { computeGreatestCommonDivisor } from "../common"
+import { Integer, Rational } from "../types"
 
-const computeLowestTermsRationalQuotient = <T extends NumericProperties>(
-    [numerator, denominator]: Quotient<T & {rational: true}>,
-): Quotient<T & {rational: true}> => {
+const computeLowestTermsRationalQuotient = <T extends NumericProperties>([numerator, denominator]: Quotient<
+    T & Rational
+>): Quotient<T & Rational> => {
     const greatestCommonDivisor = computeGreatestCommonDivisor(
-        numerator as Decimal<{integer: true}>,
-        denominator as Decimal<{integer: true}>,
+        numerator as Decimal<Integer>,
+        denominator as Decimal<Integer>,
     )
 
-    return [
-        divide(numerator, greatestCommonDivisor),
-        divide(denominator, greatestCommonDivisor),
-    ] as Quotient<T & {rational: true}>
+    return [divide(numerator, greatestCommonDivisor), divide(denominator, greatestCommonDivisor)] as Quotient<
+        T & Rational
+    >
 }
 
-const isLowestTerms = (rationalQuotient: Quotient<{rational: true}>): boolean =>
+const isLowestTerms = (rationalQuotient: Quotient): boolean =>
     deepEquals(rationalQuotient, computeLowestTermsRationalQuotient(rationalQuotient))
 
-export {
-    isLowestTerms,
-    computeLowestTermsRationalQuotient,
-}
+export { isLowestTerms, computeLowestTermsRationalQuotient }

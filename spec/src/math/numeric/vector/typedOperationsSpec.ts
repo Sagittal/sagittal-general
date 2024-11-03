@@ -1,6 +1,6 @@
-import {Decimal, Vector, Multiplier} from "../../../../../src"
-import {addVectors, subtractVectors, sumVectors} from "../../../../../src/math"
-import {multiplyVector} from "../../../../../src/math/numeric/vector/typedOperations"
+import { Decimal, Vector, Multiplier } from "../../../../../src"
+import { addVectors, Integer, subtractVectors, sumVectors } from "../../../../../src/math"
+import { multiplyVector } from "../../../../../src/math/numeric/vector/typedOperations"
 
 describe("sumVectors", (): void => {
     it("sums each of the terms of all of the vectors", (): void => {
@@ -71,12 +71,12 @@ describe("subtractVectors", (): void => {
 
 describe("multiplyVector", (): void => {
     it("multiplies each prime count vector by the multiplier", (): void => {
-        const vector = [0, 1, -3, 2] as Vector<{rational: true}>
-        const multiplier = 5 as Decimal<{integer: true}> & Multiplier
+        const vector = [0, 1, -3, 2] as Vector
+        const multiplier = 5 as Decimal<Integer> & Multiplier
 
         const actual = multiplyVector(vector, multiplier)
 
-        const expected = [0, 5, -15, 10] as Vector<{rational: true}>
+        const expected = [0, 5, -15, 10] as Vector
         expect(actual).toEqual(expected)
     })
 })

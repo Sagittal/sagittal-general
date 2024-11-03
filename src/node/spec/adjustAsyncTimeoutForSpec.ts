@@ -1,4 +1,4 @@
-import {Ms} from "../../types"
+import { Ms } from "../../types"
 
 const adjustAsyncTimeoutForSpec = (timeout: Ms): void => {
     let originalJasmineTimeoutInterval: number
@@ -13,6 +13,4 @@ const adjustAsyncTimeoutForSpec = (timeout: Ms): void => {
     })
 }
 
-export {
-    adjustAsyncTimeoutForSpec,
-}
+export { adjustAsyncTimeoutForSpec }

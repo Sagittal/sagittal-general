@@ -16,8 +16,7 @@ describe("formatMap", (): void => {
 
         const actual = formatMap(map, { punctuated: true })
 
-        const expected =
-            "⟨  -8  -6,   3   5  -1,   0   0   0,   5   4   2,   3 ]"
+        const expected = "⟨  -8  -6,   3   5  -1,   0   0   0,   5   4   2,   3 ]"
         expect(actual).toBe(expected)
     })
 
@@ -31,9 +30,7 @@ describe("formatMap", (): void => {
     })
 
     it("when both abbreviated and punctuated, uses commas as alternative to spaces, and eliminates groups of three 0's", (): void => {
-        const map = [
-            -8, -6, 3, 5, -1, 0, 0, 0, 5, 4, 2, 0, 0, 0, 0, 0, 0, 3,
-        ] as Map
+        const map = [-8, -6, 3, 5, -1, 0, 0, 0, 5, 4, 2, 0, 0, 0, 0, 0, 0, 3] as Map
 
         const actual = formatMap(map, {
             punctuated: true,

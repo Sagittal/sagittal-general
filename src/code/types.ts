@@ -1,37 +1,40 @@
-import {Decimal} from "../math"
+import { Decimal, Integer } from "../math"
+
+type Key = string | number
+type KeyValObj<T = unknown> = Record<Key, T>
 
 type SortResultOptions = Partial<{
-    descending: boolean,
-    precision: Precision,
+    descending: boolean
+    precision: Precision
 }>
 
 type SortOptions = SortResultOptions & {
-    by?: SortBy,
+    by?: SortBy
 }
 
 type SortByResultOptions = SortResultOptions & {
-    keyPath: KeyPath,
+    keyPath: KeyPath
 }
 
 type SortBy = KeyPath | KeyPath[]
 
-type KeyPath = (
-    number
-    | string
-    | Record<number | string, number | string | Record<number | string, number | string>>
-    ) & {_KeyPathBrand: boolean}
+type KeyPath = (Key | KeyValObj<Key>) & { _KeyPathBrand: boolean }
 
-type Obj = (Array<unknown> | Record<any, unknown>) & {[index: string]: unknown} & {[index: number]: unknown}
+type Obj = (Array<unknown> | KeyValObj) & { [index: string]: unknown } & {
+    [index: number]: unknown
+}
 
-type RecordKey<T> = T | (T extends number ? number : T extends string ? string : {})
+type RecordKey<T> =
+    | T
+    | (T extends number ? number : T extends string ? string : T extends symbol ? symbol : unknown)
 
-type Sortable = {[index: string]: number}
+type Sortable = { [index: string]: number }
 
 type SortResult = -1 | 0 | 1
 
-type Rank<T = void> = number & {_RankBrand: boolean} & (T extends void ? {} : {_RankOfBrand: T})
+type Rank<T = void> = Decimal & { _RankBrand: boolean } & (T extends void ? unknown : { _RankOfBrand: T })
 
-type Ranked<T> = T & {rank: Rank<T>}
+type Ranked<T> = T & { rank: Rank<T> }
 
 enum RankStrategy {
     FRACTIONAL = "fractional",
@@ -40,20 +43,25 @@ enum RankStrategy {
     ORDINAL = "ordinal",
 }
 
-type RankOptions = SortOptions & Partial<{
-    strategy: RankStrategy
-}>
+type RankOptions = SortOptions &
+    Partial<{
+        strategy: RankStrategy
+    }>
 
 enum ExtensionBaseType {
     ARRAY = "array",
     OBJECT = "object",
 }
 
-type Range<T = number> = T[] & {_RangeBrand: boolean}
+type Range<T = number> = T[] & { _RangeBrand: boolean }
 
 type Maybe<T> = T | undefined
 
-type Precision = Decimal<{integer: true}> & {_PrecisionBrand: boolean}
+type Precision = Decimal<Integer> & { _PrecisionBrand: boolean }
+
+type NoProperties = KeyValObj<never>
+
+type Override<T, K extends keyof T, V> = Omit<T, K> & { [P in K]: V }
 
 export {
     SortOptions,
@@ -73,4 +81,8 @@ export {
     SortResult,
     SortResultOptions,
     SortBy,
+    NoProperties,
+    Key,
+    KeyValObj,
+    Override,
 }

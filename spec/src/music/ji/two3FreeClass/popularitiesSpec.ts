@@ -12,11 +12,12 @@ describe("COMMA_POPULARITIES", (): void => {
     it("the fractional ranks are correct", (): void => {
         slowTestOnlyRunInFullSuite()
 
-        const unrankedPopularities: ScalaPopularityStat[] = COMMA_POPULARITIES
-            .map((popularity: Ranked<ScalaPopularityStat>): ScalaPopularityStat => ({
+        const unrankedPopularities: ScalaPopularityStat[] = COMMA_POPULARITIES.map(
+            (popularity: Ranked<ScalaPopularityStat>): ScalaPopularityStat => ({
                 two3FreeClass: popularity.two3FreeClass,
                 votes: popularity.votes,
-            }))
+            }),
+        )
 
         const reRankedPopularities: Array<Ranked<ScalaPopularityStat>> = rank(unrankedPopularities, {
             by: computeKeyPath("votes"),

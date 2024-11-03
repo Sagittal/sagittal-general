@@ -1,1 +1,1 @@
-export {runScriptAndGetConsoleOutput} from "./runScriptAndGetConsoleOutput"
+export { runScriptAndGetConsoleOutput } from "./runScriptAndGetConsoleOutput"

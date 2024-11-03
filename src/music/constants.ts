@@ -1,7 +1,5 @@
-import {Cents} from "./types"
+import { Cents } from "./types"
 
 const CENTS_PER_OCTAVE = 1200 as Cents
 
-export {
-    CENTS_PER_OCTAVE,
-}
+export { CENTS_PER_OCTAVE }

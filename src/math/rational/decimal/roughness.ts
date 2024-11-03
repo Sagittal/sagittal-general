@@ -2,12 +2,12 @@ import { increment } from "../../../code"
 import { Index } from "../../../types"
 import { dividesEvenly } from "../../dividesEvenly"
 import { Decimal, NumericProperties } from "../../numeric"
-import { computeRoughnessIndex } from "../roughness"
 import { computePrimes, MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED } from "../primes"
-import { Prime, Primes, Roughness } from "../types"
+import { computeRoughnessIndex } from "../roughness"
+import { Integer, Prime, Primes, Roughness } from "../types"
 import { integerDivide } from "./typedOperations"
 
-const isIntegerDecimalRough = (integerDecimal: Decimal<{ integer: true }>, roughness: Roughness): boolean => {
+const isIntegerDecimalRough = (integerDecimal: Decimal<Integer>, roughness: Roughness): boolean => {
     let isRough = true
 
     const primes = computePrimes(integerDecimal)
@@ -30,10 +30,10 @@ const isIntegerDecimalRough = (integerDecimal: Decimal<{ integer: true }>, rough
     return isRough
 }
 
-const computeRoughIntegerDecimal = <S extends Primes, T extends NumericProperties, U extends unknown>(
-    integerDecimal: U & Decimal<T & { integer: true }>,
+const computeRoughIntegerDecimal = <S extends Primes, T extends NumericProperties & Integer>(
+    integerDecimal: Decimal<T>,
     roughness: S & Roughness,
-): U & Decimal<T & { integer: true; rough: S }> => {
+): Decimal<T & { rough: S }> => {
     const roughnessIndex = computeRoughnessIndex(roughness)
 
     const primes = computePrimes(
@@ -43,16 +43,15 @@ const computeRoughIntegerDecimal = <S extends Primes, T extends NumericPropertie
     let roughIntegerDecimal = integerDecimal
     let primeIndex = 0
     while (primeIndex < roughnessIndex) {
-        const prime: Decimal<{ integer: true }> = primes[primeIndex]
+        const prime: Decimal<Integer> = primes[primeIndex]
         while (dividesEvenly(roughIntegerDecimal, prime)) {
-            roughIntegerDecimal = integerDivide(roughIntegerDecimal, prime) as U &
-                Decimal<T & { integer: true }>
+            roughIntegerDecimal = integerDivide(roughIntegerDecimal, prime) as Decimal<T & Integer>
         }
 
         primeIndex = increment(primeIndex)
     }
 
-    return roughIntegerDecimal as U & Decimal<T & { integer: true; rough: S }>
+    return roughIntegerDecimal as Decimal<T & Integer & { rough: S }>
 }
 
 export { isIntegerDecimalRough, computeRoughIntegerDecimal }

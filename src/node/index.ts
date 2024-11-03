@@ -24,7 +24,7 @@ export {
     DEFAULT_SCRIPT_SETTINGS,
     now,
 } from "./scripts"
-export {removeColor} from "./removeColor"
-export {readLines} from "./lines"
-export {Filename} from "./types"
-export {colorize} from "./colorize"
+export { removeColor } from "./removeColor"
+export { readLines } from "./lines"
+export { Filename } from "./types"
+export { colorize } from "./colorize"

@@ -9,19 +9,19 @@ import {
 import { MULTIPLICATIVE_IDENTITY } from "../../constants"
 import { Prime, primes } from "../../rational"
 import { pow } from "../../typedOperations"
-import { isVectorUnison, Vector } from "../vector"
-import { NumericProperties } from "../types"
-import { Decimal } from "./types"
 import { Exponent } from "../../types"
+import { NumericProperties } from "../types"
+import { isVectorUnison, Vector } from "../vector"
+import { Decimal } from "./types"
 
-const isDecimalWithLostPrecision = (decimal: Decimal): boolean =>
+const isDecimalWithLostPrecision = <T extends NumericProperties>(decimal: Decimal<T>): boolean =>
     isNaN(decimal) ||
     decimal > MAX_JS_VALUE_PRESERVING_MAX_PRECISION ||
     decimal < MIN_JS_VALUE_PRESERVING_MAX_PRECISION
 
 const computeDecimalFromHugeVector = <T extends NumericProperties>(vector: Vector<T>): Decimal<T> => {
     let decimal = MULTIPLICATIVE_IDENTITY as Decimal<T>
-    let depletingVector = shallowClone(vector)
+    const depletingVector = shallowClone(vector)
     let maybeNewDecimal
     let negative
     let prime
@@ -33,14 +33,14 @@ const computeDecimalFromHugeVector = <T extends NumericProperties>(vector: Vecto
         while (isDecimalWithLostPrecision(maybeNewDecimal)) {
             index = decrement(index)
             if (depletingVector[index] === 0) continue
-            if (index < 0) return maybeNewDecimal as Decimal<T>
+            if (index < 0) return maybeNewDecimal
 
             negative = depletingVector[index] < 0
             prime = primes[index]
             maybeNewDecimal = (decimal * (negative ? 1 / prime : prime)) as Decimal<T>
         }
 
-        decimal = maybeNewDecimal as Decimal<T>
+        decimal = maybeNewDecimal
         if (negative) {
             depletingVector[index] = increment(depletingVector[index])
         } else {

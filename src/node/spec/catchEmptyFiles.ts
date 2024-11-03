@@ -1,7 +1,7 @@
 import * as fs from "fs"
 import * as path from "path"
-import {Filename} from "../types"
-import {FULL_MODE} from "./fullMode"
+import { Filename } from "../types"
+import { FULL_MODE } from "./fullMode"
 
 const catchEmptyFiles = (basePath: Filename): void => {
     if (!FULL_MODE) return
@@ -10,7 +10,7 @@ const catchEmptyFiles = (basePath: Filename): void => {
         const filename = path.join(basePath, file) as Filename
 
         if (fs.lstatSync(filename).isDirectory()) {
-            catchEmptyFiles(filename as Filename)
+            catchEmptyFiles(filename)
         } else {
             if (fs.readFileSync(filename).length === 0 && file !== ".keep") {
                 throw new Error(`Empty file detected: ${filename}`)
@@ -19,6 +19,4 @@ const catchEmptyFiles = (basePath: Filename): void => {
     }
 }
 
-export {
-    catchEmptyFiles,
-}
+export { catchEmptyFiles }

@@ -12,7 +12,7 @@ const formatBound = (
     }
 
     const formattedBound = formatPitch(bound, { align: true, noLaTeXMultiplier: true })
-    const formattedExclusive = !!exclusive ? "exclusive" : "inclusive"
+    const formattedExclusive = exclusive ? "exclusive" : "inclusive"
 
     return `${formattedBound} (${formattedExclusive})` as Formatted
 }

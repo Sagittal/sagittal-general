@@ -1,4 +1,4 @@
-import {isUndefined, Maybe} from "../../../code"
+import { isUndefined, Maybe } from "../../../code"
 import {
     Alignment,
     BLANK,
@@ -13,12 +13,12 @@ import {
     sumTexts,
     Table,
 } from "../../../io"
-import {ColorMethod} from "../types"
-import {DEFAULT_FORMAT_TABLE_OPTIONS} from "./constants"
-import {FormatTableOptions} from "./types"
+import { ColorMethod } from "../types"
+import { DEFAULT_FORMAT_TABLE_OPTIONS } from "./constants"
+import { FormatTableOptions } from "./types"
 
-const computeMaybeColoredCell = <T>(cell: Cell<{of: T}>, color: Maybe<ColorMethod>): Io =>
-    isUndefined(color) ? (cell || BLANK) : `[hilite=${color}]${cell}[/hilite]`
+const computeMaybeColoredCell = <T>(cell: Cell<{ of: T }>, color: Maybe<ColorMethod>): Io =>
+    isUndefined(color) ? cell || BLANK : `[hilite=${color}]${cell}[/hilite]`
 
 const formatTableForForum = <T>(table: Table<T>, options?: Partial<FormatTableOptions<T>>): Io => {
     const {
@@ -30,37 +30,40 @@ const formatTableForForum = <T>(table: Table<T>, options?: Partial<FormatTableOp
     const columnRange = computeColumnRange(table)
     const columnAlignments = computeColumnAlignments(tableAlignment, columnRange)
 
-    const formattedRows: Io[] = table.map((row: Row<{of: T}>, rowIndex: number): Io => {
+    const formattedRows: Io[] = table.map((row: Row<{ of: T }>, rowIndex: number): Io => {
         const isHeader = rowIndex < headerRowCount
         const color = colors ? colors[rowIndex] : undefined
 
         const spans = computeColumnSpans(row)
 
-        const rowText = row.reduce(
-            (alignedRow: Io, cell: Cell<{of: T}>, cellIndex: number): Io => {
-                const columnSpan = spans[cellIndex]
-                if (columnSpan === 0) return alignedRow
-                const isMergedCell = columnSpan > 1
-                const cellSpan = isMergedCell ? `=${columnSpan}` : BLANK
+        const rowText = row.reduce((alignedRow: Io, cell: Cell<{ of: T }>, cellIndex: number): Io => {
+            const columnSpan = spans[cellIndex]
+            if (columnSpan === 0) return alignedRow
+            const isMergedCell = columnSpan > 1
+            const cellSpan = isMergedCell ? `=${columnSpan}` : BLANK
 
-                const columnAlignment = columnAlignments[cellIndex]
-                const maybeColoredCell = isUndefined(cell) ? BLANK : computeMaybeColoredCell(cell, color)
-                const cellTag = isHeader ?
-                    isMergedCell ? "th" :
-                        columnAlignment === Alignment.LEFT ?
-                            "thl" :
-                            columnAlignment === Alignment.RIGHT ? "thr" : "th" :
-                    isMergedCell ? "td" :
-                        columnAlignment === Alignment.CENTER ?
-                            "tdc" :
-                            columnAlignment === Alignment.RIGHT ? "tdr" : "td"
+            const columnAlignment = columnAlignments[cellIndex]
+            const maybeColoredCell = isUndefined(cell) ? BLANK : computeMaybeColoredCell(cell, color)
+            const cellTag = isHeader
+                ? isMergedCell
+                    ? "th"
+                    : columnAlignment === Alignment.LEFT
+                      ? "thl"
+                      : columnAlignment === Alignment.RIGHT
+                        ? "thr"
+                        : "th"
+                : isMergedCell
+                  ? "td"
+                  : columnAlignment === Alignment.CENTER
+                    ? "tdc"
+                    : columnAlignment === Alignment.RIGHT
+                      ? "tdr"
+                      : "td"
 
-                const alignedCell = `[${cellTag}${cellSpan}]${maybeColoredCell}[/${cellTag}]`
+            const alignedCell = `[${cellTag}${cellSpan}]${maybeColoredCell}[/${cellTag}]`
 
-                return sumTexts(alignedRow, alignedCell as Io)
-            },
-            BLANK,
-        )
+            return sumTexts(alignedRow, alignedCell as Io)
+        }, BLANK)
 
         return sumTexts("[tr]" as Io, rowText, "[/tr]" as Io)
     })
@@ -73,6 +76,4 @@ const formatTableForForum = <T>(table: Table<T>, options?: Partial<FormatTableOp
     return sumTexts(formattedTable, NEWLINE)
 }
 
-export {
-    formatTableForForum,
-}
+export { formatTableForForum }

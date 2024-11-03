@@ -1,8 +1,10 @@
-import {Io, Unicode, UnicodeLiteral, Word} from "./types"
+import { Io, Unicode, UnicodeLiteral, Word } from "./types"
 
 const UNICODE_LITERAL_MATCHER = /^\\?[uU]\+?([\da-fA-F]{4,6})/
 
-const isUnicodeLiteral = (candidateUnicodeLiteral: Io & Word): candidateUnicodeLiteral is UnicodeLiteral & Word =>
+const isUnicodeLiteral = (
+    candidateUnicodeLiteral: Io & Word,
+): candidateUnicodeLiteral is UnicodeLiteral & Word =>
     !!candidateUnicodeLiteral.match(UNICODE_LITERAL_MATCHER)
 
 const computeUnicodeLiteralFromUnicode = (unicode: Unicode & Word): UnicodeLiteral & Word => {
@@ -17,8 +19,4 @@ const computeUnicodeLiteralFromUnicode = (unicode: Unicode & Word): UnicodeLiter
 const computeUnicodeFromUnicodeLiteral = (unicodeLiteral: UnicodeLiteral): Unicode & Word =>
     String.fromCodePoint(parseInt(unicodeLiteral.replace(UNICODE_LITERAL_MATCHER, "0x$1"))) as Unicode & Word
 
-export {
-    isUnicodeLiteral,
-    computeUnicodeLiteralFromUnicode,
-    computeUnicodeFromUnicodeLiteral,
-}
+export { isUnicodeLiteral, computeUnicodeLiteralFromUnicode, computeUnicodeFromUnicodeLiteral }

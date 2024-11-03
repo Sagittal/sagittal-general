@@ -1,14 +1,4 @@
-import {
-    Decimal,
-    doForEachRationalVector,
-    Extrema,
-    Maybe,
-    Vector,
-    Prime,
-    stringify,
-    Count,
-    PrimeCount,
-} from "../../../../../src"
+import { doForEachRationalVector, Extrema, Maybe, Vector, stringify, PrimeCount } from "../../../../../src"
 
 describe("doForEachRationalVector", (): void => {
     const primeCountExtremas = [
@@ -43,7 +33,7 @@ describe("doForEachRationalVector", (): void => {
     })
 
     it("returns an array of results from the work function", (): void => {
-        const workFunction = (vector: Vector<{ rational: true }>): Maybe<string> =>
+        const workFunction = (vector: Vector): Maybe<string> =>
             vector[0] === -1 ? stringify(vector) : undefined
 
         const actual = doForEachRationalVector(primeCountExtremas, workFunction)

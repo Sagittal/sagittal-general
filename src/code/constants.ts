@@ -1,10 +1,10 @@
-import {Precision} from "./types"
+import { Precision } from "./types"
 
 const DEFAULT_PRECISION = 5 as Precision
 const MAX_JS_PRECISION = 15 as Precision
 
 const ARRAY_EXTENSION_BASE: unknown[] = []
-const OBJECT_EXTENSION_BASE: Object = {}
+const OBJECT_EXTENSION_BASE: object = {}
 
 const ZERO_ONE_INDEX_DIFF = 1
 
@@ -20,7 +20,7 @@ const MIN_JS_VALUE_PRESERVING_MAX_PRECISION = 3.82295e-308
 // This one is exact, since it's a well-known value I found described online.
 // The other one isn't exact because it's less likely anyone would care about the exact point one loses precision.
 // And I gave up on tediously trying to pin it down myself.
-const MAX_JS_VALUE_PRESERVING_MAX_PRECISION = 1.7976931348623157e+308
+const MAX_JS_VALUE_PRESERVING_MAX_PRECISION = 1.7976931348623157e308
 
 const NOT_FOUND = -1
 

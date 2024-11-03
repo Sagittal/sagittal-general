@@ -1,11 +1,11 @@
 import { NumericProperties, ScaledVector } from "../../numeric"
+import { Copfr, Rational } from "../types"
 import { computeRationalVectorCopfr } from "../vector"
-import { Copfr } from "../types"
 
 // Count Of Prime Factors with Repetition (big omega, Ω)
 
 const computeRationalScaledVectorCopfr = <T extends NumericProperties>({
     vector,
-}: ScaledVector<T & { rational: true }>): Copfr<T> => computeRationalVectorCopfr(vector)
+}: ScaledVector<T & Rational>): Copfr<T> => computeRationalVectorCopfr(vector) as Copfr<T>
 
 export { computeRationalScaledVectorCopfr }

@@ -1,10 +1,10 @@
 import {
     computeSuperScaledVector,
-    Direction,
-    EMPTY_VECTOR,
     IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
     Vector,
     Quotient,
+    Rational,
+    Irrational,
 } from "../../../../../src"
 import {
     isScaledVectorSub,
@@ -12,11 +12,12 @@ import {
     isScaledVectorUnison,
     ScaledVector,
 } from "../../../../../src/math/numeric/scaledVector"
+import { Sub, Super } from "../../../../../src/math/numeric/types"
 
 describe("isScaledVectorSub", (): void => {
     describe("for rational scaled vectors", (): void => {
         it("returns true if the vector is sub", (): void => {
-            const scaledVector = { vector: [-1] } as ScaledVector<{ rational: true }>
+            const scaledVector = { vector: [-1] } as ScaledVector
 
             const actual = isScaledVectorSub(scaledVector)
 
@@ -24,7 +25,7 @@ describe("isScaledVectorSub", (): void => {
         })
 
         it("returns false if the vector is unison", (): void => {
-            const scaledVector = { vector: [] as unknown[] } as ScaledVector<{ rational: true }>
+            const scaledVector = { vector: [] as unknown[] } as ScaledVector
 
             const actual = isScaledVectorSub(scaledVector)
 
@@ -32,7 +33,7 @@ describe("isScaledVectorSub", (): void => {
         })
 
         it("returns false if the vector is super", (): void => {
-            const scaledVector = { vector: [1] } as ScaledVector<{ rational: true }>
+            const scaledVector = { vector: [1] } as ScaledVector
 
             const actual = isScaledVectorSub(scaledVector)
 
@@ -45,7 +46,7 @@ describe("isScaledVectorSub", (): void => {
             const scaledVector = {
                 vector: IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
                 scaler: [-1, 1] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
 
             const actual = isScaledVectorSub(scaledVector)
 
@@ -56,7 +57,7 @@ describe("isScaledVectorSub", (): void => {
             const scaledVector = {
                 vector: IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
                 scaler: [0, 1] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
 
             const actual = isScaledVectorSub(scaledVector)
 
@@ -67,7 +68,7 @@ describe("isScaledVectorSub", (): void => {
             const scaledVector = {
                 vector: IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
                 scaler: [1, 1] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
 
             const actual = isScaledVectorSub(scaledVector)
 
@@ -79,7 +80,7 @@ describe("isScaledVectorSub", (): void => {
 describe("isScaledVectorSuper", (): void => {
     describe("for rational scaled vectors", (): void => {
         it("returns false if the vector is sub", (): void => {
-            const scaledVector = { vector: [-1] } as ScaledVector<{ rational: true }>
+            const scaledVector = { vector: [-1] } as ScaledVector
 
             const actual = isScaledVectorSuper(scaledVector)
 
@@ -87,7 +88,7 @@ describe("isScaledVectorSuper", (): void => {
         })
 
         it("returns false if the vector is unison", (): void => {
-            const scaledVector = { vector: [] as unknown[] } as ScaledVector<{ rational: true }>
+            const scaledVector = { vector: [] as unknown[] } as ScaledVector
 
             const actual = isScaledVectorSuper(scaledVector)
 
@@ -95,7 +96,7 @@ describe("isScaledVectorSuper", (): void => {
         })
 
         it("returns true if the vector is super", (): void => {
-            const scaledVector = { vector: [1] } as ScaledVector<{ rational: true }>
+            const scaledVector = { vector: [1] } as ScaledVector
 
             const actual = isScaledVectorSuper(scaledVector)
 
@@ -108,7 +109,7 @@ describe("isScaledVectorSuper", (): void => {
             const scaledVector = {
                 vector: IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
                 scaler: [-1, 1] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
 
             const actual = isScaledVectorSuper(scaledVector)
 
@@ -119,7 +120,7 @@ describe("isScaledVectorSuper", (): void => {
             const scaledVector = {
                 vector: IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
                 scaler: [0, 1] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
 
             const actual = isScaledVectorSuper(scaledVector)
 
@@ -130,7 +131,7 @@ describe("isScaledVectorSuper", (): void => {
             const scaledVector = {
                 vector: IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
                 scaler: [1, 1] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
 
             const actual = isScaledVectorSuper(scaledVector)
 
@@ -142,7 +143,7 @@ describe("isScaledVectorSuper", (): void => {
 describe("isScaledVectorUnison", (): void => {
     describe("for rational scaled vectors", (): void => {
         it("returns false if the vector is sub", (): void => {
-            const scaledVector = { vector: [-1] } as ScaledVector<{ rational: true }>
+            const scaledVector = { vector: [-1] } as ScaledVector
 
             const actual = isScaledVectorUnison(scaledVector)
 
@@ -150,7 +151,7 @@ describe("isScaledVectorUnison", (): void => {
         })
 
         it("returns true if the vector is unison", (): void => {
-            const scaledVector = { vector: [] as unknown[] } as ScaledVector<{ rational: true }>
+            const scaledVector = { vector: [] as unknown[] } as ScaledVector
 
             const actual = isScaledVectorUnison(scaledVector)
 
@@ -158,7 +159,7 @@ describe("isScaledVectorUnison", (): void => {
         })
 
         it("returns false if the vector is super", (): void => {
-            const scaledVector = { vector: [1] } as ScaledVector<{ rational: true }>
+            const scaledVector = { vector: [1] } as ScaledVector
 
             const actual = isScaledVectorUnison(scaledVector)
 
@@ -171,7 +172,7 @@ describe("isScaledVectorUnison", (): void => {
             const scaledVector = {
                 vector: IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
                 scaler: [-1, 1] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
 
             const actual = isScaledVectorUnison(scaledVector)
 
@@ -182,7 +183,7 @@ describe("isScaledVectorUnison", (): void => {
             const scaledVector = {
                 vector: IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
                 scaler: [0, 1] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
 
             const actual = isScaledVectorUnison(scaledVector)
 
@@ -193,7 +194,7 @@ describe("isScaledVectorUnison", (): void => {
             const scaledVector = {
                 vector: IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
                 scaler: [1, 1] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
 
             const actual = isScaledVectorUnison(scaledVector)
 
@@ -205,34 +206,31 @@ describe("isScaledVectorUnison", (): void => {
 describe("computeSuperScaledVector", (): void => {
     it("if the scaled vector is sub, flips the vector", (): void => {
         const scaledVector = {
-            vector: [-40, 22, 1, 1] as Vector<{ rational: true; direction: Direction.SUB }>,
-        } as ScaledVector<{ rational: true; direction: Direction.SUB }>
+            vector: [-40, 22, 1, 1] as Vector<Rational & Sub>,
+        } as ScaledVector<Rational & Sub>
 
-        const actual: ScaledVector<{ rational: true; direction: Direction.SUPER }> =
-            computeSuperScaledVector(scaledVector)
+        const actual = computeSuperScaledVector(scaledVector) as ScaledVector<Rational & Super>
 
         const expected = {
-            vector: [40, -22, -1, -1] as Vector<{ rational: true; direction: Direction.SUPER }>,
-        } as ScaledVector<{ rational: true; direction: Direction.SUPER }>
+            vector: [40, -22, -1, -1] as Vector<Rational & Super>,
+        } as ScaledVector<Rational & Super>
         expect(actual).toEqual(expected)
     })
 
     it("if the scaled vector is sub, flips the vector, even for an irrational scaled vector, in which case it would be equivalent to negate the scaler - but we don't do that so we can preserve the relationship between the scaled vector and its vector in terms of its numeric properties", (): void => {
         const scaledVector = {
-            vector: [-40, 22, 1, 1] as Vector<{ rational: true }>,
+            vector: [-40, 22, 1, 1] as Vector,
             scaler: [1, 2] as Quotient,
-        } as ScaledVector<{ rational: false; direction: Direction.SUB }>
+        } as ScaledVector<Irrational & Sub>
 
-        const actual: ScaledVector<{ rational: false; direction: Direction.SUPER }> =
-            computeSuperScaledVector(scaledVector) as ScaledVector<{
-                rational: false
-                direction: Direction.SUPER
-            }>
+        const actual: ScaledVector<Irrational & Super> = computeSuperScaledVector(
+            scaledVector,
+        ) as ScaledVector<Irrational & Super>
 
         const expected = {
-            vector: [40, -22, -1, -1] as Vector<{ rational: true; direction: Direction.SUPER }>,
+            vector: [40, -22, -1, -1] as Vector<Rational & Super>,
             scaler: [1, 2] as Quotient,
-        } as ScaledVector<{ rational: false; direction: Direction.SUPER }>
+        } as ScaledVector<Irrational & Super>
         expect(actual).toEqual(expected)
     })
 })

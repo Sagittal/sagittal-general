@@ -1,6 +1,6 @@
-import {count} from "../math"
-import {Count} from "../types"
-import {isObject} from "./typeGuards"
+import { count } from "../math"
+import { Count } from "../types"
+import { isObject } from "./typeGuards"
 
 const computeCardinality = (array: unknown[]): Count[] => {
     const cardinality = []
@@ -14,6 +14,4 @@ const computeCardinality = (array: unknown[]): Count[] => {
     return cardinality
 }
 
-export {
-    computeCardinality,
-}
+export { computeCardinality }

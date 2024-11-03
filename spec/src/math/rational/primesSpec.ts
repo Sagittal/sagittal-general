@@ -1,5 +1,8 @@
-import {increment, slowTestOnlyRunInFullSuite, Prime} from "../../../../src"
-import {computePrimes, MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED} from "../../../../src/math/rational/primes"
+import { increment, slowTestOnlyRunInFullSuite, Prime } from "../../../../src"
+import {
+    computePrimes,
+    MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED,
+} from "../../../../src/math/rational/primes"
 
 describe("computePrimes", (): void => {
     const PRIMES_UP_TO_1000 = [

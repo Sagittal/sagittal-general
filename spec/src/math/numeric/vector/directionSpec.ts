@@ -1,6 +1,5 @@
 import {
     computeSuperVector,
-    Direction,
     EMPTY_VECTOR,
     invertVector,
     isVectorSub,
@@ -8,6 +7,7 @@ import {
     Vector,
 } from "../../../../../src"
 import { isVectorUnison } from "../../../../../src/math"
+import { Sub, Super } from "../../../../../src/math/numeric/types"
 
 describe("isVectorSub", (): void => {
     it("returns false if the vector is super", (): void => {
@@ -111,39 +111,39 @@ describe("isVectorUnison", (): void => {
 
 describe("computeSuperVector", (): void => {
     it("returns the vector if it is already super", (): void => {
-        const vector = [0, 0, 0, 0, 2] as Vector<{ direction: Direction.SUPER }>
+        const vector = [0, 0, 0, 0, 2] as Vector<Super>
 
-        const actual: Vector<{ direction: Direction.SUPER }> = computeSuperVector(vector)
+        const actual: Vector<Super> = computeSuperVector(vector)
 
         expect(actual).toEqual(vector)
     })
 
     it("returns the reciprocal of the vector if it is not already super", (): void => {
-        const vector = [0, 0, 0, 1, -2] as Vector<{ direction: Direction.SUB }> // 7/121 = 0.0579 < 1
+        const vector = [0, 0, 0, 1, -2] as Vector<Sub> // 7/121 = 0.0579 < 1
 
-        const actual: Vector<{ direction: Direction.SUPER }> = computeSuperVector(vector)
+        const actual: Vector<Super> = computeSuperVector(vector)
 
-        const expected = [0, 0, 0, -1, 2] as Vector<{ direction: Direction.SUPER }> // 121/7 = 17.286 > 1
+        const expected = [0, 0, 0, -1, 2] as Vector<Super> // 121/7 = 17.286 > 1
         expect(actual).toEqual(expected)
     })
 })
 
 describe("invertVector", (): void => {
     it("returns the inverted (negated) version of the vector", (): void => {
-        const vector = [4, 0, -1, 1] as Vector<{ direction: Direction.SUPER }> // 112/5
+        const vector = [4, 0, -1, 1] as Vector<Super> // 112/5
 
-        const actual: Vector<{}> = invertVector(vector)
+        const actual = invertVector(vector) as Vector<Sub>
 
-        const expected = [-4, 0, 1, -1] as Vector<{ direction: Direction.SUB }> // 5/112
+        const expected = [-4, 0, 1, -1] as Vector<Sub> // 5/112
         expect(actual).toEqual(expected)
     })
 
     it("works for sub vectors", (): void => {
-        const vector = [0, 0, -3] as Vector<{ direction: Direction.SUB }>
+        const vector = [0, 0, -3] as Vector<Sub>
 
-        const actual: Vector<{}> = invertVector(vector)
+        const actual = invertVector(vector) as Vector<Super>
 
-        const expected = [0, 0, 3] as Vector<{ direction: Direction.SUPER }>
+        const expected = [0, 0, 3] as Vector<Super>
         expect(actual).toEqual(expected)
     })
 })

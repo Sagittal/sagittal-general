@@ -1,4 +1,4 @@
-import {Cents, Io, parseCents} from "../../../../src"
+import { Cents, Io, parseCents } from "../../../../src"
 
 describe("parseCents", (): void => {
     it("works when provided cents directly, with the cents symbol", (): void => {

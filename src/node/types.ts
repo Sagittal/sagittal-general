@@ -1,5 +1,3 @@
-type Filename = string & {_FileBrand: boolean}
+type Filename = string & { _FileBrand: boolean }
 
-export {
-    Filename,
-}
+export { Filename }

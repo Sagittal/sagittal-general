@@ -1,13 +1,12 @@
-import {Decimal, Vector, NumericProperties, ScaledVector} from "../../math"
-import {Cents} from "../types"
+import { NoProperties } from "../../code"
+import { Decimal, Vector, NumericProperties, ScaledVector } from "../../math"
+import { Cents } from "../types"
 
-type PitchExpectation<T extends NumericProperties = {}> = {
-    pitch: ScaledVector<T>,
-    cents: Cents,
-    decimal: Decimal<T>,
-    vector: Vector<T>,
+type PitchExpectation<T extends NumericProperties = NoProperties> = {
+    pitch: ScaledVector<T>
+    cents: Cents
+    decimal: Decimal<T>
+    vector: Vector<T>
 }
 
-export {
-    PitchExpectation,
-}
+export { PitchExpectation }

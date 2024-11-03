@@ -60,6 +60,12 @@ export {
     maxScaledVector,
     computeSubScaledVector,
     PrimeCount,
+    Super,
+    Unison,
+    Sub,
+    Unsigned,
+    Positive,
+    Negative,
 } from "./numeric"
 export { computeDistributions } from "./distributions"
 export { dividesEvenly, isEven, isOdd } from "./dividesEvenly"
@@ -99,6 +105,7 @@ export {
     Multiplier,
     Sum,
     Divisor,
+    Subtrahend,
 } from "./types"
 export {
     FIVE_PRIME_INDEX,
@@ -161,10 +168,14 @@ export {
     computeRationalScaledVectorFromRationalQuotient,
     computeRationalVectorFromRationalScaledVector,
     computeLesserPrimeCount,
+    Integer,
+    Rational,
 } from "./rational"
 export {
     HALF_SCALER,
     computeIrrationalDecimalFromScaledVector,
     IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
     computeIrrationalVectorFromScaledVector,
+    Irrational,
+    Noninteger,
 } from "./irrational"

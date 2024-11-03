@@ -1,14 +1,11 @@
-import {Alignment, Char, Count, Io, Range, Table} from "../../../../src"
-import {alignCellIo, computeColumnWidths} from "../../../../src/io"
+import { Alignment, Char, Count, Io, Range, Table } from "../../../../src"
+import { alignCellIo, computeColumnWidths } from "../../../../src/io"
 
 describe("alignCellIo", (): void => {
     it("adds space to align cells", (): void => {
         const cell = "  7    " as Io
 
-        const actual = alignCellIo(
-            cell,
-            {columnWidth: 14 as Count<Char>, columnAlignment: Alignment.LEFT},
-        )
+        const actual = alignCellIo(cell, { columnWidth: 14 as Count<Char>, columnAlignment: Alignment.LEFT })
 
         const expected = "  7           "
         expect(actual).toBe(expected)
@@ -17,10 +14,7 @@ describe("alignCellIo", (): void => {
     it("can align to the right", (): void => {
         const cell = "  7    " as Io
 
-        const actual = alignCellIo(
-            cell,
-            {columnWidth: 14 as Count<Char>, columnAlignment: Alignment.RIGHT},
-        )
+        const actual = alignCellIo(cell, { columnWidth: 14 as Count<Char>, columnAlignment: Alignment.RIGHT })
 
         const expected = "         7    "
         expect(actual).toBe(expected)
@@ -29,10 +23,7 @@ describe("alignCellIo", (): void => {
     it("does not align cells which are for the forum and which have turned off monospacing", (): void => {
         const cell = "[latex]\\frac{50}{49}[/latex]" as Io
 
-        const actual = alignCellIo(
-            cell,
-            {columnWidth: 14 as Count<Char>, columnAlignment: Alignment.LEFT},
-        )
+        const actual = alignCellIo(cell, { columnWidth: 14 as Count<Char>, columnAlignment: Alignment.LEFT })
 
         expect(actual).toBe(cell)
     })

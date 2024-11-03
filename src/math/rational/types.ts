@@ -1,26 +1,33 @@
+import { NoProperties } from "../../code"
 import { Count } from "../../types"
 import { Decimal, NumericProperties, NumericPropertyEffects } from "../numeric"
 import { Sum } from "../types"
 
-type Prime<T extends NumericProperties = {}> = Decimal<T & { integer: true }> & { _PrimeBrand: "Prime" }
-type Roughness = Decimal<{ integer: true }> & { _RoughnessBrand: boolean }
-type Smoothness = Decimal<{ integer: true }> & { _SmoothnessBrand: boolean }
+type Integer = { integer: true; rational: true }
+type Rational = { rational: true }
 
-type Sopfr<T extends NumericProperties = {}> = Sum<Prime> &
-    Decimal<{ integer: true }> & { _SopfrBrand: boolean } & NumericPropertyEffects<T>
-type Sopf<T extends NumericProperties = {}> = Sum<Prime> &
-    Decimal<{ integer: true }> & { _SopfBrand: boolean } & NumericPropertyEffects<T>
-type Copfr<T extends NumericProperties = {}> = Count<Prime> & {
+type Prime<T extends NumericProperties = NoProperties> = Decimal<T & Integer> & {
+    _PrimeBrand: "Prime"
+}
+type Roughness = Decimal<Integer> & { _RoughnessBrand: boolean }
+type Smoothness = Decimal<Integer> & { _SmoothnessBrand: boolean }
+type AnyPrime = 3
+
+type Sopfr<T extends NumericProperties = NoProperties> = Sum<Prime> &
+    Decimal<Integer> & { _SopfrBrand: boolean } & NumericPropertyEffects<T>
+type Sopf<T extends NumericProperties = NoProperties> = Sum<Prime> &
+    Decimal<Integer> & { _SopfBrand: boolean } & NumericPropertyEffects<T>
+type Copfr<T extends NumericProperties = NoProperties> = Count<Prime> & {
     _CopfrBrand: boolean
 } & NumericPropertyEffects<T>
-type Copf<T extends NumericProperties = {}> = Count<Prime> & {
+type Copf<T extends NumericProperties = NoProperties> = Count<Prime> & {
     _CopfBrand: boolean
 } & NumericPropertyEffects<T>
 
 type CommonFunction = (
-    decimalIntegerA: Decimal<{ integer: true }>,
-    decimalIntegerB: Decimal<{ integer: true }>,
-) => Decimal<{ integer: true }>
+    decimalIntegerA: Decimal<Integer>,
+    decimalIntegerB: Decimal<Integer>,
+) => Decimal<Integer>
 
 type Primes =
     | 2
@@ -192,4 +199,17 @@ type Primes =
     | 991
     | 997
 
-export { Sopfr, Copfr, Sopf, Copf, Prime, Roughness, Smoothness, Primes, CommonFunction }
+export {
+    Sopfr,
+    Copfr,
+    Sopf,
+    Copf,
+    Prime,
+    Roughness,
+    Smoothness,
+    Primes,
+    CommonFunction,
+    AnyPrime,
+    Integer,
+    Rational,
+}

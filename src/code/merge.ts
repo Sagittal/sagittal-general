@@ -1,10 +1,4 @@
 const merge = <T>(...objects: T[]): T =>
-    objects.reduce(
-        (mergedObjects: T, object: T): T =>
-            ({...mergedObjects, ...object}),
-        {} as T,
-    )
+    objects.reduce((mergedObjects: T, object: T): T => ({ ...mergedObjects, ...object }), {} as T)
 
-export {
-    merge,
-}
+export { merge }

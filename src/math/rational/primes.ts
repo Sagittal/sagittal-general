@@ -1,6 +1,6 @@
-import {finalElement} from "../../code"
-import {Max} from "../types"
-import {Prime} from "./types"
+import { finalElement } from "../../code"
+import { Max } from "../types"
+import { Prime } from "./types"
 
 let primes = [
     2,
@@ -179,12 +179,15 @@ const computePrimes = (maxPossiblePrime: number | Max = DEFAULT_MAX_POSSIBLE_PRI
     }
 
     if (maxPossiblePrime > MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED) {
-        throw new Error(`Cannot compute primes greater than ${MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED}; ${maxPossiblePrime} was requested.`)
+        throw new Error(
+            `Cannot compute primes greater than ${MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED}; ${maxPossiblePrime} was requested.`,
+        )
     }
 
-    let primeToGoUpTo = maxPossiblePrime > MAX_MAX_POSSIBLE_PRIME_BEFORE_JUST_COMPUTE_ALL_ABLE ?
-        MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED :
-        maxPossiblePrime
+    const primeToGoUpTo =
+        maxPossiblePrime > MAX_MAX_POSSIBLE_PRIME_BEFORE_JUST_COMPUTE_ALL_ABLE
+            ? MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED
+            : maxPossiblePrime
 
     const sieve = []
     const extendedPrimes = [] as Prime[]

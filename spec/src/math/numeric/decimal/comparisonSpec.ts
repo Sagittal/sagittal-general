@@ -1,5 +1,5 @@
-import {DEFAULT_PRECISION} from "../../../../../src"
-import {areDecimalsEqual} from "../../../../../src/math"
+import { DEFAULT_PRECISION } from "../../../../../src"
+import { areDecimalsEqual } from "../../../../../src/math"
 
 describe("areDecimalsEqual", (): void => {
     it("works when two decimals are equal", (): void => {

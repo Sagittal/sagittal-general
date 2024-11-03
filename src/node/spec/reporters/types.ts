@@ -1,10 +1,8 @@
-import {Ms} from "../../../types"
+import { Ms } from "../../../types"
 
 interface SpecTime {
-    description: string,
-    time: Ms,
+    description: string
+    time: Ms
 }
 
-export {
-    SpecTime,
-}
+export { SpecTime }

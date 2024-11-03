@@ -1,8 +1,8 @@
-import { formatPitch, Formatted, Vector, Quotient, ScaledVector } from "../../../../src"
+import { formatPitch, Formatted, Vector, Quotient, ScaledVector, Irrational } from "../../../../src"
 
 describe("formatPitch", (): void => {
     it("if only the vector is present, returns the vector formatted", (): void => {
-        const pitch = { vector: [0, -1, 1] } as ScaledVector<{ rational: true }>
+        const pitch = { vector: [0, -1, 1] } as ScaledVector
 
         const actual = formatPitch(pitch)
 
@@ -12,9 +12,9 @@ describe("formatPitch", (): void => {
 
     it("if the scaler is present and rational, shows it in parens out to the right of the vector", (): void => {
         const pitch = {
-            vector: [0, -1, 1] as Vector<{ rational: true }>,
+            vector: [0, -1, 1] as Vector,
             scaler: [1, 2] as Quotient,
-        } as ScaledVector<{ rational: false }>
+        } as ScaledVector<Irrational>
 
         const actual = formatPitch(pitch)
 
@@ -24,9 +24,9 @@ describe("formatPitch", (): void => {
 
     it("if the scaler is present but not rational, shows a cents representation of the whole thing", (): void => {
         const pitch = {
-            vector: [0, -1, 1] as Vector<{ rational: true }>,
+            vector: [0, -1, 1] as Vector,
             scaler: [1.238923, 1] as Quotient,
-        } as ScaledVector<{ rational: false }>
+        } as ScaledVector<Irrational>
 
         const actual = formatPitch(pitch)
 
@@ -36,9 +36,9 @@ describe("formatPitch", (): void => {
 
     it("can return the decimal aligned (for tables)", (): void => {
         const pitch = {
-            vector: [0, -1, 1] as Vector<{ rational: true }>,
+            vector: [0, -1, 1] as Vector,
             scaler: [1.238923, 1] as Quotient,
-        } as ScaledVector<{ rational: false }>
+        } as ScaledVector<Irrational>
 
         const actual = formatPitch(pitch, { align: true })
 

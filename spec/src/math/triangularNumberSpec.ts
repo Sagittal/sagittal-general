@@ -1,4 +1,4 @@
-import {computeTriangularNumber} from "../../../src"
+import { computeTriangularNumber } from "../../../src"
 
 describe("triangular number", (): void => {
     it("returns the nth triangular number", (): void => {

@@ -1,1 +1,1 @@
-export {computeIrrationalQuotientFromScaledVector} from "./fromScaledVector"
+export { computeIrrationalQuotientFromScaledVector } from "./fromScaledVector"

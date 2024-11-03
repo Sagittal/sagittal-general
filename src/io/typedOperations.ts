@@ -1,18 +1,14 @@
-import {Count, Index} from "../types"
-import {BLANK, SPACE} from "./constants"
-import {Char, Clause, Sentence, Word} from "./types"
+import { Count, Index } from "../types"
+import { BLANK, SPACE } from "./constants"
+import { Char, Clause, Sentence, Word } from "./types"
 
-const sumTexts = <T extends string>(...strings: T[]): T =>
-    join(strings, BLANK)
+const sumTexts = <T extends string>(...strings: T[]): T => join(strings, BLANK)
 
-const length = <T extends string>(string: T): Count<Char & T> =>
-    string.length as Count<Char & T>
+const length = <T extends string>(string: T): Count<Char & T> => string.length as Count<Char & T>
 
-const join = <T extends string>(array: T[], separator?: string): T =>
-    array.join(separator) as T
+const join = <T extends string>(array: T[], separator?: string): T => array.join(separator) as T
 
-const split = <T extends string>(string: T, separator: string | RegExp): T[] =>
-    string.split(separator) as T[]
+const split = <T extends string>(string: T, separator: string | RegExp): T[] => string.split(separator) as T[]
 
 const splitSentence = <T extends Sentence>(sentence: T): Array<Omit<T, "_SentenceBrand"> & Word> =>
     sentence.split(/\s+/) as Array<Omit<T, "_SentenceBrand"> & Word>
@@ -56,20 +52,17 @@ const extendClause = <T extends string>(
 const getChar = <T extends Word>(
     word: T,
     index: Index<Omit<T, "_WordBrand"> & Char>,
-): Omit<T, "_WordBrand"> & Char =>
-    splitWord(word)[index] as Omit<T, "_WordBrand"> & Char
+): Omit<T, "_WordBrand"> & Char => splitWord(word)[index] as Omit<T, "_WordBrand"> & Char
 
 const getWord = <T extends Sentence>(
     sentence: T,
     index: Index<Omit<T, "_SentenceBrand"> & Word>,
-): Omit<T, "_SentenceBrand"> & Word =>
-    splitSentence(sentence)[index] as Omit<T, "_SentenceBrand"> & Word
+): Omit<T, "_SentenceBrand"> & Word => splitSentence(sentence)[index] as Omit<T, "_SentenceBrand"> & Word
 
 const extendWord = <T extends string>(
     word: Omit<T, "_WordBrand"> & Word,
     ...chars: Array<Omit<T, "_CharBrand"> & Char>
-): T & Word =>
-    sumTexts(word as string, ...chars as string[]) as T & Word
+): T & Word => sumTexts(word as string, ...(chars as string[])) as T & Word
 
 export {
     sumTexts,

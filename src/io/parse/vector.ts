@@ -1,10 +1,8 @@
-import {Vector} from "../../math"
-import {Io} from "../types"
+import { Vector } from "../../math"
+import { Io } from "../types"
 
 const handleAbbreviatedAndPunctuatedVector = (preparsedVectorIo: Io): Io => {
-    let handledVectorIo = preparsedVectorIo
-        .replace(/^[|\[],/, "[0,0,")
-        .replace(/^[|\[]([^ 0]+,.*)/, "[0,$1")
+    let handledVectorIo = preparsedVectorIo.replace(/^[|[],/, "[0,0,").replace(/^[|[]([^ 0]+,.*)/, "[0,$1")
 
     let len = handledVectorIo.length - 1
     while (handledVectorIo.length !== len) {
@@ -32,9 +30,7 @@ const parseVector = (vectorIo: Io): Vector => {
         .replace(/,\s*/g, ",")
         .replace(/\s+/g, ",")
 
-    return JSON.parse(preparsedVectorIo)
+    return JSON.parse(preparsedVectorIo) as Vector
 }
 
-export {
-    parseVector,
-}
+export { parseVector }

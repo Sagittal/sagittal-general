@@ -70,7 +70,7 @@ describe("computeMap", (): void => {
         const expected = [12, 18, 28] as Map
         expect(actual).toEqual(expected)
     })
-    
+
     it("works for EDOs too, in which case it returns their simple map", (): void => {
         const edo: Edo = 12 as Edo
         const primeLimit: Max<Prime> = 5 as Max<Prime>

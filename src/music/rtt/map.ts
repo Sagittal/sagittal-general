@@ -1,11 +1,17 @@
 import { indexOf, isUndefined, ZERO_ONE_INDEX_DIFF } from "../../code"
-import { computePrimes, computeScaledVectorFromDecimal, Max, NumericProperties, Prime } from "../../math"
-import { Subtrahend } from "../../math/types"
+import {
+    computePrimes,
+    computeScaledVectorFromDecimal,
+    Max,
+    NumericProperties,
+    Subtrahend,
+    Prime,
+} from "../../math"
 import { Count, Index } from "../../types"
 import { computeCentsFromPitch } from "../cents"
 import { computeStepSize, Edo } from "../edo"
-import { Cents } from "../types"
-import { Error, EtName, EtStep, Map, Per, Wart } from "./types"
+import { Cents, Error } from "../types"
+import { EtName, EtStep, Map, Per, Wart } from "./types"
 
 const CHAR_CODE_OFFSET: Subtrahend<Index> = 96 as Subtrahend<Index>
 

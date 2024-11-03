@@ -1,28 +1,20 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "esnext",
-    "downlevelIteration": true,
-    "lib": [
-      "esnext",
-      "dom"
-    ],
-    "types": [
-      "node",
-      "jasmine",
-      "./spec"
-    ],
-    "moduleResolution": "node",
-    "noImplicitReturns": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "pretty": true,
-    "esModuleInterop": true,
-    "declaration": true
-  },
-  "include": [
-    "src"
-  ]
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "esnext",
+        "downlevelIteration": true,
+        "lib": ["esnext", "dom"],
+        "types": ["node", "jasmine", "./spec"],
+        "moduleResolution": "node",
+        "noImplicitReturns": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "noImplicitAny": true,
+        "pretty": true,
+        "esModuleInterop": true,
+        "declaration": true,
+        "noEmitOnError": true
+    },
+    "include": ["src", "spec"]
 }

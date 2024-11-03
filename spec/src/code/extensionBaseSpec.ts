@@ -1,4 +1,4 @@
-import {computeExtensionBase, ExtensionBaseType} from "../../../src"
+import { computeExtensionBase, ExtensionBaseType } from "../../../src"
 
 describe("computeExtensionBase", (): void => {
     it("returns an empty array when array is asked for", (): void => {
@@ -15,7 +15,7 @@ describe("computeExtensionBase", (): void => {
 
         const actual = computeExtensionBase(extensionBaseType)
 
-        const expected: Object = {}
+        const expected: object = {}
         expect(actual).toEqual(expected)
     })
 
@@ -34,12 +34,12 @@ describe("computeExtensionBase", (): void => {
     it("returns an empty object when object is asked for", (): void => {
         const extensionBaseType = ExtensionBaseType.OBJECT
 
-        const previousActual: {key: number} = computeExtensionBase(extensionBaseType) as {key: number}
+        const previousActual: { key: number } = computeExtensionBase(extensionBaseType) as { key: number }
         previousActual.key = 3
 
         const actual = computeExtensionBase(extensionBaseType)
 
-        const expected: Object = {}
+        const expected: object = {}
         expect(actual).toEqual(expected)
     })
 })

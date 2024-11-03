@@ -1,5 +1,5 @@
-import {Io, NEWLINE, Table} from "../../../../../src"
-import {formatTableForSpreadsheet} from "../../../../../src/node/scripts/table/tableForSpreadsheet"
+import { Io, NEWLINE, Table } from "../../../../../src"
+import { formatTableForSpreadsheet } from "../../../../../src/node/scripts/table/tableForSpreadsheet"
 
 describe("formatTableForSpreadsheet", (): void => {
     const table = [
@@ -11,10 +11,13 @@ describe("formatTableForSpreadsheet", (): void => {
     it("makes each column such that each of its cells has the same width", (): void => {
         const actual = formatTableForSpreadsheet(table)
 
-        const expected =
-            "comma name\tprime limit\t2,3-free SoPFR\tcents\tvector\tquotient\tapotome slope".underline + NEWLINE +
-            "11M\t11\t11\t45.45\t[0 0 1⟩\t33/32\t-4" + NEWLINE +
-            "25/49M\t7\t24\t33.4\t[0 0⟩\t50/49\t-59.333" + NEWLINE as Io
+        const expected = ("comma name\tprime limit\t2,3-free SoPFR\tcents\tvector\tquotient\tapotome slope"
+            .underline +
+            NEWLINE +
+            "11M\t11\t11\t45.45\t[0 0 1⟩\t33/32\t-4" +
+            NEWLINE +
+            "25/49M\t7\t24\t33.4\t[0 0⟩\t50/49\t-59.333" +
+            NEWLINE) as Io
         expect(actual).toEqual(expected)
     })
 })

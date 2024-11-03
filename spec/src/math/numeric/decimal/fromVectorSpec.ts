@@ -1,4 +1,4 @@
-import { computeDecimalFromVector, Decimal, MAX_JS_PRECISION, Vector } from "../../../../../src"
+import { computeDecimalFromVector, Decimal, MAX_JS_PRECISION, Vector, NoProperties } from "../../../../../src"
 
 describe("computeDecimalFromVector", (): void => {
     it("returns the decimal representation of the vector", (): void => {
@@ -27,7 +27,7 @@ describe("computeDecimalFromVector", (): void => {
 
         const actual = computeDecimalFromVector(vector)
 
-        const expected = Infinity as Decimal
+        const expected = Infinity
         expect(actual).toBeCloseTo(expected)
     })
 
@@ -44,7 +44,7 @@ describe("computeDecimalFromVector", (): void => {
     })
 
     it("works for this other huge vector", (): void => {
-        const vector = [-1726, 1330] as Vector<{}>
+        const vector = [-1726, 1330] as Vector<NoProperties>
 
         const actual = computeDecimalFromVector(vector)
 
@@ -56,7 +56,7 @@ describe("computeDecimalFromVector", (): void => {
     })
 
     it("works for this other huge vector's inverse", (): void => {
-        const vector = [1726, -1330] as Vector<{}>
+        const vector = [1726, -1330] as Vector<NoProperties>
 
         const actual = computeDecimalFromVector(vector)
 

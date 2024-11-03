@@ -1,5 +1,5 @@
-import { Map } from "./types"
 import { Io, parseVector } from "../../io"
+import { Map } from "./types"
 
 const parseMap = (mapIo: Io): Map => {
     let fakeTmpVectorIo = mapIo.replace("⟨", "[").replace("<", "[").replace("|", "⟩")

@@ -1,5 +1,5 @@
 import { indexOfFinalElement } from "../../code"
-import { mod, NumericProperties, Vector } from "../../math"
+import { Decimal, Integer, mod, NumericProperties, Vector } from "../../math"
 import { BLANK, COMMA, SPACE } from "../constants"
 import { Io } from "../types"
 import { spaceVectorOrMapEntry } from "./spaceVectorOrMapEntry"
@@ -32,7 +32,7 @@ const formatVector = <T extends NumericProperties>(
                 )
                 .join(SPACE) + punctuatedSeparator
 
-        let index = 0
+        let index = 0 as Decimal<Integer>
         while (index < two3FreeVector.length) {
             const vectorOrMapEntry = two3FreeVector[index]
             const newContent = maybeSpaceVectorOrMapEntry(vectorOrMapEntry, {
@@ -40,13 +40,13 @@ const formatVector = <T extends NumericProperties>(
             })
             contents = contents + newContent
             if (index < indexOfFinalElement(two3FreeVector)) {
-                if (mod(index, 3) === 2) {
+                if (mod(index, 3 as Decimal<Integer>) === 2) {
                     contents = contents + punctuatedSeparator
                 } else {
                     contents = contents + SPACE
                 }
             }
-            index += 1
+            index = index + 1
         }
     } else {
         contents = vector

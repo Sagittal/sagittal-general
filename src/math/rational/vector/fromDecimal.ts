@@ -3,23 +3,24 @@ import { dividesEvenly } from "../../dividesEvenly"
 import { Decimal, Vector, NumericProperties, PrimeCount } from "../../numeric"
 import { computePrimes, MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED } from "../primes"
 import { computeRationalQuotientFromRationalDecimal } from "../quotient"
+import { Integer, Rational } from "../types"
 import { computeRationalVectorFromRationalQuotient } from "./fromQuotient"
 
 const computeRationalVectorFromRationalDecimal = <T extends NumericProperties>(
-    rationalDecimal: Decimal<T & { rational: true }>,
-): Vector<T & { rational: true }> => {
+    rationalDecimal: Decimal<T & Rational>,
+): Vector<T & Rational> => {
     if (rationalDecimal < 0)
         throw new Error(`Cannot convert ${rationalDecimal} to a vector because it is negative.`)
 
     const rationalQuotient = computeRationalQuotientFromRationalDecimal(rationalDecimal)
 
-    return computeRationalVectorFromRationalQuotient(rationalQuotient) as Vector<T & { rational: true }>
+    return computeRationalVectorFromRationalQuotient(rationalQuotient)
 }
 
 const computeIntegerVectorFromIntegerDecimal = <T extends NumericProperties>(
-    integerDecimal: Decimal<T & { integer: true }>,
-): Vector<T & { integer: true }> => {
-    const integerVector = [] as unknown[] as Vector<T & { integer: true }>
+    integerDecimal: Decimal<T & Integer>,
+): Vector<T & Integer> => {
+    const integerVector = [] as unknown[] as Vector<T & Integer>
     let remnant = integerDecimal as number
 
     if (integerDecimal > MAX_JS_INTEGER_VALUE) {
@@ -34,12 +35,12 @@ const computeIntegerVectorFromIntegerDecimal = <T extends NumericProperties>(
 
     let index = 0
     let divisor = primes[index]
-    integerVector[index] = 0 as PrimeCount<T & { integer: true }>
+    integerVector[index] = 0 as PrimeCount<T & Integer>
 
     while (remnant > 1) {
         if (dividesEvenly(remnant, divisor)) {
             remnant = remnant / divisor
-            integerVector[index] = (integerVector[index] + 1) as PrimeCount<T & { integer: true }>
+            integerVector[index] = (integerVector[index] + 1) as PrimeCount<T & Integer>
         } else {
             if (index === indexOfFinalElement(primes)) {
                 throw new Error(
@@ -49,7 +50,7 @@ const computeIntegerVectorFromIntegerDecimal = <T extends NumericProperties>(
 
             index = index + 1
             divisor = primes[index]
-            integerVector[index] = 0 as PrimeCount<T & { integer: true }>
+            integerVector[index] = 0 as PrimeCount<T & Integer>
         }
     }
 

@@ -7,13 +7,14 @@ import {
     Vector,
     Quotient,
     ScaledVector,
+    Irrational,
 } from "../../../../../src"
 
 describe("areScaledVectorsEqual", (): void => {
     describe("for rational scaled vectors", (): void => {
         it("returns true if the vectors match", (): void => {
-            const scaledVectorA = { vector: [0, 0, 1, -1] } as ScaledVector<{ rational: true }>
-            const scaledVectorB = { vector: [0, 0, 1, -1] } as ScaledVector<{ rational: true }>
+            const scaledVectorA = { vector: [0, 0, 1, -1] } as ScaledVector
+            const scaledVectorB = { vector: [0, 0, 1, -1] } as ScaledVector
 
             const actual = areScaledVectorsEqual(scaledVectorA, scaledVectorB)
 
@@ -21,8 +22,8 @@ describe("areScaledVectorsEqual", (): void => {
         })
 
         it("returns false if the vectors do not match", (): void => {
-            const scaledVectorA = { vector: [0, 0, 1, -1] } as ScaledVector<{ rational: true }>
-            const scaledVectorB = { vector: [0, 0, -1, -1] } as ScaledVector<{ rational: true }>
+            const scaledVectorA = { vector: [0, 0, 1, -1] } as ScaledVector
+            const scaledVectorB = { vector: [0, 0, -1, -1] } as ScaledVector
 
             const actual = areScaledVectorsEqual(scaledVectorA, scaledVectorB)
 
@@ -30,8 +31,8 @@ describe("areScaledVectorsEqual", (): void => {
         })
 
         it("works when vectors haven't been trimmed", (): void => {
-            const scaledVectorA = { vector: [0, 0] } as ScaledVector<{ rational: true }>
-            const scaledVectorB = { vector: [0] } as ScaledVector<{ rational: true }>
+            const scaledVectorA = { vector: [0, 0] } as ScaledVector
+            const scaledVectorB = { vector: [0] } as ScaledVector
 
             const actual = areScaledVectorsEqual(scaledVectorA, scaledVectorB)
 
@@ -42,13 +43,13 @@ describe("areScaledVectorsEqual", (): void => {
     describe("for irrational scaled vectors", (): void => {
         it("returns true if both the vectors and scalers match", (): void => {
             const scaledVectorA = {
-                vector: [0, 0, 1, -1] as Vector<{ rational: true }>,
+                vector: [0, 0, 1, -1] as Vector,
                 scaler: [1, 12] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
             const scaledVectorB = {
-                vector: [0, 0, 1, -1] as Vector<{ rational: true }>,
+                vector: [0, 0, 1, -1] as Vector,
                 scaler: [1, 12] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
 
             const actual = areScaledVectorsEqual(scaledVectorA, scaledVectorB)
 
@@ -57,13 +58,13 @@ describe("areScaledVectorsEqual", (): void => {
 
         it("returns false if the vectors do not match", (): void => {
             const scaledVectorA = {
-                vector: [0, 0, 1, -1] as Vector<{ rational: true }>,
+                vector: [0, 0, 1, -1] as Vector,
                 scaler: [1, 12] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
             const scaledVectorB = {
-                vector: [0, 0, -1, -1] as Vector<{ rational: true }>,
+                vector: [0, 0, -1, -1] as Vector,
                 scaler: [1, 12] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
 
             const actual = areScaledVectorsEqual(scaledVectorA, scaledVectorB)
 
@@ -72,13 +73,13 @@ describe("areScaledVectorsEqual", (): void => {
 
         it("returns false if the scalers do not match", (): void => {
             const scaledVectorA = {
-                vector: [0, 0, 1, -1] as Vector<{ rational: true }>,
+                vector: [0, 0, 1, -1] as Vector,
                 scaler: [1, 12] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
             const scaledVectorB = {
-                vector: [0, 0, 1, -1] as Vector<{ rational: true }>,
+                vector: [0, 0, 1, -1] as Vector,
                 scaler: [1, 2] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
 
             const actual = areScaledVectorsEqual(scaledVectorA, scaledVectorB)
 
@@ -89,12 +90,12 @@ describe("areScaledVectorsEqual", (): void => {
     describe("for a combination of a rational scaledVector and an irrational scaledVector", (): void => {
         it("returns true if they are equivalent", (): void => {
             const scaledVectorA = {
-                vector: [0, 0, 1, -1] as Vector<{ rational: true }>,
-            } as ScaledVector<{ rational: true }>
+                vector: [0, 0, 1, -1] as Vector,
+            } as ScaledVector
             const scaledVectorB = {
-                vector: [0, 0, 2, -2] as Vector<{ rational: true }>,
+                vector: [0, 0, 2, -2] as Vector,
                 scaler: [1, 2] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
 
             const actual = areScaledVectorsEqual(scaledVectorA, scaledVectorB)
 
@@ -103,12 +104,12 @@ describe("areScaledVectorsEqual", (): void => {
 
         it("returns false if they are not equivalent", (): void => {
             const scaledVectorA = {
-                vector: [0, 0, 2, -2] as Vector<{ rational: true }>,
-            } as ScaledVector<{ rational: true }>
+                vector: [0, 0, 2, -2] as Vector,
+            } as ScaledVector
             const scaledVectorB = {
-                vector: [0, 0, 2, -2] as Vector<{ rational: true }>,
+                vector: [0, 0, 2, -2] as Vector,
                 scaler: [1, 2] as Quotient,
-            } as ScaledVector<{ rational: false }>
+            } as ScaledVector<Irrational>
 
             const actual = areScaledVectorsEqual(scaledVectorA, scaledVectorB)
 
@@ -119,8 +120,8 @@ describe("areScaledVectorsEqual", (): void => {
 
 describe("isScaledVectorGreater", (): void => {
     it("returns true if the scaled vector is higher than the other", (): void => {
-        const scaledVector = { vector: [-2, 0, 1] } as ScaledVector<{ rational: true }>
-        const otherScaledVector = { vector: [-3, 2] } as ScaledVector<{ rational: true }>
+        const scaledVector = { vector: [-2, 0, 1] } as ScaledVector
+        const otherScaledVector = { vector: [-3, 2] } as ScaledVector
 
         const actual = isScaledVectorGreater(scaledVector, otherScaledVector)
 
@@ -128,8 +129,8 @@ describe("isScaledVectorGreater", (): void => {
     })
 
     it("returns false if the scaled vector is equal to the other", (): void => {
-        const scaledVector = { vector: [-2, 0, 1] } as ScaledVector<{ rational: true }>
-        const otherScaledVector = { vector: [-2, 0, 1] } as ScaledVector<{ rational: true }>
+        const scaledVector = { vector: [-2, 0, 1] } as ScaledVector
+        const otherScaledVector = { vector: [-2, 0, 1] } as ScaledVector
 
         const actual = isScaledVectorGreater(scaledVector, otherScaledVector)
 
@@ -137,8 +138,8 @@ describe("isScaledVectorGreater", (): void => {
     })
 
     it("returns false if the scaled vector is lower than the other", (): void => {
-        const scaledVector = { vector: [-3, 2] } as ScaledVector<{ rational: true }>
-        const otherScaledVector = { vector: [-2, 0, 1] } as ScaledVector<{ rational: true }>
+        const scaledVector = { vector: [-3, 2] } as ScaledVector
+        const otherScaledVector = { vector: [-2, 0, 1] } as ScaledVector
 
         const actual = isScaledVectorGreater(scaledVector, otherScaledVector)
 
@@ -146,10 +147,8 @@ describe("isScaledVectorGreater", (): void => {
     })
 
     it("example of a rational scaledVector and an irrational scaledVector which are quite close", (): void => {
-        const scaledVector = { vector: [-7, -1, 1, 1, 1] } as ScaledVector<{ rational: true }>
-        const otherScaledVector = { vector: [317, -200], scaler: [1, 2] } as ScaledVector<{
-            rational: false
-        }>
+        const scaledVector = { vector: [-7, -1, 1, 1, 1] } as ScaledVector
+        const otherScaledVector = { vector: [317, -200], scaler: [1, 2] } as ScaledVector<Irrational>
 
         const actual = isScaledVectorGreater(scaledVector, otherScaledVector)
 
@@ -159,8 +158,8 @@ describe("isScaledVectorGreater", (): void => {
 
 describe("isScaledVectorLesser", (): void => {
     it("returns false if the scaled vector is higher than the other", (): void => {
-        const scaledVector = { vector: [-2, 0, 1] } as ScaledVector<{ rational: true }>
-        const otherScaledVector = { vector: [-3, 2] } as ScaledVector<{ rational: true }>
+        const scaledVector = { vector: [-2, 0, 1] } as ScaledVector
+        const otherScaledVector = { vector: [-3, 2] } as ScaledVector
 
         const actual = isScaledVectorLesser(scaledVector, otherScaledVector)
 
@@ -168,8 +167,8 @@ describe("isScaledVectorLesser", (): void => {
     })
 
     it("returns false if the scaled vector is equal to the other", (): void => {
-        const scaledVector = { vector: [-2, 0, 1] } as ScaledVector<{ rational: true }>
-        const otherScaledVector = { vector: [-2, 0, 1] } as ScaledVector<{ rational: true }>
+        const scaledVector = { vector: [-2, 0, 1] } as ScaledVector
+        const otherScaledVector = { vector: [-2, 0, 1] } as ScaledVector
 
         const actual = isScaledVectorLesser(scaledVector, otherScaledVector)
 
@@ -177,8 +176,8 @@ describe("isScaledVectorLesser", (): void => {
     })
 
     it("returns true if the scaled vector is lower than the other", (): void => {
-        const scaledVector = { vector: [-3, 2] } as ScaledVector<{ rational: true }>
-        const otherScaledVector = { vector: [-2, 0, 1] } as ScaledVector<{ rational: true }>
+        const scaledVector = { vector: [-3, 2] } as ScaledVector
+        const otherScaledVector = { vector: [-2, 0, 1] } as ScaledVector
 
         const actual = isScaledVectorLesser(scaledVector, otherScaledVector)
 
@@ -188,8 +187,8 @@ describe("isScaledVectorLesser", (): void => {
 
 describe("isScaledVectorGreaterOrEqual", (): void => {
     it("returns true if the scaled vector is higher than the other", (): void => {
-        const scaledVector = { vector: [-2, 0, 1] } as ScaledVector<{ rational: true }>
-        const otherScaledVector = { vector: [-3, 2] } as ScaledVector<{ rational: true }>
+        const scaledVector = { vector: [-2, 0, 1] } as ScaledVector
+        const otherScaledVector = { vector: [-3, 2] } as ScaledVector
 
         const actual = isScaledVectorGreaterOrEqual(scaledVector, otherScaledVector)
 
@@ -197,8 +196,8 @@ describe("isScaledVectorGreaterOrEqual", (): void => {
     })
 
     it("returns true if the scaled vector is equal to the other", (): void => {
-        const scaledVector = { vector: [-2, 0, 1] } as ScaledVector<{ rational: true }>
-        const otherScaledVector = { vector: [-2, 0, 1] } as ScaledVector<{ rational: true }>
+        const scaledVector = { vector: [-2, 0, 1] } as ScaledVector
+        const otherScaledVector = { vector: [-2, 0, 1] } as ScaledVector
 
         const actual = isScaledVectorGreaterOrEqual(scaledVector, otherScaledVector)
 
@@ -206,8 +205,8 @@ describe("isScaledVectorGreaterOrEqual", (): void => {
     })
 
     it("returns false if the scaled vector is lower than the other", (): void => {
-        const scaledVector = { vector: [-3, 2] } as ScaledVector<{ rational: true }>
-        const otherScaledVector = { vector: [-2, 0, 1] } as ScaledVector<{ rational: true }>
+        const scaledVector = { vector: [-3, 2] } as ScaledVector
+        const otherScaledVector = { vector: [-2, 0, 1] } as ScaledVector
 
         const actual = isScaledVectorGreaterOrEqual(scaledVector, otherScaledVector)
 
@@ -217,8 +216,8 @@ describe("isScaledVectorGreaterOrEqual", (): void => {
 
 describe("isScaledVectorLesserOrEqual", (): void => {
     it("returns false if the scaled vector is higher than the other", (): void => {
-        const scaledVector = { vector: [-2, 0, 1] } as ScaledVector<{ rational: true }>
-        const otherScaledVector = { vector: [-3, 2] } as ScaledVector<{ rational: true }>
+        const scaledVector = { vector: [-2, 0, 1] } as ScaledVector
+        const otherScaledVector = { vector: [-3, 2] } as ScaledVector
 
         const actual = isScaledVectorLesserOrEqual(scaledVector, otherScaledVector)
 
@@ -226,8 +225,8 @@ describe("isScaledVectorLesserOrEqual", (): void => {
     })
 
     it("returns true if the scaled vector is equal to the other", (): void => {
-        const scaledVector = { vector: [-2, 0, 1] } as ScaledVector<{ rational: true }>
-        const otherScaledVector = { vector: [-2, 0, 1] } as ScaledVector<{ rational: true }>
+        const scaledVector = { vector: [-2, 0, 1] } as ScaledVector
+        const otherScaledVector = { vector: [-2, 0, 1] } as ScaledVector
 
         const actual = isScaledVectorLesserOrEqual(scaledVector, otherScaledVector)
 
@@ -235,8 +234,8 @@ describe("isScaledVectorLesserOrEqual", (): void => {
     })
 
     it("returns true if the scaled vector is lower than the other", (): void => {
-        const scaledVector = { vector: [-3, 2] } as ScaledVector<{ rational: true }>
-        const otherScaledVector = { vector: [-2, 0, 1] } as ScaledVector<{ rational: true }>
+        const scaledVector = { vector: [-3, 2] } as ScaledVector
+        const otherScaledVector = { vector: [-2, 0, 1] } as ScaledVector
 
         const actual = isScaledVectorLesserOrEqual(scaledVector, otherScaledVector)
 

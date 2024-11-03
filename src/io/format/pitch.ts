@@ -1,22 +1,24 @@
-import { isQuotientRational, isScaledVectorRational, ScaledVector } from "../../math"
+import { isQuotientRational, isScaledVectorRational, NumericProperties, ScaledVector } from "../../math"
 import { computeCentsFromPitch } from "../../music"
 import { formatCents } from "./cents"
-import { formatVector } from "./vector"
 import { formatQuotient } from "./quotient"
 import { Formatted } from "./types"
+import { formatVector } from "./vector"
 
-const formatPitch = (
-    pitch: ScaledVector,
+const formatPitch = <T extends NumericProperties>(
+    pitch: ScaledVector<T>,
     options: { align?: boolean; noLaTeXMultiplier?: boolean } = {},
-): Formatted<ScaledVector> => {
+): Formatted<ScaledVector<T>> => {
     if (isScaledVectorRational(pitch)) {
-        return formatVector(pitch.vector) as Formatted as Formatted<ScaledVector>
+        return formatVector(pitch.vector) as Formatted as Formatted<ScaledVector<T>>
     } else {
         const { scaler, vector } = pitch
         if (isQuotientRational(scaler)) {
-            return `${formatVector(vector)}(${formatQuotient(scaler, options)})` as Formatted<ScaledVector>
+            return `${formatVector(vector)}(${formatQuotient(scaler, options)})` as Formatted<ScaledVector<T>>
         } else {
-            return formatCents(computeCentsFromPitch(pitch), options) as Formatted as Formatted<ScaledVector>
+            return formatCents(computeCentsFromPitch(pitch), options) as Formatted as Formatted<
+                ScaledVector<T>
+            >
         }
     }
 }

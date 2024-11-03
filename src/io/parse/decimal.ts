@@ -1,13 +1,8 @@
-import {Decimal} from "../../math"
-import {Io} from "../types"
+import { Decimal, Integer } from "../../math"
+import { Io } from "../types"
 
-const parseDecimal = (decimalIo: Io): Decimal =>
-    parseFloat(decimalIo) as Decimal
+const parseDecimal = (decimalIo: Io): Decimal => parseFloat(decimalIo)
 
-const parseInteger = (integerIo: Io): Decimal<{integer: true}> =>
-    parseInt(integerIo) as Decimal<{integer: true}>
+const parseInteger = (integerIo: Io): Decimal<Integer> => parseInt(integerIo)
 
-export {
-    parseDecimal,
-    parseInteger,
-}
+export { parseDecimal, parseInteger }

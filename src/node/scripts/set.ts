@@ -1,11 +1,11 @@
-import {Maybe} from "../../code"
-import {BLANK} from "../../io"
-import {scriptSettings} from "./globals"
-import {LogTarget, LogTargets} from "./types"
+import { Maybe } from "../../code"
+import { BLANK } from "../../io"
+import { scriptSettings } from "./globals"
+import { LogTarget, LogTargets } from "./types"
 
 const setLogTargets = (logTargetsCommaSeparatedString: Maybe<string | boolean> = BLANK): void => {
     scriptSettings.logTargets = Object.keys(LogTarget).reduce(
-        (logTargets: LogTargets, logTarget: string): LogTargets => ({...logTargets, [logTarget]: false}),
+        (logTargets: LogTargets, logTarget: string): LogTargets => ({ ...logTargets, [logTarget]: false }),
         {} as LogTargets,
     )
 
@@ -23,6 +23,4 @@ const setLogTargets = (logTargetsCommaSeparatedString: Maybe<string | boolean> =
     scriptSettings.logTargets[LogTarget.FINAL] = true
 }
 
-export {
-    setLogTargets,
-}
+export { setLogTargets }

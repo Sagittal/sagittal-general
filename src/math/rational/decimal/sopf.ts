@@ -1,12 +1,12 @@
 import { Decimal, NumericProperties, PrimeCount } from "../../numeric"
-import { computeRationalVectorFromRationalDecimal } from "../vector"
 import { computePrimes } from "../primes"
-import { Sopf } from "../types"
+import { Rational, Sopf } from "../types"
+import { computeRationalVectorFromRationalDecimal } from "../vector"
 
 // Sum Of Prime Factors (without repetition)
 
 const computeRationalDecimalSopf = <T extends NumericProperties>(
-    rationalDecimal: Decimal<T & { rational: true }>,
+    rationalDecimal: Decimal<T & Rational>,
 ): Sopf<T> => {
     const rationalVector = computeRationalVectorFromRationalDecimal(rationalDecimal)
 

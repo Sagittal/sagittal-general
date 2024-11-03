@@ -1,16 +1,13 @@
-import {computeQuotientProduct, halveQuotient, NumericProperties, Quotient} from "../../numeric"
-import {computeLowestTermsRationalQuotient} from "./lowestTerms"
+import { computeQuotientProduct, halveQuotient, NumericProperties, Quotient } from "../../numeric"
+import { Rational } from "../types"
+import { computeLowestTermsRationalQuotient } from "./lowestTerms"
 
 const computeRationalQuotientProduct = <T extends NumericProperties>(
-    ...rationalQuotients: Array<Quotient<T & {rational: true}>>
-): Quotient<T & {rational: true}> =>
-    computeLowestTermsRationalQuotient(computeQuotientProduct(...rationalQuotients))
+    ...rationalQuotients: Array<Quotient<T & Rational>>
+): Quotient<T & Rational> => computeLowestTermsRationalQuotient(computeQuotientProduct(...rationalQuotients))
 
 const halveRationalQuotient = <T extends NumericProperties>(
-    rationalQuotient: Quotient<T & {rational: true}>,
-): Quotient<T & {rational: true}> =>
-    computeLowestTermsRationalQuotient(halveQuotient(rationalQuotient))
+    rationalQuotient: Quotient<T & Rational>,
+): Quotient<T & Rational> => computeLowestTermsRationalQuotient(halveQuotient(rationalQuotient))
 
-export {
-    computeRationalQuotientProduct,
-}
+export { computeRationalQuotientProduct, halveRationalQuotient }

@@ -2,6 +2,4 @@ const concat = <T extends string | unknown[]>(baseArray: T, concatenatedArray: T
     return baseArray.concat(concatenatedArray as string & unknown[]) as T
 }
 
-export {
-    concat,
-}
+export { concat }
