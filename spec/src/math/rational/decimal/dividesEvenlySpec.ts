@@ -1,11 +1,11 @@
-import { dividesEvenly, isEven, isOdd } from "../../../src/math"
+import { Decimal, dividesEvenly, Integer, isEven, isOdd } from "../../../../../src/math"
 
 describe("dividesEvenly", (): void => {
     it("returns the whole version of the type passed to it", (): void => {
-        const number = 5
-        const modulus = 2
+        const integer = 5 as Decimal<Integer>
+        const modulus = 2 as Decimal<Integer>
 
-        const actual = dividesEvenly(number, modulus)
+        const actual = dividesEvenly(integer, modulus)
 
         expect(actual).toBeFalsy()
     })
@@ -13,17 +13,17 @@ describe("dividesEvenly", (): void => {
 
 describe("isEven", (): void => {
     it("returns true if even", (): void => {
-        const number = 10
+        const integer = 10 as Decimal<Integer>
 
-        const actual = isEven(number)
+        const actual = isEven(integer)
 
         expect(actual).toBeTruthy()
     })
 
     it("returns false if odd", (): void => {
-        const number = 11
+        const integer = 11 as Decimal<Integer>
 
-        const actual = isEven(number)
+        const actual = isEven(integer)
 
         expect(actual).toBeFalsy()
     })
@@ -31,17 +31,17 @@ describe("isEven", (): void => {
 
 describe("isOdd", (): void => {
     it("returns false if even", (): void => {
-        const number = 10
+        const integer = 10 as Decimal<Integer>
 
-        const actual = isOdd(number)
+        const actual = isOdd(integer)
 
         expect(actual).toBeFalsy()
     })
 
     it("returns true if odd", (): void => {
-        const number = 11
+        const integer = 11 as Decimal<Integer>
 
-        const actual = isOdd(number)
+        const actual = isOdd(integer)
 
         expect(actual).toBeTruthy()
     })

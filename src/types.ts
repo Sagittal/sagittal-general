@@ -1,6 +1,7 @@
 import { Maybe, NoProperties } from "./code"
 import { Io } from "./io"
-import { Decimal, Integer, Max, Min, Multiplier, NumericProperties, Quotient } from "./math"
+import { Decimal, Max, Min, Multiplier, NumericProperties, Quotient } from "./math"
+import { Integer } from "./math"
 
 type Index<T = void> = Decimal<Integer> & { _IndexBrand: boolean } & (T extends void
         ? unknown
@@ -11,14 +12,21 @@ type Offset<T = void> = Decimal<Integer> & { _OffsetBrand: boolean } & (T extend
         ? unknown
         : { _OffsetOfBrand: T })
 
-type Step<T extends NumericProperties & { of?: number } = NoProperties> = // Iteration?
-    Decimal<T> & { _StepBrand: boolean } & (T extends { of: number } ? { _StepOfEdBrand: T["of"] } : unknown)
-type Ed<T extends NumericProperties & { of?: number } = NoProperties> = // Generator?
-    Decimal<T & Integer> & { _EdBrand: boolean } & (T extends { of: number }
-            ? { _EdOfWindowBrand: T["of"] }
-            : unknown)
-type Window<T extends NumericProperties & { of?: number } = NoProperties> = // Period?
-    Decimal<T> & { _WindowBrand: boolean } & (T extends { of: number } ? { _OfSizeBrand: T["of"] } : unknown)
+type Step<
+    O extends { of?: number } = { of: number },
+    T extends NumericProperties = NoProperties,
+> = Decimal<T> & {
+    // Iteration?
+    _StepBrand: boolean
+} & (O extends { of: number } ? { _StepOfEdBrand: O["of"] } : unknown)
+type Ed<O extends { of?: number } = { of: number }, T extends NumericProperties = NoProperties> = Decimal<
+    // Generator?
+    T & Integer
+> & { _EdBrand: boolean } & (O extends { of: number } ? { _EdOfWindowBrand: O["of"] } : unknown)
+type Window<
+    O extends { of?: number } = { of: number },
+    T extends NumericProperties = NoProperties,
+> = Decimal<T> & { _WindowBrand: boolean } & (O extends { of: number } ? { _OfSizeBrand: O["of"] } : unknown) // Period?
 type Degree = [Step, Ed] & Quotient
 
 type Id<T = void> = Io & { _IdBrand: boolean } & (T extends void ? unknown : { _IdOfBrand: T })
@@ -33,7 +41,7 @@ type Extrema<T extends { of?: unknown; open?: boolean } = { of: number; open: fa
     ? [Maybe<Min<T["of"]>>, Maybe<Max<T["of"]>>]
     : [Min<T["of"]>, Max<T["of"]>]
 
-type Ms = Decimal & { _MsBrand: boolean }
+type Ms = number & { _MsBrand: boolean }
 
 type Of<T> = { _OfBrand: T }
 

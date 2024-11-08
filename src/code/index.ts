@@ -58,5 +58,5 @@ export {
     Precision,
     SortBy,
     NoProperties,
-    Override,
+    KeyValObj,
 } from "./types"

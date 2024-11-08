@@ -1,7 +1,7 @@
 import "colors"
 import { program } from "commander"
 import { isUndefined } from "../../code"
-import { KeyValObj } from "../../code/types"
+import { KeyValObj } from "../../code"
 import { COMMA, ioSettings, TableFormat } from "../../io"
 import { Filename } from "../types"
 import { clearLogFiles } from "./clear"

@@ -1,8 +1,11 @@
 import { deepEquals } from "../../../code"
-import { Quotient } from "../../numeric"
+import { Quotient, Rational } from "../../numeric"
 import { computeLowestTermsRationalQuotient } from "./lowestTerms"
 
-const areRationalQuotientsEqual = (rationalQuotientA: Quotient, rationalQuotientB: Quotient): boolean =>
+const areRationalQuotientsEqual = <T extends Rational>(
+    rationalQuotientA: Quotient<T>,
+    rationalQuotientB: Quotient<T>,
+): boolean =>
     deepEquals(
         computeLowestTermsRationalQuotient(rationalQuotientA),
         computeLowestTermsRationalQuotient(rationalQuotientB),

@@ -10,3 +10,4 @@ export {
 } from "./smoothness"
 export { computeRoughIntegerDecimal, isIntegerDecimalRough } from "./roughness"
 export { ceil, floor, integerDivide } from "./typedOperations"
+export { dividesEvenly, isEven, isOdd } from "./dividesEvenly"

@@ -1,24 +1,23 @@
-import { Decimal, Vector, NumericProperties, Quotient, ScaledVector } from "../../numeric"
-import { Rational } from "../types"
+import { Decimal, Vector, Quotient, ScaledVector, Rational } from "../../numeric"
 import {
     computeRationalVectorFromRationalDecimal,
     computeRationalVectorFromRationalQuotient,
 } from "../vector"
 
-const computeRationalScaledVectorFromRationalDecimal = <T extends NumericProperties>(
-    rationalDecimal: Decimal<T & Rational>,
-): ScaledVector<T & Rational> =>
+const computeRationalScaledVectorFromRationalDecimal = <T extends Rational>(
+    rationalDecimal: Decimal<T>,
+): ScaledVector<T> =>
     ({
         vector: computeRationalVectorFromRationalDecimal(rationalDecimal),
-    }) as ScaledVector<T & Rational>
+    }) as ScaledVector<T>
 
-const computeRationalScaledVectorFromRationalVector = <T extends NumericProperties>(
-    rationalVector: Vector<T & Rational>,
-): ScaledVector<T & Rational> => ({ vector: rationalVector }) as ScaledVector<T & Rational>
+const computeRationalScaledVectorFromRationalVector = <T extends Rational>(
+    rationalVector: Vector<T>,
+): ScaledVector<T> => ({ vector: rationalVector }) as ScaledVector<T>
 
-const computeRationalScaledVectorFromRationalQuotient = <T extends NumericProperties>(
-    rationalQuotient: Quotient<T & Rational>,
-): ScaledVector<T & Rational> =>
+const computeRationalScaledVectorFromRationalQuotient = <T extends Rational>(
+    rationalQuotient: Quotient<T>,
+): ScaledVector<T> =>
     computeRationalScaledVectorFromRationalVector(computeRationalVectorFromRationalQuotient(rationalQuotient))
 
 export {

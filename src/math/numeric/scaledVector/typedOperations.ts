@@ -1,7 +1,8 @@
-import { Override } from "../../../code"
+import { isUndefined } from "../../../code"
 import {
     Decimal,
     divide,
+    Irrational,
     Max,
     Min,
     Multiplier,
@@ -9,59 +10,62 @@ import {
     NumericProperties,
     PrimeCount,
     Quotient,
+    Rational,
 } from "../../../math"
 import { Degree } from "../../../types"
 import {
     computeIrrationalDecimalFromScaledVector,
     computeIrrationalScaledVectorFromDecimal,
     HALF_SCALER,
-    Irrational,
 } from "../../irrational"
 import { computeQuotientProduct, halveQuotient } from "../quotient"
+import { UnknownDirection, UnknownSign } from "../types"
 import { ScaledVector } from "./types"
 
 const addScaledVectors = <T extends NumericProperties>(
     augendScaledVector: ScaledVector<T>,
     addendScaledVector: ScaledVector<T>,
-): ScaledVector<T & { direction: undefined; rational: undefined; sign: undefined }> =>
+): ScaledVector<T & UnknownDirection & UnknownSign> =>
     computeIrrationalScaledVectorFromDecimal(
         multiply(
             computeIrrationalDecimalFromScaledVector(augendScaledVector),
             computeIrrationalDecimalFromScaledVector(addendScaledVector),
         ),
-    ) as ScaledVector<T & { direction: undefined; rational: undefined; sign: undefined }>
+    ) as ScaledVector<T & UnknownDirection & UnknownSign>
 
 const subtractScaledVectors = <T extends NumericProperties>(
     minuendScaledVector: ScaledVector<T>,
     subtrahendScaledVector: ScaledVector<T>,
-): ScaledVector<T & { direction: undefined; rational: undefined; sign: undefined }> =>
+): ScaledVector<T & UnknownDirection & UnknownSign> =>
     computeIrrationalScaledVectorFromDecimal(
         divide(
             computeIrrationalDecimalFromScaledVector(minuendScaledVector),
             computeIrrationalDecimalFromScaledVector(subtrahendScaledVector),
         ),
-    ) as ScaledVector<T & { direction: undefined; rational: undefined; sign: undefined }>
+    ) as ScaledVector<T & UnknownDirection & UnknownSign>
 
 const halveScaledVector = <T extends NumericProperties>(
-    scaledVector: ScaledVector<T>,
+    scaledVector: ScaledVector<T & (Rational | Irrational)>,
 ): ScaledVector<T & Irrational> =>
     ({
         ...scaledVector,
-        scaler: scaledVector.scaler ? halveQuotient(scaledVector.scaler) : HALF_SCALER,
+        scaler: (isUndefined(scaledVector.scaler)
+            ? HALF_SCALER
+            : halveQuotient(scaledVector.scaler)) as Quotient,
     }) as ScaledVector<T & Irrational>
 
 const scaleScaledVector = <T extends NumericProperties>(
-    scaledVector: ScaledVector<T>,
+    scaledVector: ScaledVector<T & (Rational | Irrational)>,
     scaler: Quotient | Degree,
 ): ScaledVector<T & Irrational> =>
     ({
         ...scaledVector,
-        scaler: scaledVector.scaler ? computeQuotientProduct(scaledVector.scaler, scaler) : scaler,
+        scaler: isUndefined(scaledVector.scaler)
+            ? scaler
+            : computeQuotientProduct(scaledVector.scaler, scaler),
     }) as ScaledVector<T & Irrational>
 
-const maxScaledVector = <T extends NumericProperties>(
-    ...scaledVectors: Array<ScaledVector<T>>
-): Max<ScaledVector<T>> => {
+const maxScaledVector = (...scaledVectors: Array<ScaledVector>): Max<ScaledVector> => {
     let maxDecimal = -Infinity
     let maxIndex = undefined
 
@@ -74,7 +78,7 @@ const maxScaledVector = <T extends NumericProperties>(
             }
         })
 
-    return scaledVectors[maxIndex as unknown as number] as Max<ScaledVector<T>>
+    return scaledVectors[maxIndex as unknown as number] as Max<ScaledVector>
 }
 
 const multiplyScaledVector = <T extends NumericProperties>(
@@ -83,16 +87,9 @@ const multiplyScaledVector = <T extends NumericProperties>(
 ): ScaledVector<T> => {
     return {
         ...scaledVector,
-        vector: scaledVector.vector.map(
-            (
-                primeCount: PrimeCount<Override<T, "rational", true>>,
-            ): PrimeCount<Override<T, "rational", true>> => {
-                return multiply(
-                    primeCount,
-                    multiplier as Multiplier<PrimeCount<Override<T, "rational", true>>>,
-                )
-            },
-        ),
+        vector: scaledVector.vector.map((primeCount: PrimeCount<T & Rational>): PrimeCount<T & Rational> => {
+            return multiply(primeCount, multiplier as number) as PrimeCount<T & Rational>
+        }),
     } as ScaledVector<T>
 }
 

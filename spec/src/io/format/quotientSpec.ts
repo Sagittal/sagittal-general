@@ -28,7 +28,7 @@ describe("formatQuotient", (): void => {
         expect(actual).toBe(expected)
     })
 
-    it("can format it for the forum, using the LaTeX bbCode, and canceling out the pre tag so it will display properly           ", (): void => {
+    it("can format it for the forum, using the LaTeX bbCode, and canceling out the pre tag so it will display properly", (): void => {
         const quotient = [77, 75] as Quotient
 
         ioSettings.tableFormat = TableFormat.FORUM

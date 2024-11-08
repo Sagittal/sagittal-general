@@ -1,5 +1,5 @@
 import { Decimal } from "../../../../../src"
-import { Integer, Roughness } from "../../../../../src/math"
+import { Integer, Roughness, Rough } from "../../../../../src/math"
 import { computeRoughIntegerDecimal, isIntegerDecimalRough } from "../../../../../src/math/rational/decimal"
 
 describe("isIntegerDecimalRough", (): void => {
@@ -56,7 +56,7 @@ describe("computeRoughIntegerDecimal", (): void => {
 
         const actual = computeRoughIntegerDecimal(integerDecimal, roughness)
 
-        const expected = 77 as Decimal<Integer & { rough: 7 }>
+        const expected = 77 as Decimal<Integer & Rough<7>>
         expect(actual).toBe(expected)
     })
 
@@ -66,7 +66,7 @@ describe("computeRoughIntegerDecimal", (): void => {
 
         const actual = computeRoughIntegerDecimal(integerDecimal, roughness)
 
-        const expected = 282429536481 as Decimal<Integer & { rough: 3 }>
+        const expected = 282429536481 as Decimal<Integer & Rough<3>>
         expect(actual).toBe(expected)
     })
 })

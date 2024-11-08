@@ -51,7 +51,7 @@ describe("dig", (): void => {
         expect(actual).toBe(expected)
     })
 
-    it("throws an error if strict is true, parents is not provided, and the path does not exist on the object            ", (): void => {
+    it("throws an error if strict is true, parents is not provided, and the path does not exist on the object", (): void => {
         const path = computeKeyPath("a", "c")
         const object = { a: { b: 3 } } as Obj
 
@@ -69,7 +69,7 @@ describe("dig", (): void => {
         }).toThrowError(`Failed to dig value at ["c"] of {"a":{"b":3}}.`)
     })
 
-    it("does not throw an error if strict is not true, parents is not provided, the path does not exist on the object              ", (): void => {
+    it("does not throw an error if strict is not true, parents is not provided, the path does not exist on the object", (): void => {
         const path = computeKeyPath("a", "c")
         const object = { a: { b: 3 } } as Obj
 
@@ -89,7 +89,7 @@ describe("dig", (): void => {
         expect(actual).toBe(expected)
     })
 
-    it("does not throw an error if strict is true but parents is provided, and the path does not exist on the object          ", (): void => {
+    it("does not throw an error if strict is true but parents is provided, and the path does not exist on the object", (): void => {
         const path = computeKeyPath("a", "c")
         const object = { a: { b: 3 } } as Obj
 

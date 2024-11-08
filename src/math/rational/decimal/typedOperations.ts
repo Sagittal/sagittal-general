@@ -1,9 +1,10 @@
-import { Decimal, NumericProperties } from "../../numeric"
+import { Decimal, Integer, NumericProperties } from "../../numeric"
 import { divide } from "../../typedOperations"
-import { Integer } from "../types"
 
-const integerDivide = (dividend: Decimal, divisor: Decimal): Decimal<Integer> =>
-    floor(divide(dividend, divisor))
+const integerDivide = <T extends NumericProperties, U extends NumericProperties>(
+    dividend: Decimal<T>,
+    divisor: Decimal<U>,
+): Decimal<Integer> => floor(divide<Decimal<T | U>>(dividend, divisor))
 
 const floor = <T extends NumericProperties>(decimal: Decimal<T>): Decimal<T & Integer> =>
     Math.floor(decimal) as Decimal<T & Integer>

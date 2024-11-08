@@ -1,15 +1,17 @@
-import { NoProperties, Override } from "../../../code"
-import { NumericProperties, NumericPropertyEffects, Vector, Quotient } from "../../../math"
+import { NoProperties } from "../../../code"
+import { NumericProperties, Vector, Quotient, Rational, Irrational } from "../../../math"
 import { Degree } from "../../../types"
 
 type ScaledVector<T extends NumericProperties = NoProperties> =
     | ({
-          vector: Vector<Override<T, "rational", true>>
+          vector: Vector<T & Rational>
           scaler: never
-      } & NumericPropertyEffects<Override<T, "rational", true>>)
+      } & T &
+          Rational)
     | ({
-          vector: Vector<Override<T, "rational", true>>
+          vector: Vector<T & Rational>
           scaler: Quotient | Degree
-      } & NumericPropertyEffects<Override<T, "rational", false>>)
+      } & T &
+          Irrational)
 
 export { ScaledVector }

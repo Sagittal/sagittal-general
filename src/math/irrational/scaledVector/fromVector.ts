@@ -1,10 +1,8 @@
-import { computeDecimalFromVector, Vector, NumericProperties, ScaledVector } from "../../numeric"
-import { Irrational } from "../types"
+import { computeDecimalFromVector, Vector, NumericProperties, ScaledVector, Irrational } from "../../numeric"
 import { computeIrrationalScaledVectorFromDecimal } from "./fromDecimal"
 
 const computeIrrationalScaledVectorFromVector = <T extends NumericProperties>(
-    vector: Vector<Omit<T, "rational">>,
-): ScaledVector<T & Irrational> =>
-    computeIrrationalScaledVectorFromDecimal(computeDecimalFromVector(vector)) as ScaledVector<T & Irrational>
+    vector: Vector<T>,
+): ScaledVector<T & Irrational> => computeIrrationalScaledVectorFromDecimal(computeDecimalFromVector(vector))
 
 export { computeIrrationalScaledVectorFromVector }

@@ -1,4 +1,9 @@
-import { computeRationalScaledVectorFromRationalVector, Vector, ScaledVector } from "../../../../../src"
+import {
+    computeRationalScaledVectorFromRationalVector,
+    Vector,
+    ScaledVector,
+    Rational,
+} from "../../../../../src"
 
 describe("computeRationalScaledVectorFromRationalVector", (): void => {
     it("returns a rational scaled vector with the rational vector as its vector", (): void => {
@@ -6,7 +11,7 @@ describe("computeRationalScaledVectorFromRationalVector", (): void => {
 
         const actual = computeRationalScaledVectorFromRationalVector(rationalVector)
 
-        const expected = { vector: rationalVector } as ScaledVector
+        const expected = { vector: rationalVector } as ScaledVector<Rational>
         expect(actual).toEqual(expected)
     })
 })

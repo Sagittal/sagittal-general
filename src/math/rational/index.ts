@@ -13,7 +13,7 @@ export { computeSmoothnessIndex } from "./smoothness"
 export { computePrimes, primes } from "./primes"
 export { computeLesserPrimeCount } from "./lesserPrimeCount"
 export { computeGreatestCommonDivisor } from "./common"
-export { Copfr, Prime, Roughness, Sopfr, Smoothness, Primes, Integer, Rational } from "./types"
+export { Copfr, Prime, Roughness, Sopfr, Smoothness, Primes, Rough, Smooth } from "./types"
 export {
     isDecimalInteger,
     isIntegerDecimalRough,
@@ -26,6 +26,9 @@ export {
     computeRationalDecimalCopfr,
     computeRationalDecimalGpf,
     computeRationalDecimalCopf,
+    dividesEvenly,
+    isEven,
+    isOdd,
 } from "./decimal"
 export {
     isRationalQuotientRough,

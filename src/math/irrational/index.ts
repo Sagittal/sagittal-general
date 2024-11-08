@@ -7,4 +7,3 @@ export {
     HALF_SCALER,
     IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
 } from "./scaledVector"
-export { Irrational, Noninteger } from "./types"

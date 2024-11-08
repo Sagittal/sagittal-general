@@ -1,8 +1,7 @@
 import { DEFAULT_PRECISION } from "../../../code"
-import { dividesEvenly } from "../../dividesEvenly"
-import { Decimal, NumericProperties } from "../../numeric"
+import { Decimal, Integer, NumericProperties, Rational } from "../../numeric"
 import { round } from "../../typedOperations"
-import { Integer, Rational } from "../types"
+import { dividesEvenly } from "./dividesEvenly"
 
 const isDecimalRational = <T extends NumericProperties>(
     candidateRationalDecimal: Decimal<T>,
@@ -11,6 +10,7 @@ const isDecimalRational = <T extends NumericProperties>(
 
 const isDecimalInteger = <T extends NumericProperties>(
     candidateIntegerDecimal: Decimal<T>,
-): candidateIntegerDecimal is Decimal<T & Integer> => dividesEvenly(candidateIntegerDecimal, 1)
+): candidateIntegerDecimal is Decimal<T & Integer> =>
+    dividesEvenly(candidateIntegerDecimal as Decimal<Integer>, 1 as Decimal<Integer>)
 
 export { isDecimalRational, isDecimalInteger }

@@ -1,4 +1,4 @@
-import { FIVE_ROUGHNESS, Quotient, Rational, Roughness } from "../../../../../src/math"
+import { FIVE_ROUGHNESS, Quotient, Rational, Rough, Roughness } from "../../../../../src/math"
 import {
     computeRoughRationalQuotient,
     isRationalQuotientRough,
@@ -26,9 +26,12 @@ describe("computeRoughRationalQuotient", (): void => {
     it("roughens the quotient to the desired roughness", (): void => {
         const rationalQuotient = [7, 5] as Quotient
 
-        const actual = computeRoughRationalQuotient(rationalQuotient, 7 as 7 & Roughness)
+        const actual: Quotient<Rational & Rough<7>> = computeRoughRationalQuotient(
+            rationalQuotient,
+            7 as 7 & Roughness,
+        )
 
-        const expected = [7, 1] as Quotient<Rational & { rough: 7 }>
+        const expected = [7, 1] as Quotient<Rational & Rough<7>>
         expect(actual).toEqual(expected)
     })
 })

@@ -1,20 +1,20 @@
 import { allElementsEqual, isEmpty, isSingleton } from "../../code"
-import { Decimal, mod } from "../numeric"
+import { Decimal, Integer, mod, Positive } from "../numeric"
 import { abs, divide } from "../typedOperations"
 import { Divisor } from "../types"
 import { ONE } from "./constants"
-import { CommonFunction, Integer } from "./types"
+import { CommonFunction } from "./types"
 
-const computeLowestCommonMultipleOfTwoIntegerDecimals = (
-    integerDecimalA: Decimal<Integer>,
-    integerDecimalB: Decimal<Integer>,
-): Decimal<Integer> =>
+const computeLowestCommonMultipleOfTwoIntegerDecimals = <T extends Integer>(
+    integerDecimalA: Decimal<T>,
+    integerDecimalB: Decimal<T>,
+): Decimal<T & Positive> =>
     abs(
         divide(
             integerDecimalA * integerDecimalB,
             computeGreatestCommonDivisor(integerDecimalA, integerDecimalB),
         ),
-    ) as Decimal<Integer>
+    ) as number as Decimal<T & Positive>
 
 const computeGreatestCommonDivisorOfTwoIntegerDecimals = (
     integerDecimalA: Decimal<Integer>,

@@ -21,7 +21,8 @@ const computeCentsFromPitch = <T extends NumericProperties>(pitch: ScaledVector<
 const dividePitch = <T extends NumericProperties, U extends NumericProperties>(
     dividendPitch: ScaledVector<T>,
     divisorPitch: ScaledVector<U>,
-): Decimal<Irrational> => computeCentsFromPitch(dividendPitch) / computeCentsFromPitch(divisorPitch)
+): Decimal<Irrational> =>
+    (computeCentsFromPitch(dividendPitch) / computeCentsFromPitch(divisorPitch)) as Decimal<Irrational>
 
 const subtractPitch = <T extends NumericProperties, U extends NumericProperties>(
     minuendPitch: ScaledVector<T>,

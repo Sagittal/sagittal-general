@@ -1,6 +1,5 @@
 import { isUndefined } from "../../../code"
-import { NumericProperties, Quotient, ScaledVector } from "../../numeric"
-import { Rational } from "../types"
+import { NumericProperties, Quotient, Rational, ScaledVector } from "../../numeric"
 
 const isScaledVectorRational = <T extends NumericProperties>(
     candidateRationalScaledVector: ScaledVector<T>,

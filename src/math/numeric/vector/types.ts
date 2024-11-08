@@ -1,14 +1,16 @@
-import { Prime, Rational } from "../../rational"
+import { Prime } from "../../rational"
 import { Exponent } from "../../types"
+import { Decimal } from "../decimal"
 import {
     NumericProperties,
-    NumericPropertyEffects,
     NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms,
+    Rational,
 } from "../types"
 
 type PrimeCount<T extends NumericProperties = Rational> = Exponent<Prime> &
-    NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms<T>
+    Decimal<NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms<T>>
 
-type Vector<T extends NumericProperties = Rational> = PrimeCount<T>[] & NumericPropertyEffects<T>
+// Prime-count vector, but we're calling it "vector" for short; generator-count vectors may come later in the RTT module
+type Vector<T extends NumericProperties = Rational> = PrimeCount<T>[] & T
 
 export { PrimeCount, Vector }

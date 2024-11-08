@@ -1,5 +1,5 @@
 import { indexOfFinalElement } from "../../code"
-import { Decimal, Integer, mod, NumericProperties, Vector } from "../../math"
+import { Decimal, Integer, mod, NumericProperties, Rough, Vector } from "../../math"
 import { BLANK, COMMA, SPACE } from "../constants"
 import { Io } from "../types"
 import { spaceVectorOrMapEntry } from "./spaceVectorOrMapEntry"
@@ -21,7 +21,7 @@ const formatVector = <T extends NumericProperties>(
         const punctuatedSeparator = `${COMMA}${buffer}`
 
         // Take care of the first 2 elements, which are special
-        const two3FreeVector: Vector<T & { rough: 5 }> = vector.splice(2) as Vector<T & { rough: 5 }>
+        const two3FreeVector: Vector<T & Rough<5>> = vector.splice(2) as Vector<T & Rough<5>>
         contents =
             vector
                 .map(
@@ -46,7 +46,7 @@ const formatVector = <T extends NumericProperties>(
                     contents = contents + SPACE
                 }
             }
-            index = index + 1
+            index = (index + 1) as Decimal<Integer>
         }
     } else {
         contents = vector

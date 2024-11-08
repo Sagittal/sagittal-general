@@ -5,6 +5,7 @@ import {
     Quotient,
     ScaledVector,
     Irrational,
+    Rational,
 } from "../../../../../src"
 
 describe("computeScaledVectorFromVector", (): void => {
@@ -13,7 +14,7 @@ describe("computeScaledVectorFromVector", (): void => {
 
         const actual = computeScaledVectorFromVector(vector)
 
-        const expected = { vector } as ScaledVector
+        const expected = { vector } as ScaledVector<Rational>
         expect(actual).toEqual(expected)
     })
 

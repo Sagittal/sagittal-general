@@ -5,6 +5,7 @@ import {
     isQuotientSub,
     Quotient,
     Rational,
+    Rough,
     Super,
 } from "../../math"
 import { Two3FreeClass } from "../../music"
@@ -24,10 +25,7 @@ const parse23FreeClass = (two3FreeClassIo: Io): Two3FreeClass => {
     }
 
     const reducedTwo3FreeQuotient = computeLowestTermsRationalQuotient(two3FreeQuotient) as Quotient<
-        Rational &
-            Super & {
-                rough: 5
-            }
+        Rational & Super & Rough<5>
     >
 
     return {

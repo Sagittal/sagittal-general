@@ -1,7 +1,6 @@
 import { deepClone, shallowClone } from "../code"
 import { Count } from "../types"
-import { Decimal } from "./numeric"
-import { Integer } from "./rational"
+import { Decimal, Integer } from "./numeric"
 import { count } from "./typedOperations"
 import { Combination, Combinations } from "./types"
 
@@ -31,9 +30,9 @@ const computeCombinations = <T>(
             return
         }
 
-        computeRecursiveCombinations(integerDecimal + 1, combination)
+        computeRecursiveCombinations((integerDecimal + 1) as Decimal<Integer>, combination)
         combination.push(integerDecimal)
-        computeRecursiveCombinations(integerDecimal + 1, combination)
+        computeRecursiveCombinations((integerDecimal + 1) as Decimal<Integer>, combination)
         combination.pop()
     }
 

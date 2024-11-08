@@ -3,7 +3,6 @@ import {
     computeScaledVectorFromQuotient,
     Decimal,
     IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
-    Vector,
     slowTestOnlyRunInFullSuite,
     Quotient,
     ScaledVector,
@@ -18,8 +17,8 @@ describe("computeScaledVectorFromDecimal", (): void => {
         const actual = computeScaledVectorFromDecimal(rationalDecimal)
 
         const expected = {
-            vector: [2, 1, 0, 1] as Vector,
-        } as ScaledVector
+            vector: [2, 1, 0, 1],
+        } as ScaledVector<Rational>
         expect(actual).toEqual(expected)
     })
 
@@ -55,7 +54,7 @@ describe("computeScaledVectorFromQuotient", (): void => {
 
         const actual = computeScaledVectorFromQuotient(quotient)
 
-        const expected = { vector: [2, -1] } as ScaledVector
+        const expected = { vector: [2, -1] } as ScaledVector<Rational>
         expect(actual).toEqual(expected)
     })
 

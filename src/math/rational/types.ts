@@ -1,28 +1,28 @@
 import { NoProperties } from "../../code"
 import { Count } from "../../types"
-import { Decimal, NumericProperties, NumericPropertyEffects } from "../numeric"
+import { Decimal, Integer, NumericProperties } from "../numeric"
 import { Sum } from "../types"
-
-type Integer = { integer: true; rational: true }
-type Rational = { rational: true }
 
 type Prime<T extends NumericProperties = NoProperties> = Decimal<T & Integer> & {
     _PrimeBrand: "Prime"
 }
+
 type Roughness = Decimal<Integer> & { _RoughnessBrand: boolean }
 type Smoothness = Decimal<Integer> & { _SmoothnessBrand: boolean }
-type AnyPrime = 3
+
+type Rough<T = undefined> = { _RoughBrand: T }
+type Smooth<T = undefined> = { _SmoothBrand: T }
 
 type Sopfr<T extends NumericProperties = NoProperties> = Sum<Prime> &
-    Decimal<Integer> & { _SopfrBrand: boolean } & NumericPropertyEffects<T>
+    Decimal<Integer> & { _SopfrBrand: boolean } & T
 type Sopf<T extends NumericProperties = NoProperties> = Sum<Prime> &
-    Decimal<Integer> & { _SopfBrand: boolean } & NumericPropertyEffects<T>
+    Decimal<Integer> & { _SopfBrand: boolean } & T
 type Copfr<T extends NumericProperties = NoProperties> = Count<Prime> & {
     _CopfrBrand: boolean
-} & NumericPropertyEffects<T>
+} & T
 type Copf<T extends NumericProperties = NoProperties> = Count<Prime> & {
     _CopfBrand: boolean
-} & NumericPropertyEffects<T>
+} & T
 
 type CommonFunction = (
     decimalIntegerA: Decimal<Integer>,
@@ -199,17 +199,4 @@ type Primes =
     | 991
     | 997
 
-export {
-    Sopfr,
-    Copfr,
-    Sopf,
-    Copf,
-    Prime,
-    Roughness,
-    Smoothness,
-    Primes,
-    CommonFunction,
-    AnyPrime,
-    Integer,
-    Rational,
-}
+export { Sopfr, Copfr, Sopf, Copf, Prime, Roughness, Smoothness, Primes, CommonFunction, Rough, Smooth }

@@ -57,6 +57,7 @@ export {
     getChar,
     getWord,
     extendWord,
+    length,
 } from "./typedOperations"
 export {
     HexColor,

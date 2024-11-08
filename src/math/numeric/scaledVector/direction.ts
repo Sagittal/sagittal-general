@@ -1,6 +1,5 @@
-import { deepClone, Override } from "../../../code"
+import { deepClone } from "../../../code"
 import {
-    Direction,
     invertVector,
     isDecimalSub,
     isDecimalSuper,
@@ -8,49 +7,47 @@ import {
     Vector,
     NumericProperties,
     Rational,
+    Sub,
+    Super,
+    Unison,
 } from "../../../math"
 import { computeIrrationalDecimalFromScaledVector } from "../../irrational"
+import { AnyDirection } from "../types"
 import { ScaledVector } from "./types"
 
 const isScaledVectorSuper = <T extends NumericProperties>(
-    candidateSuperScaledVector: ScaledVector<Omit<T, "direction">>,
-): candidateSuperScaledVector is ScaledVector<Override<T, "direction", Direction.SUPER>> =>
+    candidateSuperScaledVector: ScaledVector<T>,
+): candidateSuperScaledVector is ScaledVector<T & Super> =>
     isDecimalSuper(computeIrrationalDecimalFromScaledVector(candidateSuperScaledVector))
 
 const isScaledVectorSub = <T extends NumericProperties>(
-    candidateSubScaledVector: ScaledVector<Omit<T, "direction">>,
-): candidateSubScaledVector is ScaledVector<Override<T, "direction", Direction.SUB>> =>
+    candidateSubScaledVector: ScaledVector<T>,
+): candidateSubScaledVector is ScaledVector<T & Sub> =>
     isDecimalSub(computeIrrationalDecimalFromScaledVector(candidateSubScaledVector))
 
 const isScaledVectorUnison = <T extends NumericProperties>(
-    candidateUnisonScaledVector: ScaledVector<Omit<T, "direction">>,
-): candidateUnisonScaledVector is ScaledVector<Override<T, "direction", Direction.UNISON>> =>
+    candidateUnisonScaledVector: ScaledVector<T>,
+): candidateUnisonScaledVector is ScaledVector<T & Unison> =>
     isDecimalUnison(computeIrrationalDecimalFromScaledVector(candidateUnisonScaledVector))
 
 const computeSuperScaledVector = <T extends NumericProperties>(
-    scaledVector: ScaledVector<Omit<T, "direction">>,
-): ScaledVector<Override<T, "direction", Direction.SUPER>> =>
-    isScaledVectorSuper(scaledVector)
-        ? (scaledVector as ScaledVector<Override<T, "direction", Direction.SUPER>>)
-        : (invertScaledVector(scaledVector) as ScaledVector<Override<T, "direction", Direction.SUPER>>)
+    scaledVector: ScaledVector<T>,
+): ScaledVector<T & Super> =>
+    isScaledVectorSuper(scaledVector) ? scaledVector : invertScaledVector(scaledVector)
 
 const computeSubScaledVector = <T extends NumericProperties>(
     scaledVector: ScaledVector<T>,
-): ScaledVector<Override<T, "direction", Direction.SUB>> =>
-    isScaledVectorSub(scaledVector as ScaledVector<Omit<T, "direction">>)
-        ? (scaledVector as ScaledVector<Override<T, "direction", Direction.SUB>>)
-        : (invertScaledVector(scaledVector as ScaledVector<Omit<T, "direction">>) as ScaledVector<
-              Override<T, "direction", Direction.SUB>
-          >)
+): ScaledVector<T & Sub> =>
+    isScaledVectorSub(scaledVector) ? scaledVector : invertScaledVector(scaledVector)
 
 const invertScaledVector = <T extends NumericProperties>(
-    scaledVector: ScaledVector<Omit<T, "direction">>,
-): ScaledVector<Omit<T, "direction">> => {
+    scaledVector: ScaledVector<T>,
+): ScaledVector<T & AnyDirection> => {
     const invertedScaledVector = deepClone(scaledVector)
 
-    invertedScaledVector.vector = invertVector(invertedScaledVector.vector as Vector) as Vector<T & Rational>
+    invertedScaledVector.vector = invertVector(invertedScaledVector.vector) as Vector<T & Rational>
 
-    return invertedScaledVector
+    return invertedScaledVector as ScaledVector<T & AnyDirection>
 }
 
 export {

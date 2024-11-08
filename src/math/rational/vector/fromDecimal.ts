@@ -1,14 +1,13 @@
 import { indexOfFinalElement, MAX_JS_INTEGER_VALUE } from "../../../code"
-import { dividesEvenly } from "../../dividesEvenly"
-import { Decimal, Vector, NumericProperties, PrimeCount } from "../../numeric"
+import { Decimal, Vector, PrimeCount, Rational, Integer } from "../../numeric"
+import { dividesEvenly } from "../decimal"
 import { computePrimes, MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED } from "../primes"
 import { computeRationalQuotientFromRationalDecimal } from "../quotient"
-import { Integer, Rational } from "../types"
 import { computeRationalVectorFromRationalQuotient } from "./fromQuotient"
 
-const computeRationalVectorFromRationalDecimal = <T extends NumericProperties>(
-    rationalDecimal: Decimal<T & Rational>,
-): Vector<T & Rational> => {
+const computeRationalVectorFromRationalDecimal = <T extends Rational>(
+    rationalDecimal: Decimal<T>,
+): Vector<T> => {
     if (rationalDecimal < 0)
         throw new Error(`Cannot convert ${rationalDecimal} to a vector because it is negative.`)
 
@@ -17,11 +16,11 @@ const computeRationalVectorFromRationalDecimal = <T extends NumericProperties>(
     return computeRationalVectorFromRationalQuotient(rationalQuotient)
 }
 
-const computeIntegerVectorFromIntegerDecimal = <T extends NumericProperties>(
-    integerDecimal: Decimal<T & Integer>,
-): Vector<T & Integer> => {
-    const integerVector = [] as unknown[] as Vector<T & Integer>
-    let remnant = integerDecimal as number
+const computeIntegerVectorFromIntegerDecimal = <T extends Rational>(
+    integerDecimal: Decimal<T>,
+): Vector<T> => {
+    const integerVector = [] as unknown[] as Vector<T>
+    let remnant = integerDecimal as Decimal<Integer>
 
     if (integerDecimal > MAX_JS_INTEGER_VALUE) {
         throw new Error(
@@ -39,7 +38,7 @@ const computeIntegerVectorFromIntegerDecimal = <T extends NumericProperties>(
 
     while (remnant > 1) {
         if (dividesEvenly(remnant, divisor)) {
-            remnant = remnant / divisor
+            remnant = (remnant / divisor) as Decimal<Integer>
             integerVector[index] = (integerVector[index] + 1) as PrimeCount<T & Integer>
         } else {
             if (index === indexOfFinalElement(primes)) {

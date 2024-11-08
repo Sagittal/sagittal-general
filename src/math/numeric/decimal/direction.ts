@@ -1,41 +1,27 @@
-import { Override } from "../../../code"
 import { MULTIPLICATIVE_IDENTITY } from "../../constants"
-import { Direction, NumericProperties } from "../types"
+import { Super, NumericProperties, Sub, AnyDirection } from "../types"
 import { Decimal } from "./types"
 
 const isDecimalSuper = <T extends NumericProperties>(
-    candidateSuperDecimal: Decimal<Omit<T, "direction">>,
-): candidateSuperDecimal is Decimal<Override<T, "direction", Direction.SUPER>> =>
-    candidateSuperDecimal > MULTIPLICATIVE_IDENTITY
+    candidateSuperDecimal: Decimal<T>,
+): candidateSuperDecimal is Decimal<T & Super> => candidateSuperDecimal > MULTIPLICATIVE_IDENTITY
 
 const isDecimalSub = <T extends NumericProperties>(
-    candidateSubDecimal: Decimal<Omit<T, "direction">>,
-): candidateSubDecimal is Decimal<Override<T, "direction", Direction.SUB>> =>
-    candidateSubDecimal < MULTIPLICATIVE_IDENTITY
+    candidateSubDecimal: Decimal<T>,
+): candidateSubDecimal is Decimal<T & Sub> => candidateSubDecimal < MULTIPLICATIVE_IDENTITY
 
 const isDecimalUnison = <T extends NumericProperties>(
-    candidateUnisonDecimal: Decimal<Omit<T, "direction">>,
-): candidateUnisonDecimal is Decimal<Override<T, "direction", Direction.SUB>> =>
-    candidateUnisonDecimal === MULTIPLICATIVE_IDENTITY
+    candidateUnisonDecimal: Decimal<T>,
+): candidateUnisonDecimal is Decimal<T & Sub> => candidateUnisonDecimal === MULTIPLICATIVE_IDENTITY
 
-const computeSuperDecimal = <T extends NumericProperties>(
-    decimal: Decimal<Omit<T, "direction">>,
-): Decimal<Override<T, "direction", Direction.SUPER>> =>
-    (isDecimalSuper(decimal) ? decimal : invertDecimal(decimal)) as Decimal<
-        Override<T, "direction", Direction.SUPER>
-    >
+const computeSuperDecimal = <T extends NumericProperties>(decimal: Decimal<T>): Decimal<T & Super> =>
+    isDecimalSuper(decimal) ? decimal : invertDecimal(decimal)
 
-const computeSubDecimal = <T extends NumericProperties>(
-    decimal: Decimal<Omit<T, "direction">>,
-): Decimal<Override<T, "direction", Direction.SUB>> =>
-    (isDecimalSub(decimal) ? decimal : invertDecimal(decimal)) as Decimal<
-        Override<T, "direction", Direction.SUB>
-    >
+const computeSubDecimal = <T extends NumericProperties>(decimal: Decimal<T>): Decimal<T & Sub> =>
+    isDecimalSub(decimal) ? decimal : invertDecimal(decimal)
 
-const invertDecimal = <T extends NumericProperties>(
-    decimal: Decimal<Omit<T, "direction">>,
-): Decimal<Override<T, "direction", undefined>> =>
-    (1 / decimal) as Decimal<Override<T, "direction", undefined>>
+const invertDecimal = <T extends NumericProperties>(decimal: Decimal<T>): Decimal<T & AnyDirection> =>
+    (1 / decimal) as Decimal<T & AnyDirection>
 
 export {
     isDecimalSub,

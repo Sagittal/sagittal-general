@@ -1,7 +1,6 @@
-import { Noninteger } from "../../irrational"
 import { count, product, sum } from "../../typedOperations"
 import { Mean, MeanType } from "../../types"
-import { NumericProperties } from "../types"
+import { Irrational, Noninteger, NumericProperties } from "../types"
 import { Decimal } from "./types"
 
 const mod = <T extends NumericProperties>(
@@ -12,8 +11,8 @@ const mod = <T extends NumericProperties>(
 const reciprocal = <T extends NumericProperties>(decimal: Decimal<T>): Decimal<T & Noninteger> =>
     (1 / decimal) as Decimal<T & Noninteger>
 
-const sqrt = <T extends NumericProperties>(decimal: Decimal<T>): Decimal<T & Noninteger> =>
-    Math.sqrt(decimal) as Decimal<T & Noninteger>
+const sqrt = <T extends NumericProperties>(decimal: Decimal<T>): Decimal<T & Irrational> =>
+    Math.sqrt(decimal) as Decimal<T & Irrational>
 
 const computeArithmeticMean = <T extends NumericProperties>(
     ...decimals: Array<Decimal<T>>
@@ -23,7 +22,7 @@ const computeArithmeticMean = <T extends NumericProperties>(
 const computeGeometricMean = <T extends NumericProperties>(
     ...decimals: Array<Decimal<T>>
 ): Mean<{ of: Decimal<T>; meanType: MeanType.GEOMETRIC }> =>
-    (product(...decimals) ** reciprocal(count(decimals))) as Mean<{
+    (product(...decimals) ** reciprocal(count(decimals) as number)) as Mean<{
         of: Decimal<T>
         meanType: MeanType.GEOMETRIC
     }>

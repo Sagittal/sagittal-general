@@ -1,26 +1,26 @@
-import { computeTrimmedArray, increment, Override } from "../../../code"
-import { Vector, NumericProperties, PrimeCount } from "../../numeric"
+import { computeTrimmedArray, increment } from "../../../code"
+import { Vector, PrimeCount, Rational } from "../../numeric"
 import { computeRoughnessIndex } from "../roughness"
-import { Primes, Rational, Roughness } from "../types"
+import { Primes, Rough, Roughness } from "../types"
 
-const computeRoughRationalVector = <S extends Primes, T extends NumericProperties>(
-    rationalVector: Vector<Omit<T, "rough"> & Rational>,
+const computeRoughRationalVector = <S extends Primes, T extends Rational>(
+    rationalVector: Vector<T>,
     roughness: S & Roughness,
-): Vector<Override<T, "rough", S> & Rational> => {
+): Vector<T & Rough<S>> => {
     const roughnessIndex = computeRoughnessIndex(roughness)
 
     return computeTrimmedArray(
-        (rationalVector as Vector<T & Rational>).map(
+        rationalVector.map(
             (primeCount: PrimeCount<T>, index: number): PrimeCount<T> =>
                 index < roughnessIndex ? (0 as PrimeCount<T>) : primeCount,
         ),
-    ) as Vector<T & Rational & { rough: S }>
+    ) as Vector<T & Rough<S>>
 }
 
-const isRationalVectorRough = <S extends Primes, T extends NumericProperties>(
-    candidateRoughRationalVector: Vector<Omit<T, "rough"> & Rational>,
+const isRationalVectorRough = <S extends Primes, T extends Rational>(
+    candidateRoughRationalVector: Vector<T>,
     roughness: S & Roughness,
-): candidateRoughRationalVector is Vector<Override<T, "rough", S> & Rational> => {
+): candidateRoughRationalVector is Vector<T & Rough<S>> => {
     const roughnessIndex = computeRoughnessIndex(roughness)
 
     let index = 0

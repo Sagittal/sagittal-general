@@ -1,25 +1,21 @@
-import { Override } from "../../../code"
+import { isUndefined } from "../../../code"
 import {
     computeDecimalFromQuotient,
     Vector,
     NumericProperties,
-    Quotient,
     ScaledVector,
     PrimeCount,
+    Irrational,
 } from "../../numeric"
 
 const computeIrrationalVectorFromScaledVector = <T extends NumericProperties>(
     scaledVector: ScaledVector<T>,
-): Vector<Override<T, "rational", false>> =>
-    (scaledVector.vector as Vector<Override<T, "rational", undefined>>).map(
-        (
-            primeCount: PrimeCount<Override<T, "rational", undefined>>,
-        ): PrimeCount<Override<T, "rational", false>> => {
-            return (primeCount *
-                computeDecimalFromQuotient(scaledVector.scaler || ([1, 1] as Quotient))) as PrimeCount<
-                Override<T, "rational", false>
-            >
-        },
-    ) as Vector<Override<T, "rational", false>>
+): Vector<T & Irrational> =>
+    (scaledVector.vector as Vector<T>)?.map((primeCount: PrimeCount<T>): PrimeCount<T & Irrational> => {
+        return (primeCount *
+            (isUndefined(scaledVector.scaler)
+                ? 1
+                : computeDecimalFromQuotient(scaledVector.scaler))) as PrimeCount<T & Irrational>
+    }) as Vector<T & Irrational>
 
 export { computeIrrationalVectorFromScaledVector }

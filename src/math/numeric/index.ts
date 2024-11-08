@@ -66,15 +66,19 @@ export {
     computeSubScaledVector,
 } from "./scaledVector"
 export {
-    Direction,
+    UnknownDirection,
     NumericProperties,
     NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms,
-    NumericPropertyEffects,
-    Sign,
     Super,
     Unison,
     Sub,
     Unsigned,
     Positive,
     Negative,
+    Sign,
+    Direction,
+    Rational,
+    Irrational,
+    Integer,
+    Noninteger,
 } from "./types"

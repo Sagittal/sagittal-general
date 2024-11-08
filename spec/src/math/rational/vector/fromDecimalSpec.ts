@@ -46,7 +46,7 @@ describe("computeIntegerVectorFromIntegerDecimal", (): void => {
     })
 
     it("errors if given numbers which contain low primes but are too big", (): void => {
-        const integerDecimal = MAX_JS_INTEGER_VALUE + 1 // 2^53
+        const integerDecimal = (MAX_JS_INTEGER_VALUE + 1) as Decimal<Integer> // 2^53
 
         expect((): void => {
             computeIntegerVectorFromIntegerDecimal(integerDecimal)

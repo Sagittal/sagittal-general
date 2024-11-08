@@ -1,21 +1,14 @@
 import { MAX_JS_PRECISION, Precision } from "../../../code"
-import { areVectorsEqual, NumericProperties, ScaledVector } from "../../numeric"
+import { areVectorsEqual, Rational, ScaledVector } from "../../numeric"
 import { computeRationalDecimalFromRationalScaledVector } from "../decimal"
-import { Rational } from "../types"
 
-const areRationalScaledVectorsEqual = <
-    T extends NumericProperties & Rational = Rational,
-    U extends NumericProperties & Rational = Rational,
->(
+const areRationalScaledVectorsEqual = <T extends Rational = Rational, U extends Rational = Rational>(
     rationalScaledVectorA: ScaledVector<T>,
     rationalScaledVectorB: ScaledVector<U>,
     precision: Precision = MAX_JS_PRECISION,
 ): boolean => areVectorsEqual(rationalScaledVectorA.vector, rationalScaledVectorB.vector, precision)
 
-const isRationalScaledVectorGreater = <
-    T extends NumericProperties & Rational = Rational,
-    U extends NumericProperties & Rational = Rational,
->(
+const isRationalScaledVectorGreater = <T extends Rational = Rational, U extends Rational = Rational>(
     rationalScaledVector: ScaledVector<T>,
     otherRationalScaledVector: ScaledVector<U>,
     precision: Precision = MAX_JS_PRECISION,
@@ -24,10 +17,7 @@ const isRationalScaledVectorGreater = <
     computeRationalDecimalFromRationalScaledVector(rationalScaledVector) >
         computeRationalDecimalFromRationalScaledVector(otherRationalScaledVector)
 
-const isRationalScaledVectorLesser = <
-    T extends NumericProperties & Rational = Rational,
-    U extends NumericProperties & Rational = Rational,
->(
+const isRationalScaledVectorLesser = <T extends Rational = Rational, U extends Rational = Rational>(
     rationalScaledVector: ScaledVector<T>,
     otherRationalScaledVector: ScaledVector<U>,
     precision: Precision = MAX_JS_PRECISION,
@@ -36,10 +26,7 @@ const isRationalScaledVectorLesser = <
     computeRationalDecimalFromRationalScaledVector(rationalScaledVector) <
         computeRationalDecimalFromRationalScaledVector(otherRationalScaledVector)
 
-const isRationalScaledVectorGreaterOrEqual = <
-    T extends NumericProperties & Rational = Rational,
-    U extends NumericProperties & Rational = Rational,
->(
+const isRationalScaledVectorGreaterOrEqual = <T extends Rational = Rational, U extends Rational = Rational>(
     rationalScaledVector: ScaledVector<T>,
     otherRationalScaledVector: ScaledVector<U>,
     precision: Precision = MAX_JS_PRECISION,
@@ -47,10 +34,7 @@ const isRationalScaledVectorGreaterOrEqual = <
     areRationalScaledVectorsEqual(rationalScaledVector, otherRationalScaledVector, precision) ||
     isRationalScaledVectorGreater(rationalScaledVector, otherRationalScaledVector)
 
-const isRationalScaledVectorLesserOrEqual = <
-    T extends NumericProperties & Rational = Rational,
-    U extends NumericProperties & Rational = Rational,
->(
+const isRationalScaledVectorLesserOrEqual = <T extends Rational = Rational, U extends Rational = Rational>(
     rationalScaledVector: ScaledVector<T>,
     otherRationalScaledVector: ScaledVector<U>,
     precision: Precision = MAX_JS_PRECISION,

@@ -1,4 +1,4 @@
-import { computeDecimalFromQuotient, Decimal, Quotient } from "../../../../../src"
+import { computeDecimalFromQuotient, Decimal, Quotient, Rational } from "../../../../../src"
 
 describe("computeDecimalFromQuotient", (): void => {
     it("returns the decimal representation of the quotient", (): void => {
@@ -6,7 +6,7 @@ describe("computeDecimalFromQuotient", (): void => {
 
         const actual = computeDecimalFromQuotient(quotient)
 
-        const expected = 1.166667 as Decimal
+        const expected = 1.166667 as Decimal<Rational>
         expect(actual).toBeCloseToTyped(expected)
     })
 })

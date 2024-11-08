@@ -1,72 +1,67 @@
 import { NoProperties } from "../../code"
-import { Irrational } from "../irrational"
-import { Integer, Rational } from "../rational"
+import { Rough, Smooth } from "../rational"
+
+type Integer = NumericProperties & { _IntegerBrand: true; _RationalBrand: true }
+type Rational = NumericProperties & { _RationalBrand: true }
+type Irrational = NumericProperties & { _RationalBrand: false; _IntegerBrand: false }
+type Noninteger = NumericProperties & { _IntegerBrand: false }
+type UnknownIntegrality = { _IntegerBrand: unknown }
+type UnknownRationality = { _RationalBrand: unknown }
 
 enum Direction {
-    SUPER = "super",
-    SUB = "sub",
-    UNISON = "unison",
+    SUPER,
+    SUB,
+    UNISON,
 }
+type Super = { _DirectionBrand: Direction.SUPER }
+type Sub = { _DirectionBrand: Direction.SUB }
+type Unison = { _DirectionBrand: Direction.UNISON }
+type UnknownDirection = { _DirectionBrand: unknown }
+type AnyDirection = { _DirectionBrand: Direction.SUPER & Direction.SUB & Direction.UNISON }
 
 enum Sign {
-    POSITIVE = "positive",
-    NEGATIVE = "negative",
-    UNSIGNED = "unsigned",
+    POSITIVE,
+    NEGATIVE,
+    UNSIGNED,
 }
+type Positive = { _SignBrand: Sign.POSITIVE }
+type Negative = { _SignBrand: Sign.NEGATIVE }
+type Unsigned = { _SignBrand: Sign.UNSIGNED }
+type UnknownSign = { _SignBrand: unknown }
+type AnySign = { _SignBrand: Sign.POSITIVE & Sign.NEGATIVE & Sign.UNSIGNED }
 
-// TypeScript - waiting on support for an Exact Generic Constraint
-// See: https://stackoverflow.com/a/58879805/6998322
-// And: https://github.com/microsoft/TypeScript/issues/12936
-// This could assist in enforcing this object cannot have any members other than real ones
-type NumericProperties = Partial<{
-    integer: boolean
-    rational: boolean
-    direction: Direction
-    rough: number
-    smooth: number
-    sign: Sign
-}>
-
-type Super = { direction: Direction.SUPER }
-type Sub = { direction: Direction.SUB }
-type Unison = { direction: Direction.UNISON }
-
-type Positive = { sign: Sign.POSITIVE }
-type Negative = { sign: Sign.NEGATIVE }
-type Unsigned = { sign: Sign.UNSIGNED }
-
-type NumericPropertyEffects<T> = (
-    | (T extends Sub ? { _DirectionBrand: Direction.SUB } : unknown)
-    | (T extends Super ? { _DirectionBrand: Direction.SUPER } : unknown)
-    | (T extends Unison ? { _DirectionBrand: Direction.UNISON } : unknown)
-) &
-    (T extends { rough: number } ? { _RoughBrand: Pick<T, "rough"> } : unknown) &
-    (T extends { smooth: number } ? { _SmoothBrand: Pick<T, "smooth"> } : unknown) &
-    (
-        | (T extends Integer ? { _RationalBrand: boolean; _IntegerBrand: boolean } : unknown)
-        | (T extends Rational ? { _RationalBrand: boolean } : unknown)
-        | (T extends Irrational ? { _IrrationalBrand: boolean } : unknown)
-    ) &
-    (
-        | (T extends Positive ? { _SignBrand: Sign.POSITIVE } : unknown)
-        | (T extends Negative ? { _SignBrand: Sign.NEGATIVE } : unknown)
-        | (T extends Unsigned ? { _SignBrand: Sign.UNSIGNED } : unknown)
-    )
+type NumericProperties =
+    | UnknownIntegrality
+    | UnknownRationality
+    | UnknownDirection
+    | UnknownSign
+    | Rough<unknown>
+    | Smooth<unknown>
+    | NoProperties
 
 type NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms<
     T extends NumericProperties = NoProperties,
-> = T extends Rational ? T & Integer : T
+> = T extends Rational ? Integer : NoProperties
 
 export {
     NumericProperties,
-    Direction,
-    NumericPropertyEffects,
     NumericPropertyTranslationForVectorsAndQuotientsToTheirTerms,
-    Sign,
     Super,
     Sub,
     Unison,
     Unsigned,
     Positive,
     Negative,
+    UnknownDirection,
+    UnknownSign,
+    AnyDirection,
+    AnySign,
+    Sign,
+    Direction,
+    Integer,
+    Rational,
+    Irrational,
+    Noninteger,
+    UnknownIntegrality,
+    UnknownRationality,
 }

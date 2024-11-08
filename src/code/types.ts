@@ -32,7 +32,7 @@ type Sortable = { [index: string]: number }
 
 type SortResult = -1 | 0 | 1
 
-type Rank<T = void> = Decimal & { _RankBrand: boolean } & (T extends void ? unknown : { _RankOfBrand: T })
+type Rank<T = void> = number & { _RankBrand: boolean } & (T extends void ? unknown : { _RankOfBrand: T })
 
 type Ranked<T> = T & { rank: Rank<T> }
 
@@ -61,8 +61,6 @@ type Precision = Decimal<Integer> & { _PrecisionBrand: boolean }
 
 type NoProperties = KeyValObj<never>
 
-type Override<T, K extends keyof T, V> = Omit<T, K> & { [P in K]: V }
-
 export {
     SortOptions,
     Rank,
@@ -84,5 +82,4 @@ export {
     NoProperties,
     Key,
     KeyValObj,
-    Override,
 }

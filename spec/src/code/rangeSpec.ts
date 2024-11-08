@@ -1,7 +1,7 @@
 import { computeRange, Decimal, Integer } from "../../../src"
 
 describe("computeRange", (): void => {
-    it("when given a single integer decimal, gives the set of integer decimals from 0 to itself, excluding itself               ", (): void => {
+    it("when given a single integer decimal, gives the set of integer decimals from 0 to itself, excluding itself", (): void => {
         const firstParameter = 3 as Decimal<Integer>
 
         const actual = computeRange(firstParameter)

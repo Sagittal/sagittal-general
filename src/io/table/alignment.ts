@@ -1,5 +1,5 @@
 import { isString, isUndefined, Maybe, Range } from "../../code"
-import { isEven } from "../../math"
+import { Decimal, Integer, isEven } from "../../math"
 import { Count } from "../../types"
 import { BLANK } from "../constants"
 import { length } from "../typedOperations"
@@ -37,7 +37,7 @@ const furtherAlignCellIo = (alignedCellIo: Io, columnAlignment: Maybe<Alignment>
         ? ((alignedCellIo + " ") as Io)
         : columnAlignment === Alignment.RIGHT
           ? ((" " + alignedCellIo) as Io)
-          : isEven(alignedCellIo.length)
+          : isEven(alignedCellIo.length as Decimal<Integer>)
             ? ((" " + alignedCellIo) as Io)
             : ((alignedCellIo + " ") as Io)
 

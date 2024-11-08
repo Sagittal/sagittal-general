@@ -1,20 +1,20 @@
-import { Decimal, Denominator, Numerator, NumericProperties, Quotient } from "../../numeric"
+import { Decimal, UnknownDirection, Quotient, Rational, Integer } from "../../numeric"
 import { computeRoughIntegerDecimal, isIntegerDecimalRough } from "../decimal"
-import { Integer, Primes, Rational, Roughness } from "../types"
+import { Primes, Rough, Roughness } from "../types"
 
-const computeRoughRationalQuotient = <S extends Primes, T extends NumericProperties & Rational>(
-    [numerator, denominator]: [Numerator & Decimal<Integer>, Denominator & Decimal<Integer>],
+const computeRoughRationalQuotient = <S extends Primes, T extends Rational = Rational>(
+    [numerator, denominator]: Quotient<T>,
     roughness: S & Roughness,
-): Quotient<T & { rough: S; direction: undefined }> =>
+): Quotient<T & Rough<S> & UnknownDirection> =>
     [
         computeRoughIntegerDecimal(numerator as Decimal<Integer>, roughness),
         computeRoughIntegerDecimal(denominator as Decimal<Integer>, roughness),
-    ] as Quotient<T & { rough: S; direction: undefined }>
+    ] as Quotient<T & Rough<S> & UnknownDirection>
 
-const isRationalQuotientRough = <S extends Primes, T extends NumericProperties>(
-    candidateRoughRationalQuotient: Quotient<T & Rational>,
+const isRationalQuotientRough = <S extends Primes, T extends Rational>(
+    candidateRoughRationalQuotient: Quotient<T>,
     roughness: S & Roughness,
-): candidateRoughRationalQuotient is Quotient<T & Rational & { rough: S }> => {
+): candidateRoughRationalQuotient is Quotient<T & Rough<S>> => {
     const [numerator, denominator] = candidateRoughRationalQuotient
 
     return isIntegerDecimalRough(numerator, roughness) && isIntegerDecimalRough(denominator, roughness)

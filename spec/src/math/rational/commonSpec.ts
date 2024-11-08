@@ -1,5 +1,5 @@
-import { Decimal, Divisor } from "../../../../src"
-import { computeGreatestCommonDivisor, Integer } from "../../../../src/math/rational"
+import { Decimal, Divisor, Integer } from "../../../../src"
+import { computeGreatestCommonDivisor } from "../../../../src/math/rational"
 import { computeLeastCommonMultiple } from "../../../../src/math/rational/common"
 
 describe("common", (): void => {

@@ -1,12 +1,11 @@
 import { formatMap, formatVector } from "../../io"
 import { NumericProperties, Vector, PrimeCount } from "../../math"
-import { Count } from "../../types"
-import { EtStep, Map, NumericPropertyTranslationForMappedVector } from "./types"
+import { Map, StepCount } from "./types"
 
 const mapVector = <VectorT extends NumericProperties, MapT extends NumericProperties>(
     vector: Vector<VectorT>,
     map: Map<MapT>,
-): Count<EtStep> & NumericPropertyTranslationForMappedVector<VectorT, MapT> => {
+): StepCount<VectorT, MapT> => {
     if (map.length < vector.length) {
         throw new Error(
             `Please provide a map with at least the geneartors/primes entries for the primes of the vector it is mapping. This map ${formatMap(
@@ -17,14 +16,13 @@ const mapVector = <VectorT extends NumericProperties, MapT extends NumericProper
 
     return vector.reduce(
         (
-            generatorCount: Count<EtStep> & NumericPropertyTranslationForMappedVector<VectorT, MapT>,
+            generatorCount: StepCount<VectorT, MapT>,
             primeCount: PrimeCount<VectorT>,
             index: number,
-        ): Count<EtStep> & NumericPropertyTranslationForMappedVector<VectorT, MapT> => {
-            return (generatorCount + primeCount * map[index]) as Count<EtStep> &
-                NumericPropertyTranslationForMappedVector<VectorT, MapT>
+        ): StepCount<VectorT, MapT> => {
+            return (generatorCount + primeCount * map[index]) as StepCount<VectorT, MapT>
         },
-        0 as Count<EtStep> & NumericPropertyTranslationForMappedVector<VectorT, MapT>,
+        0 as StepCount<VectorT, MapT>,
     )
 }
 

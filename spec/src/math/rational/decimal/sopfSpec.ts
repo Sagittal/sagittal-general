@@ -1,6 +1,6 @@
-import { Decimal } from "../../../../../src"
+import { Decimal, Integer } from "../../../../../src"
 import { computeRationalDecimalSopf } from "../../../../../src/math/rational/decimal/sopf"
-import { Integer, Sopf } from "../../../../../src/math/rational/types"
+import { Sopf } from "../../../../../src/math/rational/types"
 
 describe("computeRationalDecimalSopf", (): void => {
     it("returns the sum of prime factors (without repetition) for an integer decimal", (): void => {

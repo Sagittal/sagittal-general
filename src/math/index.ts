@@ -18,8 +18,6 @@ export {
     isVectorUnison,
     computeDecimalFromVector,
     areVectorsEqual,
-    Direction,
-    Sign,
     NumericProperties,
     Denominator,
     QuotientPart,
@@ -27,7 +25,6 @@ export {
     areQuotientsEqual,
     Decimal,
     Numerator,
-    NumericPropertyEffects,
     isDecimalSub,
     isDecimalSuper,
     isDecimalUnison,
@@ -66,9 +63,14 @@ export {
     Unsigned,
     Positive,
     Negative,
+    Sign,
+    Direction,
+    Irrational,
+    Noninteger,
+    Integer,
+    Rational,
 } from "./numeric"
 export { computeDistributions } from "./distributions"
-export { dividesEvenly, isEven, isOdd } from "./dividesEvenly"
 export { computeAngle, radiansToDegrees } from "./angle"
 export { computeTriangularNumber } from "./triangularNumber"
 export {
@@ -168,14 +170,15 @@ export {
     computeRationalScaledVectorFromRationalQuotient,
     computeRationalVectorFromRationalScaledVector,
     computeLesserPrimeCount,
-    Integer,
-    Rational,
+    Rough,
+    Smooth,
+    dividesEvenly,
+    isEven,
+    isOdd,
 } from "./rational"
 export {
     HALF_SCALER,
     computeIrrationalDecimalFromScaledVector,
     IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
     computeIrrationalVectorFromScaledVector,
-    Irrational,
-    Noninteger,
 } from "./irrational"

@@ -1,7 +1,7 @@
 import { Grade } from "../../../lfc"
-import { Decimal, Integer, Rational, ScaledVector, Super, Unison } from "../../../math"
+import { Decimal, Integer, Rational, Rough, ScaledVector, Super, Unison } from "../../../math"
 
-type Two3FreeClass = ScaledVector<Rational & { rough: 5 } & (Super | Unison)> & {
+type Two3FreeClass = ScaledVector<Rational & Rough<5> & (Super | Unison)> & {
     _Two3FreeClassBrand: boolean
 }
 

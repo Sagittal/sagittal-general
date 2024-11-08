@@ -1,8 +1,7 @@
-import { computeQuotientFromVector, NumericProperties, Quotient, ScaledVector } from "../../numeric"
-import { Rational } from "../types"
+import { computeQuotientFromVector, Quotient, Rational, ScaledVector } from "../../numeric"
 
-const computeRationalQuotientFromRationalScaledVector = <T extends NumericProperties>(
-    rationalScaledVector: ScaledVector<T & Rational>,
-): Quotient<T & Rational> => computeQuotientFromVector(rationalScaledVector.vector) as Quotient<T & Rational>
+const computeRationalQuotientFromRationalScaledVector = <T extends Rational>(
+    rationalScaledVector: ScaledVector<T>,
+): Quotient<T> => computeQuotientFromVector(rationalScaledVector.vector) as Quotient<T>
 
 export { computeRationalQuotientFromRationalScaledVector }

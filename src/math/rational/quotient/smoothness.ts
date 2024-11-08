@@ -1,12 +1,12 @@
-import { NumericProperties, Quotient } from "../../numeric"
+import { Quotient, Rational } from "../../numeric"
 import { max } from "../../typedOperations"
 import { computeIntegerDecimalSmoothness, isIntegerDecimalSmooth } from "../decimal"
-import { Primes, Rational, Smoothness } from "../types"
+import { Primes, Smooth, Smoothness } from "../types"
 
-const isRationalQuotientSmooth = <S extends Primes, T extends NumericProperties>(
-    rationalQuotient: Quotient<T & Rational>,
+const isRationalQuotientSmooth = <S extends Primes, T extends Rational>(
+    rationalQuotient: Quotient<T>,
     smoothness: S & Smoothness,
-): rationalQuotient is Quotient<T & Rational & { smooth: S }> => {
+): rationalQuotient is Quotient<T & Smooth<S>> => {
     const [numerator, denominator] = rationalQuotient
 
     return isIntegerDecimalSmooth(numerator, smoothness) && isIntegerDecimalSmooth(denominator, smoothness)

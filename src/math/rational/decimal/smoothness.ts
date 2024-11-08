@@ -1,13 +1,13 @@
 import { MULTIPLICATIVE_IDENTITY } from "../../constants"
-import { Decimal } from "../../numeric"
+import { Decimal, Integer, Rational } from "../../numeric"
 import { SMOOTH_ROUGH_OFFSET } from "../constants"
 import { computeRationalQuotientFromRationalDecimal, computeRationalQuotientSmoothness } from "../quotient"
-import { AnyPrime, Integer, Rational, Roughness, Smoothness } from "../types"
+import { Primes, Roughness, Smoothness } from "../types"
 import { computeRationalVectorFromRationalDecimal, computeRationalVectorSmoothness } from "../vector"
 import { computeRoughIntegerDecimal } from "./roughness"
 
 const isIntegerDecimalSmooth = (integerDecimal: Decimal<Integer>, smoothness: Smoothness): boolean =>
-    computeRoughIntegerDecimal(integerDecimal, (smoothness + SMOOTH_ROUGH_OFFSET) as AnyPrime & Roughness) ===
+    computeRoughIntegerDecimal(integerDecimal, (smoothness + SMOOTH_ROUGH_OFFSET) as Primes & Roughness) ===
     MULTIPLICATIVE_IDENTITY
 
 const computeIntegerDecimalSmoothness = (integerDecimal: Decimal<Integer>): Smoothness => {

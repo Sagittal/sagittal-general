@@ -21,39 +21,42 @@ const parseSuperscriptNumber = (superscriptNumberText: string): number => {
 
 const parseQuotient = <T extends NumericProperties>(quotientIo: Io): Quotient<T> => {
     const quotient = split(quotientIo.replace(/[()]/g, BLANK), /[/:]/).map(
-        (quotientPartIo: Io): QuotientPart => {
+        (quotientPartIo: Io): QuotientPart<T> => {
             if (quotientPartIo.match(new RegExp(`[${EXPONENT_NUMBERS}${MULTIPLICATION_SYMBOLS}]`))) {
                 const factorPowers = quotientPartIo.split(new RegExp(`[${MULTIPLICATION_SYMBOLS}]`))
 
-                return factorPowers.reduce((product: QuotientPart, factorPower: string): QuotientPart => {
-                    const ascii = !factorPower.match(`[${EXPONENT_NUMBERS}]`)
-                    const exponentPartOfFactorPower: string = ascii
-                        ? factorPower.match(/\^/)
-                            ? factorPower.replace(/.*\^/, BLANK)
-                            : BLANK
-                        : factorPower.replace(new RegExp(`[^${EXPONENT_NUMBERS}]`, "g"), BLANK)
+                return factorPowers.reduce(
+                    (product: QuotientPart<T>, factorPower: string): QuotientPart<T> => {
+                        const ascii = !factorPower.match(`[${EXPONENT_NUMBERS}]`)
+                        const exponentPartOfFactorPower: string = ascii
+                            ? factorPower.match(/\^/)
+                                ? factorPower.replace(/.*\^/, BLANK)
+                                : BLANK
+                            : factorPower.replace(new RegExp(`[^${EXPONENT_NUMBERS}]`, "g"), BLANK)
 
-                    let basePartOfFactorPower = factorPower.replace(exponentPartOfFactorPower, BLANK)
-                    if (ascii) basePartOfFactorPower = basePartOfFactorPower.replace(/\^/, BLANK)
+                        let basePartOfFactorPower = factorPower.replace(exponentPartOfFactorPower, BLANK)
+                        if (ascii) basePartOfFactorPower = basePartOfFactorPower.replace(/\^/, BLANK)
 
-                    const base = parseInteger(basePartOfFactorPower as Io)
-                    const power =
-                        exponentPartOfFactorPower === BLANK
-                            ? 1
-                            : ascii
-                              ? parseInt(exponentPartOfFactorPower)
-                              : parseSuperscriptNumber(exponentPartOfFactorPower)
+                        const base = parseInteger(basePartOfFactorPower as Io)
+                        const power =
+                            exponentPartOfFactorPower === BLANK
+                                ? 1
+                                : ascii
+                                  ? parseInt(exponentPartOfFactorPower)
+                                  : parseSuperscriptNumber(exponentPartOfFactorPower)
 
-                    return (product * base ** power) as QuotientPart
-                }, 1 as QuotientPart)
+                        return (product * base ** power) as QuotientPart<T>
+                    },
+                    1 as QuotientPart<T>,
+                )
             } else {
-                return parseFloat(quotientPartIo) as QuotientPart
+                return parseFloat(quotientPartIo) as QuotientPart<T>
             }
         },
     )
 
     if (quotient.length === 1) {
-        quotient.push(1 as Denominator)
+        quotient.push(1 as Denominator<T>)
     }
 
     if (quotientIo.includes(":")) {

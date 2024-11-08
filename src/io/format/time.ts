@@ -3,19 +3,19 @@ import { Ms } from "../../types"
 import { Formatted, TimePrecision } from "./types"
 
 const formatTime = (ms: Ms, timePrecision: TimePrecision = TimePrecision.MS): Formatted<Ms> => {
-    const rawMilliseconds = mod(ms, 1000)
+    const rawMilliseconds = mod(ms, 1000 as Ms)
     const milliseconds = timePrecision > TimePrecision.MS ? floor(rawMilliseconds) : round(rawMilliseconds)
 
-    const rawSeconds = mod(ms / 1000, 60)
+    const rawSeconds = mod((ms / 1000) as Ms, 60 as Ms)
     const seconds = timePrecision > TimePrecision.S ? floor(rawSeconds) : round(rawSeconds)
 
-    const rawMinutes = mod(ms / (1000 * 60), 60)
+    const rawMinutes = mod((ms / (1000 * 60)) as Ms, 60 as Ms)
     const minutes = timePrecision > TimePrecision.M ? floor(rawMinutes) : round(rawMinutes)
 
-    const rawHours = mod(ms / (1000 * 60 * 60), 24)
+    const rawHours = mod((ms / (1000 * 60 * 60)) as Ms, 24 as Ms)
     const hours = timePrecision > TimePrecision.H ? floor(rawHours) : round(rawHours)
 
-    const rawDays = mod(ms / (1000 * 60 * 60 * 24), 365.25)
+    const rawDays = mod((ms / (1000 * 60 * 60 * 24)) as Ms, 365.25 as Ms)
     const days = timePrecision > TimePrecision.D ? floor(rawDays) : round(rawDays)
 
     const parts = []

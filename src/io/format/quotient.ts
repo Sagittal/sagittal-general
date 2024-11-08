@@ -1,17 +1,18 @@
-import { computeSuperQuotient, Denominator, Decimal, Numerator, Quotient, Integer } from "../../math"
+import { computeSuperQuotient, Denominator, Numerator, Quotient, NumericProperties } from "../../math"
 import { ioSettings } from "../globals"
 import { TableFormat } from "../table"
 import { Formatted } from "./types"
 
-const formatQuotient = <T extends Quotient>(
-    inputQuotient: T,
+const formatQuotient = <T extends NumericProperties>(
+    inputQuotient: Quotient<T>,
     { directed = true, noLaTeXMultiplier = false }: { directed?: boolean; noLaTeXMultiplier?: boolean } = {},
 ): Formatted<T> => {
-    let [numerator, denominator] = directed ? inputQuotient : computeSuperQuotient(inputQuotient)
+    let [numerator, denominator] = directed
+        ? inputQuotient
+        : (computeSuperQuotient(inputQuotient) as Quotient<T>)
 
-    if (numerator === Infinity) numerator = "(too big for JS)" as unknown as Numerator & Decimal<Integer>
-    if (denominator === Infinity)
-        denominator = "(too big for JS)" as unknown as Denominator & Decimal<Integer>
+    if (numerator === Infinity) numerator = "(too big for JS)" as unknown as Numerator<T>
+    if (denominator === Infinity) denominator = "(too big for JS)" as unknown as Denominator<T>
 
     return directed
         ? ioSettings.tableFormat === TableFormat.FORUM && !noLaTeXMultiplier

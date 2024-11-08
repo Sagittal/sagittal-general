@@ -5,6 +5,8 @@ import {
     integerDivide,
     Parameter,
     Window,
+    Decimal,
+    Integer,
 } from "../../../src"
 
 describe("computeParameterValues", (): void => {
@@ -21,7 +23,9 @@ describe("computeParameterValues", (): void => {
         expect(actual).toEqual(expected)
         expect(actual.length).toBe(parameterScope.ed as number)
         expect(actual[actual.length - 1] - actual[0]).toBe(parameterScope.window as number)
-        expect(actual[integerDivide(actual.length, 2)] as number).toBe(parameterScope.center as number)
+        expect(
+            actual[integerDivide(actual.length as Decimal<Integer>, 2 as Decimal<Integer>)] as number,
+        ).toBe(parameterScope.center as number)
     })
 
     it("works when the ED is even", (): void => {
@@ -38,7 +42,9 @@ describe("computeParameterValues", (): void => {
         expect(actual.length).toBe(parameterScope.ed as number)
         expect(actual[actual.length - 1] - actual[0]).toBe(parameterScope.window as number)
         expect(
-            (actual[integerDivide(actual.length, 2)] + actual[integerDivide(actual.length, 2) - 1]) / 2,
+            (actual[integerDivide(actual.length as Decimal<Integer>, 2 as Decimal<Integer>)] +
+                actual[integerDivide(actual.length as Decimal<Integer>, 2 as Decimal<Integer>) - 1]) /
+                2,
         ).toBeCloseToTyped(parameterScope.center as number)
     })
 
@@ -53,7 +59,9 @@ describe("computeParameterValues", (): void => {
         const expected = [5] as Parameter[]
         expect(actual).toEqual(expected)
         expect(actual.length).toBe(parameterScope.ed as number)
-        expect(actual[integerDivide(actual.length, 2)] as number).toBe(parameterScope.center as number)
+        expect(
+            actual[integerDivide(actual.length as Decimal<Integer>, 2 as Decimal<Integer>)] as number,
+        ).toBe(parameterScope.center as number)
     })
 
     it("works when the ED is zero", (): void => {

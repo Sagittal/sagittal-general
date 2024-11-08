@@ -30,7 +30,7 @@ describe("alignCellIo", (): void => {
 })
 
 describe("computeColumnWidths", (): void => {
-    it("does not count cells which are for the forum and which have turned off monospacing in its computation              ", (): void => {
+    it("does not count cells which are for the forum and which have turned off monospacing in its computation", (): void => {
         const table = [
             ["a", "ccc", "apple"],
             ["dddd", "bb", "ccc"],
@@ -42,7 +42,7 @@ describe("computeColumnWidths", (): void => {
         expect(actual).toEqual(expected)
     })
 
-    it("does not count cells which are for the forum and which have turned off monospacing in its computation              ", (): void => {
+    it("does not count cells which are for the forum and which have turned off monospacing in its computation", (): void => {
         const table = [
             ["a", "", "apple"],
             ["dddd", "bb", "[latex]\\frac{1}{1}[/latex]"],

@@ -1,5 +1,11 @@
-import { IRRATIONAL_SCALED_VECTOR_BASE_VECTOR, Vector, Quotient, ScaledVector } from "../../../../../src"
-import { computeIrrationalScaledVectorFromVector, Irrational } from "../../../../../src/math/irrational"
+import {
+    IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
+    Vector,
+    Quotient,
+    ScaledVector,
+    Irrational,
+} from "../../../../../src"
+import { computeIrrationalScaledVectorFromVector } from "../../../../../src/math/irrational"
 
 describe("computeIrrationalScaledVectorFromVector", (): void => {
     it("when given a vector, returns an irrational scaled vector", (): void => {

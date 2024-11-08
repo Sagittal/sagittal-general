@@ -1,10 +1,10 @@
 import { increment } from "../../../code"
 import { Index } from "../../../types"
-import { dividesEvenly } from "../../dividesEvenly"
-import { Decimal, NumericProperties } from "../../numeric"
+import { Decimal, Integer } from "../../numeric"
 import { computePrimes, MAX_POSSIBLE_PRIME_THAT_SHOULD_BE_COMPUTED } from "../primes"
 import { computeRoughnessIndex } from "../roughness"
-import { Integer, Prime, Primes, Roughness } from "../types"
+import { Prime, Primes, Rough, Roughness } from "../types"
+import { dividesEvenly } from "./dividesEvenly"
 import { integerDivide } from "./typedOperations"
 
 const isIntegerDecimalRough = (integerDecimal: Decimal<Integer>, roughness: Roughness): boolean => {
@@ -30,10 +30,10 @@ const isIntegerDecimalRough = (integerDecimal: Decimal<Integer>, roughness: Roug
     return isRough
 }
 
-const computeRoughIntegerDecimal = <S extends Primes, T extends NumericProperties & Integer>(
+const computeRoughIntegerDecimal = <S extends Primes, T extends Integer>(
     integerDecimal: Decimal<T>,
     roughness: S & Roughness,
-): Decimal<T & { rough: S }> => {
+): Decimal<T & Rough<S>> => {
     const roughnessIndex = computeRoughnessIndex(roughness)
 
     const primes = computePrimes(
@@ -45,13 +45,13 @@ const computeRoughIntegerDecimal = <S extends Primes, T extends NumericPropertie
     while (primeIndex < roughnessIndex) {
         const prime: Decimal<Integer> = primes[primeIndex]
         while (dividesEvenly(roughIntegerDecimal, prime)) {
-            roughIntegerDecimal = integerDivide(roughIntegerDecimal, prime) as Decimal<T & Integer>
+            roughIntegerDecimal = integerDivide(roughIntegerDecimal, prime) as Decimal<T>
         }
 
         primeIndex = increment(primeIndex)
     }
 
-    return roughIntegerDecimal as Decimal<T & Integer & { rough: S }>
+    return roughIntegerDecimal as Decimal<T & Rough<S>>
 }
 
 export { isIntegerDecimalRough, computeRoughIntegerDecimal }

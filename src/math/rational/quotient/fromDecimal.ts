@@ -1,18 +1,18 @@
-import { Decimal, Denominator, Numerator, NumericProperties, Quotient } from "../../numeric"
+import { Decimal, Denominator, Integer, Numerator, Quotient, Rational } from "../../numeric"
 import { multiply } from "../../typedOperations"
-import { Multiplier } from "../../types"
 import { isDecimalInteger } from "../decimal"
-import { Integer, Rational } from "../types"
 import { computeLowestTermsRationalQuotient } from "./lowestTerms"
 
-const computeRationalQuotientFromRationalDecimal = <T extends NumericProperties & Rational>(
+const computeRationalQuotientFromRationalDecimal = <T extends Rational>(
     rationalDecimal: Decimal<T>,
 ): Quotient<T> => {
     let integerDenominator: Denominator & Decimal<Integer> = 1 as Denominator & Decimal<Integer>
-    let rationalNumerator = rationalDecimal as Decimal
+    let rationalNumerator = rationalDecimal as Numerator & Decimal<Rational>
     while (!isDecimalInteger(rationalNumerator)) {
-        integerDenominator = multiply(integerDenominator, 10 as Multiplier<Denominator & Decimal<Integer>>)
-        rationalNumerator = rationalNumerator * 10
+        integerDenominator = multiply(integerDenominator, 10 as Decimal<Integer>) as Denominator &
+            Decimal<Integer>
+        rationalNumerator = multiply(rationalNumerator, 10 as Decimal<Integer>) as Numerator &
+            Decimal<Rational>
     }
 
     const rationalQuotient = [

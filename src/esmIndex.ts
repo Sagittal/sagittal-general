@@ -56,7 +56,6 @@ export {
     noop,
     indexOf,
     NoProperties,
-    Override,
 } from "./code"
 export { Em, Html, Hyperlink, isBrowserMobile, Css } from "./browser"
 export {
@@ -141,6 +140,7 @@ export {
     computeUnicodeLiteralFromUnicode,
     computeUnicodeFromUnicodeLiteral,
     caseDesensitize,
+    length,
 } from "./io"
 export {
     abs,
@@ -161,8 +161,6 @@ export {
     Copfr,
     count,
     subtract,
-    Direction,
-    Sign,
     DistributionBin,
     dividesEvenly,
     Exponent,
@@ -297,6 +295,10 @@ export {
     Unsigned,
     Positive,
     Negative,
+    Rough,
+    Smooth,
+    Sign,
+    Direction,
 } from "./math"
 export {
     Cents,

@@ -1,52 +1,45 @@
-import { Override } from "../../../code"
-import { Direction, NumericProperties } from "../types"
+import { Super, Unison, NumericProperties, Sub, AnyDirection } from "../types"
 import { Denominator, Numerator, Quotient, QuotientPart } from "./types"
 
 const isQuotientSuper = <T extends NumericProperties>(
-    candidateSuperQuotient: Quotient<Omit<T, "direction">>,
-): candidateSuperQuotient is Quotient<Override<T, "direction", Direction.SUPER>> => {
-    const numerator: Numerator = candidateSuperQuotient[0]
-    const denominator: Denominator = candidateSuperQuotient[1]
+    candidateSuperQuotient: Quotient<T>,
+): candidateSuperQuotient is Quotient<T & Super> => {
+    const numerator: Numerator<T> = candidateSuperQuotient[0]
+    const denominator: Denominator<T> = candidateSuperQuotient[1]
 
     return numerator > denominator
 }
 
 const isQuotientSub = <T extends NumericProperties>(
-    candidateSubQuotient: Quotient<Omit<T, "direction">>,
-): candidateSubQuotient is Quotient<Override<T, "direction", Direction.SUB>> => {
-    const numerator: Numerator = candidateSubQuotient[0]
-    const denominator: Denominator = candidateSubQuotient[1]
+    candidateSubQuotient: Quotient<T>,
+): candidateSubQuotient is Quotient<T & Sub> => {
+    const numerator: Numerator<T> = candidateSubQuotient[0]
+    const denominator: Denominator<T> = candidateSubQuotient[1]
 
     return numerator < denominator
 }
 
 const isQuotientUnison = <T extends NumericProperties>(
-    candidateUnisonQuotient: Quotient<Omit<T, "direction">>,
-): candidateUnisonQuotient is Quotient<Override<T, "direction", Direction.UNISON>> => {
-    const numerator: Numerator = candidateUnisonQuotient[0]
-    const denominator: Denominator = candidateUnisonQuotient[1]
+    candidateUnisonQuotient: Quotient<T>,
+): candidateUnisonQuotient is Quotient<T & Unison> => {
+    const numerator: Numerator<T> = candidateUnisonQuotient[0]
+    const denominator: Denominator<T> = candidateUnisonQuotient[1]
 
-    return (numerator as QuotientPart) === (denominator as QuotientPart)
+    return (numerator as QuotientPart<T>) === (denominator as QuotientPart<T>)
 }
 
-const computeSuperQuotient = <T extends NumericProperties>(
-    quotient: Quotient<Omit<T, "direction">>,
-): Quotient<Override<T, "direction", Direction.SUPER>> =>
-    (isQuotientSuper(quotient) ? quotient : invertQuotient(quotient)) as Quotient<
-        Override<T, "direction", Direction.SUPER>
-    >
+const computeSuperQuotient = <T extends NumericProperties>(quotient: Quotient<T>): Quotient<T & Super> =>
+    isQuotientSuper(quotient) ? quotient : invertQuotient(quotient)
 
-const computeSubQuotient = <T extends NumericProperties>(
-    quotient: Quotient<Omit<T, "direction">>,
-): Quotient<Override<T, "direction", Direction.SUB>> =>
-    (isQuotientSub(quotient) ? quotient : invertQuotient(quotient)) as Quotient<
-        Override<T, "direction", Direction.SUB>
-    >
+const computeSubQuotient = <T extends NumericProperties>(quotient: Quotient<T>): Quotient<T & Sub> =>
+    isQuotientSub(quotient) ? quotient : invertQuotient(quotient)
 
-const invertQuotient = <T extends NumericProperties>([numerator, denominator]: Quotient<
-    Omit<T, "direction">
->): Quotient<Omit<T, "direction">> =>
-    [denominator as number as Numerator, numerator as number as Denominator] as Quotient<Omit<T, "direction">>
+const invertQuotient = <T extends NumericProperties>([numerator, denominator]: Quotient<T>): Quotient<
+    T & AnyDirection
+> =>
+    [denominator as number as Numerator<T>, numerator as number as Denominator<T>] as Quotient<
+        T & AnyDirection
+    >
 
 export {
     computeSuperQuotient,

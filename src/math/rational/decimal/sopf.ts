@@ -1,6 +1,6 @@
-import { Decimal, NumericProperties, PrimeCount } from "../../numeric"
+import { Decimal, NumericProperties, PrimeCount, Rational } from "../../numeric"
 import { computePrimes } from "../primes"
-import { Rational, Sopf } from "../types"
+import { Sopf } from "../types"
 import { computeRationalVectorFromRationalDecimal } from "../vector"
 
 // Sum Of Prime Factors (without repetition)

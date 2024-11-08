@@ -1,13 +1,14 @@
+import { NoProperties } from "../../../code"
 import {
     computeDecimalFromVector,
     computeDecimalFromQuotient,
     Decimal,
     NumericProperties,
     ScaledVector,
+    Irrational,
 } from "../../numeric"
-import { Irrational } from "../types"
 
-const computeIrrationalDecimalFromScaledVector = <T extends NumericProperties>(
+const computeIrrationalDecimalFromScaledVector = <T extends NumericProperties = NoProperties>(
     scaledVector: ScaledVector<T>,
 ): Decimal<T & Irrational> =>
     (computeDecimalFromVector(scaledVector.vector) **

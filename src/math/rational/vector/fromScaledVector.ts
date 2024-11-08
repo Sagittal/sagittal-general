@@ -1,8 +1,7 @@
-import { Vector, NumericProperties, ScaledVector } from "../../numeric"
-import { Rational } from "../types"
+import { Vector, ScaledVector, Rational } from "../../numeric"
 
-const computeRationalVectorFromRationalScaledVector = <T extends NumericProperties>(
-    rationalScaledVector: ScaledVector<T & Rational>,
-): Vector<T & Rational> => rationalScaledVector.vector as Vector<T & Rational>
+const computeRationalVectorFromRationalScaledVector = <T extends Rational>(
+    rationalScaledVector: ScaledVector<T>,
+): Vector<T> => rationalScaledVector.vector as Vector<T>
 
 export { computeRationalVectorFromRationalScaledVector }

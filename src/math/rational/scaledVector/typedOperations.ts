@@ -1,53 +1,56 @@
-import { Irrational, Noninteger } from "../../irrational"
 import {
     addVectors,
-    NumericProperties,
+    UnknownDirection,
     Quotient,
     ScaledVector,
     subtractVectors,
     sumVectors,
+    Noninteger,
+    Rational,
+    Irrational,
 } from "../../numeric"
 import { Mean, MeanType } from "../../types"
-import { Rational } from "../types"
 import { computeRationalVectorFromRationalScaledVector } from "../vector"
 
-const addRationalScaledVectors = <T extends NumericProperties>(
-    augendScaledVector: ScaledVector<T & Rational>,
-    addendScaledVector: ScaledVector<T & Rational>,
-): ScaledVector<T & Rational & Noninteger & { direction: undefined }> =>
+const addRationalScaledVectors = <T extends Rational>(
+    augendScaledVector: ScaledVector<T>,
+    addendScaledVector: ScaledVector<T>,
+): ScaledVector<T & Noninteger & UnknownDirection> =>
     ({
         vector: addVectors(augendScaledVector.vector, addendScaledVector.vector),
-    }) as ScaledVector<T & Rational & Noninteger & { direction: undefined }>
+    }) as ScaledVector<T & Noninteger & UnknownDirection>
 
-const subtractRationalScaledVectors = <T extends NumericProperties>(
-    minuendScaledVector: ScaledVector<T & Rational>,
-    subtrahendScaledVector: ScaledVector<T & Rational>,
-): ScaledVector<T & Rational & Noninteger & { direction: undefined }> =>
+const subtractRationalScaledVectors = <T extends Rational>(
+    minuendScaledVector: ScaledVector<T>,
+    subtrahendScaledVector: ScaledVector<T>,
+): ScaledVector<T & Noninteger & UnknownDirection> =>
     ({
         vector: subtractVectors(minuendScaledVector.vector, subtrahendScaledVector.vector),
-    }) as ScaledVector<T & Rational & Noninteger & { direction: undefined }>
+    }) as ScaledVector<T & Noninteger & UnknownDirection>
 
-const computeRationalScaledVectorGeometricMean = (
-    ...rationalScaledVectors: Array<ScaledVector>
-): Mean<{
-    of: ScaledVector<Irrational>
-    meanType: MeanType.GEOMETRIC
-}> => {
+const computeRationalScaledVectorGeometricMean = <T extends Rational>(
+    ...rationalScaledVectors: Array<ScaledVector<T>>
+): ScaledVector<T & Irrational> &
+    Mean<{
+        of: ScaledVector<T>
+        meanType: MeanType.GEOMETRIC
+    }> => {
     return {
         vector: sumVectors(...rationalScaledVectors.map(computeRationalVectorFromRationalScaledVector)),
         scaler: [1, rationalScaledVectors.length] as Quotient,
-    } as Mean<{
-        of: ScaledVector<Irrational>
-        meanType: MeanType.GEOMETRIC
-    }>
+    } as ScaledVector<T & Irrational> &
+        Mean<{
+            of: ScaledVector<T>
+            meanType: MeanType.GEOMETRIC
+        }>
 }
 
-const sumRationalScaledVectors = <T extends NumericProperties>(
-    ...rationalScaledVectors: Array<ScaledVector<T & Rational>>
-): ScaledVector<T & Rational & Noninteger & { direction: undefined }> =>
+const sumRationalScaledVectors = <T extends Rational>(
+    ...rationalScaledVectors: Array<ScaledVector<T>>
+): ScaledVector<T & Noninteger & UnknownDirection> =>
     ({
         vector: sumVectors(...rationalScaledVectors.map(computeRationalVectorFromRationalScaledVector)),
-    }) as ScaledVector<T & Rational & Noninteger & { direction: undefined }>
+    }) as ScaledVector<T & Noninteger & UnknownDirection>
 
 export {
     subtractRationalScaledVectors,

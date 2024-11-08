@@ -1,8 +1,13 @@
-import { computeRationalQuotientFromRationalScaledVector, Quotient, ScaledVector } from "../../../../../src"
+import {
+    computeRationalQuotientFromRationalScaledVector,
+    Quotient,
+    Rational,
+    ScaledVector,
+} from "../../../../../src"
 
 describe("computeRationalQuotientFromRationalScaledVector", (): void => {
     it("given a rational scaled vector, returns a rational quotient", (): void => {
-        const rationalScaledVector = { vector: [-4, 4, -1] } as ScaledVector
+        const rationalScaledVector = { vector: [-4, 4, -1] } as ScaledVector<Rational>
 
         const actual = computeRationalQuotientFromRationalScaledVector(rationalScaledVector)
 

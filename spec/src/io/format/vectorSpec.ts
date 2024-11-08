@@ -28,7 +28,7 @@ describe("formatVector", (): void => {
         expect(actual).toBe(expected)
     })
 
-    it("when both abbreviated and punctuated, uses commas as alternative to spaces, and eliminates groups of three 0's            ", (): void => {
+    it("when both abbreviated and punctuated, uses commas as alternative to spaces, and eliminates groups of three 0's", (): void => {
         const vector = [-8, -6, 3, 5, -1, 0, 0, 0, 5, 4, 2, 0, 0, 0, 0, 0, 0, 3] as Vector
 
         const actual = formatVector(vector, { punctuated: true, abbreviated: true })

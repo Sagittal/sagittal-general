@@ -18,7 +18,7 @@ describe("sort", (): void => {
         expect(actual).toEqual(array)
     })
 
-    it("it isn't dumb and will actually sort numeric things numerically (instead of alphabetically, driving me nuts)            ", (): void => {
+    it("it isn't dumb and will actually sort numeric things numerically (instead of alphabetically, driving me nuts)", (): void => {
         const array = [2000, 300, 5, 10000, 40]
 
         const actual = sort(array)

@@ -6,7 +6,7 @@ import { EdoStep } from "../edo"
 
 type Temperament = { _TemperamentBrand: boolean }
 
-type Generator = Decimal & { _GeneratorBrand: boolean }
+type Generator = number & { _GeneratorBrand: boolean }
 
 type EtStep = EdoStep & Generator
 
@@ -16,7 +16,7 @@ type Per<
     OutT extends number = number,
     InT extends number = number,
     NumericT extends NumericProperties = NoProperties,
-> = Decimal & { _OutBrand: OutT } & { _InBrand: InT } & NumericT
+> = number & { _OutBrand: OutT } & { _InBrand: InT } & NumericT
 
 type Map<T extends NumericProperties = NoProperties> = Array<Per<Count<EtStep>, Prime, T>>
 
@@ -27,21 +27,22 @@ type Mapping<T extends NumericProperties = NoProperties> = MappingRow<T>[]
 type NumericPropertyTranslationForMappedVector<VectorT, MapT> = (VectorT extends Rational | Integer
     ? MapT extends Rational | Integer
         ? Rational
-        : unknown
-    : unknown) &
-    (VectorT extends Integer ? (MapT extends Integer ? Integer : unknown) : unknown)
+        : NoProperties
+    : NoProperties) &
+    (VectorT extends Integer ? (MapT extends Integer ? Integer : NoProperties) : NoProperties)
+
+type GeneratorCount<
+    VectorT extends NumericProperties,
+    MapT extends NumericProperties,
+    GeneratorT extends Generator,
+> = Count<GeneratorT> & Decimal<NumericPropertyTranslationForMappedVector<VectorT, MapT>>
+
+type StepCount<VectorT extends NumericProperties, MapT extends NumericProperties> = GeneratorCount<
+    VectorT,
+    MapT,
+    EtStep
+>
 
 type Wart = Char & { _WartBrand: boolean }
 
-export {
-    Temperament,
-    Generator,
-    EtStep,
-    EtName,
-    Per,
-    Map,
-    MappingRow,
-    Mapping,
-    NumericPropertyTranslationForMappedVector,
-    Wart,
-}
+export { Temperament, Generator, EtStep, EtName, Per, Map, MappingRow, Mapping, Wart, StepCount }

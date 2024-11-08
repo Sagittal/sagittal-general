@@ -7,11 +7,11 @@ import {
     ScaledVector,
     THREE_SMOOTHNESS,
 } from "../../../../../src"
-import { Smoothness } from "../../../../../src/math"
+import { Rational, Smoothness } from "../../../../../src/math"
 
 describe("isRationalScaledVectorSmooth", (): void => {
     it("returns true if the scaled vector is n-smooth (within the n prime limit)", (): void => {
-        const rationalScaledVector = { vector: [0, 0, 1] } as ScaledVector
+        const rationalScaledVector = { vector: [0, 0, 1] } as ScaledVector<Rational>
 
         const actual = isRationalScaledVectorSmooth(rationalScaledVector, FIVE_SMOOTHNESS)
 
@@ -19,7 +19,7 @@ describe("isRationalScaledVectorSmooth", (): void => {
     })
 
     it("returns false if the scaled vector is not within the given prime limit", (): void => {
-        const rationalScaledVector = { vector: [0, 0, 1] } as ScaledVector
+        const rationalScaledVector = { vector: [0, 0, 1] } as ScaledVector<Rational>
 
         const actual = isRationalScaledVectorSmooth(rationalScaledVector, THREE_SMOOTHNESS)
 
@@ -29,7 +29,7 @@ describe("isRationalScaledVectorSmooth", (): void => {
 
 describe("computeRationalScaledVectorSmoothness", (): void => {
     it("returns the greatest prime factor (AKA prime limit) of the given rational scaled vector", (): void => {
-        const rationalScaledVector = { vector: [2, 3, 0, 0, 4] } as ScaledVector
+        const rationalScaledVector = { vector: [2, 3, 0, 0, 4] } as ScaledVector<Rational>
 
         const actual = computeRationalScaledVectorSmoothness(rationalScaledVector)
 
@@ -38,7 +38,7 @@ describe("computeRationalScaledVectorSmoothness", (): void => {
     })
 
     it("works when its vector has trailing zeroes", (): void => {
-        const rationalScaledVector = { vector: [2, 3, 4, 0, 0] } as ScaledVector
+        const rationalScaledVector = { vector: [2, 3, 4, 0, 0] } as ScaledVector<Rational>
 
         const actual = computeRationalScaledVectorSmoothness(rationalScaledVector)
 
@@ -47,7 +47,7 @@ describe("computeRationalScaledVectorSmoothness", (): void => {
     })
 
     it("works for those with an empty vector", (): void => {
-        const rationalScaledVector = { vector: [] as unknown[] } as ScaledVector
+        const rationalScaledVector = { vector: [] as unknown[] } as ScaledVector<Rational>
 
         const actual = computeRationalScaledVectorSmoothness(rationalScaledVector)
 

@@ -1,5 +1,5 @@
-import { computeRationalDecimalCopf, Decimal } from "../../../../../src"
-import { Copf, Rational } from "../../../../../src/math/rational/types"
+import { computeRationalDecimalCopf, Decimal, Rational } from "../../../../../src"
+import { Copf } from "../../../../../src/math/rational/types"
 
 describe("computeRationalDecimalCopf", (): void => {
     it("returns the count of prime factors (without repetition)", (): void => {

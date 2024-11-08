@@ -5,8 +5,7 @@ import {
     MULTIPLICATIVE_IDENTITY,
     VALUE_BELOW_WHICH_ROUNDING_IMPLEMENTATION_BREAKS,
 } from "./constants"
-import { Decimal } from "./numeric"
-import { Integer } from "./rational"
+import { Decimal, Integer } from "./numeric"
 import {
     Abs,
     Addend,
@@ -42,18 +41,31 @@ const product = <T extends number>(...factors: T[]): Product<T> =>
         MULTIPLICATIVE_IDENTITY as Product<T>,
     )
 
-const add = <T extends number>(augend: Augend<T> | T, addend: Addend<T> | T): T => (augend + addend) as T // Sum
+const add: {
+    <T extends number | void>(augend: Augend<T>, addend: Addend<T>): T
+    <T extends number>(augend: T, addend: Addend<T>): T
+    <T extends number>(augend: T, addend: T): T
+} = <T extends number>(augend: Augend<T> | T, addend: Addend<T> | T): T => (augend + addend) as T // Sum
 
-const subtract = <T extends number>(minuend: Minuend<T> | T, subtrahend: Subtrahend<T> | T): T =>
+const subtract: {
+    <T extends number | void>(minuend: Minuend<T>, subtrahend: Subtrahend<T>): T
+    <T extends number>(minuend: T, subtrahend: Subtrahend<T>): T
+    <T extends number>(minuend: T, subtrahend: T): T
+} = <T extends number>(minuend: Minuend<T> | T, subtrahend: Subtrahend<T> | T): T =>
     (minuend - subtrahend) as T // Difference
 
-const multiply = <T extends number>(multiplicand: Multiplicand<T> | T, multiplier: Multiplier<T> | T): T => {
-    return (multiplicand * multiplier) as T // Product
-}
+const multiply: {
+    <T extends number | void>(multiplicand: Multiplicand<T>, multiplier: Multiplier<T>): T
+    <T extends number>(multiplicand: T, multiplier: Multiplier<T>): T
+    <T extends number>(multiplicand: T, multiplier: T): T
+} = <T extends number>(multiplicand: Multiplicand<T> | T, multiplier: Multiplier<T> | T): T =>
+    (multiplicand * multiplier) as T // Product
 
-const divide = <T extends number>(dividend: Dividend<T> | T, divisor: Divisor<T> | T): T => {
-    return (dividend / divisor) as T // Quotient
-}
+const divide: {
+    <T extends number | void>(dividend: Dividend<T>, divisor: Divisor<T>): T
+    <T extends number>(dividend: T, divisor: Divisor<T>): T
+    <T extends number>(dividend: T, divisor: T): T
+} = <T extends number>(dividend: Dividend<T> | T, divisor: Divisor<T> | T): T => (dividend / divisor) as T // Quotient
 
 const negative = <T extends number>(number: T): T => (number === 0 ? (0 as T) : (-number as T))
 

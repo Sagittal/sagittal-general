@@ -4,8 +4,8 @@ import {
     NumericProperties,
     Quotient,
     ScaledVector,
+    Irrational,
 } from "../../numeric"
-import { Irrational } from "../types"
 
 const computeIrrationalQuotientFromScaledVector = <T extends NumericProperties>(
     scaledVector: ScaledVector<T>,

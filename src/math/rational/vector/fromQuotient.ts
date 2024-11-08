@@ -1,15 +1,18 @@
-import { invertVector, Vector, NumericProperties, Quotient, sumVectors } from "../../numeric"
-import { Rational } from "../types"
+import { invertVector, Vector, Quotient, sumVectors, Rational, Integer, Decimal } from "../../numeric"
 import { computeIntegerVectorFromIntegerDecimal } from "./fromDecimal"
 
-const computeRationalVectorFromRationalQuotient = <T extends NumericProperties>([
+const computeRationalVectorFromRationalQuotient = <T extends Rational>([
     numerator,
     denominator,
-]: Quotient<T & Rational>): Vector<T & Rational> => {
-    const numeratorFactors = computeIntegerVectorFromIntegerDecimal(numerator) as Vector<T & Rational>
-    const denominatorFactors = computeIntegerVectorFromIntegerDecimal(denominator) as Vector<T & Rational>
+]: Quotient<T>): Vector<T> => {
+    const numeratorFactors = computeIntegerVectorFromIntegerDecimal(numerator as Decimal<T>) as Vector<
+        T & Integer
+    >
+    const denominatorFactors = computeIntegerVectorFromIntegerDecimal(denominator as Decimal<T>) as Vector<
+        T & Integer
+    >
 
-    return sumVectors(numeratorFactors, invertVector(denominatorFactors)) as Vector<T & Rational>
+    return sumVectors(numeratorFactors, invertVector(denominatorFactors) as Vector) as Vector<T>
 }
 
 export { computeRationalVectorFromRationalQuotient }

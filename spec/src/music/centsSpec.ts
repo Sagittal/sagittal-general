@@ -33,7 +33,7 @@ describe("computePitchFromCents", (): void => {
         expect(actual).toBeCloseToObject(expected)
     })
 
-    it("when given a cents value that does not correspond to a JI pitch, doesn't try to guess a rational quotient (i.e. in this case it might try to guess ", (): void => {
+    it("when given a cents value that does not correspond to a JI pitch, doesn't try to guess a rational quotient (i.e. in this case it might try to guess", (): void => {
         const cents = 600 as Cents
 
         const actual = computePitchFromCents(cents)

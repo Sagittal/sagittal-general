@@ -82,7 +82,7 @@ describe("parseQuotient", (): void => {
         expect(actual).toEqual(expected)
     })
 
-    it("can parse quotients with parentheses in their denominator, such as which appear in comma name ratios              ", (): void => {
+    it("can parse quotients with parentheses in their denominator, such as which appear in comma name ratios", (): void => {
         const quotientIo = "11/(5²⋅7)C" as Io
 
         const actual = parseQuotient(quotientIo)

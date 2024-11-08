@@ -5,6 +5,7 @@ import {
     Vector,
     Roughness,
     Rational,
+    Rough,
 } from "../../../../../src/math"
 
 describe("computeRoughRationalVector", (): void => {
@@ -12,9 +13,9 @@ describe("computeRoughRationalVector", (): void => {
         const rationalVector = [5, 6, 1, 0, 3] as Vector
         const roughness = 5 as 5 & Roughness
 
-        const actual: Vector<Rational & { rough: 5 }> = computeRoughRationalVector(rationalVector, roughness)
+        const actual: Vector<Rational & Rough<5>> = computeRoughRationalVector(rationalVector, roughness)
 
-        const expected = [0, 0, 1, 0, 3] as Vector<Rational & { rough: 5 }>
+        const expected = [0, 0, 1, 0, 3] as Vector<Rational & Rough<5>>
         expect(actual).toEqual(expected)
     })
 
@@ -22,9 +23,9 @@ describe("computeRoughRationalVector", (): void => {
         const rationalVector = [5, 6] as Vector
         const roughness = 5 as 5 & Roughness
 
-        const actual: Vector<Rational & { rough: 5 }> = computeRoughRationalVector(rationalVector, roughness)
+        const actual: Vector<Rational & Rough<5>> = computeRoughRationalVector(rationalVector, roughness)
 
-        const expected = EMPTY_VECTOR as Vector<Rational & { rough: 5 }>
+        const expected = EMPTY_VECTOR as Vector<Rational & Rough<5>>
         expect(actual).toEqual(expected)
     })
 })

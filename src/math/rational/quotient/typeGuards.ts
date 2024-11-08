@@ -1,7 +1,5 @@
-import { dividesEvenly } from "../../dividesEvenly"
-import { NumericProperties, Quotient } from "../../numeric"
+import { Integer, NumericProperties, Quotient, Rational } from "../../numeric"
 import { isDecimalInteger } from "../decimal"
-import { Integer, Rational } from "../types"
 
 const isQuotientRational = <T extends NumericProperties>(
     candidateRationalQuotient: Quotient<T>,
@@ -16,7 +14,7 @@ const isQuotientInteger = <T extends NumericProperties>(
 ): candidateIntegerQuotient is Quotient<T & Integer> => {
     const [numerator, denominator] = candidateIntegerQuotient
 
-    return dividesEvenly(numerator, denominator)
+    return isDecimalInteger(numerator / denominator)
 }
 
 export { isQuotientRational, isQuotientInteger }

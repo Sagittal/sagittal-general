@@ -1,10 +1,5 @@
-import { Decimal } from "../../../../../src"
-import {
-    computeIntegerDecimalSmoothness,
-    Integer,
-    Rational,
-    Smoothness,
-} from "../../../../../src/math/rational"
+import { Decimal, Integer, Rational } from "../../../../../src"
+import { computeIntegerDecimalSmoothness, Smoothness } from "../../../../../src/math/rational"
 import {
     computeRationalDecimalSmoothness,
     isIntegerDecimalSmooth,

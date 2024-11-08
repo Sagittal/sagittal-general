@@ -1,34 +1,34 @@
 import { NoProperties } from "../code"
-import { Decimal, Sign } from "./numeric"
+import { Sign } from "./numeric"
 
-type Augend<T extends number | void = void> = Decimal & { _AugendBrand: boolean } & (T extends void
+type Augend<T extends number | void = void> = number & { _AugendBrand: boolean } & (T extends void
         ? unknown
         : T & { _AugendOfBrand: T })
-type Addend<T extends number | void = void> = Decimal & { _AddendBrand: boolean } & (T extends void
+type Addend<T extends number | void = void> = number & { _AddendBrand: boolean } & (T extends void
         ? unknown
         : T & { _AddendOfBrand: T })
-type Minuend<T extends number | void = void> = Decimal & { _MinuendBrand: boolean } & (T extends void
+type Minuend<T extends number | void = void> = number & { _MinuendBrand: boolean } & (T extends void
         ? unknown
         : T & { _MinuendOfBrand: T })
-type Subtrahend<T extends number | void = void> = Decimal & { _SubtrahendBrand: boolean } & (T extends void
+type Subtrahend<T extends number | void = void> = number & { _SubtrahendBrand: boolean } & (T extends void
         ? unknown
         : T & { _SubtrahendOfBrand: T })
-type Multiplicand<T extends number | void = void> = Decimal & {
+type Multiplicand<T extends number | void = void> = number & {
     _MultiplicandBrand: boolean
 } & (T extends void ? unknown : T & { _MultiplicandOfBrand: T })
-type Multiplier<T extends number | void = void> = Decimal & { _MultiplierBrand: boolean } & (T extends void
+type Multiplier<T extends number | void = void> = number & { _MultiplierBrand: boolean } & (T extends void
         ? unknown
         : T & { _MultiplierOfBrand: T })
-type Dividend<T extends number | void = void> = Decimal & { _DividendBrand: boolean } & (T extends void
+type Dividend<T extends number | void = void> = number & { _DividendBrand: boolean } & (T extends void
         ? unknown
         : T & { _DividendOfBrand: T })
-type Divisor<T extends number | void = void> = Decimal & { _DivisorBrand: boolean } & (T extends void
+type Divisor<T extends number | void = void> = number & { _DivisorBrand: boolean } & (T extends void
         ? unknown
         : T & { _DivisorOfBrand: T })
-type Sum<T extends number | void = void> = Decimal & { _SumBrand: boolean } & (T extends void
+type Sum<T extends number | void = void> = number & { _SumBrand: boolean } & (T extends void
         ? unknown
         : T & { _SumOfBrand: T })
-type Product<T extends number | void = void> = Decimal & { _ProductBrand: boolean } & (T extends void
+type Product<T extends number | void = void> = number & { _ProductBrand: boolean } & (T extends void
         ? unknown
         : T & { _ProductOfBrand: T })
 
@@ -39,9 +39,9 @@ type DistributionBin<T> = Combination<T> & { _DistributionBinBrand: boolean }
 type Distribution<T> = Array<DistributionBin<T>> & { _DistributionBrand: boolean }
 
 // Numeric types where parameter is also numeric
-type Exponent<T extends number = number> = Decimal & { _ExponentBrand: boolean; _ExponentOfBrand: T }
-type Base<T extends number = number> = Decimal & { _BaseBrand: boolean; _BaseOfBrand: T }
-type Power<T extends number = number> = Decimal & { _PowerBrand: boolean; _PowerOfBrand: T }
+type Exponent<T extends number = number> = number & { _ExponentBrand: boolean; _ExponentOfBrand: T }
+type Base<T extends number = number> = number & { _BaseBrand: boolean; _BaseOfBrand: T }
+type Power<T extends number = number> = number & { _PowerBrand: boolean; _PowerOfBrand: T }
 
 // Qualities of numerics
 type Abs<T extends number = number> = T & { _AbsBrand: boolean; _SignBrand: Sign.POSITIVE }
@@ -69,12 +69,12 @@ type Mean<T extends MeanProperties = NoProperties> = T["of"] & {
     (T extends { meanType: MeanType.GEOMETRIC } ? { _MeanTypeBrand: MeanType.GEOMETRIC } : unknown) &
     (T extends { meanType: MeanType.HARMONIC } ? { _MeanTypeBrand: MeanType.HARMONIC } : unknown)
 
-type X = Decimal & { _XBrand: boolean }
-type Y = Decimal & { _YBrand: boolean }
+type X = number & { _XBrand: boolean }
+type Y = number & { _YBrand: boolean }
 // type Coordinate = X | Y
 type Coordinates = [X, Y]
-type Radians = Decimal & { _RadiansBrand: boolean }
-type Degrees = Decimal & { _DegreesBrand: boolean }
+type Radians = number & { _RadiansBrand: boolean }
+type Degrees = number & { _DegreesBrand: boolean }
 
 export {
     Multiplicand,

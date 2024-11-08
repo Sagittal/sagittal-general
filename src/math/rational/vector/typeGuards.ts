@@ -1,6 +1,6 @@
-import { Vector, NumericProperties, PrimeCount } from "../../numeric"
+import { Vector, NumericProperties, PrimeCount, Integer } from "../../numeric"
+import { Rational } from "../../numeric"
 import { isDecimalInteger } from "../decimal"
-import { Integer, Rational } from "../types"
 
 const isVectorRational = <T extends NumericProperties>(
     candidateRationalVector: Vector<T>,

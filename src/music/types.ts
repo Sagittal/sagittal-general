@@ -1,8 +1,8 @@
 import { Maybe, NoProperties } from "../code"
-import { Decimal, Irrational, NumericProperties, ScaledVector } from "../math"
+import { Irrational, NumericProperties, ScaledVector } from "../math"
 import { Extrema, Name } from "../types"
 
-type Cents = Decimal & { _CentsBrand: boolean }
+type Cents = number & { _CentsBrand: boolean }
 
 type Exclusive = boolean | [Maybe<boolean>, Maybe<boolean>]
 
@@ -16,7 +16,7 @@ type CommaMean<T extends NumericProperties = NoProperties> = {
     pitch: ScaledVector<T & Irrational>
 }
 
-type Octaves = Decimal & { _OctavesBrand: boolean }
+type Octaves = number & { _OctavesBrand: boolean }
 
 type Error = Cents & { _ErrorBrand: boolean }
 

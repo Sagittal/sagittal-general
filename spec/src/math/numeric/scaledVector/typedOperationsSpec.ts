@@ -8,6 +8,7 @@ import {
     scaleScaledVector,
     ScaledVector,
     Irrational,
+    Rational,
 } from "../../../../../src"
 import {
     maxScaledVector,
@@ -49,13 +50,16 @@ describe("subtractScaledVectors", (): void => {
     })
 
     it("works when the from scaled vector is irrational", (): void => {
-        const minuendScaledVector = { vector: [0, 0, 1] } as ScaledVector
+        const minuendScaledVector = { vector: [0, 0, 1] } as ScaledVector<Rational>
         const subtrahendScaledVector = {
             vector: [-2, 0, 0, 1] as Vector,
             scaler: [1, 3] as Quotient,
         } as ScaledVector<Irrational>
 
-        const actual = subtractScaledVectors(minuendScaledVector, subtrahendScaledVector)
+        const actual = subtractScaledVectors(
+            minuendScaledVector as ScaledVector,
+            subtrahendScaledVector as ScaledVector,
+        )
 
         const expected = {
             vector: IRRATIONAL_SCALED_VECTOR_BASE_VECTOR,
@@ -173,7 +177,7 @@ describe("maxScaledVector", (): void => {
         } as ScaledVector<Irrational> // 8
         const scaledVectorC = { vector: [0, 1] } as ScaledVector // 7
 
-        const actual = maxScaledVector(scaledVectorA, scaledVectorB, scaledVectorC)
+        const actual = maxScaledVector(scaledVectorA, scaledVectorB as ScaledVector, scaledVectorC)
 
         expect(actual).toEqual(scaledVectorB as ScaledVector as Max<ScaledVector>)
     })

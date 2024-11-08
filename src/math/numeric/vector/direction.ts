@@ -1,21 +1,20 @@
-import { Override } from "../../../code"
 import { MULTIPLICATIVE_IDENTITY } from "../../constants"
 import { computeDecimalFromVector } from "../decimal"
-import { Direction, NumericProperties } from "../types"
+import { NumericProperties, Sub, Super, Unison, AnyDirection } from "../types"
 import { PrimeCount, Vector } from "./types"
 
 const isVectorSub = <T extends NumericProperties>(
-    candidateSubVector: Vector<Omit<T, "direction">>,
-): candidateSubVector is Vector<Override<T, "direction", Direction.SUB>> => {
+    candidateSubVector: Vector<T>,
+): candidateSubVector is Vector<T & Sub> => {
     if (
         candidateSubVector.length &&
-        candidateSubVector.every((primeCount: PrimeCount<Omit<T, "direction">>): boolean => primeCount >= 0)
+        candidateSubVector.every((primeCount: PrimeCount<T>): boolean => primeCount >= 0)
     ) {
         return false
     }
     if (
         candidateSubVector.length &&
-        candidateSubVector.every((primeCount: PrimeCount<Omit<T, "direction">>): boolean => primeCount <= 0)
+        candidateSubVector.every((primeCount: PrimeCount<T>): boolean => primeCount <= 0)
     ) {
         return true
     }
@@ -24,34 +23,24 @@ const isVectorSub = <T extends NumericProperties>(
 }
 
 const isVectorSuper = <T extends NumericProperties>(
-    candidateSuperVector: Vector<Omit<T, "direction">>,
-): candidateSuperVector is Vector<Override<T, "direction", Direction.SUPER>> =>
+    candidateSuperVector: Vector<T>,
+): candidateSuperVector is Vector<T & Super> =>
     !(isVectorUnison(candidateSuperVector) || isVectorSub(candidateSuperVector))
 
 const isVectorUnison = <T extends NumericProperties>(
-    candidateUnisonVector: Vector<Omit<T, "direction">>,
-): candidateUnisonVector is Vector<Override<T, "direction", Direction.UNISON>> =>
-    candidateUnisonVector.every((primeCount: PrimeCount<Omit<T, "direction">>): boolean => primeCount === 0)
+    candidateUnisonVector: Vector<T>,
+): candidateUnisonVector is Vector<T & Unison> =>
+    candidateUnisonVector.every((primeCount: PrimeCount<T>): boolean => primeCount === 0)
 
-const computeSuperVector = <T extends NumericProperties>(
-    vector: Vector<Omit<T, "direction">>,
-): Vector<Override<T, "direction", Direction.SUPER>> =>
-    isVectorSuper(vector)
-        ? vector
-        : (invertVector(vector) as Vector<Override<T, "direction", Direction.SUPER>>)
+const computeSuperVector = <T extends NumericProperties>(vector: Vector<T>): Vector<T & Super> =>
+    isVectorSuper(vector) ? vector : invertVector(vector)
 
-const computeSubVector = <T extends NumericProperties>(
-    vector: Vector<Omit<T, "direction">>,
-): Vector<Override<T, "direction", Direction.SUB>> =>
-    isVectorSub(vector) ? vector : (invertVector(vector) as Vector<Override<T, "direction", Direction.SUB>>)
+const computeSubVector = <T extends NumericProperties>(vector: Vector<T>): Vector<T & Sub> =>
+    isVectorSub(vector) ? vector : invertVector(vector)
 
-const invertVector = <T extends NumericProperties>(
-    vector: Vector<Omit<T, "direction">>,
-): Vector<Omit<T, "direction">> =>
-    vector.map((primeCount: PrimeCount<Omit<T, "direction">>): PrimeCount<Omit<T, "direction">> => {
-        return primeCount === 0
-            ? (0 as PrimeCount<Omit<T, "direction">>)
-            : ((0 - primeCount) as PrimeCount<Omit<T, "direction">>)
-    }) as Vector<Omit<T, "direction">>
+const invertVector = <T extends NumericProperties>(vector: Vector<T>): Vector<T & AnyDirection> =>
+    vector.map((primeCount: PrimeCount<T>): PrimeCount<T> => {
+        return primeCount === 0 ? (0 as PrimeCount<T>) : ((0 - primeCount) as PrimeCount<T>)
+    }) as Vector<T & AnyDirection>
 
 export { isVectorSub, isVectorSuper, isVectorUnison, computeSuperVector, computeSubVector, invertVector }

@@ -2,7 +2,7 @@ import { negative } from "../../typedOperations"
 import { computeDecimalFromVector } from "../decimal"
 import { NumericProperties } from "../types"
 import { Vector } from "../vector"
-import { PrimeCount } from "../vector/types"
+import { PrimeCount } from "../vector"
 import { Quotient } from "./types"
 
 const computeQuotientFromVector = <T extends NumericProperties>(vector: Vector<T>): Quotient<T> => {
