@@ -25,9 +25,9 @@
         "test-full": "node -r ts-node/register node_modules/jasmine/bin/jasmine --full=true",
         "test-full-names": "node -r ts-node/register node_modules/jasmine/bin/jasmine --full=true --names=true",
         "tmp": "node -r ts-node/register/transpile-only --max-old-space-size=131072 spec/helpers/shared/tmp/tmp.ts",
-        "lint": "eslint . --fix",
+        "lint": "node --max-old-space-size=131072 ./node_modules/.bin/eslint . --fix",
         "format": "prettier --write .",
-        "typecheck": "tsc --noEmit",
+        "typecheck": "node --max-old-space-size=131072 ./node_modules/.bin/tsc --noEmit",
         "check": "npm run typecheck && npm run lint && npm run format && npm t"
     },
     "dependencies": {

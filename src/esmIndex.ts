@@ -305,7 +305,6 @@ export {
     CENTS_PER_OCTAVE,
     dividePitch,
     subtractPitch,
-    Zone,
     UNISON,
     computePitchFromCents,
     COMMA_POPULARITIES,

@@ -1,8 +1,7 @@
-import { NoProperties } from "../../code"
-import { NumericProperties, Rational, ScaledVector } from "../../math"
+import { Rational, ScaledVector } from "../../math"
 import { Cents } from "../types"
 
-type Comma<T extends NumericProperties = NoProperties> = ScaledVector<T & Rational> & {
+type Comma = ScaledVector<Rational> & {
     _CommaBrand: boolean
 }
 
