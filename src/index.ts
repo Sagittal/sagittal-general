@@ -28,9 +28,7 @@ export {
     now,
 } from "./node"
 
-// TODO: should I just do it like this everywhere? type Thing<T = void> = whatever & (T extends void ? void : { _ThingBrand: T })? we do it that way for Difference
 // TODO: should I really need to say "as Ed" for Ed<{of: Apotome}>?
-// TODO: oh whoa, maybe I _do_ need negate() the equiv of invertDirection, for all places where you find `-( ... as number`
 
 // TODO: NAMESPACED TYPES ?
 // Document, Window, Generator, Link, Map, Error, Range, Sign

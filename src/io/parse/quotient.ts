@@ -43,8 +43,8 @@ const parseQuotient = <T extends NumericProperties>(quotientIo: Io): Quotient<T>
                             exponentPartOfFactorPower === BLANK
                                 ? 1
                                 : ascii
-                                    ? parseInt(exponentPartOfFactorPower)
-                                    : parseSuperscriptNumber(exponentPartOfFactorPower)
+                                  ? parseInt(exponentPartOfFactorPower)
+                                  : parseSuperscriptNumber(exponentPartOfFactorPower)
 
                         return (product * base ** power) as QuotientPart<T>
                     },

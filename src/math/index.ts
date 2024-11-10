@@ -69,6 +69,7 @@ export {
     Noninteger,
     Integer,
     Rational,
+    negate,
 } from "./numeric"
 export { computeDistributions } from "./distributions"
 export { computeAngle, radiansToDegrees } from "./angle"

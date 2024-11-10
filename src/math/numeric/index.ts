@@ -9,6 +9,7 @@ export {
     reciprocal,
     areDecimalsEqual,
     computeArithmeticMean,
+    negate,
 } from "./decimal"
 export {
     isQuotientSub,

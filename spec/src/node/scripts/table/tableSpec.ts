@@ -9,6 +9,6 @@ describe("table", (): void => {
 
         expect((): void => {
             formatTableFromScript(table)
-        }).toThrowError("Table does not have rows with all the same lengths. Row lengths are 2,3.")
+        }).toThrowError("Table does not have rows with all the same lengths. Row lengths are [2,3].")
     })
 })

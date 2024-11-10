@@ -299,6 +299,7 @@ export {
     Smooth,
     Sign,
     Direction,
+    negate,
 } from "./math"
 export {
     Cents,

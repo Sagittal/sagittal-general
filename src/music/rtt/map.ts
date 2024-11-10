@@ -6,6 +6,7 @@ import {
     NumericProperties,
     Subtrahend,
     Prime,
+    negate,
 } from "../../math"
 import { Count, Index } from "../../types"
 import { computeCentsFromPitch } from "../cents"
@@ -29,10 +30,10 @@ const computeStepOffset = ({
 
     let stepOffset = 0
     for (let i = 0; i < wartCount; i++) {
-        stepOffset = -(stepOffset >= 0 ? stepOffset + 1 : stepOffset)
+        stepOffset = negate(stepOffset >= 0 ? stepOffset + 1 : stepOffset)
     }
 
-    return wideCandidateError > narrowCandidateError ? -(stepOffset + 1) : stepOffset
+    return wideCandidateError > narrowCandidateError ? negate(stepOffset + 1) : stepOffset
 }
 
 const computeStepCount = (
