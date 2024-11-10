@@ -6,7 +6,7 @@ import { computeLowestTermsRationalQuotient } from "./lowestTerms"
 const computeRationalQuotientFromRationalDecimal = <T extends Rational>(
     rationalDecimal: Decimal<T>,
 ): Quotient<T> => {
-    let integerDenominator: Denominator & Decimal<Integer> = 1 as Denominator & Decimal<Integer>
+    let integerDenominator: Denominator = 1 as Denominator
     let rationalNumerator = rationalDecimal as Numerator & Decimal<Rational>
     while (!isDecimalInteger(rationalNumerator)) {
         integerDenominator = multiply(integerDenominator, 10 as Decimal<Integer>) as Denominator &
@@ -15,10 +15,7 @@ const computeRationalQuotientFromRationalDecimal = <T extends Rational>(
             Decimal<Rational>
     }
 
-    const rationalQuotient = [
-        rationalNumerator as Numerator & Decimal<Integer>,
-        integerDenominator,
-    ] as Quotient<T & Rational>
+    const rationalQuotient = [rationalNumerator as Numerator, integerDenominator] as Quotient<T & Rational>
 
     return computeLowestTermsRationalQuotient(rationalQuotient)
 }
