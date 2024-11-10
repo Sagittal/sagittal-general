@@ -13,7 +13,7 @@ describe("deepMap", (): void => {
             obj: { a: 7.4574948959454, b: [5.434234423432423, 4.4538683499, [343.53253524643]] },
         } as unknown as KeyValObj<number>
 
-        const actual = deepMap(object, round as () => unknown, DEFAULT_PRECISION)
+        const actual = deepMap(object, round, DEFAULT_PRECISION)
 
         const expected = {
             prop: 1.49486,
@@ -26,7 +26,7 @@ describe("deepMap", (): void => {
     it("works for primitives", (): void => {
         const number = 3.456363463463
 
-        const actual = deepMap(number, round as () => unknown, DEFAULT_PRECISION)
+        const actual = deepMap(number, round, DEFAULT_PRECISION)
 
         const expected = 3.45636
         expect(actual).toEqual(expected)
@@ -39,7 +39,7 @@ describe("deepMap", (): void => {
             [8.8347358378535],
         ] as number[]
 
-        const actual = deepMap(array, round as () => unknown, DEFAULT_PRECISION)
+        const actual = deepMap(array, round, DEFAULT_PRECISION)
 
         const expected = [1.12473, { a: 6.65635, b: [34343.34343, 9.54545] }, [8.83474]] as number[]
         expect(actual).toEqual(expected)
