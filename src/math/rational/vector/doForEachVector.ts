@@ -2,10 +2,10 @@ import { computeTrimmedArray, increment, isUndefined, Maybe, shallowClone } from
 import { Extrema } from "../../../types"
 import { Vector, PrimeCount, Rational } from "../../numeric"
 
-const doForEachRationalVector = <T extends Rational, U>(
+const doForEachRationalVector = <T extends Rational, U, V>(
     primeCountExtremas: Array<Extrema<{ of: PrimeCount<T> }>>,
-    workFunction: (rationalVector: Vector<T>, ...args: unknown[]) => Maybe<U>,
-    ...args: unknown[]
+    workFunction: (rationalVector: Vector<T>, ...args: V[]) => Maybe<U>,
+    ...args: V[]
 ): U[] => {
     const initialVector = primeCountExtremas.map(
         ([minPrimeCount, _]: Extrema<{
