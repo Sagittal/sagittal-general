@@ -27,7 +27,7 @@ const checkPath = (array: unknown[], keyPath: KeyPath): void => {
     const exampleElement = computeExampleElement(array)
     try {
         dig(exampleElement as Sortable, keyPath, { strict: true })
-    } catch (_e) {
+    } catch (e) {
         throw new Error(
             `"Attempted to sort array by ${stringify(keyPath)}, however its elements do not have this property. Example element: ${stringify(exampleElement)}`,
         )
