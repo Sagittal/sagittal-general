@@ -2,7 +2,7 @@
 
 set -e
 
-npm run test-full
+npm run check
 npm version patch
 make build
 npm publish --access public

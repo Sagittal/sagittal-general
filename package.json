@@ -28,7 +28,7 @@
         "lint": "node --max-old-space-size=131072 ./node_modules/.bin/eslint . --fix",
         "format": "prettier --write .",
         "typecheck": "node --max-old-space-size=131072 ./node_modules/.bin/tsc --noEmit",
-        "check": "npm run typecheck && npm run lint && npm run format && npm t"
+        "check": "npm run typecheck && npm run lint && npm run format && npm run test-full"
     },
     "dependencies": {
         "colors": "^1.4.0",
