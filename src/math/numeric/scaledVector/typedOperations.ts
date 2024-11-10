@@ -65,7 +65,9 @@ const scaleScaledVector = <T extends NumericProperties>(
             : computeQuotientProduct(scaledVector.scaler, scaler),
     }) as ScaledVector<T & Irrational>
 
-const maxScaledVector = (...scaledVectors: Array<ScaledVector>): Max<ScaledVector> => {
+const maxScaledVector = <T extends NumericProperties>(
+    ...scaledVectors: Array<ScaledVector<T>>
+): Max<ScaledVector<T>> => {
     let maxDecimal = -Infinity
     let maxIndex = undefined
 
@@ -78,7 +80,7 @@ const maxScaledVector = (...scaledVectors: Array<ScaledVector>): Max<ScaledVecto
             }
         })
 
-    return scaledVectors[maxIndex as unknown as number] as Max<ScaledVector>
+    return scaledVectors[maxIndex as unknown as number] as Max<ScaledVector<T>>
 }
 
 const multiplyScaledVector = <T extends NumericProperties>(
@@ -93,7 +95,9 @@ const multiplyScaledVector = <T extends NumericProperties>(
     } as ScaledVector<T>
 }
 
-const minScaledVector = (...scaledVectors: Array<ScaledVector>): Min<ScaledVector> => {
+const minScaledVector = <T extends NumericProperties>(
+    ...scaledVectors: Array<ScaledVector<T>>
+): Min<ScaledVector<T>> => {
     let minDecimal = Infinity
     let minIndex = undefined
 
@@ -106,7 +110,7 @@ const minScaledVector = (...scaledVectors: Array<ScaledVector>): Min<ScaledVecto
             }
         })
 
-    return scaledVectors[minIndex as unknown as number] as Min<ScaledVector>
+    return scaledVectors[minIndex as unknown as number] as Min<ScaledVector<T>>
 }
 
 export {
