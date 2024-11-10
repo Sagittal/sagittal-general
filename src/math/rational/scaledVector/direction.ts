@@ -2,7 +2,6 @@ import {
     isVectorSub,
     isVectorSuper,
     isVectorUnison,
-    NUMERATOR_INDEX,
     Rational,
     ScaledVector,
     Sub,
@@ -24,7 +23,6 @@ const isRationalScaledVectorSub = <T extends Rational>(
 const isRationalScaledVectorUnison = <T extends Rational>(
     candidateUnisonRationalScaledVector: ScaledVector<T>,
 ): candidateUnisonRationalScaledVector is ScaledVector<T & Unison> =>
-    isVectorUnison(candidateUnisonRationalScaledVector.vector as Vector) ||
-    candidateUnisonRationalScaledVector.scaler[NUMERATOR_INDEX] === 0
+    isVectorUnison(candidateUnisonRationalScaledVector.vector as Vector)
 
 export { isRationalScaledVectorSuper, isRationalScaledVectorSub, isRationalScaledVectorUnison }
