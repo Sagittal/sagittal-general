@@ -1,4 +1,4 @@
-import {Filename, NEWLINE, readLines, setupScriptAndIo} from "../../../../src"
+import { Filename, NEWLINE, readLines, setupScriptAndIo } from "../../../../src"
 
 setupScriptAndIo("tmp" as Filename)
 

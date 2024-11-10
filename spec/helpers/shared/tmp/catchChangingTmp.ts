@@ -1,5 +1,5 @@
 import * as fs from "fs"
-import {deepEquals} from "../../../../src"
+import { deepEquals } from "../../../../src"
 
 const tmp = fs.readFileSync("spec/helpers/shared/tmp/tmp.ts")
 const tmpSnapshot = fs.readFileSync("spec/helpers/shared/tmp/tmpSnapshot.txt")

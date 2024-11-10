@@ -2,6 +2,8 @@ import eslint from "@eslint/js"
 import importPlugin from "eslint-plugin-import"
 import unusedImportsPlugin from "eslint-plugin-unused-imports"
 import tseslint from "typescript-eslint"
+import prettierConfig from "eslint-config-prettier"
+import prettierPlugin from "eslint-plugin-prettier"
 
 export default tseslint.config(
     {
@@ -9,6 +11,7 @@ export default tseslint.config(
     },
     eslint.configs.recommended,
     ...tseslint.configs.recommendedTypeChecked,
+    prettierConfig,
     {
         languageOptions: {
             parserOptions: {
@@ -18,7 +21,11 @@ export default tseslint.config(
         },
     },
     {
-        plugins: { import: importPlugin, "unused-imports": unusedImportsPlugin },
+        plugins: {
+            import: importPlugin,
+            "unused-imports": unusedImportsPlugin,
+            prettier: prettierPlugin,
+        },
         rules: {
             "no-control-regex": "off",
             "no-unused-vars": "off",
@@ -58,6 +65,15 @@ export default tseslint.config(
                     arrayDestructuring: false,
                     objectDestructuring: false,
                     variableDeclaration: false,
+                },
+            ],
+            "prettier/prettier": [
+                "error",
+                {
+                    tabWidth: 4,
+                    semi: false,
+                    trailingComma: "all",
+                    printWidth: 110,
                 },
             ],
             // "no-warning-comments": [
