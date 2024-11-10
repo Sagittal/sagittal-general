@@ -1,5 +1,5 @@
 import { computeDeepDistinct, Maybe } from "../../../code"
-import { Formatted, Io, ioSettings, Row, Table, TableFormat } from "../../../io"
+import { Formatted, Io, ioSettings, Row, stringify, Table, TableFormat } from "../../../io"
 import { count } from "../../../math"
 import { Count } from "../../../types"
 import { formatTableForForum } from "./tableForForum"
@@ -15,7 +15,7 @@ const formatTableFromScript = <T>(table: Table<T>, options?: Partial<FormatTable
 
     if (distinctRowLengths.length > 1) {
         throw new Error(
-            `Table does not have rows with all the same lengths. Row lengths are ${rowLengths.toString()}.`,
+            `Table does not have rows with all the same lengths. Row lengths are ${stringify(rowLengths)}.`,
         )
     }
 

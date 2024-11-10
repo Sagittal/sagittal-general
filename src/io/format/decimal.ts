@@ -1,6 +1,7 @@
 import { Decimal, Integer, round } from "../../math"
 import { IO_PRECISION } from "../constants"
 import { ioSettings } from "../globals"
+import { stringify } from "../stringify"
 import { TableFormat } from "../table"
 import { Formatted } from "./types"
 
@@ -39,7 +40,7 @@ const formatIntegerDecimal = (
     integerDecimal: Decimal<Integer>,
     { align }: { align?: boolean } = {},
 ): Formatted<Decimal<Integer>> => {
-    const stringifiedIntegerDecimal = integerDecimal.toString() as Formatted<Decimal<Integer>>
+    const stringifiedIntegerDecimal = stringify(integerDecimal) as Formatted<Decimal<Integer>>
 
     return align && ioSettings.tableFormat !== TableFormat.SPREADSHEET
         ? alignFormattedIntegerDecimal(stringifiedIntegerDecimal)

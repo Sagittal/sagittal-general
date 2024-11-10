@@ -1,6 +1,7 @@
 import { indexOfFinalElement } from "../../code"
 import { Decimal, Integer, mod, NumericProperties, Rough, Vector } from "../../math"
 import { BLANK, COMMA, SPACE } from "../constants"
+import { stringify } from "../stringify"
 import { Io } from "../types"
 import { spaceVectorOrMapEntry } from "./spaceVectorOrMapEntry"
 import { FormatVectorOrMapOptions, Formatted } from "./types"
@@ -8,7 +9,7 @@ import { FormatVectorOrMapOptions, Formatted } from "./types"
 const maybeSpaceVectorOrMapEntry = (
     vectorOrMapEntry: number,
     { abbreviated }: { abbreviated: boolean },
-): Io => (abbreviated ? vectorOrMapEntry.toString() : spaceVectorOrMapEntry(vectorOrMapEntry))
+): Io => (abbreviated ? stringify(vectorOrMapEntry) : spaceVectorOrMapEntry(vectorOrMapEntry))
 
 const formatVector = <T extends NumericProperties>(
     vector: Vector<T>,

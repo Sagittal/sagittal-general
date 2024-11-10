@@ -1,6 +1,7 @@
 import { indexOf } from "../../code"
 import { computeSuperQuotient, Denominator, NumericProperties, Quotient, QuotientPart } from "../../math"
 import { BLANK, SUPERSCRIPT_NUMBERS } from "../constants"
+import { stringify } from "../stringify"
 import { join, split } from "../typedOperations"
 import { Io } from "../types"
 import { DOT_OPERATOR } from "./constants"
@@ -12,7 +13,7 @@ const MULTIPLICATION_SYMBOLS = `${DOT_OPERATOR}.*`
 const parseSuperscriptNumber = (superscriptNumberText: string): number => {
     const superscriptNumberChars = superscriptNumberText.split(BLANK)
     const numberChars = superscriptNumberChars.map((superscriptNumberChar: string): string => {
-        return indexOf(SUPERSCRIPT_NUMBERS, superscriptNumberChar).toString()
+        return stringify(indexOf(SUPERSCRIPT_NUMBERS, superscriptNumberChar))
     })
     const numberString = join(numberChars, BLANK)
 
@@ -42,8 +43,8 @@ const parseQuotient = <T extends NumericProperties>(quotientIo: Io): Quotient<T>
                             exponentPartOfFactorPower === BLANK
                                 ? 1
                                 : ascii
-                                  ? parseInt(exponentPartOfFactorPower)
-                                  : parseSuperscriptNumber(exponentPartOfFactorPower)
+                                    ? parseInt(exponentPartOfFactorPower)
+                                    : parseSuperscriptNumber(exponentPartOfFactorPower)
 
                         return (product * base ** power) as QuotientPart<T>
                     },
