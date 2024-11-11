@@ -56,6 +56,7 @@ export {
     noop,
     indexOf,
     NoProperties,
+    KeyValObj,
 } from "./code"
 export { Em, Html, Hyperlink, isBrowserMobile, Css } from "./browser"
 export {
@@ -356,7 +357,21 @@ export {
     computeMap,
     computeStepSize,
 } from "./music"
-export { Count, Ed, Extrema, Index, Ms, Name, Abbreviation, Step, Window, Of, Offset, Id } from "./types"
+export {
+    Count,
+    Ed,
+    Extrema,
+    Index,
+    Ms,
+    Name,
+    Abbreviation,
+    Step,
+    Window,
+    Of,
+    Offset,
+    Id,
+    Degree,
+} from "./types"
 export {
     Grade,
     Parameter,
