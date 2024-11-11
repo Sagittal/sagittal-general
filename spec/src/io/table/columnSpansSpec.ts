@@ -16,7 +16,7 @@ describe("computeColumnSpans", (): void => {
     it("computes the count of columns each cell should span based on which ones request to be merged with their neighbor to the left", (): void => {
         const actual = computeColumnSpans(row)
 
-        const expected = [1, 5, 0, 0, 0, 0, 1, 1] as Array<Count<Cell>>
+        const expected = [1, 5, 0, 0, 0, 0, 1, 1] as Count<Cell>[]
         expect(actual).toEqual(expected)
     })
 

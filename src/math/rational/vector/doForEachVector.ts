@@ -3,7 +3,7 @@ import { Extrema } from "../../../types"
 import { Vector, PrimeCount, Rational } from "../../numeric"
 
 const doForEachRationalVector = <T extends Rational, U, V>(
-    primeCountExtremas: Array<Extrema<{ of: PrimeCount<T> }>>,
+    primeCountExtremas: Extrema<{ of: PrimeCount<T> }>[],
     workFunction: (rationalVector: Vector<T>, ...args: V[]) => Maybe<U>,
     ...args: V[]
 ): U[] => {

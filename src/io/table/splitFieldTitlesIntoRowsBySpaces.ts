@@ -5,7 +5,7 @@ import { Column, Row } from "./types"
 const splitFieldTitlesIntoRowsBySpaces = <T>(
     fieldTitles: Io[],
     options: { includeSpacerRow?: boolean } = {},
-): Array<Row<{ of: T; header: true }>> => {
+): Row<{ of: T; header: true }>[] => {
     const popular23FreeClassesFieldTitleColumns = fieldTitles.map(
         (fieldTitle: Io): Column<{ of: T; header: true }> => {
             return fieldTitle.split(" ") as Column<{ of: T; header: true }>

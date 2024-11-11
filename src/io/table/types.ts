@@ -9,7 +9,7 @@ enum Alignment {
     CENTER = "center",
 }
 
-type TableAlignment = Maybe<Alignment> | Array<Maybe<Alignment>>
+type TableAlignment = Maybe<Alignment> | Maybe<Alignment>[]
 
 type TableProperties =
     | Partial<{
@@ -19,7 +19,7 @@ type TableProperties =
     | NoProperties
 
 type Cell<T extends TableProperties = NoProperties> = Maybe<Formatted<T["of"]>>
-type Row<T extends TableProperties = NoProperties> = Array<Cell<T>> & {
+type Row<T extends TableProperties = NoProperties> = Cell<T>[] & {
     _RowBrand: boolean
 } & (T extends {
         of: unknown
@@ -27,7 +27,7 @@ type Row<T extends TableProperties = NoProperties> = Array<Cell<T>> & {
         ? { _RowOfBrand: T["of"] }
         : { _RowOfBrand: unknown }) &
     (T extends { header: true } ? { _HeaderBrand: boolean } : unknown)
-type Column<T extends TableProperties = NoProperties> = Array<Cell<T>> & {
+type Column<T extends TableProperties = NoProperties> = Cell<T>[] & {
     _ColumnBrand: boolean
 } & (T extends {
         of: unknown
@@ -36,7 +36,7 @@ type Column<T extends TableProperties = NoProperties> = Array<Cell<T>> & {
         : { _ColumnOfBrand: unknown }) &
     (T extends { header: true } ? { _HeaderBrand: boolean } : unknown)
 
-type Table<T = void> = Array<Row<{ of: T }>>
+type Table<T = void> = Row<{ of: T }>[]
 
 interface AlignedCellOptions {
     columnAlignment: Maybe<Alignment>

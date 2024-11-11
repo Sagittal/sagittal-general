@@ -33,7 +33,7 @@ const computeGreatestCommonDivisorOfTwoIntegerDecimals = (
 
 const recurseCommon = (
     commonFunction: CommonFunction,
-    ...integerDecimals: Array<Decimal<Integer>>
+    ...integerDecimals: Decimal<Integer>[]
 ): Decimal<Integer> => {
     if (isSingleton(integerDecimals)) {
         return integerDecimals[0]
@@ -51,7 +51,7 @@ const recurseCommon = (
 }
 
 const computeCommon = (
-    integerDecimals: Array<Decimal<Integer>>,
+    integerDecimals: Decimal<Integer>[],
     commonFunction: CommonFunction,
 ): Decimal<Integer> => {
     if (isEmpty(integerDecimals)) {
@@ -65,7 +65,7 @@ const computeCommon = (
     return recurseCommon(commonFunction, ...integerDecimals)
 }
 
-const computeLeastCommonMultiple = (...integerDecimals: Array<Decimal<Integer>>): Decimal<Integer> =>
+const computeLeastCommonMultiple = (...integerDecimals: Decimal<Integer>[]): Decimal<Integer> =>
     computeCommon(integerDecimals, computeLowestCommonMultipleOfTwoIntegerDecimals)
 
 const computeGreatestCommonDivisor = <T extends Decimal<Integer>>(...integerDecimals: T[]): Divisor<T> =>

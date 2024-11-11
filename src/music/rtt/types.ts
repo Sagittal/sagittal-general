@@ -18,9 +18,9 @@ type Per<
     NumericT extends NumericProperties = NoProperties,
 > = number & { _OutBrand: OutT } & { _InBrand: InT } & NumericT
 
-type Map<T extends NumericProperties = NoProperties> = Array<Per<Count<EtStep>, Prime, T>>
+type Map<T extends NumericProperties = NoProperties> = Per<Count<EtStep>, Prime, T>[]
 
-type MappingRow<T extends NumericProperties = NoProperties> = Array<Per<Count<Generator>, Prime, T>>
+type MappingRow<T extends NumericProperties = NoProperties> = Per<Count<Generator>, Prime, T>[]
 
 type Mapping<T extends NumericProperties = NoProperties> = MappingRow<T>[]
 

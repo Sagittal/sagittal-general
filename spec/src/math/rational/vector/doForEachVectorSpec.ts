@@ -5,7 +5,7 @@ describe("doForEachRationalVector", (): void => {
         [-2, 1],
         [0, 1],
         [-1, 0],
-    ] as Array<Extrema<{ of: PrimeCount }>>
+    ] as Extrema<{ of: PrimeCount }>[]
     const arg1 = "here I am"
     const arg2 = "here I am 2"
 

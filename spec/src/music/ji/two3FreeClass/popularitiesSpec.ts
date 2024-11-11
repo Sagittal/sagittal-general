@@ -19,7 +19,7 @@ describe("COMMA_POPULARITIES", (): void => {
             }),
         )
 
-        const reRankedPopularities: Array<Ranked<ScalaPopularityStat>> = rank(unrankedPopularities, {
+        const reRankedPopularities: Ranked<ScalaPopularityStat>[] = rank(unrankedPopularities, {
             by: computeKeyPath("votes"),
             strategy: RankStrategy.FRACTIONAL,
             descending: true,

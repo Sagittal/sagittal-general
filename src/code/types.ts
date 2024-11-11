@@ -20,7 +20,7 @@ type SortBy = KeyPath | KeyPath[]
 
 type KeyPath = (Key | KeyValObj<Key>) & { _KeyPathBrand: boolean }
 
-type Obj = (Array<unknown> | KeyValObj) & { [index: string]: unknown } & {
+type Obj = (unknown[] | KeyValObj) & { [index: string]: unknown } & {
     [index: number]: unknown
 }
 

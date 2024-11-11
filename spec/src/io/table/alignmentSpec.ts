@@ -38,7 +38,7 @@ describe("computeColumnWidths", (): void => {
 
         const actual = computeColumnWidths(table, [0, 1, 2] as Range)
 
-        const expected = [4, 3, 5] as Array<Count<Char>>
+        const expected = [4, 3, 5] as Count<Char>[]
         expect(actual).toEqual(expected)
     })
 
@@ -50,7 +50,7 @@ describe("computeColumnWidths", (): void => {
 
         const actual = computeColumnWidths(table, [0, 1, 2] as Range)
 
-        const expected = [4, 2, 5] as Array<Count<Char>>
+        const expected = [4, 2, 5] as Count<Char>[]
         expect(actual).toEqual(expected)
     })
 })

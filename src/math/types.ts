@@ -33,10 +33,10 @@ type Product<T extends number | void = void> = number & { _ProductBrand: boolean
         : T & { _ProductOfBrand: T })
 
 type Combination<T> = T[] & { _CombinationBrand: boolean }
-type Combinations<T> = Array<Combination<T>> & { _CombinationsBrand: boolean }
+type Combinations<T> = Combination<T>[] & { _CombinationsBrand: boolean }
 
 type DistributionBin<T> = Combination<T> & { _DistributionBinBrand: boolean }
-type Distribution<T> = Array<DistributionBin<T>> & { _DistributionBrand: boolean }
+type Distribution<T> = DistributionBin<T>[] & { _DistributionBrand: boolean }
 
 // Numeric types where parameter is also numeric
 type Exponent<T extends number = number> = number & { _ExponentBrand: boolean; _ExponentOfBrand: T }

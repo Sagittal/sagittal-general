@@ -3,7 +3,7 @@ import { add, count, invertVector, max, multiply, NumericProperties, Vector } fr
 import { Multiplier } from "../../types"
 import { PrimeCount } from "./types"
 
-const sumVectors = <T extends NumericProperties>(...vectors: Array<Vector<T>>): Vector<T> => {
+const sumVectors = <T extends NumericProperties>(...vectors: Vector<T>[]): Vector<T> => {
     const maxVectorLength = max(...vectors.map(count))
 
     const summedVectors: Vector<T> = computeRange(maxVectorLength).map((index: number): PrimeCount<T> => {

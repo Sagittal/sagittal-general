@@ -3,7 +3,7 @@ import { Io } from "../../../io"
 import { colorize } from "../../colorize"
 import { ColorMethod } from "../types"
 
-const maybeColorize = (rowIo: Io, rowIndex: number, colors: Maybe<Array<Maybe<ColorMethod>>>): Io => {
+const maybeColorize = (rowIo: Io, rowIndex: number, colors: Maybe<Maybe<ColorMethod>[]>): Io => {
     if (isUndefined(colors)) {
         return rowIo
     }

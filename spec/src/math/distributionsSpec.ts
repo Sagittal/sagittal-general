@@ -5,7 +5,7 @@ describe("computeDistributions", (): void => {
         const array: string[] = ["a", "b", "c", "d"]
         const binCount = 3 as Count<DistributionBin<string>>
 
-        const actual: Array<Distribution<string>> = computeDistributions(array, binCount)
+        const actual: Distribution<string>[] = computeDistributions(array, binCount)
 
         const expected = [
             // 4 0 0
@@ -118,7 +118,7 @@ describe("computeDistributions", (): void => {
             [["c"], ["a"], ["b", "d"]],
             [["a"], ["b"], ["c", "d"]],
             [["b"], ["a"], ["c", "d"]],
-        ] as Array<Distribution<string>>
+        ] as Distribution<string>[]
 
         expect(actual).toBeSameDistributionsAs(expected)
     })
@@ -130,10 +130,10 @@ describe("computeDistributions", (): void => {
         const actual = computeDistributions(array, binCount)
 
         expect(actual.length).toBe(2)
-        const expected: Array<Distribution<string>> = [
+        const expected: Distribution<string>[] = [
             [["a"], []],
             [[], ["a"]],
-        ] as Array<Distribution<string>>
+        ] as Distribution<string>[]
         expect(actual).toEqual(expected)
     })
 })

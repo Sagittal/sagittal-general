@@ -4,7 +4,7 @@ import { ScalaPopularityStat } from "./types"
 // Per Scala statistics
 // See: http://www.huygens-fokker.org/microtonality/scales.html
 
-const COMMA_POPULARITIES: Array<Ranked<ScalaPopularityStat>> = [
+const COMMA_POPULARITIES: Ranked<ScalaPopularityStat>[] = [
     { rank: 1, two3FreeClass: { vector: [] /*[1, 1]*/ }, votes: 7624 },
     { rank: 2, two3FreeClass: { vector: [0, 0, 1] /*[5, 1]*/ }, votes: 5371 },
     { rank: 3, two3FreeClass: { vector: [0, 0, 0, 1] /*[7, 1]*/ }, votes: 3016 },
@@ -1336,6 +1336,6 @@ const COMMA_POPULARITIES: Array<Ranked<ScalaPopularityStat>> = [
         votes: 2,
     },
     { rank: 329, two3FreeClass: { vector: [0, 0, 0, 11] /*[1977326743, 1]*/ }, votes: 2 },
-] as Array<Ranked<ScalaPopularityStat>>
+] as Ranked<ScalaPopularityStat>[]
 
 export { COMMA_POPULARITIES }

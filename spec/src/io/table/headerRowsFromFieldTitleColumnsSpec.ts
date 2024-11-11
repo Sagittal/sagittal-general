@@ -5,7 +5,7 @@ describe("computeHeaderRowsFromFieldTitleColumns", (): void => {
     const fieldTitleColumns = [
         ["bound", "index"],
         ["initial", "comma", "mean", "pos (¢)"],
-    ] as Array<Column<{ of: string; header: true }>>
+    ] as Column<{ of: string; header: true }>[]
 
     it("takes field titles which are long enough that they should be split across multiple header rows; they are already in the form of mini-columns, but this re-slices-and-dices them into header rows", (): void => {
         const actual = computeHeaderRowsFromFieldTitleColumns(fieldTitleColumns)
@@ -15,7 +15,7 @@ describe("computeHeaderRowsFromFieldTitleColumns", (): void => {
             ["", "comma"],
             ["bound", "mean"],
             ["index", "pos (¢)"],
-        ] as Array<Row<{ of: string; header: true }>>
+        ] as Row<{ of: string; header: true }>[]
         expect(actual).toEqual(expected)
     })
 
@@ -28,16 +28,16 @@ describe("computeHeaderRowsFromFieldTitleColumns", (): void => {
             ["bound", "mean"],
             ["index", "pos (¢)"],
             ["", ""],
-        ] as Array<Row<{ of: string; header: true }>>
+        ] as Row<{ of: string; header: true }>[]
         expect(actual).toEqual(expected)
     })
 
     it("doesn't crash when there are no field title columns", (): void => {
-        const fieldTitleColumns = [] as Array<Column<{ of: string; header: true }>>
+        const fieldTitleColumns = [] as Column<{ of: string; header: true }>[]
 
         const actual = computeHeaderRowsFromFieldTitleColumns(fieldTitleColumns)
 
-        const expected = [] as Array<Row<{ of: string; header: true }>>
+        const expected = [] as Row<{ of: string; header: true }>[]
         expect(actual).toEqual(expected)
     })
 })

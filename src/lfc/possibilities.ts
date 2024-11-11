@@ -10,7 +10,7 @@ const computePossibilities = <T extends string>(
         computeExtensionBase(ExtensionBaseType.OBJECT),
     ] as Combination<ParameterScopes<T>>
 
-    const scopeEntries = Object.entries(scope) as Array<[T, DynamicParameterScope]>
+    const scopeEntries = Object.entries(scope) as [T, DynamicParameterScope][]
 
     scopeEntries.forEach(([parameter, parameterScope]: [string, DynamicParameterScope]): void => {
         const extendedPossibilities: Combination<ParameterScopes<T>> = [] as unknown[] as Combination<

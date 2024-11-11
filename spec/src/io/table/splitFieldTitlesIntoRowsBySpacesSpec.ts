@@ -17,7 +17,7 @@ describe("splitFieldTitlesIntoRowsBySpaces", (): void => {
             ["2,3-", "", "notating", "notating", "notating"],
             ["free", "N2D3P9", "comma", "comma", "comma"],
             ["class", "rank", "cents", "vector", "sagittal"],
-        ] as Array<Row<{ header: true }>>
+        ] as Row<{ header: true }>[]
         expect(actual).toEqual(expected)
     })
 
@@ -30,7 +30,7 @@ describe("splitFieldTitlesIntoRowsBySpaces", (): void => {
             ["free", "N2D3P9", "comma", "comma", "comma"],
             ["class", "rank", "cents", "vector", "sagittal"],
             ["", "", "", "", ""],
-        ] as Array<Row<{ header: true }>>
+        ] as Row<{ header: true }>[]
         expect(actual).toEqual(expected)
     })
 })

@@ -3,8 +3,8 @@ import { Count } from "../../types"
 import { MERGED_CELL_INDICATOR } from "./constants"
 import { Cell, Row } from "./types"
 
-const computeColumnSpans = <T>(row: Row<{ of: T }>): Array<Count<Cell<{ of: T }>>> => {
-    const columnSpans = [] as Array<Count<Cell>>
+const computeColumnSpans = <T>(row: Row<{ of: T }>): Count<Cell<{ of: T }>>[] => {
+    const columnSpans = [] as Count<Cell>[]
 
     let mergeCounter = 0 as Count<Cell<{ of: T }>>
     row.forEach((cell: Cell<{ of: T }>): void => {

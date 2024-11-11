@@ -2,7 +2,7 @@ import { finalElement } from "./finalElement"
 import { isNumber, isObject, isString } from "./typeGuards"
 import { KeyPath, Key } from "./types"
 
-const computeKeyPath = (...path: Array<Key>): KeyPath => {
+const computeKeyPath = (...path: Key[]): KeyPath => {
     if (path.length === 1) {
         return path[0] as KeyPath
     }
@@ -23,7 +23,7 @@ const computeKeyPath = (...path: Array<Key>): KeyPath => {
     return keyPath
 }
 
-const computeKeyPathArray = (keyPath: KeyPath): Array<Key> => {
+const computeKeyPathArray = (keyPath: KeyPath): Key[] => {
     if (isNumber(keyPath) || isString(keyPath)) return [keyPath]
 
     const keyPathArray = []

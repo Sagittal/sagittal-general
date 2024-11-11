@@ -2,7 +2,7 @@ import { computeQuotientProduct, halveQuotient, Quotient, Rational } from "../..
 import { computeLowestTermsRationalQuotient } from "./lowestTerms"
 
 const computeRationalQuotientProduct = <T extends Rational>(
-    ...rationalQuotients: Array<Quotient<T>>
+    ...rationalQuotients: Quotient<T>[]
 ): Quotient<T> => computeLowestTermsRationalQuotient(computeQuotientProduct(...rationalQuotients))
 
 const halveRationalQuotient = <T extends Rational>(rationalQuotient: Quotient<T>): Quotient<T> =>

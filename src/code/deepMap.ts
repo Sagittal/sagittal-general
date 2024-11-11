@@ -21,7 +21,7 @@ const deepMap: {
             (element: T): T => deepMap(element, fn, ...args) as unknown as T,
         ) as W as unknown as U
     } else if (isObject(value)) {
-        return (Object.entries(value) as Array<[V, T]>).reduce(
+        return (Object.entries(value) as [V, T][]).reduce(
             (object: Record<V, U>, [key, value]: [V, T]): Record<V, U> => {
                 return {
                     ...object,

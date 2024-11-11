@@ -29,7 +29,7 @@ const subtractRationalScaledVectors = <T extends Rational>(
     }) as ScaledVector<T & Noninteger & UnknownDirection>
 
 const computeRationalScaledVectorGeometricMean = <T extends Rational>(
-    ...rationalScaledVectors: Array<ScaledVector<T>>
+    ...rationalScaledVectors: ScaledVector<T>[]
 ): ScaledVector<T & Irrational> &
     Mean<{
         of: ScaledVector<T>
@@ -46,7 +46,7 @@ const computeRationalScaledVectorGeometricMean = <T extends Rational>(
 }
 
 const sumRationalScaledVectors = <T extends Rational>(
-    ...rationalScaledVectors: Array<ScaledVector<T>>
+    ...rationalScaledVectors: ScaledVector<T>[]
 ): ScaledVector<T & Noninteger & UnknownDirection> =>
     ({
         vector: sumVectors(...rationalScaledVectors.map(computeRationalVectorFromRationalScaledVector)),

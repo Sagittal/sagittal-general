@@ -15,12 +15,12 @@ const sqrt = <T extends NumericProperties>(decimal: Decimal<T>): Decimal<T & Irr
     Math.sqrt(decimal) as Decimal<T & Irrational>
 
 const computeArithmeticMean = <T extends NumericProperties>(
-    ...decimals: Array<Decimal<T>>
+    ...decimals: Decimal<T>[]
 ): Mean<{ of: Decimal<T>; meanType: MeanType.ARITHMETIC }> =>
     (sum(...decimals) / count(decimals)) as Mean<{ of: Decimal<T>; meanType: MeanType.ARITHMETIC }>
 
 const computeGeometricMean = <T extends NumericProperties>(
-    ...decimals: Array<Decimal<T>>
+    ...decimals: Decimal<T>[]
 ): Mean<{ of: Decimal<T>; meanType: MeanType.GEOMETRIC }> =>
     (product(...decimals) ** reciprocal(count(decimals) as number)) as Mean<{
         of: Decimal<T>

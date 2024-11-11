@@ -66,7 +66,7 @@ const scaleScaledVector = <T extends NumericProperties>(
     }) as ScaledVector<T & Irrational>
 
 const maxScaledVector = <T extends NumericProperties>(
-    ...scaledVectors: Array<ScaledVector<T>>
+    ...scaledVectors: ScaledVector<T>[]
 ): Max<ScaledVector<T>> => {
     let maxDecimal = -Infinity
     let maxIndex = undefined
@@ -96,7 +96,7 @@ const multiplyScaledVector = <T extends NumericProperties>(
 }
 
 const minScaledVector = <T extends NumericProperties>(
-    ...scaledVectors: Array<ScaledVector<T>>
+    ...scaledVectors: ScaledVector<T>[]
 ): Min<ScaledVector<T>> => {
     let minDecimal = Infinity
     let minIndex = undefined

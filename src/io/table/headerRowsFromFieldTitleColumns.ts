@@ -6,9 +6,9 @@ import { Formatted } from "../format"
 import { Cell, Column, Row } from "./types"
 
 const computeHeaderRowsFromFieldTitleColumns = <T>(
-    fieldTitleColumns: Array<Column<{ of: T; header: true }>>,
+    fieldTitleColumns: Column<{ of: T; header: true }>[],
     { includeSpacerRow = false }: { includeSpacerRow?: boolean } = {},
-): Array<Row<{ of: T; header: true }>> => {
+): Row<{ of: T; header: true }>[] => {
     const maxFieldTitleHeaderRowCount = isEmpty(fieldTitleColumns)
         ? 0
         : max(
@@ -19,7 +19,7 @@ const computeHeaderRowsFromFieldTitleColumns = <T>(
               ),
           )
 
-    const rows: Array<Row<{ of: T; header: true }>> = [...Array(maxFieldTitleHeaderRowCount).keys()].map(
+    const rows: Row<{ of: T; header: true }>[] = [...Array(maxFieldTitleHeaderRowCount).keys()].map(
         (_: number): Row<{ of: T; header: true }> => [] as unknown[] as Row<{ of: T; header: true }>,
     )
 
