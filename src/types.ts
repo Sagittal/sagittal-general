@@ -12,22 +12,23 @@ type Offset<T = void> = Decimal<Integer> & { _OffsetBrand: boolean } & (T extend
         ? unknown
         : { _OffsetOfBrand: T })
 
-type Step<
-    O extends { of?: number } = { of: number },
-    T extends NumericProperties = NoProperties,
-> = Decimal<T> & {
+type Step<O extends { of?: number } = { of: number }, T extends NumericProperties = Integer> = Decimal<T> & {
     // Iteration?
     _StepBrand: boolean
 } & (O extends { of: number } ? { _StepOfEdBrand: O["of"] } : unknown)
-type Ed<O extends { of?: number } = { of: number }, T extends NumericProperties = NoProperties> = Decimal<
+type Ed<O extends { of?: number } = { of: number }, T extends NumericProperties = Integer> = Decimal<T> & {
     // Generator?
-    T & Integer
-> & { _EdBrand: boolean } & (O extends { of: number } ? { _EdOfWindowBrand: O["of"] } : unknown)
+    _EdBrand: boolean
+} & (O extends { of: number } ? { _EdOfWindowBrand: O["of"] } : unknown)
 type Window<
     O extends { of?: number } = { of: number },
     T extends NumericProperties = NoProperties,
 > = Decimal<T> & { _WindowBrand: boolean } & (O extends { of: number } ? { _OfSizeBrand: O["of"] } : unknown) // Period?
-type Degree = [Step, Ed] & Quotient
+type Degree<O extends { of?: number } = { of: number }, T extends NumericProperties = Integer> = [
+    Step<O, T>,
+    Ed<O, T>,
+] &
+    Quotient
 
 type Id<T = void> = Io & { _IdBrand: boolean } & (T extends void ? unknown : { _IdOfBrand: T })
 type Name<T = void> = Io & { _NameBrand: boolean } & (T extends void ? unknown : { _NameOfBrand: T })

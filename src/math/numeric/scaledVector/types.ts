@@ -1,8 +1,12 @@
 import { NoProperties } from "../../../code"
-import { NumericProperties, Vector, Quotient, Rational, Irrational } from "../../../math"
+import { NumericProperties, Vector, Quotient, Rational, Irrational, Integer } from "../../../math"
 import { Degree } from "../../../types"
 
-type ScaledVector<T extends NumericProperties = NoProperties> =
+type ScaledVector<
+    T extends NumericProperties = NoProperties,
+    O extends { of?: number } = { of: number },
+    U extends NumericProperties = Integer,
+> =
     | ({
           vector: Vector<T & Rational>
           scaler: never
@@ -10,7 +14,7 @@ type ScaledVector<T extends NumericProperties = NoProperties> =
           Rational)
     | ({
           vector: Vector<T & Rational>
-          scaler: Quotient | Degree
+          scaler: Quotient | Degree<O, U>
       } & T &
           Irrational)
 
