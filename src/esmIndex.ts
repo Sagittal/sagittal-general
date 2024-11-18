@@ -301,6 +301,7 @@ export {
     Sign,
     Direction,
     negate,
+    addVectors,
 } from "./math"
 export {
     Cents,
