@@ -28,8 +28,6 @@ export {
     now,
 } from "./node"
 
-// TODO: should I really need to say "as Ed" for Ed<{of: Apotome}>?
-
 // TODO: NAMESPACED TYPES ?
 // Document, Window, Generator, Link, Map, Error, Range, Sign
 // these would be better to do like Rtt.Map, so import * as and then deconstruct on separate line before functions?
