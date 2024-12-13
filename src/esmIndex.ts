@@ -57,6 +57,7 @@ export {
     indexOf,
     NoProperties,
     KeyValObj,
+    isNull,
 } from "./code"
 export { Em, Html, Hyperlink, isBrowserMobile, Css } from "./browser"
 export {

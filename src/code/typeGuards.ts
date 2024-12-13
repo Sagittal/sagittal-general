@@ -6,6 +6,8 @@ const isString = (candidateString: unknown): candidateString is string => typeof
 const isUndefined = (candidateUndefined: unknown): candidateUndefined is undefined =>
     typeof candidateUndefined === "undefined" || candidateUndefined === undefined
 
+const isNull = (candidateUndefined: unknown): candidateUndefined is null => candidateUndefined === null
+
 const isObject = (candidateObject: unknown): candidateObject is object => typeof candidateObject === "object"
 
 const isArray = (candidateArray: unknown): candidateArray is unknown[] => candidateArray instanceof Array
@@ -13,4 +15,4 @@ const isArray = (candidateArray: unknown): candidateArray is unknown[] => candid
 const isBoolean = (candidateBoolean: unknown): candidateBoolean is boolean =>
     candidateBoolean === true || candidateBoolean === false
 
-export { isNumber, isString, isUndefined, isArray, isObject, isBoolean }
+export { isNumber, isString, isUndefined, isArray, isObject, isBoolean, isNull }
